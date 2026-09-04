@@ -217,7 +217,7 @@ class MultiHopTransmitter:
             )
 
             for frame_bits in (
-                self.frame_model.fragment_sizes(app_bits)
+                self.frame_model.fragment_sizes()
             ):
                 frame_bits = int(
                     frame_bits

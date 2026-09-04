@@ -1,0 +1,54 @@
+==============================================================================
+DYNAMIC MINIMUM-ETX MULTI-HOP BASELINE
+==============================================================================
+FND                         : 255
+HND                         : 851
+LND                         : 2722
+Generated messages          : 90561
+Attempted messages          : 90556
+Delivered messages          : 88285
+Channel-related drops       : 2074
+Energy-related drops        : 105
+Route-related drops         : 97
+Direct fallback assignments : 4156
+PDR                         : 0.974868
+PDR (%)                     : 97.487
+Frame attempts              : 373413
+Retransmissions             : 8204
+Failed frame attempts       : 10292
+Direct route assignments    : 65722
+Multi-hop route assignments : 24834
+Average delivered hops      : 1.4972
+Maximum delivered hops      : 9
+Average delay               : 534.485 ms
+Channel elapsed time        : 1286.733283 s
+Application goodput         : 119.869 kbps
+Ideal 1-hop upper bound     : 196.850 kbps
+Energy/delivered message    : 0.000566348 J
+Mean semantic age           : 168.487050
+Maximum semantic age        : 2342.337932
+Residual network energy     : 0.000000000 J
+Average semantic payload bits : 1792.61
+Minimum semantic payload bits : 1000
+Maximum semantic payload bits : 4000
+Payload reduction (%)         : 55.18
+Semantic compression ratio   : 0.437930
+Semantic radio efficiency    : 0.493048
+Cumulative energy used      : 50.000000000 J
+
+Most frequently selected relays
+------------------------------------------------------------------------------
+Node  46 : 1627 route selections
+Node  27 : 1477 route selections
+Node   4 : 1467 route selections
+Node  75 : 1441 route selections
+Node  92 : 1424 route selections
+Node  11 : 1377 route selections
+Node  30 : 1303 route selections
+Node  26 : 1196 route selections
+Node   2 : 1099 route selections
+Node  86 : 1090 route selections
+
+CSV output                  : results/minimum_etx_multihop.csv
+
+All dynamic minimum-ETX checks PASSED.

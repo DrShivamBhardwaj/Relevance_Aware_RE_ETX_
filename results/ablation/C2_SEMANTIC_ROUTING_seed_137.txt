@@ -1,0 +1,54 @@
+==============================================================================
+DYNAMIC MINIMUM-ETX MULTI-HOP BASELINE
+==============================================================================
+FND                         : 125
+HND                         : 418
+LND                         : 1236
+Generated messages          : 48469
+Attempted messages          : 48466
+Delivered messages          : 46515
+Channel-related drops       : 1835
+Energy-related drops        : 103
+Route-related drops         : 16
+Direct fallback assignments : 3236
+PDR                         : 0.959686
+PDR (%)                     : 95.969
+Frame attempts              : 309659
+Retransmissions             : 8121
+Failed frame attempts       : 9963
+Direct route assignments    : 39649
+Multi-hop route assignments : 8817
+Average delivered hops      : 1.2848
+Maximum delivered hops      : 8
+Average delay               : 960.466 ms
+Channel elapsed time        : 1258.648247 s
+Application goodput         : 147.825 kbps
+Ideal 1-hop upper bound     : 196.850 kbps
+Energy/delivered message    : 0.001074922 J
+Mean semantic age           : 69.582596
+Maximum semantic age        : 1081.623328
+Residual network energy     : 0.000000000 J
+Average semantic payload bits : 4000.00
+Minimum semantic payload bits : 4000
+Maximum semantic payload bits : 4000
+Payload reduction (%)         : 0.00
+Semantic compression ratio   : 1.000000
+Semantic radio efficiency    : 0.616000
+Cumulative energy used      : 50.000000000 J
+
+Most frequently selected relays
+------------------------------------------------------------------------------
+Node   4 : 785 route selections
+Node  36 : 755 route selections
+Node  29 : 715 route selections
+Node  51 : 481 route selections
+Node  33 : 469 route selections
+Node  39 : 382 route selections
+Node  14 : 278 route selections
+Node  17 : 248 route selections
+Node  50 : 241 route selections
+Node  40 : 237 route selections
+
+CSV output                  : results/minimum_etx_multihop.csv
+
+All dynamic minimum-ETX checks PASSED.

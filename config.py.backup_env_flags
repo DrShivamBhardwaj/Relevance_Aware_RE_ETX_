@@ -73,21 +73,8 @@ class SimulationConfig:
     semantic_high_recall_min_ratio: float = 0.75
 
     # Ablation control switches
-    semantic_routing_enabled: bool = (
-        os.environ.get(
-            "SEMANTIC_ROUTING_ENABLED",
-            "true"
-        ).lower()
-        == "true"
-    )
-
-    semantic_payload_enabled: bool = (
-        os.environ.get(
-            "SEMANTIC_PAYLOAD_ENABLED",
-            "true"
-        ).lower()
-        == "true"
-    )
+    semantic_routing_enabled: bool = True
+    semantic_payload_enabled: bool = True
 
     # Multi-hop neighbor / routing model
     max_sensor_link_distance_m: float = 30.0

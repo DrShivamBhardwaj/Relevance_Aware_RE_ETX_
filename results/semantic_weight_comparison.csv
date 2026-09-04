@@ -1,0 +1,4 @@
+semantic_weight,FND,HND,LND,PDR,Application goodput,Energy/delivered message,Average delivered hops,Average delay
+0.25,111,403,1404,96.179,143.924,0.001066189,1.3148,956.807
+0.50,109,406,1404,96.212,144.050,0.001065735,1.3149,955.725
+1.00,109,403,1409,96.262,144.135,0.001065144,1.3149,956.018

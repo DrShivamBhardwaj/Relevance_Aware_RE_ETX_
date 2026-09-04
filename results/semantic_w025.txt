@@ -1,0 +1,48 @@
+==============================================================================
+DYNAMIC MINIMUM-ETX MULTI-HOP BASELINE
+==============================================================================
+FND                         : 111
+HND                         : 403
+LND                         : 1404
+Generated messages          : 48759
+Attempted messages          : 48752
+Delivered messages          : 46896
+Channel-related drops       : 1586
+Energy-related drops        : 107
+Route-related drops         : 170
+Direct fallback assignments : 4163
+PDR                         : 0.961792
+PDR (%)                     : 96.179
+Frame attempts              : 320659
+Retransmissions             : 8553
+Failed frame attempts       : 10151
+Direct route assignments    : 39157
+Multi-hop route assignments : 9595
+Average delivered hops      : 1.3148
+Maximum delivered hops      : 7
+Average delay               : 956.807 ms
+Channel elapsed time        : 1303.354214 s
+Application goodput         : 143.924 kbps
+Ideal 1-hop upper bound     : 196.850 kbps
+Energy/delivered message    : 0.001066189 J
+Mean semantic age           : 87.645101
+Maximum semantic age        : 1231.204142
+Residual network energy     : 0.000000000 J
+Cumulative energy used      : 50.000000000 J
+
+Most frequently selected relays
+------------------------------------------------------------------------------
+Node  34 : 768 route selections
+Node  94 : 604 route selections
+Node  16 : 437 route selections
+Node   7 : 398 route selections
+Node  10 : 392 route selections
+Node  79 : 391 route selections
+Node  66 : 388 route selections
+Node  33 : 386 route selections
+Node  26 : 383 route selections
+Node  46 : 380 route selections
+
+CSV output                  : results/minimum_etx_multihop.csv
+
+All dynamic minimum-ETX checks PASSED.

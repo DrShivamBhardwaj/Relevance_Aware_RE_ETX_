@@ -1,0 +1,53 @@
+==============================================================================
+DYNAMIC MINIMUM-ETX MULTI-HOP BASELINE
+==============================================================================
+FND                         : 130
+HND                         : 394
+LND                         : 1285
+Generated messages          : 42654
+Attempted messages          : 42649
+Delivered messages          : 40444
+Channel-related drops       : 1991
+Energy-related drops        : 105
+Route-related drops         : 114
+Direct fallback assignments : 2850
+PDR                         : 0.948188
+PDR (%)                     : 94.819
+Frame attempts              : 319131
+Retransmissions             : 7718
+Failed frame attempts       : 9726
+Direct route assignments    : 31118
+Multi-hop route assignments : 11531
+Average delivered hops      : 1.5200
+Maximum delivered hops      : 9
+Average delay               : 1160.904 ms
+Channel elapsed time        : 1297.150961 s
+Application goodput         : 52.575 kbps
+Ideal 1-hop upper bound     : 196.850 kbps
+Energy/delivered message    : 0.001236277 J
+Mean semantic age           : 83.554336
+Maximum semantic age        : 1145.445819
+Residual network energy     : 0.000000000 J
+Average semantic payload bits : 1772.83
+Minimum semantic payload bits : 1000
+Maximum semantic payload bits : 4000
+Payload reduction (%)         : 55.68
+Semantic efficiency          : 0.702379
+Cumulative energy used      : 50.000000000 J
+
+Most frequently selected relays
+------------------------------------------------------------------------------
+Node  46 : 754 route selections
+Node   4 : 711 route selections
+Node  92 : 708 route selections
+Node  27 : 707 route selections
+Node  11 : 706 route selections
+Node  30 : 706 route selections
+Node  75 : 691 route selections
+Node  26 : 565 route selections
+Node   2 : 565 route selections
+Node  86 : 552 route selections
+
+CSV output                  : results/minimum_etx_multihop.csv
+
+All dynamic minimum-ETX checks PASSED.
