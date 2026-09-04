@@ -1,10 +1,17 @@
+import os
+
 from dataclasses import dataclass
 
 
 @dataclass
 class SimulationConfig:
     # Reproducibility
-    seed: int = 42
+    seed: int = int(
+        os.environ.get(
+            "SEMANTIC_SEED",
+            42
+        )
+    )
 
     # Network
     num_nodes: int = 100
@@ -64,6 +71,23 @@ class SimulationConfig:
     semantic_high_recall_threshold: float = 0.50
     semantic_high_confidence_threshold: float = 0.85
     semantic_high_recall_min_ratio: float = 0.75
+
+    # Ablation control switches
+    semantic_routing_enabled: bool = (
+        os.environ.get(
+            "SEMANTIC_ROUTING_ENABLED",
+            "true"
+        ).lower()
+        == "true"
+    )
+
+    semantic_payload_enabled: bool = (
+        os.environ.get(
+            "SEMANTIC_PAYLOAD_ENABLED",
+            "true"
+        ).lower()
+        == "true"
+    )
 
     # Multi-hop neighbor / routing model
     max_sensor_link_distance_m: float = 30.0

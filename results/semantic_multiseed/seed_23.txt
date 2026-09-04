@@ -1,0 +1,53 @@
+==============================================================================
+DYNAMIC MINIMUM-ETX MULTI-HOP BASELINE
+==============================================================================
+FND                         : 124
+HND                         : 494
+LND                         : 928
+Generated messages          : 42092
+Attempted messages          : 42081
+Delivered messages          : 41291
+Channel-related drops       : 607
+Energy-related drops        : 111
+Route-related drops         : 83
+Direct fallback assignments : 2246
+PDR                         : 0.980970
+PDR (%)                     : 98.097
+Frame attempts              : 332927
+Retransmissions             : 3164
+Failed frame attempts       : 3777
+Direct route assignments    : 28941
+Multi-hop route assignments : 13140
+Average delivered hops      : 1.5876
+Maximum delivered hops      : 9
+Average delay               : 1229.385 ms
+Channel elapsed time        : 1353.189312 s
+Application goodput         : 51.798 kbps
+Ideal 1-hop upper bound     : 196.850 kbps
+Energy/delivered message    : 0.001210918 J
+Mean semantic age           : 40.784287
+Maximum semantic age        : 708.897495
+Residual network energy     : 0.000000000 J
+Average semantic payload bits : 1749.73
+Minimum semantic payload bits : 1000
+Maximum semantic payload bits : 4000
+Payload reduction (%)         : 56.26
+Semantic efficiency          : 0.479905
+Cumulative energy used      : 50.000000000 J
+
+Most frequently selected relays
+------------------------------------------------------------------------------
+Node  55 : 690 route selections
+Node  75 : 689 route selections
+Node  70 : 688 route selections
+Node  98 : 685 route selections
+Node  49 : 682 route selections
+Node  21 : 674 route selections
+Node  84 : 669 route selections
+Node  97 : 631 route selections
+Node  72 : 628 route selections
+Node  38 : 623 route selections
+
+CSV output                  : results/minimum_etx_multihop.csv
+
+All dynamic minimum-ETX checks PASSED.

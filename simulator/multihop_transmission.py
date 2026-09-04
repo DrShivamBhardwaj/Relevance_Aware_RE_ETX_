@@ -217,7 +217,7 @@ class MultiHopTransmitter:
             )
 
             for frame_bits in (
-                self.frame_model.fragment_sizes()
+                self.frame_model.fragment_sizes(app_bits)
             ):
                 frame_bits = int(
                     frame_bits
@@ -246,6 +246,10 @@ class MultiHopTransmitter:
                 for attempt in range(
                     self.max_attempts
                 ):
+
+                    # Count every physical frame attempt,
+                    # including retransmissions.
+                    radio_bits += frame_bits
                     # -----------------------------
                     # Sender energy availability
                     # -----------------------------

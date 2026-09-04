@@ -1,21 +1,6 @@
-# Python cache
-__pycache__/
-*.py[cod]
-
-# Virtual environment
 .venv/
-
-# Simulation generated files
-results/
-plots/
-
-# OS files
+__pycache__/
+*.pyc
 .DS_Store
-
-# IDE files
-.vscode/
-.idea/
-git add .
-
-
-*_backup.py
+*.log
+.ipynb_checkpoints/
