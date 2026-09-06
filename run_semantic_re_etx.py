@@ -46,6 +46,79 @@ def rotate_schedule(
 def run():
     config = SimulationConfig()
 
+    mode = config.experiment_mode
+
+    valid_modes = {
+        "LEGACY",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+    }
+
+    if mode not in valid_modes:
+        raise ValueError(
+            f"Invalid EXPERIMENT_MODE={mode}. "
+            f"Choose from {sorted(valid_modes)}"
+        )
+
+    if mode == "LEGACY":
+        routing_enabled = bool(
+            config.semantic_routing_enabled
+        )
+
+        payload_mode = (
+            "adaptive"
+            if config.semantic_payload_enabled
+            else "fixed_full"
+        )
+
+        temporal_weight = 0.6
+        spatial_weight = 0.4
+
+    else:
+        routing_enabled = mode in {
+            "C2",
+            "C4",
+        }
+
+        payload_mode = {
+            "C1": "fixed_full",
+            "C2": "fixed_full",
+            "C3": "adaptive",
+            "C4": "adaptive",
+            "C5": "equal_budget",
+            "C6": "shuffled",
+            "C7": "adaptive",
+        }[mode]
+
+        if mode == "C7":
+            temporal_weight = 1.0
+            spatial_weight = 0.0
+        else:
+            temporal_weight = 0.6
+            spatial_weight = 0.4
+
+    if mode == "C5":
+        if not (
+            8
+            <= config.equal_budget_payload_bits
+            <= config.packet_size
+        ):
+            raise ValueError(
+                "EQUAL_BUDGET_PAYLOAD_BITS is outside "
+                "the allowed payload range."
+            )
+
+        if config.equal_budget_payload_bits % 8 != 0:
+            raise ValueError(
+                "EQUAL_BUDGET_PAYLOAD_BITS must be "
+                "byte aligned."
+            )
+
     topology = Topology(
         config
     )
@@ -81,7 +154,14 @@ def run():
     )
 
     semantic_estimator = SemanticRelevanceEstimator(
-        topology
+        topology,
+        temporal_weight=temporal_weight,
+        spatial_weight=spatial_weight,
+    )
+
+    shuffle_rng = np.random.default_rng(
+        config.seed
+        + config.shuffle_seed_offset
     )
 
     semantic_tracker = SemanticAgeTracker(
@@ -90,8 +170,13 @@ def run():
 
     semantic_payload_controller = None
 
-    if config.semantic_payload_enabled:
-        semantic_payload_controller = SemanticPayloadController(config)
+    if payload_mode in {
+        "adaptive",
+        "shuffled",
+    }:
+        semantic_payload_controller = SemanticPayloadController(
+            config
+        )
 
     transmitter = MultiHopTransmitter(
         config,
@@ -136,6 +221,27 @@ def run():
     semantic_mean_history = []
     semantic_max_history = []
 
+    # ------------------------------------------------
+    # Ground-truth event evaluation counters.
+    #
+    # Event truth is used ONLY for offline evaluation;
+    # it is never supplied to routing, relevance,
+    # payload adaptation, or transmission decisions.
+    # ------------------------------------------------
+    event_generated_reports = 0
+    event_attempted_reports = 0
+    event_delivered_reports = 0
+    event_attempted_payload_bits = 0
+    event_delivered_payload_bits = 0
+
+    non_event_attempted_reports = 0
+    non_event_attempted_payload_bits = 0
+
+    # Within-round event targeting removes the
+    # confounding effect that event-active rounds
+    # can have a larger payload multiset overall.
+    within_round_targeting_gaps = []
+
     os.makedirs(
         "results",
         exist_ok=True
@@ -174,16 +280,53 @@ def run():
 
         relevance = semantic_output["relevance"]
 
+        # Evaluation-only ground truth.
+        # This variable must never affect any network decision.
+        event_truth = sensing.event_truth()
+
         semantic_age = semantic_tracker.semantic_age(
             relevance
         )
 
-        if config.semantic_payload_enabled:
+        if payload_mode in {
+            "adaptive",
+            "shuffled",
+        }:
             semantic_payload_bits = (
                 semantic_payload_controller.payload_bits(
                     relevance
                 )
             )
+
+            if payload_mode == "shuffled":
+                shuffled_payload_bits = (
+                    semantic_payload_bits.copy()
+                )
+
+                if alive_at_start.size > 1:
+                    permuted_sources = (
+                        shuffle_rng.permutation(
+                            alive_at_start
+                        )
+                    )
+
+                    shuffled_payload_bits[
+                        alive_at_start
+                    ] = semantic_payload_bits[
+                        permuted_sources
+                    ]
+
+                semantic_payload_bits = (
+                    shuffled_payload_bits
+                )
+
+        elif payload_mode == "equal_budget":
+            semantic_payload_bits = np.full(
+                config.num_nodes,
+                config.equal_budget_payload_bits,
+                dtype=np.int64
+            )
+
         else:
             semantic_payload_bits = np.full(
                 config.num_nodes,
@@ -214,12 +357,12 @@ def run():
             energy_weight=0.25,
             semantic_weight=(
                 1.00
-                if config.semantic_routing_enabled
+                if routing_enabled
                 else 0.0
             ),
             semantic_age=(
                 semantic_age
-                if config.semantic_routing_enabled
+                if routing_enabled
                 else np.zeros(
                     config.num_nodes
                 )
@@ -235,7 +378,18 @@ def run():
             schedule.size
         )
 
+        event_generated_reports += int(
+            np.count_nonzero(
+                event_truth[schedule]
+            )
+        )
+
         delivered_round = 0
+
+        event_attempted_round = 0
+        event_payload_bits_round = 0
+        non_event_attempted_round = 0
+        non_event_payload_bits_round = 0
 
         delivered_mask = np.zeros(
             config.num_nodes,
@@ -300,6 +454,13 @@ def run():
                 1
             )
 
+            if event_truth[source]:
+                event_attempted_reports += 1
+                event_attempted_round += 1
+            else:
+                non_event_attempted_reports += 1
+                non_event_attempted_round += 1
+
             hops = (
                 len(path) - 1
             )
@@ -343,13 +504,23 @@ def run():
                 config.packet_size
             )
 
-            if config.semantic_payload_enabled:
-                total_semantic_payload_bits += int(
+            total_semantic_payload_bits += int(
+                semantic_payload_bits[source]
+            )
+
+            if event_truth[source]:
+                event_attempted_payload_bits += int(
+                    semantic_payload_bits[source]
+                )
+                event_payload_bits_round += int(
                     semantic_payload_bits[source]
                 )
             else:
-                total_semantic_payload_bits += int(
-                    config.packet_size
+                non_event_attempted_payload_bits += int(
+                    semantic_payload_bits[source]
+                )
+                non_event_payload_bits_round += int(
+                    semantic_payload_bits[source]
                 )
 
             metrics.register_frame_stats(
@@ -382,6 +553,12 @@ def run():
                         ),
                     delays=[delay]
                 )
+
+                if event_truth[source]:
+                    event_delivered_reports += 1
+                    event_delivered_payload_bits += int(
+                        semantic_payload_bits[source]
+                    )
 
                 delivered_round += 1
 
@@ -428,6 +605,23 @@ def run():
                 raise RuntimeError(
                     "Unknown transmission drop reason."
                 )
+
+        if (
+            event_attempted_round > 0
+            and non_event_attempted_round > 0
+        ):
+            event_mean_round = (
+                event_payload_bits_round
+                / event_attempted_round
+            )
+            non_event_mean_round = (
+                non_event_payload_bits_round
+                / non_event_attempted_round
+            )
+            within_round_targeting_gaps.append(
+                event_mean_round
+                - non_event_mean_round
+            )
 
         elapsed_channel_time += (
             round_airtime
@@ -601,6 +795,70 @@ def run():
     top_relays = np.argsort(
         relay_route_usage
     )[::-1][:10]
+
+    # ------------------------------------------------
+    # Event-aware evaluation metrics.
+    #
+    # These are offline diagnostics only. Ground-truth
+    # event labels never participate in the algorithm.
+    # ------------------------------------------------
+    if event_attempted_reports > 0:
+        event_mean_payload_bits = (
+            event_attempted_payload_bits
+            / event_attempted_reports
+        )
+        event_payload_preservation_ratio = (
+            event_attempted_payload_bits
+            / (
+                event_attempted_reports
+                * config.packet_size
+            )
+        )
+    else:
+        event_mean_payload_bits = 0.0
+        event_payload_preservation_ratio = 0.0
+
+    if non_event_attempted_reports > 0:
+        non_event_mean_payload_bits = (
+            non_event_attempted_payload_bits
+            / non_event_attempted_reports
+        )
+    else:
+        non_event_mean_payload_bits = 0.0
+
+    payload_targeting_gap_bits = (
+        event_mean_payload_bits
+        - non_event_mean_payload_bits
+    )
+
+    if event_generated_reports > 0:
+        event_report_delivery_ratio = (
+            event_delivered_reports
+            / event_generated_reports
+        )
+        event_payload_delivery_ratio = (
+            event_delivered_payload_bits
+            / (
+                event_generated_reports
+                * config.packet_size
+            )
+        )
+    else:
+        event_report_delivery_ratio = 0.0
+        event_payload_delivery_ratio = 0.0
+
+    if within_round_targeting_gaps:
+        within_round_targeting_gap_bits = float(
+            np.mean(
+                within_round_targeting_gaps
+            )
+        )
+        event_rounds_evaluated = len(
+            within_round_targeting_gaps
+        )
+    else:
+        within_round_targeting_gap_bits = 0.0
+        event_rounds_evaluated = 0
 
     # ------------------------------------------------
     # Final summary
@@ -792,6 +1050,61 @@ def run():
     print(
         f"Cumulative energy used      : "
         f"{network.cumulative_energy_consumed:.9f} J"
+    )
+
+    print(
+        f"Event generated reports     : "
+        f"{event_generated_reports}"
+    )
+
+    print(
+        f"Event attempted reports     : "
+        f"{event_attempted_reports}"
+    )
+
+    print(
+        f"Event delivered reports     : "
+        f"{event_delivered_reports}"
+    )
+
+    print(
+        f"Event report delivery ratio : "
+        f"{event_report_delivery_ratio:.6f}"
+    )
+
+    print(
+        f"Event mean payload bits     : "
+        f"{event_mean_payload_bits:.3f}"
+    )
+
+    print(
+        f"Non-event mean payload bits : "
+        f"{non_event_mean_payload_bits:.3f}"
+    )
+
+    print(
+        f"Payload targeting gap bits  : "
+        f"{payload_targeting_gap_bits:.3f}"
+    )
+
+    print(
+        f"Event payload preservation  : "
+        f"{event_payload_preservation_ratio:.6f}"
+    )
+
+    print(
+        f"Event payload delivery ratio: "
+        f"{event_payload_delivery_ratio:.6f}"
+    )
+
+    print(
+        f"Event rounds evaluated       : "
+        f"{event_rounds_evaluated}"
+    )
+
+    print(
+        f"Within-round targeting gap   : "
+        f"{within_round_targeting_gap_bits:.3f}"
     )
 
     print()

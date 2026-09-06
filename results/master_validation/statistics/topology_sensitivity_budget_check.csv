@@ -1,0 +1,10 @@
+profile,mode,attempted_mean_payload_bits,average_delivered_hops,within_round_targeting_gap_bits
+deep,C1,4000.0,3.293,0.0
+deep,C3,1570.823,3.608,1123.536
+deep,C5,1568.0,3.301,0.0
+medium,C1,4000.0,2.896,0.0
+medium,C3,1649.19,3.007,1249.084
+medium,C5,1648.0,2.879,0.0
+shallow,C1,4000.0,1.52,0.0
+shallow,C3,1745.532,1.515,1297.195
+shallow,C5,1744.0,1.517,0.0
