@@ -14,13 +14,41 @@ class SimulationConfig:
     )
 
     # Network
-    num_nodes: int = 100
-    area_width: float = 100.0
-    area_height: float = 100.0
+    num_nodes: int = int(
+        os.environ.get(
+            "NUM_NODES",
+            "100"
+        )
+    )
+
+    area_width: float = float(
+        os.environ.get(
+            "AREA_WIDTH_M",
+            "100.0"
+        )
+    )
+
+    area_height: float = float(
+        os.environ.get(
+            "AREA_HEIGHT_M",
+            "100.0"
+        )
+    )
 
     # Base station
-    bs_x: float = 50.0
-    bs_y: float = 150.0
+    bs_x: float = float(
+        os.environ.get(
+            "BS_X_M",
+            "50.0"
+        )
+    )
+
+    bs_y: float = float(
+        os.environ.get(
+            "BS_Y_M",
+            "150.0"
+        )
+    )
 
     # Node energy
     initial_energy: float = 0.5
@@ -89,8 +117,43 @@ class SimulationConfig:
         == "true"
     )
 
+
+    # Dual-journal control experiments
+    #
+    # LEGACY  = preserve previous behaviour exactly
+    # C1      = fixed 4000-bit payload, RE-ETX
+    # C2      = fixed 4000-bit payload + age routing
+    # C3      = relevance-adaptive payload, RE-ETX
+    # C4      = relevance-adaptive payload + age routing
+    # C5      = equal-budget fixed payload, RE-ETX
+    # C6      = shuffled relevance payload, RE-ETX
+    # C7      = temporal-only relevance payload, RE-ETX
+    experiment_mode: str = os.environ.get(
+        "EXPERIMENT_MODE",
+        "LEGACY"
+    ).upper()
+
+    equal_budget_payload_bits: int = int(
+        os.environ.get(
+            "EQUAL_BUDGET_PAYLOAD_BITS",
+            "1744"
+        )
+    )
+
+    shuffle_seed_offset: int = int(
+        os.environ.get(
+            "SHUFFLE_SEED_OFFSET",
+            "6000003"
+        )
+    )
+
     # Multi-hop neighbor / routing model
-    max_sensor_link_distance_m: float = 30.0
+    max_sensor_link_distance_m: float = float(
+        os.environ.get(
+            "MAX_SENSOR_LINK_DISTANCE_M",
+            "30.0"
+        )
+    )
     min_link_success: float = 0.90
     etx_epsilon: float = 1e-12
 

@@ -279,11 +279,20 @@ class SemanticRelevanceEstimator:
             current - previous
         )
 
-        spatial = (
-            self._spatial_feature(
-                current
+        # True temporal-only control:
+        # when spatial_weight == 0, do not access
+        # neighborhood observations at all.
+        if self.spatial_weight == 0.0:
+            spatial = np.zeros(
+                self.num_nodes,
+                dtype=np.float64
             )
-        )
+        else:
+            spatial = (
+                self._spatial_feature(
+                    current
+                )
+            )
 
         self.round_count += 1
 
