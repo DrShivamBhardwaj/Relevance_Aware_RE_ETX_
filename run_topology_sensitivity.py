@@ -14,18 +14,21 @@ PROFILES = {
         "bs_y": 200,
         "link_radius": 25,
         "calibrated_mean_hops": 1.483,
+        "c5_budget": 1744,
     },
     "medium": {
         "area_height": 400,
         "bs_y": 450,
         "link_radius": 45,
         "calibrated_mean_hops": 2.910,
+        "c5_budget": 1648,
     },
     "deep": {
         "area_height": 600,
         "bs_y": 650,
         "link_radius": 60,
         "calibrated_mean_hops": 4.929,
+        "c5_budget": 1568,
     },
 }
 
@@ -101,7 +104,9 @@ for profile, cfg in PROFILES.items():
             env["MAX_SENSOR_LINK_DISTANCE_M"] = str(
                 cfg["link_radius"]
             )
-            env["EQUAL_BUDGET_PAYLOAD_BITS"] = "1744"
+            env["EQUAL_BUDGET_PAYLOAD_BITS"] = str(
+                cfg["c5_budget"]
+            )
 
             result = subprocess.run(
                 ["python", "-u", "run_semantic_re_etx.py"],
