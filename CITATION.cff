@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the associated manuscript and this software archive."
+title: "Controlled Attribution and Robustness in IoT Wireless Sensor Networks"
+type: software
+authors:
+  - family-names: Bhardwaj
+    given-names: Shivam
+  - family-names: Srivastava
+    given-names: Jitendra Nath
+  - family-names: Sanghi
+    given-names: Akash
+repository-code: "https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_"
+abstract: "Simulation code and archived validation artifacts for controlled attribution of clustering, relevance-aware reporting, and residual-energy-aware ETX routing in IoT wireless sensor networks. The repository README and reproducibility guide distinguish the earlier public C1--C7 validation archive from the later frozen J0--J7 journal study."
+keywords:
+  - wireless sensor networks
+  - Internet of Things
+  - relevance-aware reporting
+  - RE-ETX
+  - cluster-head selection
+  - AD-CWOA
