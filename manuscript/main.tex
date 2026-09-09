@@ -1,0 +1,823 @@
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\floatstyle{ruled}
+\restylefloat{algorithm}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{url}
+
+
+\begin{document}
+
+\title[Controlled Attribution and Robustness in IoT WSNs]
+{Controlled Attribution of Cross-Layer Gains and Robustness Limits in IoT Wireless Sensor Networks: AD-CWOA Clustering, Relevance-Aware Reporting, and RE-ETX Routing}
+
+\author*[1]{\fnm{Shivam} \sur{Bhardwaj}}\email{shibambhardwaj@gmail.com}
+\author[1]{\fnm{Jitendra Nath} \sur{Srivastava}}\email{jitendranathshrivastava@gmail.com}
+\author[1]{\fnm{Akash} \sur{Sanghi}}\email{sanghiakash@gmail.com}
+\affil*[1]{\orgdiv{Department of Computer Application}, \orgname{Invertis University}, \orgaddress{\city{Bareilly}, \country{India}}}
+
+\abstract{
+Cross-layer wireless sensor network studies can report large lifetime or reliability gains without identifying whether those gains arise from clustering, routing, source-traffic reduction, or their interaction. This study evaluates an IoT-enabled framework combining fixed-cardinality adaptive discrete whale optimization for cluster-head selection, state-triggered reclustering, temporal-spatial relevance-aware source payloads, and residual-energy expected transmission count routing. Twenty frozen inferential seeds, disjoint calibration seeds, a hard budget of 150 clustering-objective evaluations per optimizer call, prespecified contrasts, confidence intervals, effect sizes, sign-flip sensitivity tests, and Holm correction are used. The largest network-level changes occur when mean source payload falls from 4000 to about 1725 bits/report; byte-matched and shuffled controls show that broad lifetime and delivery gains are dominated by traffic-volume reduction rather than relevance-directed allocation. Relevance remains supported for preferential source-bit allocation to event-associated observations. Equal-evaluation tests do not establish general optimizer superiority, and state-triggered reclustering has survival/reliability benefits together with delay and optimization-overhead costs. Cluster-count, sink-distance, and density-preserving expansion tests expose substantial robustness limits. Two post-freeze validation families strengthen external validity without changing the causal ladder: a traffic-matched harmonized reproduction of a 2024 energy-efficient LEACH cluster-head mechanism and a 500-round IEEE 802.15.4-style CSMA/CA contention sensitivity. The traffic-matched comparison improves four of five corrected outcomes but not HND, while the contention study shows that reduced source traffic retains corrected RDR and delay advantages despite material contention losses. The contribution is controlled attribution with explicit robustness and validation boundaries rather than a universal protocol-superiority claim.
+}
+
+\keywords{wireless sensor networks, cross-layer design, relevance-aware reporting, energy-aware routing, cluster-head selection, robustness}
+
+\maketitle
+
+\section{Introduction}
+
+Battery-limited wireless sensor networks remain a practical substrate for IoT sensing, but their operating trajectory is governed by several decisions that draw from the same radio-energy budget. Cluster-head (CH) placement controls member distance and forwarding concentration; source reporting determines how many bits enter the network; routing determines retransmission exposure and relay depletion. These mechanisms cannot be evaluated independently once they share the same residual-energy state. Reviews of cross-layer WSN models and recent clustering/routing systems similarly show that energy, reliability, and topology interact across layers \cite{ojeda2023,chung2020,wang2023,edakulathur2025,xu2023}.
+
+The central vulnerability in cross-layer WSN evaluation is attribution. A large end-to-end gain says little about mechanism unless traffic volume, routing, clustering, and information allocation are separated experimentally. Correlation-aware and information-oriented approaches can reduce source traffic substantially \cite{ngai2009,villas2011,biri2021,dash2022,jarwan2022,das2016,bensaid2024,fattoum2023}. Fewer transmitted bits reduce radio work even when the allocation rule contains no useful information. Likewise, reliability-oriented routing can improve delivery while increasing path cost or moving energy burden to other relays \cite{decouto2003,lai2018,limjoco2018,ma2019}. A single proposed-versus-baseline comparison cannot resolve these effects.
+
+We therefore evaluate a cross-layer architecture with three explicit mechanisms. AD-CWOA selects a fixed-cardinality CH set through continuous random keys and a strictly accounted objective-evaluation budget derived from WOA dynamics \cite{mirjalili2016}. Relevance-aware reporting maps temporal and spatial novelty to a continuous byte-aligned payload rather than dropping reports. RE-ETX augments bounded-retry link reliability with residual-energy depletion. PSO \cite{kennedy1995} and original CWOA are used as equal-evaluation optimizer references, while a post-freeze LEACH-style benchmark supplies an external protocol anchor.
+
+The contribution is methodological as much as algorithmic. The J0--J7 matrix forces the architecture to reveal where its efficiencies originate; separate optimizer, reclustering, CH-count, sink-distance, and deployment-size stages expose the boundaries of those conclusions. We additionally quantify the previously omitted spatial-context signaling cost as an analytical sensitivity and show how a hard low-energy CH constraint can become infeasible late in network life. The paper consequently reports mixed and negative results where they occur instead of compressing all outcomes into a protocol-superiority claim.
+
+\subsection{Related-work positioning}
+
+Recent work already contains strong precedents for metaheuristic clustering/routing and correlation-aware source adaptation, so the contribution claimed here is not the isolated existence of those mechanisms. Table~\ref{tab:related} uses only positively verified methodological evidence from the cited studies rather than inferring missing features from inaccessible or incomplete descriptions. Fattoum et al.~\cite{fattoum2023} establish spatio-temporal adaptive sampling with residual-energy awareness; Wang et al.~\cite{wang2023} demonstrate modern cooperative clustering/routing integration; Abose et al.~\cite{abose2024} provide the residual-energy probabilistic CH-election mechanism used for the contemporary external anchor; and OMEECBR~\cite{edakulathur2025} represents recent dual-optimizer IoT-WSN design. Against these precedents, the distinguishing contribution of the present study is the evaluation architecture: traffic-matched and shuffled attribution controls, equal objective-evaluation budgets, corrected seed-level inference, and prespecified routing-geometry/deployment stress are applied within one controlled program.
+
+\begin{table*}[t]
+\caption{Verified methodological positioning of representative WSN studies.}
+\label{tab:related}
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}p{0.34\textwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Study & Verified methodological focus & Relevance to the present study\\
+\midrule
+Fattoum et al. (2023)~\cite{fattoum2023} & Spatio-temporal adaptive sampling with residual-energy awareness & Establishes source-side adaptation as an energy-management mechanism; the present study additionally separates traffic-volume reduction from relevance-to-source mapping.\\
+Wang et al. (2023)~\cite{wang2023} & Cooperative reinforcement-learning/metaheuristic routing framework & Demonstrates modern integrated routing optimization and motivates explicit mechanism attribution rather than treating an integrated stack as one intervention.\\
+Abose et al. (2024)~\cite{abose2024} & Residual-energy probabilistic CH election with base-station-position scenarios & Provides the equation-level contemporary clustering mechanism reproduced here as the harmonized EXT-EEL2024-H external anchor under a common information workload.\\
+OMEECBR (2025)~\cite{edakulathur2025} & Metaheuristic clustering and routing for IoT-enabled WSNs & Represents a recent dual-optimization comparator class and positions the present clustering/routing mechanisms against contemporary optimizer integration.\\
+Present study & Fixed-cardinality AD-CWOA, relevance-aware payload control, and RE-ETX & Adds J6/J7 traffic controls, an equal 150-evaluation optimizer budget, 20 frozen seeds with corrected inference, and prespecified routing-geometry/deployment stress; the claim is controlled attribution plus robustness boundaries.\\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\section{System Model}
+
+\subsection{Network topology and alive set}
+
+Let the static sensor set be
+\begin{equation}
+\mathcal{V}=\{1,2,\ldots,N\},
+\label{eq:nodes}
+\end{equation}
+where the reference configuration uses $N=100$ nodes uniformly distributed over a bounded $100\times100~\mathrm{m}^2$ field. The sink location, used throughout the reference geometry, is
+\begin{equation}
+\mathbf{s}=(50,150)\ \mathrm{m},
+\label{eq:sink}
+\end{equation}
+Equation~\eqref{eq:sink} fixes the reference sink position, and each sensor starts with
+\begin{equation}
+E_i(0)=E_0=0.5\ \mathrm{J}.
+\label{eq:e0}
+\end{equation}
+At workload round $t$, the alive set is
+\begin{equation}
+\mathcal{A}_t=\{i\in\mathcal{V}:E_i(t)>0\},
+\label{eq:alive}
+\end{equation}
+with $M_t=|\mathcal{A}_t|$. For nominal CH count $K=15$, the feasible cardinality is
+\begin{equation}
+K_t=\min(K,|\mathcal{A}_t|),
+\label{eq:kt}
+\end{equation}
+and every evaluated CH set obeys
+\begin{equation}
+\mathcal{S}_t\subseteq\mathcal{A}_t,\qquad |\mathcal{S}_t|=K_t.
+\label{eq:feasible}
+\end{equation}
+Equations~\eqref{eq:nodes}--\eqref{eq:e0} define the reference nodes, sink, and initial energy, while Equations~\eqref{eq:alive}--\eqref{eq:feasible} keep the fixed-cardinality CH problem defined after node deaths. In particular, Equation~\eqref{eq:kt} prevents an infeasible request for more CHs than surviving nodes.
+
+\subsection{Radio model}
+
+For an $L$-bit frame transmitted over distance $d$, communication energy follows
+\begin{equation}
+E_{\mathrm{Tx}}(L,d)=
+\begin{cases}
+L(E_{\mathrm{elec}}+\varepsilon_{\mathrm{fs}}d^2), & d<d_0,\\
+L(E_{\mathrm{elec}}+\varepsilon_{\mathrm{mp}}d^4), & d\ge d_0,
+\end{cases}
+\label{eq:tx}
+\end{equation}
+where the free-space/multipath crossover is
+\begin{equation}
+d_0=\sqrt{\frac{\varepsilon_{\mathrm{fs}}}{\varepsilon_{\mathrm{mp}}}},
+\label{eq:d0}
+\end{equation}
+Equation~\eqref{eq:d0} determines which amplifier term is charged, and reception consumes
+\begin{equation}
+E_{\mathrm{Rx}}(L)=L E_{\mathrm{elec}}.
+\label{eq:rx}
+\end{equation}
+We use $E_{\mathrm{elec}}=50$ nJ/bit, $\varepsilon_{\mathrm{fs}}=10$ pJ/bit/m$^2$, and $\varepsilon_{\mathrm{mp}}=1.3$ fJ/bit/m$^4$. Equations~\eqref{eq:tx}--\eqref{eq:rx} are charged for every realized attempt, including failed retransmissions.
+
+\subsection{Channel and bounded retries}
+
+The path-loss reference is the free-space loss at $d_{\mathrm{ref}}=1$ m,
+\begin{equation}
+PL_0=20\log_{10}\!\left(\frac{4\pi f_c d_{\mathrm{ref}}}{c}\right),
+\label{eq:pl0}
+\end{equation}
+where $f_c=2.4$ GHz and $c$ is the speed of light. For $d^{\star}=\max(d,d_{\mathrm{ref}})$, received power is
+\begin{equation}
+P_r(d)=P_t-\left[PL_0+10n\log_{10}\!\left(\frac{d^{\star}}{d_{\mathrm{ref}}}\right)+X_\sigma\right],
+\label{eq:pr}
+\end{equation}
+with $P_t=0$ dBm, path-loss exponent $n=2.4$, and one fixed per-link log-normal shadowing realization $X_\sigma$ with standard deviation 4 dB. Equations~\eqref{eq:pl0} and \eqref{eq:pr} reproduce the simulator's one-metre path-loss reference and distance floor.
+
+With aggregate noise level $P_N=-100$ dBm, the simulator forms the SNR-like quantity
+\begin{equation}
+\gamma(d)=10^{[P_r(d)-P_N]/10}.
+\label{eq:gamma}
+\end{equation}
+Explicit co-channel interference is not included, so Equation~\eqref{eq:gamma} is not an SINR model. The BPSK-equivalent bit-error probability is
+\begin{equation}
+p_b(d)=\frac{1}{2}\operatorname{erfc}\!\left(\sqrt{\max[\gamma(d),0]}\right),
+\label{eq:ber}
+\end{equation}
+and an $L_f$-bit frame succeeds in one attempt with probability
+\begin{equation}
+p_f(d,L_f)=[1-p_b(d)]^{L_f}.
+\label{eq:pframe}
+\end{equation}
+Equations~\eqref{eq:ber} and \eqref{eq:pframe} are the exact PHY abstraction used by the simulator.
+
+For a report payload of $B$ bits, let $B_{\mathrm{frm}}=800$ bits and $B_{\mathrm{hdr}}=216$ bits. Fragment $f$ has transmitted length
+\begin{equation}
+L_f=B_{\mathrm{hdr}}+\min\!\left[B_{\mathrm{frm}},\,B-(f-1)B_{\mathrm{frm}}\right],\quad
+f=1,\ldots,\left\lceil\frac{B}{B_{\mathrm{frm}}}\right\rceil.
+\label{eq:fragment}
+\end{equation}
+Equation~\eqref{eq:fragment} makes the framing overhead explicit. With $R=3$ retries after the initial attempt, bounded-retry success for fragment $f$ is
+\begin{equation}
+q_f(d,L_f)=1-[1-p_f(d,L_f)]^{R+1},
+\label{eq:qframe}
+\end{equation}
+and report success over fragment set $\mathcal{F}(B)$ is
+\begin{equation}
+q_{\mathrm{msg}}(d,B)=\prod_{f\in\mathcal{F}(B)}q_f(d,L_f).
+\label{eq:qmsg}
+\end{equation}
+Equations~\eqref{eq:qframe} and \eqref{eq:qmsg} therefore model one initial attempt plus at most three retransmissions per frame. The legacy result field named PDR is reported throughout as report delivery ratio (RDR), defined as delivered reports divided by generated reports.
+
+\section{Problem Formulation}
+
+AD-CWOA encodes a candidate by continuous random keys
+\begin{equation}
+\mathbf{z}\in[0,1]^{M_t},
+\label{eq:keys}
+\end{equation}
+and decodes the $K_t$ largest coordinates among the alive-node index set. Thus Equation~\eqref{eq:keys} is only a representation; the decoded set satisfies the feasibility constraint in Equation~\eqref{eq:feasible} exactly.
+
+The implemented clustering problem is a \emph{single-objective scalarized multi-criteria minimization},
+\begin{equation}
+\min_{\mathcal{S}_t\subseteq\mathcal{A}_t,\,|\mathcal{S}_t|=K_t}
+J(\mathcal{S}_t),\qquad
+J=0.34f_d+0.18f_s+0.22f_l+0.26f_e+f_{\mathrm{low}}.
+\label{eq:objective}
+\end{equation}
+Equation~\eqref{eq:objective} is not a Pareto formulation; the four core weights are fixed implementation constants and sum to one.
+
+Member geometry is normalized by the field diagonal,
+\begin{equation}
+f_d=
+\frac{\frac{1}{|\mathcal{A}_t|}\sum_{i\in\mathcal{A}_t}\min_{h\in\mathcal{S}_t}\|\mathbf{x}_i-\mathbf{x}_h\|_2}
+{\sqrt{L_x^2+L_y^2}},
+\label{eq:fd}
+\end{equation}
+whereas CH-to-sink geometry uses the frozen implementation scale
+\begin{equation}
+f_s=
+\frac{\frac{1}{K_t}\sum_{h\in\mathcal{S}_t}\|\mathbf{x}_h-\mathbf{s}\|_2}
+{\sqrt{L_x^2+(L_y+50\,\mathrm{m})^2}}.
+\label{eq:fs}
+\end{equation}
+Equations~\eqref{eq:fd} and \eqref{eq:fs} use fixed physical normalization rather than sample-dependent min--max scaling. The $50$ m offset in Equation~\eqref{eq:fs} is retained exactly from the frozen implementation and is not recomputed when the sink is moved in Stage E.
+
+Let $n_h$ be the number of alive nodes assigned to CH $h$. With
+\begin{equation}
+\bar n=\frac{1}{K_t}\sum_{h\in\mathcal{S}_t}n_h,\qquad
+\sigma_n=\sqrt{\frac{1}{K_t}\sum_{h\in\mathcal{S}_t}(n_h-\bar n)^2},\qquad
+f_l=\frac{\min\!\left(\sigma_n/\max(\bar n,10^{-9}),3\right)}{3},
+\label{eq:fl}
+\end{equation}
+Equation~\eqref{eq:fl} reproduces the population-standard-deviation coefficient of variation and its cap at 3.
+
+Define the clipped CH energy ratio
+\begin{equation}
+r_h(t)=\operatorname{clip}\!\left(\frac{E_h(t)}{E_0},0,1\right).
+\label{eq:eratio}
+\end{equation}
+Using the ratio in Equation~\eqref{eq:eratio}, the depletion component is
+\begin{equation}
+f_e=1-\frac{1}{K_t}\sum_{h\in\mathcal{S}_t}r_h(t),
+\label{eq:fe}
+\end{equation}
+Equation~\eqref{eq:fe} averages normalized CH depletion, and the additive low-energy hinge is
+\begin{equation}
+f_{\mathrm{low}}=\frac{2}{K_t}\sum_{h\in\mathcal{S}_t}\max[0,0.15-r_h(t)].
+\label{eq:flow}
+\end{equation}
+Equations~\eqref{eq:eratio}--\eqref{eq:flow} match the residual-energy calculations in the simulator.
+
+The hinge is used instead of a hard low-energy feasibility rule. If
+\begin{equation}
+\mathcal{H}_t=\{i\in\mathcal{A}_t:r_i(t)\ge0.15\},
+\label{eq:hset}
+\end{equation}
+Equation~\eqref{eq:hset} identifies CH-eligible nodes under a hypothetical hard threshold; such a rule would require
+\begin{equation}
+|\mathcal{H}_t|\ge K_t.
+\label{eq:hardcondition}
+\end{equation}
+Equation~\eqref{eq:hardcondition} can fail late in network life even when at least $K_t$ nodes are alive, which would collapse the fixed-cardinality feasible set. The hinge in Equation~\eqref{eq:flow} instead grades such candidates continuously. Since $0\le r_h\le1$, its implementation-wide bound is
+\begin{equation}
+0\le f_{\mathrm{low}}\le0.30.
+\label{eq:flowbound}
+\end{equation}
+Equation~\eqref{eq:flowbound} also shows that the penalty remains numerically commensurate with the normalized core objective. It is a continuous piecewise-linear hinge, not a smooth barrier.
+
+\section{Proposed Cross-Layer Methodology}
+
+\subsection{AD-CWOA}
+
+At evaluation count $N_{\mathrm{eval}}$, normalized search progress is
+\begin{equation}
+\tau=\frac{N_{\mathrm{eval}}}{N_{\mathrm{budget}}},\qquad N_{\mathrm{budget}}=150.
+\label{eq:tau}
+\end{equation}
+Equation~\eqref{eq:tau} drives the finite-budget adaptation. The WOA coefficient is
+\begin{equation}
+a(\tau)=2(1-\tau),\qquad A=2a r_1-a,\qquad C=2r_2,
+\label{eq:woacoeff}
+\end{equation}
+where $r_1,r_2\sim U(0,1)$. For candidate $\mathbf{z}_i$, incumbent $\mathbf{z}^{\star}$, random population member $\mathbf{z}_r$, $p\sim U(0,1)$, and $\ell\sim U(-1,1)$, the pre-mutation candidate is
+\begin{equation}
+\widetilde{\mathbf{z}}_i=
+\begin{cases}
+\mathbf{z}^{\star}-A|C\mathbf{z}^{\star}-\mathbf{z}_i|, & p<0.5,\ |A|<1,\\
+\mathbf{z}_r-A|C\mathbf{z}_r-\mathbf{z}_i|, & p<0.5,\ |A|\ge1,\\
+|\mathbf{z}^{\star}-\mathbf{z}_i|e^{\ell}\cos(2\pi\ell)+\mathbf{z}^{\star}, & p\ge0.5.
+\end{cases}
+\label{eq:woaupdate}
+\end{equation}
+All vector absolute values and arithmetic in Equation~\eqref{eq:woaupdate} are componentwise, followed by clipping to $[0,1]$. The adaptive mutation schedule is
+\begin{equation}
+p_{\mathrm{mut}}(\tau)=0.20(1-\tau)+0.03,
+\label{eq:pmut}
+\end{equation}
+with Gaussian perturbation scale
+\begin{equation}
+\sigma(\tau)=0.18(1-\tau)+0.02.
+\label{eq:sigma}
+\end{equation}
+For a selected coordinate, the mutation applied after Equations~\eqref{eq:pmut}--\eqref{eq:sigma} is
+\begin{equation}
+z'_{ij}=\operatorname{clip}\!\left(\widetilde z_{ij}+\epsilon_{ij},0,1\right),\qquad
+\epsilon_{ij}\sim\mathcal{N}[0,\sigma^2(\tau)].
+\label{eq:mutation}
+\end{equation}
+A one-swap local refinement is attempted whenever a new incumbent appears; every such evaluation is charged to the same 150-evaluation counter. After two consecutive non-improving population epochs, approximately the worst third of the population is reinitialized, again with every objective call charged to the same counter. No chaotic map is used. Equations~\eqref{eq:woacoeff}--\eqref{eq:mutation} describe finite-budget search operators; they do not constitute an asymptotic convergence claim.
+
+\subsection{Relevance-aware source reporting}
+
+For observation $x_i(t)$, temporal novelty is
+\begin{equation}
+\Delta_i^{(T)}(t)=|x_i(t)-x_i(t-1)|.
+\label{eq:temporal}
+\end{equation}
+With currently alive neighbors inside the 20 m relevance radius,
+\begin{equation}
+\mathcal{N}_i(t)=\{j\in\mathcal{A}_t:j\ne i,\ d_{ij}\le20\,\mathrm{m}\},
+\label{eq:neighbors}
+\end{equation}
+Equation~\eqref{eq:neighbors} restricts spatial context to currently alive neighbors; spatial novelty is
+\begin{equation}
+\Delta_i^{(S)}(t)=\left|x_i(t)-\operatorname{median}\{x_j(t):j\in\mathcal{N}_i(t)\}\right|.
+\label{eq:spatial}
+\end{equation}
+Equations~\eqref{eq:temporal}--\eqref{eq:spatial} define the two novelty channels; an empty alive-neighbor set contributes zero spatial novelty in the implementation.
+
+After the 50-round warm-up, the nonnegative standardized novelties are
+\begin{equation}
+z_i^{(T)}=\operatorname{clip}\!\left(\frac{\Delta_i^{(T)}-\mu_i^{(T)}}{\sqrt{\max[(s_i^{(T)})^2,10^{-8}]}},0,8\right),
+\label{eq:zt}
+\end{equation}
+and
+\begin{equation}
+z_i^{(S)}=\operatorname{clip}\!\left(\frac{\Delta_i^{(S)}-\mu_i^{(S)}}{\sqrt{\max[(s_i^{(S)})^2,10^{-8}]}},0,8\right).
+\label{eq:zs}
+\end{equation}
+Equations~\eqref{eq:zt} and \eqref{eq:zs} form the standardized novelty pair. The relevance score is
+\begin{equation}
+v_i(t)=1-\exp[-(0.6z_i^{(T)}+0.4z_i^{(S)})].
+\label{eq:v}
+\end{equation}
+Equations~\eqref{eq:zt}--\eqref{eq:v} reproduce the scoring order: novelty is standardized using the pre-update state, then the running state is updated.
+
+For each novelty channel $g\in\{T,S\}$ after warm-up, the update input is clipped at three current standard deviations,
+\begin{equation}
+c_i^{(g)}(t)=\min\!\left[\Delta_i^{(g)}(t),\mu_i^{(g)}(t)+3s_i^{(g)}(t)\right],
+\label{eq:relclip}
+\end{equation}
+then with $\alpha=0.02$,
+\begin{equation}
+\mu_i^{(g)}(t+1)=\mu_i^{(g)}(t)+\alpha[c_i^{(g)}(t)-\mu_i^{(g)}(t)],
+\label{eq:ewmamean}
+\end{equation}
+\begin{equation}
+(s_i^{(g)}(t+1))^2=\max\!\left((1-\alpha)(s_i^{(g)}(t))^2+\alpha[c_i^{(g)}(t)-\mu_i^{(g)}(t)]^2,10^{-8}\right).
+\label{eq:ewmavar}
+\end{equation}
+During warm-up, Equations~\eqref{eq:ewmamean}--\eqref{eq:ewmavar} use the unclipped novelty and $\alpha_t=1/(t+1)$ instead. Equation~\eqref{eq:relclip} is therefore only the post-warm-up robustness clip.
+
+The exact payload fraction is piecewise,
+\begin{equation}
+\rho_i(t)=
+\begin{cases}
+0.25+0.75v_i(t), & 0\le v_i(t)<0.50,\\
+\max[0.75,0.25+0.75v_i(t)], & 0.50\le v_i(t)<0.85,\\
+1, & v_i(t)\ge0.85,
+\end{cases}
+\label{eq:rho}
+\end{equation}
+and the byte-aligned payload is
+\begin{equation}
+B_i(t)=\operatorname{clip}\!\left[8\left\lceil\frac{4000\rho_i(t)}{8}\right\rceil,1000,4000\right].
+\label{eq:payload}
+\end{equation}
+Equations~\eqref{eq:rho} and \eqref{eq:payload} implement continuous payload control; they do not define a binary transmit/drop classifier. During the first 50 rounds, $v_i=0$ and Equation~\eqref{eq:payload} yields the minimum 1000-bit payload.
+
+\subsection{RE-ETX routing}
+
+To match the numerical implementation near depletion, define
+\begin{equation}
+\psi_i(t)=\max\!\left(\frac{E_0}{\max[E_i(t),10^{-12}\,\mathrm{J}]}-1,0\right).
+\label{eq:psi}
+\end{equation}
+Routing reliability uses the full 4000-bit report irrespective of the current adaptive payload,
+\begin{equation}
+q_{ij}=\operatorname{clip}\!\left(q_{\mathrm{msg}}(d_{ij},4000),10^{-12},1\right).
+\label{eq:routeq}
+\end{equation}
+Equations~\eqref{eq:psi} and \eqref{eq:routeq} therefore separate residual depletion from bounded-retry full-report reliability.
+
+For an admitted CH-to-CH link with $d_{ij}\le70$ m,
+\begin{equation}
+C_{ij}=\frac{1}{q_{ij}}\left[1+0.25\frac{\psi_i+\psi_j}{2}\right].
+\label{eq:reetx}
+\end{equation}
+Each live CH also has the simulator's direct sink fallback edge,
+\begin{equation}
+C_{iS}=\frac{1}{q_{iS}}\left(1+0.25\frac{\psi_i}{2}\right),
+\label{eq:sinkedge}
+\end{equation}
+where the sink depletion penalty is zero. The selected route is
+\begin{equation}
+\pi_i^{\star}=\arg\min_{\pi\in\Pi_i}\sum_{(u,v)\in\pi}C_{uv}.
+\label{eq:route}
+\end{equation}
+Equations~\eqref{eq:reetx}--\eqref{eq:route} define a positive-cost shortest-path problem, not a multi-objective route search. Along any selected parent edge $u\rightarrow p(u)$,
+\begin{equation}
+D(u)=C_{u,p(u)}+D[p(u)]>D[p(u)],
+\label{eq:loopfree}
+\end{equation}
+so Equation~\eqref{eq:loopfree} gives a strictly decreasing sink-distance potential and precludes a parent cycle. The always-present direct sink edge is a numerical connectivity safeguard in the simulator, not a physical proof that every real radio can close that link.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.90\textwidth]{fig1_methodology.png}
+\caption{Cross-layer attribution architecture.}
+\label{fig:methodology}
+\end{figure*}
+
+Figure~\ref{fig:methodology} separates the three mechanisms before they interact in the simulator. The source branch converts temporal/spatial novelty into a byte-aligned report size; the clustering branch selects an exactly feasible CH subset under a charged 150-evaluation search budget; and the routing branch ranks positive-cost CH paths using full-report bounded-retry reliability and residual-energy depletion. This separation is essential because the later J0--J7 ladder tests the mechanisms independently rather than treating the integrated stack as one indivisible treatment.
+
+\begin{algorithm}[H]
+\caption{Integrated AD-CWOA--relevance--RE-ETX procedure.}
+\label{alg:integrated}
+\footnotesize
+\begin{algorithmic}[1]
+\Require Node positions $\mathbf{x}$; sink $\mathbf{s}$; observations $x_i(t)$; $E_0$; nominal $K$; population $P=15$; budget $B=150$
+\Ensure RDR, delay, retries, communication energy, route depth, FND, HND, and LND
+\State Initialize node energies, relevance statistics, CH state, and counters
+\For{$t=0$ to $2999$}
+    \State Form alive set $\mathcal{A}_t$ using Eq.~\eqref{eq:alive}; set $K_t$ using Eq.~\eqref{eq:kt}
+    \If{$\mathcal{A}_t=\varnothing$} \State \textbf{break} \EndIf
+    \State Compute $\Delta_i^{(T)}$ and $\Delta_i^{(S)}$ using Eqs.~\eqref{eq:temporal}--\eqref{eq:spatial}
+    \State Compute $v_i(t)$ and byte-aligned $B_i(t)$ using Eqs.~\eqref{eq:v}, \eqref{eq:rho}, and \eqref{eq:payload}
+    \If{initial round, CH death, age $\ge50$, or state trigger after the 10-round cooldown}
+        \State Initialize $P$ random-key candidates in $[0,1]^{M_t}$ and set evaluation counter $b\gets0$
+        \State Decode each candidate to exactly $K_t$ CHs and evaluate $J$ in Eq.~\eqref{eq:objective}; charge every call to $b$
+        \While{$b<B$}
+            \State Compute $\tau$, $A$, and $C$ from Eqs.~\eqref{eq:tau} and \eqref{eq:woacoeff}
+            \For{each candidate $\mathbf{z}_i$ while $b<B$}
+                \State Generate $\widetilde{\mathbf{z}}_i$ using Eq.~\eqref{eq:woaupdate}; clip to $[0,1]$
+                \State Apply adaptive mutation using Eqs.~\eqref{eq:pmut}--\eqref{eq:mutation}
+                \State Decode, evaluate Eq.~\eqref{eq:objective}, increment $b$, and update the incumbent if improved
+                \If{a new incumbent is found and $b<B$}
+                    \State Evaluate one CH/non-CH swap refinement and charge the evaluation to $b$
+                \EndIf
+            \EndFor
+            \If{two consecutive population epochs show no incumbent improvement and $b<B$}
+                \State Reinitialize approximately the worst third of candidates; charge all evaluations to $b$
+            \EndIf
+        \EndWhile
+        \State Set $\mathcal{S}_t$ to the incumbent feasible CH set and associate alive members with nearest CHs
+    \EndIf
+    \State Build the live-CH graph; compute $q_{ij}$ and RE-ETX costs using Eqs.~\eqref{eq:routeq}--\eqref{eq:sinkedge}
+    \State Select each CH-to-sink shortest path using Eq.~\eqref{eq:route}
+    \For{each alive source report in the round}
+        \State Fragment the payload using Eq.~\eqref{eq:fragment}
+        \State Serialize member-to-CH and CH-route transmissions; allow one initial attempt plus at most three retries/frame
+        \State Deduct Eqs.~\eqref{eq:tx} and \eqref{eq:rx} for every realized attempt
+    \EndFor
+    \State Update delivery, delay, retry, energy, route-depth, and lifetime statistics
+\EndFor
+\State \Return accumulated statistics
+\end{algorithmic}
+\end{algorithm}
+
+Algorithm~\ref{alg:integrated} summarizes the executable round-level procedure and makes the 150-evaluation charging rule explicit.
+
+\section{Experimental Design}
+
+Twenty matched inferential seeds are fixed before the main journal runs:
+11, 23, 42, 67, 101, 137, 173, 211, 257, 307, 349, 401, 457, 503, 557, 601, 653, 701, 757, and 809. Calibration uses the disjoint seeds 3, 5, 7, 19, and 31. The seed/topology trajectory is the inferential unit; reports and frames are repeated observations within a trajectory.
+
+\begin{table*}[t]
+\caption{Stage-A attribution modes.}
+\label{tab:modes}
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{l l l l l X}
+\toprule
+Mode & Clustering & Payload & Routing & Recluster & Role\\
+\midrule
+J0 & Energy-weighted & Full & ETX & Periodic & Conventional anchor\\
+J1 & AD-CWOA & Full & ETX & State & Clustering/state step\\
+J2 & Energy-weighted & Full & RE-ETX & Periodic & Routing step\\
+J3 & Energy-weighted & Relevance & RE-ETX & Periodic & Traffic reduction without AD-CWOA\\
+J4 & AD-CWOA & Full & RE-ETX & State & Full-payload integrated stack\\
+J5 & AD-CWOA & Relevance & RE-ETX & State & Complete method\\
+J6 & AD-CWOA & Fixed 1712-bit & RE-ETX & State & Byte-matched traffic control\\
+J7 & AD-CWOA & Shuffled adaptive & RE-ETX & State & Mapping control\\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+Table~\ref{tab:modes} defines the causal ladder: J6 controls mean offered traffic and J7 preserves the adaptive within-round payload distribution while breaking its source mapping. Consequently, J4--J5 measures the combined transition to adaptive reporting, whereas J6--J5 and J7--J5 isolate what can be attributed more narrowly to relevance-directed allocation.
+
+\begin{table*}[t]
+\caption{Reference simulation parameters.}
+\label{tab:params}
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ll@{\qquad}ll}
+\toprule
+Parameter & Value & Parameter & Value\\
+\midrule
+Nodes / field & $100$ / $100\times100$ m$^2$ & Sink & $(50,150)$ m\\
+Initial energy & $0.5$ J/node & Nominal CH count & $K=15$\\
+Workload horizon & $3000$ rounds & Optimizer & $P=15$, $B=150$ eval./call\\
+Source payload & $1000$--$4000$ bit & Full report & $4000$ bit\\
+Frame payload / overhead & $800$ / $216$ bit & Bit rate & $250$ kbps\\
+Retries & $3$ after initial attempt & Electronics energy & $50$ nJ/bit\\
+Free-space amplifier & $10$ pJ/bit/m$^2$ & Multipath amplifier & $1.3$ fJ/bit/m$^4$\\
+Carrier / TX power & $2.4$ GHz / $0$ dBm & Noise / path-loss exponent & $-100$ dBm / $2.4$\\
+Shadowing SD & $4$ dB/link & CH--CH radius & $70$ m\\
+Relevance radius / warm-up & $20$ m / $50$ rounds & Relevance weights & $0.6$ temporal, $0.4$ spatial\\
+EWMA factor & $0.02$ & Event start probability & $0.03$/inactive round\\
+Event duration / width & $4$--$10$ rounds / $18$ m & Spatial correlation length & $25$ m\\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+Table~\ref{tab:params} reports the frozen reference values used for the main attribution experiment. Stage D changes only nominal $K$; Stage E changes sink distance; and Stage F jointly expands $N$, field extent, nominal $K$, and normalized sink placement while keeping local physical scales fixed. Those controlled departures are therefore interpreted as sensitivity or robustness tests rather than retuning of the reference configuration.
+
+For paired outcome $Y$, define
+\begin{equation}
+d_i=Y_{i,B}-Y_{i,A},
+\label{eq:diff}
+\end{equation}
+with seed-paired mean
+\begin{equation}
+\bar d=\frac{1}{20}\sum_{i=1}^{20}d_i.
+\label{eq:dbar}
+\end{equation}
+Equation~\eqref{eq:dbar} is the estimated paired effect. The 95\% paired confidence interval is
+\begin{equation}
+\bar d\pm t_{0.975,19}\frac{s_d}{\sqrt{20}},
+\label{eq:ci}
+\end{equation}
+Equation~\eqref{eq:ci} quantifies sampling uncertainty, and paired Cohen effect size is
+\begin{equation}
+d_z=\frac{\bar d}{s_d}.
+\label{eq:dz}
+\end{equation}
+Equations~\eqref{eq:diff}--\eqref{eq:dz} define the seed-matched effect estimates used for the primary paired analysis. Two-sided paired $t$ tests are accompanied by deterministic 200,000-draw sign-flip sensitivity tests, and Holm correction is applied within each prespecified family.
+
+\subsection{Post-freeze external validation families}
+
+The contemporary external condition, denoted EXT-EEL2024-H, implements the residual-energy Energy Efficient LEACH threshold reported by Abose et al.~\cite{abose2024} under the common journal workload. The suffix H denotes harmonization rather than reproduction of the original paper's absolute results. The comparator uses the same $N=100$ field, sink, radio/channel abstraction, 4000-bit source reports, framing, bounded retries, and twenty seed labels. Data aggregation is not introduced because doing so only for the external comparator would change the offered information workload. J4 versus EXT-EEL2024-H is the preferred traffic-matched comparison; J5 versus EXT-EEL2024-H is an integrated-system comparison that additionally changes source traffic. A single Holm family covers the ten prespecified cells from the two five-outcome contrasts.
+
+A second post-freeze family evaluates J4 and J5 for 500 workload rounds under both serialized control and a load-conditioned IEEE 802.15.4-style unslotted CSMA/CA abstraction. The access model uses $\mathrm{macMinBE}=3$, $\mathrm{macMaxBE}=5$, $\mathrm{macMaxCSMABackoffs}=4$, a 320~$\mu$s unit backoff, 128~$\mu$s CCA, and 640~$\mu$s long inter-frame spacing. Each retransmission performs fresh channel access. Primary outcomes are RDR, completion delay including access time, channel-access failures per generated report, and CCA attempts per generated report. This family is a contention sensitivity abstraction, not ns-3, complete IEEE 802.15.4 standards validation, or hardware validation.
+
+\section{Results}
+
+\subsection{J0--J7 attribution}
+
+\begin{table*}[t]
+\caption{Stage-A mean outcomes over twenty frozen seeds.}
+\label{tab:means}
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Mode & FND & HND & LND & RDR (\%) & Delay (ms) & Energy/report (mJ) & Retries/generated & Payload (bits)\\
+\midrule
+J0 & 14.45 & 376.90 & 687.10 & 96.963 & 44.897 & 1.5413 & 0.1232 & 4000.0\\
+J1 & 55.80 & 347.20 & 750.10 & 97.129 & 44.401 & 1.5278 & 0.1347 & 4000.0\\
+J2 & 19.85 & 366.00 & 515.60 & 97.878 & 45.453 & 1.5640 & 0.1277 & 4000.0\\
+J3 & 80.90 & 787.70 & 1037.30 & 98.991 & 21.848 & 0.7068 & 0.0600 & 1725.8\\
+J4 & 90.85 & 347.45 & 548.10 & 97.709 & 45.097 & 1.5504 & 0.1391 & 4000.0\\
+J5 & 314.95 & 735.25 & 1161.15 & 99.004 & 21.672 & 0.6994 & 0.0642 & 1725.0\\
+J6 & 310.10 & 723.10 & 1142.45 & 98.925 & 22.128 & 0.7160 & 0.0665 & 1712.0\\
+J7 & 353.20 & 730.90 & 1169.55 & 98.976 & 21.697 & 0.7000 & 0.0649 & 1725.2\\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+Table~\ref{tab:means} reports the Stage-A means. The ablation ladder shows that transmitting fewer source bits accounts for most of the lifetime and communication-energy gain. Under AD-CWOA and RE-ETX, J4$\rightarrow$J5 increases FND by 224.10 rounds (95\% CI 187.40--260.80, $d_z=2.857$) and HND by 387.80 rounds (95\% CI 374.13--401.47, $d_z=13.275$), while reducing energy by 0.8511 mJ/report (95\% CI $-0.8729$ to $-0.8292$, $d_z=-18.208$). All seven primary J4$\rightarrow$J5 outcomes remain Holm-significant.
+
+Traffic-matched controls narrow the relevance-specific claim. J6$\rightarrow$J5 retains corrected differences only for service delay and energy; J7$\rightarrow$J5 is nonsignificant on all seven broad outcomes. Relevance therefore acts primarily as a bit-allocation mechanism rather than an independent source of the broad lifetime gain. Figure~\ref{fig:attribution} uses the data-dense presentation adopted throughout the robustness analysis: seed-level observations are shown in the plot and the exact mode means are retained in the embedded table. It is intentionally described as an \emph{attribution plane}, not a Pareto front, because AD-CWOA minimizes the scalar objective in Equation~\eqref{eq:objective}; no nondominated multi-objective solution set is generated.
+
+The narrower allocation claim is supported by the prespecified offline event audit. Event labels are revealed only after payload selection and routing. In J5, event-associated observations receive a mean within-round payload advantage of about 1253 bits over non-event observations, and the event-payload delivery ratio is 0.778. The byte-matched J6 control has a zero within-round gap and a 0.424 delivery ratio, whereas shuffled J7 has a near-zero mean gap and a 0.561 delivery ratio. The targeting contrasts remain significant after Holm correction. These quantities measure preferential source-bit allocation under the synthetic event process; they are not event-detection accuracy, receiver-side reconstruction quality, or application utility.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.98\textwidth]{fig2_stageA_attribution_q1.pdf}
+\caption{Seed-level Stage-A attribution in the energy--HND plane.}
+\label{fig:attribution}
+\end{figure*}
+
+\subsection{Finite-budget optimizer behavior}
+
+The fixed 150-evaluation budget produces a deliberately mixed optimizer result. AD-CWOA reduces retry burden relative to random search and original CWOA, but incurs slightly higher service delay; against PSO, none of the seven primary network outcomes survives Holm correction. Figure~\ref{fig:optimizer} separates algorithmic search dynamics from final network outcomes.
+
+At evaluation 50, mean best-so-far scalar objective is 0.14890 for AD-CWOA and 0.15083 for PSO. At evaluation 150, the corresponding means are 0.14645 and 0.14502. These objective traces show continued finite-budget search improvement but do not establish asymptotic convergence or intermediate delay/retry trajectories.
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig3a_optimizer_budget_q1.pdf}
+\caption{Best-so-far objective under the fixed search budget.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig3b_optimizer_network_q1.pdf}
+\caption{Stage-B delay--retry outcomes.}
+\end{subfigure}
+\caption{Equal-budget optimizer behavior and network-level outcome.}
+\label{fig:optimizer}
+\end{figure*}
+
+\subsection{Reclustering and CH-count sensitivity}
+
+State-triggered reclustering delays FND by 232.8 rounds and improves RDR/retry outcomes relative to periodic reclustering, but HND occurs 50.55 rounds earlier and delay rises by 0.2161 ms. It also raises mean optimizer calls from 75.65 to 139.35. Figure~\ref{fig:recluster} makes this trade-off explicit.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig4_reclustering_tradeoffs.png}
+\caption{State-triggered versus periodic reclustering.}
+\label{fig:recluster}
+\end{figure}
+
+Figure~\ref{fig:k} summarizes the $K=10,15,20$ sensitivity, which concentrates corrected differences in HND, delay, and energy. The experiment is not optimizer tuning, and no result establishes an optimal universal $K$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig5_k_sensitivity.png}
+\caption{Sensitivity to nominal CH count $K$.}
+\label{fig:k}
+\end{figure}
+
+\subsection{Sink-distance and deployment-size stress}
+
+Moving the sink from $y=150$ m to 200 and 250 m increases mean delivered hops from 2.098 to 2.521 and 2.732. At $y=200$ m, mean FND is 83.65 rounds, RDR is 82.000\%, and energy is 2.1744 mJ/report. At $y=250$ m, FND is 12.05 rounds, RDR is 53.946\%, energy is 8.3699 mJ/report, and retries are 1.0430/generated. Sink distance changes reliability, physical transmit cost, and route depth simultaneously; Figure~\ref{fig:sink} is therefore a routing-geometry stress rather than a pure hop-count intervention.
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig6a_sink_retention_q1.pdf}
+\caption{Retained performance.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig6b_sink_burden_q1.pdf}
+\caption{Communication burden.}
+\end{subfigure}
+\caption{Sink-distance routing-geometry robustness.}
+\label{fig:sink}
+\end{figure*}
+
+Under density-preserving expansion, $N=100,200,500$ use field sides 100, 141.42, and 223.61 m and nominal $K=15,30,75$. RDR decreases from 99.004\% to 89.115\% and 28.676\%, while energy/report increases from 0.6994 to 1.5139 and 7.5022 mJ. All fourteen primary size contrasts are Holm-significant. Figure~\ref{fig:scale} documents a robustness limit under expanding geometry and fixed per-decision optimizer budget; it is not a demonstration of computational scalability.
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig7a_scale_retention_q1.pdf}
+\caption{Retained performance.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig7b_scale_burden_q1.pdf}
+\caption{Communication burden.}
+\end{subfigure}
+\caption{Density-preserving deployment-expansion robustness.}
+\label{fig:scale}
+\end{figure*}
+
+\subsection{Contemporary EEL-2024 external benchmark}
+
+EXT-EEL2024-H has mean FND 33.65 rounds, HND 345.20 rounds, RDR 83.726\%, communication energy 1.6879 mJ/delivered report, and 0.4323 retries/generated. The preferred external comparison is traffic-matched J4 because both conditions inject 4000-bit reports. Relative to EXT-EEL2024-H, J4 increases FND by 57.20 rounds (95\% CI 39.07--75.33), raises RDR by 13.98 percentage points (95\% CI 13.33--14.63), lowers energy by 0.1375 mJ/report, and lowers retries by 0.2932/generated; all four survive the conservative ten-test Holm family. HND changes by only 2.25 rounds (95\% CI $-4.74$--9.24) and is not significant after correction. Figure~\ref{fig:eel} therefore strengthens external positioning without supporting an all-metric superiority claim.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.86\textwidth]{fig8_external_eel2024_q1.pdf}
+\caption{Traffic-matched comparison with EXT-EEL2024-H.}
+\label{fig:eel}
+\end{figure*}
+
+J5 also differs significantly from EXT-EEL2024-H on all five corrected outcomes, including an FND increase of 281.30 rounds. That contrast is reported only as integrated-system benchmarking because J5 additionally reduces source traffic.
+
+\subsection{IEEE 802.15.4-style contention sensitivity}
+
+Adding the CSMA/CA abstraction materially degrades both full-report J4 and adaptive-report J5. J4 RDR falls from 97.727\% to 83.547\% and completion delay rises from 45.253 to 110.457 ms. J5 RDR falls from 99.761\% to 91.731\% and delay rises from 21.310 to 56.088 ms. These changes confirm that the serialized baseline is optimistic about access behavior.
+
+Under the same contention abstraction, however, J5 exceeds J4 RDR by 8.18 percentage points (95\% CI 7.73--8.64), reduces completion delay by 54.37 ms (95\% CI 53.19--55.55 ms reduction), reduces channel-access failures by 0.0650/generated, and reduces CCA attempts by 10.075/generated. All four prespecified J5--J4 contention outcomes survive Holm correction. Figure~\ref{fig:mac} presents both delivery and access-burden views.
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig9a_mac_rdr_q1.pdf}
+\caption{RDR sensitivity.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig9b_mac_access_q1.pdf}
+\caption{Access burden.}
+\end{subfigure}
+\caption{IEEE 802.15.4-style contention sensitivity.}
+\label{fig:mac}
+\end{figure*}
+
+The apparent FND increase under the contention abstraction is not interpreted as a lifetime benefit because CCA/idle radio energy is omitted and access failures suppress some data-plane transmissions.
+
+\section{Control and Computational Overhead}
+
+\subsection{Spatial-context signaling sensitivity}
+
+Spatial novelty in \eqref{eq:spatial} assumes centrally available alive-neighbor observations in the Stage-A simulator, so distributed context energy is not part of the reported 0.6994 mJ/report J5 mean. We quantify the missing cost instead of treating it as zero.
+
+Using the reference density defined in Equation~\eqref{eq:density},
+\begin{equation}
+\lambda=\frac{N-1}{L_xL_y}=9.9\times10^{-3}\ \mathrm{nodes/m^2},
+\label{eq:density}
+\end{equation}
+Equation~\eqref{eq:density} gives the reference spatial intensity; the corresponding interior-node expected neighbor count within 20 m is
+\begin{equation}
+\bar{\delta}=\lambda\pi(20)^2=12.44.
+\label{eq:neighborcount}
+\end{equation}
+Using Equation~\eqref{eq:neighborcount}, an illustrative $b_{\mathrm{ctx}}=64$-bit field piggybacked on an already scheduled local transmission has the conservative 20 m incremental radio cost
+\begin{equation}
+\Delta E_{\mathrm{ctx}}
+=
+b_{\mathrm{ctx}}
+\left[
+E_{\mathrm{elec}}
++\varepsilon_{\mathrm{fs}}(20)^2
++\bar{\delta}E_{\mathrm{elec}}
+\right]
+\approx0.0433\ \mathrm{mJ}.
+\label{eq:context}
+\end{equation}
+Equation~\eqref{eq:context} is per generated update. If exactly one update is associated with each generated report, matching the denominator to J5's delivered-report energy requires
+\begin{equation}
+\Delta E_{\mathrm{ctx,del}}
+=
+\frac{0.0433}{0.990043}
+\approx0.0437\ \mathrm{mJ/delivered\ report}.
+\label{eq:contextdel}
+\end{equation}
+Using Equation~\eqref{eq:contextdel}, the corresponding sensitivity estimate is
+\begin{equation}
+E_{\mathrm{J5,pig}}
+\approx0.6994+0.0437=0.7431\ \mathrm{mJ/report}.
+\label{eq:contextpig}
+\end{equation}
+Equation~\eqref{eq:contextpig} remains about 52.1\% below J4's 1.5504 mJ/report.
+
+A deliberately harsher separate-frame sensitivity charges the 64 context bits plus another 216-bit frame overhead. Under the same neighbor/distance assumption this gives approximately 0.1893 mJ/generated context update, or
+\begin{equation}
+E_{\mathrm{J5,separate}}\approx0.6994+\frac{0.1893}{0.990043}=0.8906\ \mathrm{mJ/report},
+\label{eq:contextseparate}
+\end{equation}
+which remains about 42.6\% below J4. Equations~\eqref{eq:contextpig} and \eqref{eq:contextseparate} are analytical sensitivity bounds, not retroactively simulated Stage-A observations.
+
+\subsection{AD-CWOA complexity}
+
+One candidate evaluation computes all alive-node-to-CH distances and performs a full random-key sort, giving Equation~\eqref{eq:evalcomplex}:
+\begin{equation}
+T_{\mathrm{eval}}=\mathcal{O}(M_tK_t+M_t\log M_t).
+\label{eq:evalcomplex}
+\end{equation}
+Applying the fixed budget $B=150$ to Equation~\eqref{eq:evalcomplex} gives
+\begin{equation}
+T_{\mathrm{AD-CWOA}}
+=
+\mathcal{O}\left[B(M_tK_t+M_t\log M_t)\right].
+\label{eq:totalcomplex}
+\end{equation}
+Equation~\eqref{eq:totalcomplex} bounds candidate-search work. At $M_t=100,K_t=15$, 225,000 member-to-CH distance evaluations are performed in one full-budget decision. At $M_t=500,K_t=75$, this rises to 5,625,000. The budget limits candidate count, not per-candidate dimensional cost.
+
+\subsection{Illustrative routing state}
+
+Figure~\ref{fig:topology} shows a simulator-derived J5 state for prespecified seed 42 at the start of workload round 500. Residual energy is encoded continuously; CHs and dead nodes are marked explicitly, and unique RE-ETX forwarding edges are drawn to the sink. The figure explains the geometry represented in the routing model. A single snapshot is illustrative and is not used as statistical proof of hotspot mitigation.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.82\textwidth]{fig10_topology_seed42_round500.pdf}
+\caption{Illustrative J5 RE-ETX routing state at round 500 (seed 42).}
+\label{fig:topology}
+\end{figure*}
+
+\section{Discussion}
+
+The single largest vulnerability in cross-layer WSN evaluation is the attribution gap. The J0--J7 matrix forces the architecture to reveal where its efficiencies originate. Most broad lifetime, delay, energy, and retry gains appear when fewer source bits enter the network. Once traffic volume is byte-matched or the adaptive payload distribution is shuffled, the broad relevance-specific network differences largely disappear. Figure~\ref{fig:attribution} therefore supports relevance as an information-allocation mechanism rather than as an independent cause of the lifetime gain.
+
+The optimizer evidence is deliberately mixed. The 150-evaluation cap makes search effort auditable across Random, CWOA, AD-CWOA, and PSO. AD-CWOA reduces retries relative to Random and CWOA but pays a small delay penalty, and none of its seven primary differences from PSO survives Holm correction. Figure~\ref{fig:optimizer} adds algorithmic depth without converting finite-budget behavior into a convergence claim.
+
+The contemporary external benchmark answers a different question. Figure~\ref{fig:eel} shows that the traffic-matched J4 reference improves four of five corrected outcomes relative to EXT-EEL2024-H, but HND is not significantly different. That mixed result is more informative than an all-metric leaderboard and strengthens external positioning without contaminating the internal causal ladder.
+
+The contention family also changes the interpretation constructively. Figure~\ref{fig:mac} shows that serialized traffic is optimistic: contention lowers RDR and increases completion delay for both J4 and J5. Yet J5 retains corrected delivery and access-burden advantages when both modes use the same contention abstraction. The source-traffic conclusion therefore survives this additional systems stress, while the study still does not claim ns-3, complete IEEE 802.15.4, or hardware validation.
+
+The context-energy sensitivity addresses another deployment vulnerability. Spatial context is not charged in the original Stage-A ledger, but Equations~\eqref{eq:contextpig} and \eqref{eq:contextseparate} bound two explicit signaling scenarios. Even the conservative separate-frame adjustment remains below J4's communication energy. This is an analytical sensitivity, not a measured MAC/control implementation.
+
+Robustness remains the largest systems limitation. Figures~\ref{fig:sink} and \ref{fig:scale} show sharp degradation as long-haul geometry and deployment extent increase. These failures are part of the result rather than exceptions to it. Larger-area deployment will likely require hierarchical forwarding, additional sinks or relays, payload-aware route cost, adaptive CH-link radii, or scale-dependent clustering objectives.
+
+The communication ledger excludes sensing, processor execution, idle listening, ACK/control signaling, optimizer CPU energy, and distributed context exchange. The contention extension also omits hidden terminals, capture, spatial reuse, ACK energy, and CCA/idle radio-state energy. The synthetic event label is used only offline; no detector, classifier, or reconstruction task is implemented. Workload rounds are not elapsed deployment time. These boundaries define what can and cannot be transferred to a physical deployment.
+
+\section{Conclusion}
+
+Controlled cross-layer attribution changes the interpretation of the proposed IoT-WSN architecture. The largest broad network gains are produced by source-traffic reduction. Relevance directs that reduced bit budget toward observations with greater temporal/spatial novelty, but traffic-matched controls do not support attributing broad lifetime and RDR gains to relevance alone. RE-ETX exchanges communication cost for reliability and early survival. AD-CWOA provides fixed-cardinality feasibility and auditable evaluation accounting, but it is not generally superior to PSO under the 150-evaluation budget.
+
+The strengthened validation layer reinforces these bounded conclusions. A contemporary traffic-matched EEL-2024 comparator favors J4 on four of five corrected outcomes while leaving HND nonsignificant. An IEEE 802.15.4-style contention sensitivity shows that serialized results are optimistic but that J5's traffic-reduction advantage survives under the same access abstraction. Sink-distance and density-preserving expansion tests nevertheless expose severe geometry-dependent limits. The resulting contribution is a reproducible attribution-and-robustness study with explicit operating boundaries rather than a universal-superiority result.
+
+\section*{Statements and Declarations}
+
+\bmhead{Funding}
+The authors declare that no funds, grants, or other support were received during the preparation of this manuscript.
+
+\bmhead{Competing interests}
+The authors declare no relevant financial or non-financial competing interests.
+
+\bmhead{Author contributions}
+S.B. conceptualized the study, developed the framework and simulation implementation, conducted the experiments, analyzed the results, and prepared the original manuscript. J.N.S. contributed to methodological formulation, mathematical verification, validation of the statistical analysis, and manuscript review. A.S. contributed to research supervision, validation, interpretation of results, and critical revision of the manuscript. All authors reviewed and approved the final manuscript.
+
+\bmhead{Data availability}
+The numerical experiment outputs, seed-level result matrices, protocols, and statistical reports that support the findings of this study are available from the corresponding author on reasonable request.
+
+\bmhead{Code availability}
+The simulator, experiment runners, analysis scripts, frozen protocols, and validation workflows used in this study are available from the corresponding author on reasonable request.
+
+\bmhead{AI-assisted research and writing support}
+During preparation of this manuscript, the authors used ChatGPT (OpenAI) to assist with language editing, manuscript organization, technical presentation, and drafting/code-review support based on author-supplied methods and simulation results. The authors executed the simulations, inspected seed-level outputs, verified statistical results and references against the archived study records, reviewed and edited all AI-assisted material, and take full responsibility for the scientific content and final manuscript.
+
+\bibliography{references}
+
+\end{document}
