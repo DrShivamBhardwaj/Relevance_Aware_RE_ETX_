@@ -1,0 +1,16 @@
+{
+  "archive_classification": "Clean-room, specification-based independent replication. These are regenerated outputs and are not the lost original J0-J7 raw matrices.",
+  "trajectory_count": 160,
+  "modes": 8,
+  "seeds_per_mode": 20,
+  "integrated_J4_J7_mean_MARD_8_headline_pct": 4.539908399911632,
+  "integrated_J4_J7_mode_MARD_pct": {
+    "J4": 4.1500378887758735,
+    "J5": 4.395244294643695,
+    "J6": 4.201871510475676,
+    "J7": 5.412479905751283
+  },
+  "conventional_selector_boundary": "J0/J2/J3 use fixed-cardinality residual-energy-proportional sampling without replacement because the lost original conventional energy-weighted selector was not uniquely recoverable.",
+  "deterministic_seed_streams": "topology=seed; sink shadowing=seed+1000; transmission errors=seed+2000; reciprocal pair shadowing=seed+3000; sensing/events=seed+4000; AD-CWOA=seed+5000; conventional selector=seed+5100; J7 shuffle=seed+6000003",
+  "primary_interpretation": "Independent replication/robustness check only. It does not replace the frozen manuscript data and is not used to silently revise reported original results."
+}
