@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - name: Build exact final-main repository archive
         run: |
           git archive --format=zip --output=PROJECT_REPOSITORY_SNAPSHOT_08563b9.zip 08563b92f506f594f61d3a266a18a26bc93294ec
