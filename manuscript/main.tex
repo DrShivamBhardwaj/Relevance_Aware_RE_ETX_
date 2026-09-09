@@ -15,6 +15,8 @@
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{url}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 
 \begin{document}
@@ -28,7 +30,7 @@
 \affil*[1]{\orgdiv{Department of Computer Application}, \orgname{Invertis University}, \orgaddress{\city{Bareilly}, \country{India}}}
 
 \abstract{
-Cross-layer wireless sensor network studies can report large lifetime or reliability gains without identifying whether those gains arise from clustering, routing, source-traffic reduction, or their interaction. This study evaluates an IoT-enabled framework combining fixed-cardinality adaptive discrete whale optimization for cluster-head selection, state-triggered reclustering, temporal-spatial relevance-aware source payloads, and residual-energy expected transmission count routing. Twenty frozen inferential seeds, disjoint calibration seeds, a hard budget of 150 clustering-objective evaluations per optimizer call, prespecified contrasts, confidence intervals, effect sizes, sign-flip sensitivity tests, and Holm correction are used. The largest network-level changes occur when mean source payload falls from 4000 to about 1725 bits/report; byte-matched and shuffled controls show that broad lifetime and delivery gains are dominated by traffic-volume reduction rather than relevance-directed allocation. Relevance remains supported for preferential source-bit allocation to event-associated observations. Equal-evaluation tests do not establish general optimizer superiority, and state-triggered reclustering has survival/reliability benefits together with delay and optimization-overhead costs. Cluster-count, sink-distance, and density-preserving expansion tests expose substantial robustness limits. Two post-freeze validation families strengthen external validity without changing the causal ladder: a traffic-matched harmonized reproduction of a 2024 energy-efficient LEACH cluster-head mechanism and a 500-round IEEE 802.15.4-style CSMA/CA contention sensitivity. The traffic-matched comparison improves four of five corrected outcomes but not HND, while the contention study shows that reduced source traffic retains corrected RDR and delay advantages despite material contention losses. The contribution is controlled attribution with explicit robustness and validation boundaries rather than a universal protocol-superiority claim.
+Cross-layer wireless sensor network studies can report large lifetime or reliability gains without identifying whether those gains arise from clustering, routing, source-traffic reduction, or their interaction. This study evaluates an IoT-enabled framework combining fixed-cardinality adaptive discrete whale optimization for cluster-head selection, state-triggered reclustering, temporal-spatial relevance-aware source payloads, and residual-energy expected transmission count routing. Twenty frozen inferential seeds, disjoint calibration seeds, a hard budget of 150 clustering-objective evaluations per optimizer call, prespecified contrasts, confidence intervals, effect sizes, sign-flip sensitivity tests, and Holm correction are used. The largest network-level changes occur when mean source payload falls from 4000 to about 1725 bits/report; byte-matched and shuffled controls show that broad lifetime and delivery gains are dominated by traffic-volume reduction rather than relevance-directed allocation. Relevance remains supported for preferential source-bit allocation to event-associated observations. Equal-evaluation tests do not establish general optimizer superiority, and state-triggered reclustering has survival/reliability benefits together with delay and optimization-overhead costs. Cluster-count, sink-distance, and density-preserving expansion tests expose substantial robustness limits. Post-freeze validation strengthens external validity without changing the causal ladder: a traffic-matched harmonized reproduction of a 2024 energy-efficient LEACH cluster-head mechanism, a 500-round IEEE 802.15.4-style contention sensitivity, and an independently executed ns-3.47 LR-WPAN experiment spanning 20 paired seeds, J4/J5/J6, and three offered-load levels. At the central 5 s/report load, ns-3 report delivery is 62.15\% for J4 and 91.86\% for J5, while delivered-report delay falls from 45.01 to 21.73 ms; J5--J4 differences in delivery, delay, retries, CSMA cycles, and channel-access failures all survive Holm correction, whereas all corresponding J5--J6 contrasts are nonsignificant. The contribution is controlled attribution with explicit robustness and validation boundaries rather than a universal protocol-superiority claim.
 }
 
 \keywords{wireless sensor networks, cross-layer design, relevance-aware reporting, energy-aware routing, cluster-head selection, robustness}
@@ -43,11 +45,13 @@ The central vulnerability in cross-layer WSN evaluation is attribution. A large 
 
 We therefore evaluate a cross-layer architecture with three explicit mechanisms. AD-CWOA selects a fixed-cardinality CH set through continuous random keys and a strictly accounted objective-evaluation budget derived from WOA dynamics \cite{mirjalili2016}. Relevance-aware reporting maps temporal and spatial novelty to a continuous byte-aligned payload rather than dropping reports. RE-ETX augments bounded-retry link reliability with residual-energy depletion. PSO \cite{kennedy1995} and original CWOA are used as equal-evaluation optimizer references, while a post-freeze LEACH-style benchmark supplies an external protocol anchor.
 
-The contribution is methodological as much as algorithmic. The J0--J7 matrix forces the architecture to reveal where its efficiencies originate; separate optimizer, reclustering, CH-count, sink-distance, and deployment-size stages expose the boundaries of those conclusions. We additionally quantify the previously omitted spatial-context signaling cost as an analytical sensitivity and show how a hard low-energy CH constraint can become infeasible late in network life. The paper consequently reports mixed and negative results where they occur instead of compressing all outcomes into a protocol-superiority claim.
+Three prespecified questions organize the study. RQ1 asks which mechanism accounts for broad lifetime, reliability, delay, retry, and communication-energy changes once offered traffic and source mapping are controlled. RQ2 asks whether AD-CWOA retains a network-level advantage over equal-budget Random, original CWOA, and PSO references. RQ3 asks which conclusions survive changes in reclustering policy, CH count, sink distance, deployment scale, a contemporary external comparator, an IEEE 802.15.4-style contention abstraction, and an independently executed ns-3.47 LR-WPAN stress test.
+
+The contribution is therefore an attribution-and-stress evaluation architecture rather than hybridization alone. Four concrete contributions follow: (i) the J0--J7 ladder separates clustering, routing, traffic volume, and relevance-to-source mapping through full-payload, byte-matched, and shuffled controls; (ii) Random, CWOA, AD-CWOA, and PSO are compared under the same hard 150-objective-evaluation budget with corrected seed-level inference; (iii) reclustering, CH-count, sink-distance, density-preserving expansion, external-comparator, contention-abstraction, and executed ns-3.47 LR-WPAN families expose where the conclusions hold or fail; and (iv) analytical context-signaling sensitivity and late-life CH-feasibility analysis make omitted control costs and constraint failures explicit. Mixed and negative findings are retained rather than compressed into a protocol-superiority claim.
 
 \subsection{Related-work positioning}
 
-Recent work already contains strong precedents for metaheuristic clustering/routing and correlation-aware source adaptation, so the contribution claimed here is not the isolated existence of those mechanisms. Table~\ref{tab:related} uses only positively verified methodological evidence from the cited studies rather than inferring missing features from inaccessible or incomplete descriptions. Fattoum et al.~\cite{fattoum2023} establish spatio-temporal adaptive sampling with residual-energy awareness; Wang et al.~\cite{wang2023} demonstrate modern cooperative clustering/routing integration; Abose et al.~\cite{abose2024} provide the residual-energy probabilistic CH-election mechanism used for the contemporary external anchor; and OMEECBR~\cite{edakulathur2025} represents recent dual-optimizer IoT-WSN design. Against these precedents, the distinguishing contribution of the present study is the evaluation architecture: traffic-matched and shuffled attribution controls, equal objective-evaluation budgets, corrected seed-level inference, and prespecified routing-geometry/deployment stress are applied within one controlled program.
+Recent work already contains strong precedents for metaheuristic clustering/routing and correlation-aware source adaptation, so the contribution claimed here is not the isolated existence of those mechanisms. Table~\ref{tab:related} uses only positively verified methodological evidence from the cited studies rather than inferring missing features from inaccessible or incomplete descriptions. Fattoum et al.~\cite{fattoum2023} establish spatio-temporal adaptive sampling with residual-energy awareness; Wang et al.~\cite{wang2023} demonstrate modern cooperative clustering/routing integration; Abose et al.~\cite{abose2024} provide the residual-energy probabilistic CH-election mechanism used for the contemporary external anchor; and OMEECBR~\cite{edakulathur2025} represents recent dual-optimizer IoT-WSN design. Two recent reviews sharpen the evaluation gap: Hartono et al.~\cite{hartono2026} report that metaheuristic WSN energy studies remain predominantly simulation-based, while Thakur et al.~\cite{thakur2025} identify practical validation and scalability as persistent issues in AI-driven energy-efficient routing. Goel et al.~\cite{goel2026} provide a 2026 example of adaptive hybrid metaheuristic CH selection evaluated primarily through lifetime and energy gains. These developments reinforce the present paper's emphasis on equal search budgets, attribution controls, and explicit deployment/MAC stress rather than treating algorithmic hybridization itself as evidence of general superiority.
 
 \begin{table*}[t]
 \caption{Verified methodological positioning of representative WSN studies.}
@@ -540,6 +544,8 @@ The contemporary external condition, denoted EXT-EEL2024-H, implements the resid
 
 A second post-freeze family evaluates J4 and J5 for 500 workload rounds under both serialized control and a load-conditioned IEEE 802.15.4-style unslotted CSMA/CA abstraction. The access model uses $\mathrm{macMinBE}=3$, $\mathrm{macMaxBE}=5$, $\mathrm{macMaxCSMABackoffs}=4$, a 320~$\mu$s unit backoff, 128~$\mu$s CCA, and 640~$\mu$s long inter-frame spacing. Each retransmission performs fresh channel access. Primary outcomes are RDR, completion delay including access time, channel-access failures per generated report, and CCA attempts per generated report. This family is a contention sensitivity abstraction, not ns-3, complete IEEE 802.15.4 standards validation, or hardware validation.
 
+A third, independently executed validation family uses ns-3.47 LR-WPAN rather than the paper's contention abstraction. Before the custom experiment, all eleven available LR-WPAN unit-test suites used for ACK, CCA, collision, energy detection, error model, IFS, MAC, packet, PHY, slotted CSMA/CA, and spectrum-value-helper checks passed on an optimized Apple-Silicon build. The custom experiment uses 100 sensor nodes plus one sink in a controlled single-contention-domain geometry, unslotted CSMA/CA with $\mathrm{macMinBE}=3$, $\mathrm{macMaxBE}=5$, $\mathrm{macMaxCSMABackoffs}=4$, ACK-requested data, and $\mathrm{macMaxFrameRetries}=3$. Paired seeds preserve the same geometry and report phases across J4, J5, and J6. J4 sends 4000-bit source reports, J6 sends 1712-bit reports, and J5 uses the reconstructed seed-specific mean relevance-aware payload. Report periods of 2.5, 5, and 10~s define high, central, and low offered-load conditions. In total, 180 ns-3 runs were executed (20 seeds $\times$ 3 modes $\times$ 3 loads). This experiment validates the causal direction under an independent IEEE 802.15.4 MAC/PHY stack; it is not a full multihop reproduction of AD-CWOA/RE-ETX dynamics, a physical-hardware experiment, or a radio-energy validation.
+
 \section{Results}
 
 \subsection{J0--J7 attribution}
@@ -697,6 +703,78 @@ Under the same contention abstraction, however, J5 exceeds J4 RDR by 8.18 percen
 
 The apparent FND increase under the contention abstraction is not interpreted as a lifetime benefit because CCA/idle radio energy is omitted and access failures suppress some data-plane transmissions.
 
+\subsection{Executed ns-3.47 LR-WPAN validation}
+
+Table~\ref{tab:ns3} reports the independent ns-3.47 LR-WPAN load-sweep means. At the central 5~s/report condition, J4 achieves 62.152\% report delivery with 45.009~ms delivered-report delay, whereas J5 achieves 91.862\% and 21.731~ms. The paired J5--J4 RDR difference is +29.709 percentage points (95\% CI 27.589--31.830, Holm-adjusted $p=8.32\times10^{-17}$, $d_z=6.556$). Delivered-report delay falls by 23.278~ms (95\% CI 22.693--23.864~ms reduction, Holm-adjusted $p=4.09\times10^{-25}$, $d_z=-18.603$). J5 also reduces retries/frame by 0.0429, CSMA cycles/frame by 0.7304, and channel-access failures/report by 0.4885; all five prespecified J5--J4 outcomes survive Holm correction.
+
+\begin{table*}[t]
+\caption{Executed ns-3.47 LR-WPAN validation over twenty paired seeds. Values are means.}
+\label{tab:ns3}
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrr}
+\toprule
+Report period & Mode & RDR (\%) & Delay (ms) & Retries/frame & CSMA cycles/frame & Access failures/report\\
+\midrule
+2.5 s & J4 & 22.870 & 56.728 & 0.1844 & 3.8780 & 1.6363\\
+      & J5 & 75.469 & 26.614 & 0.1011 & 2.3401 & 0.2958\\
+      & J6 & 75.502 & 26.579 & 0.1014 & 2.3454 & 0.2978\\
+5 s   & J4 & 62.152 & 45.009 & 0.0888 & 2.3056 & 0.5774\\
+      & J5 & 91.862 & 21.731 & 0.0459 & 1.5752 & 0.0889\\
+      & J6 & 91.939 & 21.717 & 0.0455 & 1.5737 & 0.0873\\
+10 s  & J4 & 83.646 & 39.394 & 0.0418 & 1.5757 & 0.2065\\
+      & J5 & 97.415 & 19.224 & 0.0214 & 1.2512 & 0.0267\\
+      & J6 & 97.430 & 19.245 & 0.0213 & 1.2530 & 0.0263\\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+J5 and J6 remain statistically indistinguishable at the central load: all five J5--J6 Holm-adjusted $p$ values equal 1.0, with the RDR mean difference only $-0.077$ percentage points (95\% CI $-0.362$ to 0.208). The same qualitative pattern holds at 2.5 and 10~s/report: every J5--J4 outcome in the five-metric family remains Holm-significant, whereas no J5--J6 outcome is significant after correction. Figures~\ref{fig:ns3-rdr} and \ref{fig:ns3-delay} show that the separation persists as offered load changes.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+width=\linewidth,height=5.5cm,
+xlabel={Report period (s)},ylabel={Report delivery ratio (\%)},
+xmin=2.2,xmax=10.3,ymin=0,ymax=105,
+xtick={2.5,5,10},grid=major,
+legend style={at={(0.5,-0.25)},anchor=north,legend columns=3},
+mark size=2pt]
+\addplot+[mark=*] coordinates {(2.5,22.8698) (5,62.1523) (10,83.6464)};
+\addplot+[mark=square*] coordinates {(2.5,75.4691) (5,91.8617) (10,97.4154)};
+\addplot+[mark=triangle*] coordinates {(2.5,75.5019) (5,91.9387) (10,97.4298)};
+\legend{J4,J5,J6}
+\end{axis}
+\end{tikzpicture}
+\caption{Executed ns-3.47 LR-WPAN report-delivery sensitivity across offered loads.}
+\label{fig:ns3-rdr}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+width=\linewidth,height=5.5cm,
+xlabel={Report period (s)},ylabel={Delivered-report delay (ms)},
+xmin=2.2,xmax=10.3,ymin=0,ymax=65,
+xtick={2.5,5,10},grid=major,
+legend style={at={(0.5,-0.25)},anchor=north,legend columns=3},
+mark size=2pt]
+\addplot+[mark=*] coordinates {(2.5,56.7278) (5,45.0089) (10,39.3938)};
+\addplot+[mark=square*] coordinates {(2.5,26.6142) (5,21.7307) (10,19.2242)};
+\addplot+[mark=triangle*] coordinates {(2.5,26.5786) (5,21.7168) (10,19.2446)};
+\legend{J4,J5,J6}
+\end{axis}
+\end{tikzpicture}
+\caption{Executed ns-3.47 LR-WPAN delivered-report delay across offered loads.}
+\label{fig:ns3-delay}
+\end{figure}
+
+Absolute values need not match the earlier contention abstraction because ns-3 supplies its own LR-WPAN MAC/PHY timing, ACK/retry behavior, and frame-size constraints in a controlled one-hop contention domain. The validation target is therefore robustness of the traffic-volume attribution under an independent protocol stack, not numerical reproduction of the original abstraction.
+
 \section{Control and Computational Overhead}
 
 \subsection{Spatial-context signaling sensitivity}
@@ -778,25 +856,25 @@ Figure~\ref{fig:topology} shows a simulator-derived J5 state for prespecified se
 
 \section{Discussion}
 
-The single largest vulnerability in cross-layer WSN evaluation is the attribution gap. The J0--J7 matrix forces the architecture to reveal where its efficiencies originate. Most broad lifetime, delay, energy, and retry gains appear when fewer source bits enter the network. Once traffic volume is byte-matched or the adaptive payload distribution is shuffled, the broad relevance-specific network differences largely disappear. Figure~\ref{fig:attribution} therefore supports relevance as an information-allocation mechanism rather than as an independent cause of the lifetime gain.
+The attribution ladder materially changes the interpretation of the integrated stack. Most broad lifetime, delay, energy, and retry gains appear when fewer source bits enter the network. Once traffic volume is byte-matched or the adaptive payload distribution is shuffled, the broad relevance-specific network differences largely disappear. Figure~\ref{fig:attribution} therefore supports relevance as an information-allocation mechanism rather than as an independent cause of the lifetime gain.
 
 The optimizer evidence is deliberately mixed. The 150-evaluation cap makes search effort auditable across Random, CWOA, AD-CWOA, and PSO. AD-CWOA reduces retries relative to Random and CWOA but pays a small delay penalty, and none of its seven primary differences from PSO survives Holm correction. Figure~\ref{fig:optimizer} adds algorithmic depth without converting finite-budget behavior into a convergence claim.
 
 The contemporary external benchmark answers a different question. Figure~\ref{fig:eel} shows that the traffic-matched J4 reference improves four of five corrected outcomes relative to EXT-EEL2024-H, but HND is not significantly different. That mixed result is more informative than an all-metric leaderboard and strengthens external positioning without contaminating the internal causal ladder.
 
-The contention family also changes the interpretation constructively. Figure~\ref{fig:mac} shows that serialized traffic is optimistic: contention lowers RDR and increases completion delay for both J4 and J5. Yet J5 retains corrected delivery and access-burden advantages when both modes use the same contention abstraction. The source-traffic conclusion therefore survives this additional systems stress, while the study still does not claim ns-3, complete IEEE 802.15.4, or hardware validation.
+The contention evidence now has two independent layers. Figure~\ref{fig:mac} shows that the original serialized simulator is optimistic under the paper's access abstraction, while Figures~\ref{fig:ns3-rdr} and \ref{fig:ns3-delay} show that the causal direction also survives execution in ns-3.47 LR-WPAN. Across all three offered loads, J5 materially outperforms J4 on delivery and access burden, but J5 and byte-matched J6 remain statistically indistinguishable after correction. This cross-model agreement strengthens the traffic-volume attribution without converting the validation into a claim of full multihop protocol reproduction or physical-hardware validation.
 
 The context-energy sensitivity addresses another deployment vulnerability. Spatial context is not charged in the original Stage-A ledger, but Equations~\eqref{eq:contextpig} and \eqref{eq:contextseparate} bound two explicit signaling scenarios. Even the conservative separate-frame adjustment remains below J4's communication energy. This is an analytical sensitivity, not a measured MAC/control implementation.
 
 Robustness remains the largest systems limitation. Figures~\ref{fig:sink} and \ref{fig:scale} show sharp degradation as long-haul geometry and deployment extent increase. These failures are part of the result rather than exceptions to it. Larger-area deployment will likely require hierarchical forwarding, additional sinks or relays, payload-aware route cost, adaptive CH-link radii, or scale-dependent clustering objectives.
 
-The communication ledger excludes sensing, processor execution, idle listening, ACK/control signaling, optimizer CPU energy, and distributed context exchange. The contention extension also omits hidden terminals, capture, spatial reuse, ACK energy, and CCA/idle radio-state energy. The synthetic event label is used only offline; no detector, classifier, or reconstruction task is implemented. Workload rounds are not elapsed deployment time. These boundaries define what can and cannot be transferred to a physical deployment.
+The communication ledger excludes sensing, processor execution, idle listening, ACK/control signaling, optimizer CPU energy, and distributed context exchange. The original contention abstraction also omits hidden terminals, capture, spatial reuse, ACK energy, and CCA/idle radio-state energy. The executed ns-3 family includes LR-WPAN ACK/retry and CSMA/CA behavior but remains a controlled single-contention-domain MAC/PHY stress: it does not reproduce the paper's full AD-CWOA/RE-ETX multihop dynamics and it is not used for radio-energy validation. No physical-hardware or FIT IoT-LAB execution is claimed. The synthetic event label is used only offline; no detector, classifier, or reconstruction task is implemented. Workload rounds are not elapsed deployment time. These boundaries define what can and cannot be transferred to a physical deployment.
 
 \section{Conclusion}
 
 Controlled cross-layer attribution changes the interpretation of the proposed IoT-WSN architecture. The largest broad network gains are produced by source-traffic reduction. Relevance directs that reduced bit budget toward observations with greater temporal/spatial novelty, but traffic-matched controls do not support attributing broad lifetime and RDR gains to relevance alone. RE-ETX exchanges communication cost for reliability and early survival. AD-CWOA provides fixed-cardinality feasibility and auditable evaluation accounting, but it is not generally superior to PSO under the 150-evaluation budget.
 
-The strengthened validation layer reinforces these bounded conclusions. A contemporary traffic-matched EEL-2024 comparator favors J4 on four of five corrected outcomes while leaving HND nonsignificant. An IEEE 802.15.4-style contention sensitivity shows that serialized results are optimistic but that J5's traffic-reduction advantage survives under the same access abstraction. Sink-distance and density-preserving expansion tests nevertheless expose severe geometry-dependent limits. The resulting contribution is a reproducible attribution-and-robustness study with explicit operating boundaries rather than a universal-superiority result.
+The validation families preserve those bounded conclusions. A contemporary traffic-matched EEL-2024 comparator favors J4 on four of five corrected outcomes while leaving HND nonsignificant. The IEEE 802.15.4-style abstraction shows that serialized results are optimistic, and the independently executed 180-run ns-3.47 LR-WPAN family independently confirms the same traffic-volume mechanism: at 5 s/report J5 improves RDR by 29.71 percentage points and reduces delivered-report delay by 23.28 ms relative to J4, while all five J5--J6 corrected comparisons remain nonsignificant. Sink-distance and density-preserving expansion tests nevertheless expose severe geometry-dependent limits. The resulting contribution is an auditable attribution-and-robustness study with explicit operating boundaries rather than a universal-superiority result.
 
 \section*{Statements and Declarations}
 
@@ -810,13 +888,13 @@ The authors declare no relevant financial or non-financial competing interests.
 S.B. conceptualized the study, developed the framework and simulation implementation, conducted the experiments, analyzed the results, and prepared the original manuscript. J.N.S. contributed to methodological formulation, mathematical verification, validation of the statistical analysis, and manuscript review. A.S. contributed to research supervision, validation, interpretation of results, and critical revision of the manuscript. All authors reviewed and approved the final manuscript.
 
 \bmhead{Data availability}
-The numerical experiment outputs, seed-level result matrices, protocols, and statistical reports that support the findings of this study are available from the corresponding author on reasonable request.
+A curated reproducibility package accompanies this submission and contains the final manuscript source, figure-generation code, corrected publication figures, retained experiment archives, and provenance/audit manifests. The public project repository is \url{https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_}. The repository now also contains the executed ns-3.47 LR-WPAN validation under \texttt{validation/ns3\_47\_lrwpan/}, including the 180-run raw CSV, grouped summaries, paired statistical contrasts, custom ns-3 source, execution/analysis scripts, official LR-WPAN test evidence, and environment/checksum records. The package explicitly distinguishes the earlier public C1--C7 archive, the later J0--J7 study, the clean-room reconstruction, the independent contention validator, and the executed ns-3 validation. Some original final J0--J7 seed-level raw matrices and the exact frozen execution snapshot are not present in the current public archive; accordingly, no regenerated archive is relabeled as original final-study raw data.
 
 \bmhead{Code availability}
-The simulator, experiment runners, analysis scripts, frozen protocols, and validation workflows used in this study are available from the corresponding author on reasonable request.
+The public repository provides the current project source, canonical manuscript source, clean-room reconstruction records, independent contention validator, and the executed ns-3.47 LR-WPAN validation source/results. The ns-3 directory includes the custom C++ scenario, runner, statistical-analysis script, raw and summarized results, paired inference, and exact environment/checksum records. Because the byte-identical frozen J0--J7 execution snapshot is not preserved in the current public archive, the repository documentation continues to state this boundary explicitly rather than claiming exact end-to-end regeneration from the historical C1--C7 code.
 
-\bmhead{AI-assisted research and writing support}
-During preparation of this manuscript, the authors used ChatGPT (OpenAI) to assist with language editing, manuscript organization, technical presentation, and drafting/code-review support based on author-supplied methods and simulation results. The authors executed the simulations, inspected seed-level outputs, verified statistical results and references against the archived study records, reviewed and edited all AI-assisted material, and take full responsibility for the scientific content and final manuscript.
+\bmhead{Generative AI use}
+During manuscript preparation, the authors used ChatGPT (OpenAI) for language editing, organization, technical presentation, and drafting/code-review assistance based on author-supplied methods and simulation results. The tool was not treated as an author or as a source of scientific evidence. The human authors executed and reviewed the simulations, checked numerical and statistical claims against preserved study records, verified the cited literature, and reviewed the final text. No generative-AI image system was used to create the scientific figures; the figures were rendered from numerical results using deterministic plotting scripts. The authors take full responsibility for the accuracy, originality, and integrity of the final manuscript.
 
 \bibliography{references}
 

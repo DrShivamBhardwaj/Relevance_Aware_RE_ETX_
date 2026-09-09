@@ -1,107 +1,110 @@
 # Reproducibility Status
 
-## Current manuscript
+## Canonical manuscript
 
-Canonical manuscript source:
+Current source:
 
 - `manuscript/main.tex`
 - `manuscript/references.bib`
-
-Manuscript title:
-
-**Controlled Attribution of Cross-Layer Gains and Robustness Limits in IoT Wireless Sensor Networks: AD-CWOA Clustering, Relevance-Aware Reporting, and RE-ETX Routing**
 
 Only the unversioned canonical manuscript source should be maintained on `main`.
 
 ## Frozen final-study design
 
-The final journal study uses twenty inferential seed/topology trajectories:
+The journal study uses twenty inferential seeds:
 
 `11, 23, 42, 67, 101, 137, 173, 211, 257, 307, 349, 401, 457, 503, 557, 601, 653, 701, 757, 809`
 
-The disjoint calibration seeds are:
+Calibration seeds are `3, 5, 7, 19, 31`.
 
-`3, 5, 7, 19, 31`
-
-The final design includes:
-
-- J0--J7 controlled attribution modes;
-- AD-CWOA, original CWOA, PSO, and random-search optimizer comparisons;
-- a hard budget of 150 clustering-objective evaluations per optimization decision;
-- state-triggered versus periodic reclustering;
-- cluster-count sensitivity;
-- sink-distance/routing-geometry stress;
-- density-preserving deployment-size stress;
-- traffic-matched EXT-EEL2024-H external validation; and
-- IEEE 802.15.4-style contention sensitivity.
+The frozen design includes J0--J7 attribution, equal 150-objective-evaluation optimizer comparisons, reclustering sensitivity, CH-count sensitivity, sink-distance stress, density-preserving deployment expansion, EXT-EEL2024-H comparison, and IEEE 802.15.4-style contention sensitivity.
 
 ## Historical public archive
 
-The repository retains an earlier semantic RE-ETX validation generation centered on C1--C7 experiments over ten primary seeds. These files remain useful as an auditable historical validation archive for relevance-aware payload adaptation and residual-energy ETX routing.
+The earlier public simulator/results generation is centered on C1--C7 and ten primary seeds. It remains an auditable historical archive, but it is not identical to the final J0--J7 journal experiment generation and must not be presented as byte-identical support for every frozen manuscript number.
 
-They are **not identical to the frozen final J0--J7 journal experiment generation** and must not be presented as though they reproduce every number in the current manuscript.
+## Clean-room J0--J7 reconstruction - completed 2026-09-09
 
-## Clean-room J0--J7 reconstruction completed on 2026-09-09
+A specification-based independent reconstruction was executed across all eight modes and all twenty frozen inferential seeds: **160 trajectories**.
 
-A specification-based independent reconstruction of the final J0--J7 study has now been executed across all eight modes and all twenty frozen inferential seeds: **160 trajectories total**.
+This is regenerated independent-replication evidence, not the lost original runner/raw archive. The integrated J4--J7 modes show about **4.54% average absolute relative deviation** across eight headline outcomes. The broad J4->J5 traffic-volume effect is retained, while J7->J5 remains nonsignificant across the seven broad network outcomes after Holm correction.
 
-This reconstruction is explicitly classified as regenerated independent-replication evidence. It is not the lost original runner and it does not replace the frozen manuscript data.
+The exact historical conventional "energy-weighted" CH selector could not be uniquely recovered; J0/J2/J3 therefore use a documented residual-energy-proportional fixed-cardinality reconstruction choice.
 
-Key audit result:
+Repository records: `reproducibility/final_study_reconstruction/`.
 
-- average absolute relative deviation across eight headline outcomes for integrated J4--J7: **4.54%**;
-- J4: 4.15%; J5: 4.40%; J6: 4.20%; J7: 5.41%.
+## Independent IEEE 802.15.4 MAC validator - completed
 
-The reconstructed J4->J5 transition preserves the broad traffic-volume effect. J7->J5 remains nonsignificant across all seven broad network outcomes after Holm correction. Event-targeting behavior is also retained.
+A separate event-driven unslotted CSMA/CA validator was executed for J4/J5/J6 over the same twenty seeds. It uses macMinBE=3, macMaxBE=5, macMaxCSMABackoffs=4, 20-symbol unit backoff, the manuscript framing/retry logic, three offered-load levels, and PHY frame-error sensitivity.
 
-### Conventional-selector boundary
+This validator is **not ns-3** and is **not hardware evidence**. At 5 s/report and the central FER condition it produced mean RDR of 46.02%, 78.73%, and 78.54% for J4, J5, and J6, respectively, retaining the traffic-volume interpretation.
 
-The exact final implementation of the older conventional "energy-weighted" CH selector was not recoverable uniquely. Therefore J0/J2/J3 use a documented reconstruction choice: fixed-cardinality residual-energy-proportional sampling without replacement. This is why the reconstruction should not be described as byte-identical end-to-end reproduction.
+## Executed ns-3.47 LR-WPAN validation - completed 2026-09-09
 
-Repository summaries and provenance metadata are stored at:
+A real ns-3.47 optimized LR-WPAN build was installed and executed on Apple Silicon. Before the paper-specific scenario, the following **11/11 official LR-WPAN test suites passed with zero failed/crashed suites**:
 
-`reproducibility/final_study_reconstruction/`
+- lr-wpan-ack
+- lr-wpan-cca-test
+- lr-wpan-collision
+- lr-wpan-energy-detection
+- lr-wpan-error-model
+- lr-wpan-ifs-test
+- lr-wpan-mac-test
+- lr-wpan-packet
+- lr-wpan-phy-test
+- lr-wpan-slotted-csmaca
+- lr-wpan-spectrum-value-helper
 
-The complete checksummed execution archive additionally contains all 160 trajectory checkpoints, executable reconstruction source, combined/per-mode CSVs, inferential contrasts, environment metadata, and internal SHA-256 checksums.
+The custom validation then completed **180/180 runs**:
 
-## Independent IEEE 802.15.4 MAC validation completed
+- 20 paired seeds
+- J4, J5, J6
+- report periods 2.5, 5, and 10 s
+- 100 sensor nodes plus one sink in a controlled single-contention-domain geometry
+- unslotted CSMA/CA: macMinBE=3, macMaxBE=5, macMaxCSMABackoffs=4
+- ACK requested, macMaxFrameRetries=3
+- J4 4000-bit reports, J6 1712-bit reports, J5 reconstructed seed-specific mean relevance-aware payloads
 
-A second, separately implemented event-driven validation was executed for J4, J5, and J6 over the same twenty seeds. It uses unslotted IEEE 802.15.4-style CSMA/CA defaults consistent with the ns-3 LR-WPAN implementation: macMinBE=3, macMaxBE=5, macMaxCSMABackoffs=4, and a 20-symbol unit backoff. It retains the manuscript's 250 kbit/s rate, 800+216-bit fragmentation, and three frame retries.
+### Primary 5 s/report ns-3 means
 
-This is a conservative single-contention-domain stress test and is **not ns-3**. It was run at report periods of 2.5, 5, and 10 s and with PHY frame-error sensitivity at 0%, 1%, and 5%.
+| Mode | RDR (%) | Delay (ms) | Retries/frame | CSMA cycles/frame | Access failures/report |
+|---|---:|---:|---:|---:|---:|
+| J4 | 62.152 | 45.009 | 0.0888 | 2.3056 | 0.5774 |
+| J5 | 91.862 | 21.731 | 0.0459 | 1.5752 | 0.0889 |
+| J6 | 91.939 | 21.717 | 0.0455 | 1.5737 | 0.0873 |
 
-At 5 s/report and 1% independent PHY FER:
+For J5-J4 at 5 s/report, the paired RDR difference is **+29.709 percentage points** (95% CI 27.589--31.830, Holm p=8.32e-17) and delivered-report delay changes by **-23.278 ms** (95% CI -23.864 to -22.693, Holm p=4.09e-25). Retries/frame, CSMA cycles/frame, and access failures/report also remain Holm-significant. All five J5-J6 Holm-adjusted p values are 1.0.
 
-- J4 RDR = 46.02%, mean MAC delay = 77.62 ms;
-- J5 RDR = 78.73%, mean MAC delay = 41.51 ms;
-- J6 RDR = 78.54%, mean MAC delay = 41.61 ms.
+The same qualitative separation persists at 2.5 and 10 s/report.
 
-The J4->J5 RDR/delay/access-load differences remain Holm-significant, while J6->J5 broad MAC differences do not. The traffic-volume interpretation therefore survives this independent contention model.
+### ns-3 archive
 
-## ns-3 and physical-hardware status
+`validation/ns3_47_lrwpan/` contains:
 
-Neither of the following should currently be claimed:
+- `j4j5j6-lrwpan-validation.cc` - executed custom C++ scenario
+- `run_ns3_validation.py` - exact execution runner
+- `analyze_ns3_validation.py` - statistical/figure analysis
+- `results/ns3_j4j5j6_20seed_load_sweep.csv` - all 180 raw runs
+- `results/ns3_group_summary.csv`
+- `results/ns3_paired_contrasts.csv`
+- `figures/` - vector PDF and 600-dpi PNG load-sensitivity figures
+- `official_lr_wpan_tests.log`
+- `run.log`
+- `analysis_stdout.txt`
+- `NS3_EXECUTION_MANIFEST.json`
+- `ENVIRONMENT_AND_CHECKSUMS.txt`
+- `NS3_VALIDATION_REPORT.md`
 
-- **ns-3 validation**: ns-3.47 was verified as the appropriate current LR-WPAN platform, but no ns-3 executable was preinstalled and the official source archive could not be transferred into the execution container because binary network download was blocked.
-- **physical FIT IoT-LAB/local-hardware validation**: no authenticated FIT IoT-LAB session or locally attached IEEE 802.15.4 nodes were available to this execution environment.
+## ns-3 claim boundary
 
-A FIT IoT-LAB experiment template has been prepared separately for M3/AT86RF231 nodes, including consumption-monitoring and workload-analysis tooling. A real testbed result must only be reported after an authenticated reservation and actual firmware execution.
+The executed ns-3 family validates the traffic-volume causal direction under an independent IEEE 802.15.4 LR-WPAN MAC/PHY stack. It does **not** reproduce the complete multihop AD-CWOA/RE-ETX network dynamics and is not used for the manuscript's radio-energy ledger. Absolute ns-3 delivery/delay values therefore need not equal the earlier contention abstraction.
 
-## Assets still required for exact recovery of the original final study
+## Physical-hardware status
 
-An exact byte-identical original reproduction would still require recovery of the frozen original versions of:
+No authenticated FIT IoT-LAB or local physical IEEE 802.15.4 experiment has been executed. Hardware validation must not be claimed unless a real reservation/device run is subsequently completed.
 
-1. the original J0--J7 Stage-A experiment runner;
-2. the exact original conventional energy-weighted CH selector;
-3. original final-study matrices including `journal_v1_main_20seed.csv` and the remaining `journal_v1_*` statistical/robustness matrices;
-4. original final inferential scripts and their environment snapshot; and
-5. checksums tying those original files to the frozen manuscript figures and tables.
+## Assets still missing for byte-identical recovery of the original final J0--J7 study
 
-Until those originals are recovered, the repository should distinguish clearly among:
+Exact recovery would still require the frozen original versions of the final J0--J7 Stage-A runner, the exact conventional energy-weighted selector, the original `journal_v1_*` raw/statistical matrices, the original final inferential scripts/environment, and checksums tying those files to the frozen manuscript.
 
-1. the historical C1--C7 archive;
-2. the frozen manuscript results;
-3. the 2026-09-09 clean-room J0--J7 reconstruction; and
-4. the independently executed IEEE 802.15.4 contention validator.
-
-Existing historical artifacts must not be relabeled or retroactively modified to make them appear to be lost final-study raw data.
+Accordingly, the repository preserves the distinction among historical C1--C7 evidence, frozen manuscript values, the clean-room J0--J7 reconstruction, the independent contention validator, and the executed ns-3.47 LR-WPAN validation.

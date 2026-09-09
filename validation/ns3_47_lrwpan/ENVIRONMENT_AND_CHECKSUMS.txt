@@ -1,0 +1,25 @@
+SYSTEM
+ProductName:		macOS
+ProductVersion:		26.6.2
+BuildVersion:		25G83
+arm64
+
+TOOLCHAIN
+Apple clang version 21.0.0 (clang-2100.1.1.101)
+Target: arm64-apple-darwin25.6.0
+cmake version 4.4.3
+1.13.2
+Python 3.14.7
+
+NS3
+3.47
+Build profile: optimized
+
+SHA256
+eba27777a24bc9ecfa1fc736076c764fe56fe2d509e3f0c8a28a065f4c553293  ns-3.47/scratch/j4j5j6-lrwpan-validation.cc
+1d8451977dd338045af6b27b37fd3bb19d257c90752e7301251234520f7130cf  ns-3.47/build/scratch/ns3.47-j4j5j6-lrwpan-validation-optimized
+b6338ee2589d66fd9f175490271d9252bed4a3b33654fe1a0bb0ad6495566ad6  run_ns3_validation.py
+1e9e12659cc5e01821f6843d0dc06d7c2706f73d36b26eacd0ec7ee53885a75d  analyze_ns3_validation.py
+47f7674c6e9628d5d20aab777cd3989ed6edd01fa7f0034044c78e21cd836ba4  j4j5j6_results/ns3_j4j5j6_20seed_load_sweep.csv
+3a534f5fddc899f14b43680b74a43365e92b36f29479c075d9b7d490e3ec9add  j4j5j6_results/ns3_group_summary.csv
+5b2fe55e0a5998ed2edf475f0bc32727a8d1ced6fb8309b1ba32685b0a6694ef  j4j5j6_results/ns3_paired_contrasts.csv

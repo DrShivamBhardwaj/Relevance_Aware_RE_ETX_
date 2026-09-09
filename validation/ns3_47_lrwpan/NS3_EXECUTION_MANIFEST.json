@@ -1,0 +1,45 @@
+{
+  "ns3_version": "3.47",
+  "build_profile": "optimized",
+  "architecture": "arm64",
+  "runs_completed": 180,
+  "seeds": [
+    11,
+    23,
+    42,
+    67,
+    101,
+    137,
+    173,
+    211,
+    257,
+    307,
+    349,
+    401,
+    457,
+    503,
+    557,
+    601,
+    653,
+    701,
+    757,
+    809
+  ],
+  "report_periods_s": [
+    2.5,
+    5.0,
+    10.0
+  ],
+  "modes": [
+    "J4",
+    "J5",
+    "J6"
+  ],
+  "primary_period_s": 5.0,
+  "scenario_source": "validation/ns3_47_lrwpan/j4j5j6-lrwpan-validation.cc",
+  "raw_results": "validation/ns3_47_lrwpan/results/ns3_j4j5j6_20seed_load_sweep.csv",
+  "analysis_script": "validation/ns3_47_lrwpan/analyze_ns3_validation.py",
+  "claim_boundary": "Independent ns-3 LR-WPAN contention validation; not physical hardware and not full multihop reproduction.",
+  "runner": "validation/ns3_47_lrwpan/run_ns3_validation.py",
+  "official_tests": "validation/ns3_47_lrwpan/official_lr_wpan_tests.log"
+}

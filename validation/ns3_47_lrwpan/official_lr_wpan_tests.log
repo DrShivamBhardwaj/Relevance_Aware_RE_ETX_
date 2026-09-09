@@ -1,0 +1,466 @@
+ns-3 VERSION:
+3.47
+
+Official LR-WPAN unit suites
+=== lr-wpan-ack ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-ack
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-ack --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-ack --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-17-CUT --out=testpy-output/2026-09-09-08-45-17-CUT/lr-wpan-ack.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-ack
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-cca-test ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-cca-test
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-cca-test --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-cca-test --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-18-CUT --out=testpy-output/2026-09-09-08-45-18-CUT/lr-wpan-cca-test.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+[+0.000512000s] 00:01 PhyTxBegin: 
+[+0.000512000s] 00:03 PhyTxBegin: 
+[+0.000642232s] 00:02 PhyRxBegin: 
+[+0.000642232s] 00:02 PhyRxDrop: 
+[+0.001088000s] 00:01 PhyTxEnd: 
+[+0.001090232s] 00:02 PhyRxEnd (244.000000000): 
+[+0.001218232s] 00:02 PlmeCcaConfirm: BUSY
+[+0.004256000s] 00:03 PhyTxEnd: 
+[+0.005216000s] 00:01 PhyTxBegin: 
+[+0.005216000s] 00:03 PhyTxBegin: 
+[+0.005346232s] 00:02 PhyRxBegin: 
+[+0.005346238s] 00:02 PhyRxDrop: 
+[+0.006144000s] 00:01 PhyTxEnd: 
+[+0.006146232s] 00:02 PhyRxEnd (237.000000000): 
+[+0.006274232s] 00:02 PlmeCcaConfirm: IDLE
+[+0.009312000s] 00:03 PhyTxEnd: 
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-cca-test
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-collision ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-collision
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-collision --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-collision --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-18-CUT --out=testpy-output/2026-09-09-08-45-18-CUT/lr-wpan-collision.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+*** First test 
+*** Second test 
+*** Third test 
+m_rxPackets = 1
+*** Fourth test 
+m_rxPackets = 2
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-collision
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-energy-detection ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-energy-detection
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-energy-detection --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-energy-detection --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-18-CUT --out=testpy-output/2026-09-09-08-45-18-CUT/lr-wpan-energy-detection.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-energy-detection
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-error-model ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-error-model
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-error-model --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-error-model --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-18-CUT --out=testpy-output/2026-09-09-08-45-18-CUT/lr-wpan-error-model.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-error-model
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-ifs-test ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-ifs-test
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-ifs-test --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-ifs-test --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-19-CUT --out=testpy-output/2026-09-09-08-45-19-CUT/lr-wpan-ifs-test.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+----------------------------------
+----------------------------------
+0.00870407 | Dev0 (Node 0) received Acknowledgment.
+----------------------------------
+0.0106881 | Dev0 (Node 0) received Acknowledgment.
+----------------------------------
+0.0137921 | Dev1 (Node 1) received Broadcast. 
+0.0162561 | Dev0 (Node 0) received Broadcast. 
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-ifs-test
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-mac-test ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-mac-test
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-mac-test --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-mac-test --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-19-CUT --out=testpy-output/2026-09-09-08-45-19-CUT/lr-wpan-mac-test.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-mac-test
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-packet ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-packet
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-packet --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-packet --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-19-CUT --out=testpy-output/2026-09-09-08-45-19-CUT/lr-wpan-packet.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+ <--Mac Header added 
+ <--Packet P2 
+  Frame Type = 0, Sec Enable = 0, Frame Pending = 0, Ack Request = 0, PAN ID Compress = 0, Frame Vers = 1, Dst Addrs Mode = 0, Src Addr Mode = 2, Sequence Num = 0, Src Addr Pan ID = 100, m_addrShortSrcAddr = 00:11 <--P2 Mac Header 
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-packet
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-phy-test ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-phy-test
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-phy-test --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-phy-test --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-20-CUT --out=testpy-output/2026-09-09-08-45-20-CUT/lr-wpan-phy-test.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-phy-test
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-slotted-csmaca ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-slotted-csmaca
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-slotted-csmaca --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-slotted-csmaca --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-20-CUT --out=testpy-output/2026-09-09-08-45-20-CUT/lr-wpan-slotted-csmaca.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-slotted-csmaca
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+=== lr-wpan-spectrum-value-helper ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+NS3_ENABLED_MODULES == ['ns3-buildings', 'ns3-antenna', 'ns3-propagation', 'ns3-stats', 'ns3-spectrum', 'ns3-network', 'ns3-mobility', 'ns3-lr-wpan', 'ns3-core']
+NS3_ENABLED_CONTRIBUTED_MODULES == []
+NS3_MODULE_PATH == ['/Users/shivambhardwaj/.local/bin', '/opt/homebrew/bin', '/opt/homebrew/sbin', '/Library/Frameworks/Python.framework/Versions/3.12/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin', '/pkg/env/global/bin', '/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin', '/Users/shivambhardwaj/node_modules/.bin', '/Users/node_modules/.bin', '/node_modules/.bin', '/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin', '/Users/shivambhardwaj/.local/bin', '/Users/shivambhardwaj/.lmstudio/bin', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build', '/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib']
+ENABLE_EXAMPLES == True
+ENABLE_TESTS == True
+EXAMPLE_DIRECTORIES == ['wireless', 'udp-client-server', 'udp', 'tutorial', 'traffic-control', 'tcp', 'stats', 'socket', 'routing', 'realtime', 'naming', 'matrix-topology', 'ipv6', 'error-model', 'energy', 'channel-models']
+ENABLE_PYTHON_BINDINGS == False
+NSCLICK == False
+ENABLE_BRITE == False
+ENABLE_OPENFLOW == False
+APPNAME == ns
+BUILD_PROFILE == optimized
+VERSION == 3.47
+PYTHON == ['/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14']
+VALGRIND_FOUND == False
+Building: ./ns3
+os.environ["PYTHONPATH"] == /Users/shivambhardwaj/ns3-validation/ns-3.47/build/bindings/python
+os.environ["DYLD_LIBRARY_PATH"] == :/Users/shivambhardwaj/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Users/shivambhardwaj/.npm/_npx/4b4c857f6efdfb61/node_modules/.bin:/Users/shivambhardwaj/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/shivambhardwaj/.hermes/node/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/shivambhardwaj/.local/bin:/Users/shivambhardwaj/.lmstudio/bin:/Users/shivambhardwaj/ns3-validation/ns-3.47/build:/Users/shivambhardwaj/ns3-validation/ns-3.47/build/lib
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --print-test-name-list
+Return code =  0
+stderr =  
+Queue lr-wpan-spectrum-value-helper
+Launch utils/ns3.47-test-runner-optimized --test-name=lr-wpan-spectrum-value-helper --stop-on-failure --fullness=QUICK
+Synchronously execute "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/utils/ns3.47-test-runner-optimized" --test-name=lr-wpan-spectrum-value-helper --stop-on-failure --fullness=QUICK --xml --tempdir=testpy-output/2026-09-09-08-45-20-CUT --out=testpy-output/2026-09-09-08-45-20-CUT/lr-wpan-spectrum-value-helper.xml
+Return code =  0
+stderr =  
+returncode = 0
+---------- begin standard out ----------
+
+---------- begin standard err ----------
+
+---------- end standard err ----------
+[1/1] [32mPASS[0m: TestSuite lr-wpan-spectrum-value-helper
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)

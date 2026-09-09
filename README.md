@@ -1,33 +1,41 @@
 # Controlled Attribution and Robustness in IoT Wireless Sensor Networks
 
-This repository contains the wireless sensor network simulation code, archived validation artifacts, and the canonical current manuscript source associated with:
+This repository contains the WSN simulation code, archived validation evidence, and the canonical manuscript source for:
 
 **Controlled Attribution of Cross-Layer Gains and Robustness Limits in IoT Wireless Sensor Networks: AD-CWOA Clustering, Relevance-Aware Reporting, and RE-ETX Routing**
 
 ## Canonical manuscript
 
-The current manuscript is maintained only at:
+The current manuscript source on `main` is maintained only at:
 
 - `manuscript/main.tex`
 - `manuscript/references.bib`
 
-These unversioned paths are the canonical manuscript source on the `main` branch. Superseded manuscript filenames such as `V1`, `V2`, `V3`, etc. should not be committed; future manuscript corrections should replace `manuscript/main.tex` in place.
+The manuscript now includes the independently executed ns-3.47 LR-WPAN validation. Superseded versioned manuscript files should not be committed.
 
-## Repository status
+## Evidence layers
 
-The repository contains an earlier semantic RE-ETX validation archive centered on C1--C7/10-seed experiments, together with the later manuscript source for the J0--J7/20-seed integrated study.
+The repository intentionally keeps distinct evidence generations separate rather than relabeling historical artifacts:
 
-A clean-room final-study reconstruction has now also been executed for all J0--J7 modes over the twenty frozen inferential seeds (160 trajectories total). The reconstruction is maintained as **independent replication evidence**, not as the lost original final-study raw archive. Its provenance record and summaries are under:
+1. **Historical public C1--C7 archive** - earlier semantic RE-ETX experiments.
+2. **Frozen J0--J7 journal results** - the numerical results reported in the manuscript; the original byte-identical final raw archive is not fully preserved.
+3. **Clean-room J0--J7 reconstruction** - 160 regenerated trajectories over the twenty frozen inferential seeds, stored under `reproducibility/final_study_reconstruction/`. Integrated J4--J7 reproduce the frozen headline metrics with about 4.54% average absolute relative deviation.
+4. **Independent IEEE 802.15.4 contention validation** - a separately implemented event-driven validator, not ns-3 and not hardware evidence.
+5. **Executed ns-3.47 LR-WPAN validation** - 180/180 custom runs (20 paired seeds x J4/J5/J6 x 2.5/5/10 s report periods), with 11/11 official LR-WPAN test suites passed before the custom experiment.
 
-- `reproducibility/final_study_reconstruction/`
+The executed ns-3 package is stored at:
 
-The integrated J4--J7 modes reproduce the frozen headline metrics with about 4.54% average absolute relative deviation across eight headline outcomes. The main traffic-attribution conclusion is retained: J4->J5 shows a broad benefit from lower offered traffic, whereas the strict J7->J5 source-mapping control remains nonsignificant across the seven broad network outcomes after Holm correction.
+- `validation/ns3_47_lrwpan/`
 
-A separate independent IEEE 802.15.4-style unslotted CSMA/CA validation was also executed for J4/J5/J6 over all twenty seeds and three offered-load levels. This validator is **not ns-3** and is not hardware evidence. At 5 s/report, mean RDR is 46.02% for J4, 78.73% for J5, and 78.54% for J6; mean MAC service delay is 77.62, 41.51, and 41.61 ms, respectively. J6 remains statistically close to J5, reinforcing the traffic-volume attribution.
+At the primary 5 s/report ns-3 condition, mean report delivery is 62.152% for J4, 91.862% for J5, and 91.939% for J6. J5 improves RDR over J4 by 29.709 percentage points and reduces delivered-report delay by 23.278 ms; all five prespecified J5--J4 MAC outcomes survive Holm correction. All corresponding J5--J6 outcomes are nonsignificant after correction, independently supporting the manuscript's traffic-volume attribution.
 
-**Important reproducibility boundary:** neither the clean-room reconstruction nor the independent MAC validator should be relabeled as the lost original J0--J7 data. Exact recovery of the original final-study raw matrices remains unresolved. See `REPRODUCIBILITY.md`.
+## Important claim boundary
 
-## Main repository structure
+The ns-3 experiment is an executed IEEE 802.15.4/LR-WPAN MAC/PHY contention validation. It is **not** a full reproduction of the paper's multihop AD-CWOA/RE-ETX dynamics, is **not** used as radio-energy validation, and is **not** physical-hardware evidence. No FIT IoT-LAB or local-device hardware result is claimed.
+
+The clean-room reconstruction and the validation archives must not be relabeled as the lost original J0--J7 raw data. See `REPRODUCIBILITY.md` for the full provenance boundary.
+
+## Repository structure
 
 ```text
 .
@@ -36,6 +44,8 @@ A separate independent IEEE 802.15.4-style unslotted CSMA/CA validation was also
 │   └── references.bib
 ├── reproducibility/
 │   └── final_study_reconstruction/
+├── validation/
+│   └── ns3_47_lrwpan/
 ├── simulator/
 ├── results/
 ├── plots/
@@ -52,10 +62,6 @@ A separate independent IEEE 802.15.4-style unslotted CSMA/CA validation was also
 
 ## Software environment
 
-The simulation code is Python-based. Install the currently declared dependencies with:
+The historical Python simulator uses the dependencies declared in `requirements.txt`.
 
-```bash
-pip install -r requirements.txt
-```
-
-See `REPRODUCIBILITY.md` for the distinction between the historical public archive, the frozen original manuscript results, the clean-room J0--J7 reconstruction, and the independent IEEE 802.15.4 contention validation.
+The ns-3 validation was executed with ns-3.47, LR-WPAN enabled, optimized Apple Silicon build, with exact source, raw outputs, statistical analysis, official test log, environment information, and checksums preserved under `validation/ns3_47_lrwpan/`.
