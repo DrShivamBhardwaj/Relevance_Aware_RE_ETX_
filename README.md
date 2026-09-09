@@ -15,11 +15,17 @@ These unversioned paths are the canonical manuscript source on the `main` branch
 
 ## Repository status
 
-The repository also contains a substantial earlier semantic RE-ETX validation archive, including the C1--C7/10-seed experiment generation and associated source-control, event-quality, routing, and topology-sensitivity results.
+The repository contains an earlier semantic RE-ETX validation archive centered on C1--C7/10-seed experiments, together with the later manuscript source for the J0--J7/20-seed integrated study.
 
-The current manuscript reports a later J0--J7/20-seed integrated study combining AD-CWOA clustering, relevance-aware reporting, RE-ETX routing, controlled attribution, optimizer/reclustering experiments, routing-geometry and deployment-size stress, an EEL-2024 external comparator, and an IEEE 802.15.4-style contention sensitivity.
+A clean-room final-study reconstruction has now also been executed for all J0--J7 modes over the twenty frozen inferential seeds (160 trajectories total). The reconstruction is maintained as **independent replication evidence**, not as the lost original final-study raw archive. Its provenance record and summaries are under:
 
-**Important reproducibility boundary:** the earlier public C1--C7 archive should not be represented as an exact end-to-end reproduction of every numerical claim in the current J0--J7 manuscript. Exact public reproduction requires synchronization of the final frozen J0--J7 runners and the final archived `journal_v1_*` raw/statistical matrices described in `REPRODUCIBILITY.md`.
+- `reproducibility/final_study_reconstruction/`
+
+The integrated J4--J7 modes reproduce the frozen headline metrics with about 4.54% average absolute relative deviation across eight headline outcomes. The main traffic-attribution conclusion is retained: J4->J5 shows a broad benefit from lower offered traffic, whereas the strict J7->J5 source-mapping control remains nonsignificant across the seven broad network outcomes after Holm correction.
+
+A separate independent IEEE 802.15.4-style unslotted CSMA/CA validation was also executed for J4/J5/J6 over all twenty seeds and three offered-load levels. This validator is **not ns-3** and is not hardware evidence. At 5 s/report, mean RDR is 46.02% for J4, 78.73% for J5, and 78.54% for J6; mean MAC service delay is 77.62, 41.51, and 41.61 ms, respectively. J6 remains statistically close to J5, reinforcing the traffic-volume attribution.
+
+**Important reproducibility boundary:** neither the clean-room reconstruction nor the independent MAC validator should be relabeled as the lost original J0--J7 data. Exact recovery of the original final-study raw matrices remains unresolved. See `REPRODUCIBILITY.md`.
 
 ## Main repository structure
 
@@ -28,6 +34,8 @@ The current manuscript reports a later J0--J7/20-seed integrated study combining
 ├── manuscript/
 │   ├── main.tex
 │   └── references.bib
+├── reproducibility/
+│   └── final_study_reconstruction/
 ├── simulator/
 ├── results/
 ├── plots/
@@ -50,4 +58,4 @@ The simulation code is Python-based. Install the currently declared dependencies
 pip install -r requirements.txt
 ```
 
-See `REPRODUCIBILITY.md` for the exact distinction between the archived public validation generation and the frozen final-study design.
+See `REPRODUCIBILITY.md` for the distinction between the historical public archive, the frozen original manuscript results, the clean-room J0--J7 reconstruction, and the independent IEEE 802.15.4 contention validation.
