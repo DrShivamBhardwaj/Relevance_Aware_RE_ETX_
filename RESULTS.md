@@ -27,3 +27,24 @@ They are implementation-validation evidence, not a substitute for real hardware 
 The simulator intentionally models correlated statistical/system heterogeneity,
 multi-hop expected-transmission cost, relay-energy externality, adaptive update sparsification
 with error feedback, and utility-aware staleness weighting.
+
+## Independent ns-3.47 LR-WPAN validation
+
+An executed ns-3.47 campaign used 10 paired seeds, five contention/scaling conditions, and two mappings from the FL simulator to IEEE 802.15.4 traffic (400 runs total). All 11 official LR-WPAN unit suites passed.
+
+For the **primary hop-equivalent dense-nominal condition** (12 contending nodes, 1 s report period), mean report delivery ratios were:
+
+- random: 79.25%
+- resource: 85.26%
+- utility: 85.31%
+- proposed: 79.96%
+
+Mean delivered-report delays were 47.30, 38.51, 39.64, and 46.24 ms respectively. This confirms that the proposed learning policy is not a pure MAC-latency optimum; resource-only scheduling retains a network-side advantage because it prioritizes cheaper paths.
+
+For the **ETX-equivalent sensitivity mapping** in the same condition, mean report delivery was 35.88% (random), 53.86% (resource), 45.53% (utility), and 60.92% (proposed), with mean delays of 96.85, 73.94, 84.46, and 67.68 ms. This mapping is reported as sensitivity evidence rather than the primary network claim because ETX already represents expected transmissions.
+
+The correct conclusion is therefore a **Pareto trade-off across learning representation, communication burden, relay energy, and MAC performance**, not unconditional dominance on every networking metric.
+
+## Host-hardware execution
+
+The full 36-run Python reference experiment completed on an Apple M1 MacBook Air in 19.32 s with approximately 40 MB maximum resident set size. No physical sensor-node/IEEE 802.15.4 hardware was connected, so the repository does not claim device-level radio or MCU measurements.

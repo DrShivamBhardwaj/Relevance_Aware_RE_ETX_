@@ -1,0 +1,16 @@
+ns-3 version:
+3.47
+Python:
+Python 3.14.7
+Host: MacBook Air MacBookAir10,1, Apple M1, 8 cores, 8 GB RAM, arm64
+LR-WPAN official tests: 11 passed, 0 failed
+
+SHA-256:
+e3314750800868abf571f6cdc9636246f19295b8df932b26837d74c9f4810dce  validation/ns3_47_hfl/src/hfl-lrwpan-load-validation.cc
+13fb7fbbfaa234ed8d074113cd97133fa99550f284224356b0c7a709253f6a4a  validation/ns3_47_hfl/run_ns3_validation.py
+8ac024f928baf549e0ca876a334eb522a0f444f4a12e60e34538c7c7cdc72635  validation/ns3_47_hfl/analyze_ns3_validation.py
+7ce1be9610e357bfb470b1fc6792bed6db7a0effb581ae3f7f2f3243d40ac401  validation/ns3_47_hfl/results/ns3_hfl_hop_equivalent_sweep.csv
+7a8024f769ee391dd5ce5889709795cb6fe20b03ee0ed674bcb847c4a81f79d3  validation/ns3_47_hfl/results/ns3_hfl_etx_equivalent_sweep.csv
+15b86e1159833163a8cca521144e11ebcd4d621c59534190e0f68a7ce59ec3af  validation/ns3_47_hfl/results/ns3_group_summary.csv
+b3a152357a30b1beac5070059e07544f77859304cbb18f94ed301f59f6d13c2c  validation/ns3_47_hfl/results/ns3_paired_contrasts.csv
+3e5800d539aad400cbc9fa7a68399ffcca70985bd10ad6e2098984567b6c258a  validation/ns3_47_hfl/results/official_lr_wpan_tests.log

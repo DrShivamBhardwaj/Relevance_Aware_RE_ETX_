@@ -123,3 +123,31 @@ The current code is a research prototype, not a claim that the final algorithm i
 6. convergence / bounded-drift analysis for selection, compression and staleness together.
 
 The implementation intentionally keeps the novelty claim narrower than “ETX-aware FL”: the primary candidate contribution is **route-level learning-value orchestration with representation and relay-energy constraints**.
+## Executed ns-3.47 validation
+
+An independent IEEE 802.15.4/LR-WPAN validation has now been executed with ns-3.47.
+
+- 4 scheduling policies
+- 5 contention/scaling conditions
+- 10 paired seeds
+- 2 traffic mappings (hop-equivalent and ETX-equivalent)
+- **400 executed ns-3 runs**
+- **11/11 official LR-WPAN unit suites passed**
+
+The primary hop-equivalent mapping intentionally lets ns-3 generate retransmissions itself. The ETX-equivalent mapping is retained as a sensitivity analysis.
+
+See `validation/ns3_47_hfl/` and the generated `validation/ns3_47_hfl/results/NS3_VALIDATION_REPORT.md`.
+
+The ns-3 evidence does **not** show that the proposed policy wins every pure MAC metric. Under the conservative hop-equivalent mapping, resource-only scheduling often has lower delay because it deliberately chooses cheaper network paths. The proposed method is evaluated as a learning-network Pareto trade-off, not as an unconditional networking optimum.
+
+## Executed host-hardware evidence
+
+The full Python experiment was executed on an Apple M1 MacBook Air (8 cores, 8 GB RAM):
+
+- full 36-run reference experiment: **19.32 s wall-clock**
+- maximum resident set size: approximately **40 MB**
+- short validation configuration: **0.54 s**
+
+See `validation/hardware/HARDWARE_EXECUTION_REPORT.md`.
+
+A physical sensor-node probe found no connected USB/serial MCU or IEEE 802.15.4 development board. Therefore this repository does **not** claim on-device sensor hardware, radio-energy, RSSI/LQI, or physical packet-delivery measurements. Device-level hardware evidence remains a separate future experiment.

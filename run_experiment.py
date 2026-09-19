@@ -14,7 +14,8 @@ from wsn_hfl import METHODS, SimConfig, simulate_many
 
 def aggregate(rows):
     numeric = [
-        "accuracy", "macro_f1", "effective_bits", "raw_selected_bits",
+        "accuracy", "macro_f1", "effective_bits", "compressed_bits", "raw_selected_bits",
+        "mean_selected_hops", "mean_selected_etx",
         "compression_saving", "energy_j", "min_residual_energy_j",
         "participation_jain", "representation_js", "class_coverage_js",
         "mean_route_cost", "mean_route_hops", "max_relay_queue", "max_relay_energy_j",

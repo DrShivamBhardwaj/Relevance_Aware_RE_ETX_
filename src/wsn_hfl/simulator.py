@@ -75,7 +75,11 @@ def simulate(method: str, cfg: SimConfig):
     global_update_ema = np.zeros_like(w)
     pending = []
     total_effective_bits = 0.0
+    total_compressed_bits = 0.0
     total_raw_payload_bits = 0.0
+    total_selected_hops = 0.0
+    total_selected_etx = 0.0
+    total_selected_updates = 0
     total_energy = 0.0
     history = []
 
@@ -131,8 +135,12 @@ def simulate(method: str, cfg: SimConfig):
             error_feedback[i] = new_residual
             bits = cfg.header_bits + k_nonzero * (cfg.model_bits + cfg.index_bits)
             route = routes[i]
+            total_selected_hops += route.hops
+            total_selected_etx += route.etx_sum
+            total_selected_updates += 1
             effective_bits = bits * route.etx_sum
             total_effective_bits += effective_bits
+            total_compressed_bits += bits
             total_raw_payload_bits += full_update_bits
             total_energy += _charge_path(
                 cfg, topology, route, bits, residual_energy, relay_energy_round
@@ -208,7 +216,10 @@ def simulate(method: str, cfg: SimConfig):
             "accuracy": acc,
             "macro_f1": f1,
             "effective_bits": total_effective_bits,
+            "compressed_bits": total_compressed_bits,
             "raw_selected_bits": total_raw_payload_bits,
+            "mean_selected_hops": total_selected_hops / max(total_selected_updates, 1),
+            "mean_selected_etx": total_selected_etx / max(total_selected_updates, 1),
             "energy_j": total_energy,
             "min_residual_energy_j": float(residual_energy.min()),
             "mean_residual_energy_j": float(residual_energy.mean()),
@@ -229,7 +240,10 @@ def simulate(method: str, cfg: SimConfig):
         "accuracy": accuracy(w, x_test, y_test),
         "macro_f1": macro_f1(w, x_test, y_test, cfg.num_classes),
         "effective_bits": total_effective_bits,
+        "compressed_bits": total_compressed_bits,
         "raw_selected_bits": total_raw_payload_bits,
+        "mean_selected_hops": total_selected_hops / max(total_selected_updates, 1),
+        "mean_selected_etx": total_selected_etx / max(total_selected_updates, 1),
         "compression_saving": 1.0 - total_effective_bits / max(
             total_raw_payload_bits * max(np.mean([r.etx_sum for r in initial_routes]), 1.0), 1e-12
         ),

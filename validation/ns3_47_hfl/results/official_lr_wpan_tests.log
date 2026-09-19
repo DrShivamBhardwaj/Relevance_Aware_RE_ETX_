@@ -1,0 +1,89 @@
+=== lr-wpan-ack ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-ack
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-cca-test ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-cca-test
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-collision ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-collision
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-energy-detection ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-energy-detection
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-error-model ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-error-model
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-ifs-test ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-ifs-test
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-mac-test ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-mac-test
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-packet ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-packet
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-phy-test ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-phy-test
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-slotted-csmaca ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-slotted-csmaca
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+=== lr-wpan-spectrum-value-helper ===
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
+Finished executing the following commands:
+/opt/homebrew/bin/cmake --build /Users/shivambhardwaj/ns3-validation/ns-3.47/cmake-cache -j 7
+[1/1] [32mPASS[0m: TestSuite lr-wpan-spectrum-value-helper
+1 of 1 tests passed (1 passed, 0 skipped, 0 failed, 0 crashed, 0 valgrind errors)
+
+SUMMARY pass=11 fail=0

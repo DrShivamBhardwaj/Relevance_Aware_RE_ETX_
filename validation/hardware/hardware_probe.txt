@@ -1,0 +1,16 @@
+Host hardware probe (sanitized)
+Date: 2026-09-19
+Model: MacBook Air (MacBookAir10,1)
+Chip: Apple M1
+CPU cores: 8 (4 performance + 4 efficiency)
+Memory: 8 GB
+Architecture: arm64
+
+WSN/IoT device probe:
+- No /dev/cu.usb* or /dev/tty.usb* serial MCU device was detected.
+- No /dev/cu.usbmodem*, /dev/cu.usbserial*, /dev/cu.SLAB*, or /dev/cu.wchusb* device was detected.
+- arduino-cli was not installed.
+- PlatformIO/pio was not installed.
+- No suitable connected IEEE 802.15.4 / ESP32 / Arduino-class sensor node was available for device-level radio measurement.
+
+This file intentionally omits host serial numbers, UUIDs, and other machine identifiers.

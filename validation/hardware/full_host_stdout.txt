@@ -1,0 +1,14 @@
+corr=0.00 method=random   acc=0.9500 F1=0.9496 repJS=0.0472
+corr=0.00 method=resource acc=0.9487 F1=0.9482 repJS=0.1047
+corr=0.00 method=utility  acc=0.9437 F1=0.9432 repJS=0.0822
+corr=0.00 method=proposed acc=0.9447 F1=0.9441 repJS=0.0137
+corr=0.50 method=random   acc=0.9567 F1=0.9565 repJS=0.0578
+corr=0.50 method=resource acc=0.9523 F1=0.9521 repJS=0.1356
+corr=0.50 method=utility  acc=0.9553 F1=0.9553 repJS=0.0774
+corr=0.50 method=proposed acc=0.9537 F1=0.9537 repJS=0.0126
+corr=0.90 method=random   acc=0.9487 F1=0.9484 repJS=0.0625
+corr=0.90 method=resource acc=0.9470 F1=0.9468 repJS=0.0890
+corr=0.90 method=utility  acc=0.9500 F1=0.9499 repJS=0.0719
+corr=0.90 method=proposed acc=0.9503 F1=0.9502 repJS=0.0180
+
+Wrote results to /Users/shivambhardwaj/WSN_HFL_CrossLayer/validation/hardware/full_host_results
