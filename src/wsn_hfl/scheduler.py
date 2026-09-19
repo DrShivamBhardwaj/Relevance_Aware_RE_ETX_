@@ -26,7 +26,7 @@ def adaptive_ratio(cfg: SimConfig, utility: float, route_cost: float, scarcity: 
     for rho in cfg.compression_candidates:
         if rho < cfg.min_compression_ratio:
             continue
-        network_term = rho * (route_cost + 0.5 * scarcity + relay_pressure)
+        network_term = rho * (route_cost + 0.5 * scarcity + cfg.relay_pressure_weight * relay_pressure)
         distortion = cfg.compression_distortion_weight * utility * (1.0 - rho) ** 2
         obj = network_term + distortion
         if obj < best_obj:
@@ -52,6 +52,8 @@ def schedule(
     route_cost = _unit_interval(np.array([r.cost for r in routes], dtype=float))
     scarcity = _unit_interval(np.maximum(initial_energy / np.maximum(residual_energy, 1e-9) - 1.0, 0.0))
     pressure = route_pressure(routes, relay_queue, cfg.num_clients)
+    if method == "proposed_no_relay":
+        pressure[:] = 0.0
     util = _unit_interval(utility)
     ratios = {int(i): cfg.fixed_compression_ratio for i in candidates}
 
@@ -62,13 +64,14 @@ def schedule(
         selected = candidates[np.argsort(score[candidates])[:k]]
     elif method == "utility":
         selected = candidates[np.argsort(-util[candidates])[:k]]
-    elif method == "proposed":
+    elif method.startswith("proposed"):
         score = np.full(cfg.num_clients, -np.inf, dtype=float)
         for i in candidates:
-            rho = adaptive_ratio(cfg, util[i], route_cost[i], scarcity[i], pressure[i])
+            rho = cfg.fixed_compression_ratio if method == "proposed_fixed_comp" else adaptive_ratio(cfg, util[i], route_cost[i], scarcity[i], pressure[i])
             ratios[int(i)] = rho
-            comm_penalty = rho * (route_cost[i] + 0.5 * scarcity[i] + pressure[i])
-            score[i] = cfg.drift_v * util[i] + deficit_queue[i] - cfg.drift_v * comm_penalty
+            comm_penalty = rho * (route_cost[i] + 0.5 * scarcity[i] + cfg.relay_pressure_weight * pressure[i])
+            deficit_term = 0.0 if method == "proposed_no_rep" else deficit_queue[i]
+            score[i] = cfg.drift_v * util[i] + deficit_term - cfg.drift_v * comm_penalty
         selected = candidates[np.argsort(-score[candidates])[:k]]
     else:
         raise ValueError(f"Unknown method: {method}")

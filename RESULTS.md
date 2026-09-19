@@ -5,46 +5,25 @@ They are implementation-validation evidence, not a substitute for real hardware 
 
 | Corr. | Method | Accuracy | Macro-F1 | Effective bits | Energy (J) | Rep. JS | Relay energy max (J) |
 |---:|---|---:|---:|---:|---:|---:|---:|
-| 0.00 | random | 0.9500 | 0.9496 | 2039605 | 7.394 | 0.0472 | 0.4200 |
-| 0.00 | resource | 0.9487 | 0.9482 | 1610564 | 6.466 | 0.1047 | 0.1386 |
-| 0.00 | utility | 0.9437 | 0.9432 | 2085978 | 7.456 | 0.0822 | 0.5186 |
-| 0.00 | proposed | 0.9447 | 0.9441 | 1552876 | 6.372 | 0.0137 | 0.1790 |
-| 0.50 | random | 0.9567 | 0.9565 | 2044637 | 7.397 | 0.0578 | 0.3769 |
-| 0.50 | resource | 0.9523 | 0.9521 | 1617995 | 6.482 | 0.1356 | 0.1405 |
-| 0.50 | utility | 0.9553 | 0.9553 | 2098666 | 7.500 | 0.0774 | 0.4166 |
-| 0.50 | proposed | 0.9537 | 0.9537 | 1499666 | 6.307 | 0.0126 | 0.1655 |
-| 0.90 | random | 0.9487 | 0.9484 | 2057371 | 7.422 | 0.0625 | 0.3985 |
-| 0.90 | resource | 0.9470 | 0.9468 | 1620556 | 6.489 | 0.0890 | 0.1436 |
-| 0.90 | utility | 0.9500 | 0.9499 | 1813687 | 6.883 | 0.0719 | 0.3088 |
-| 0.90 | proposed | 0.9503 | 0.9502 | 1527288 | 6.279 | 0.0180 | 0.1104 |
+| 0.00 | random | 0.9357 | 0.9352 | 1867365 | 6.977 | 0.0545 | 0.3367 |
+| 0.00 | resource | 0.9347 | 0.9343 | 1542902 | 6.288 | 0.0960 | 0.1131 |
+| 0.00 | utility | 0.9325 | 0.9324 | 1913080 | 7.079 | 0.0813 | 0.4438 |
+| 0.00 | proposed | 0.9326 | 0.9323 | 591031 | 4.828 | 0.0170 | 0.1034 |
+| 0.50 | random | 0.9382 | 0.9380 | 1890314 | 7.029 | 0.0543 | 0.3321 |
+| 0.50 | resource | 0.9391 | 0.9389 | 1550305 | 6.303 | 0.1041 | 0.1133 |
+| 0.50 | utility | 0.9408 | 0.9409 | 1931078 | 7.113 | 0.0860 | 0.4007 |
+| 0.50 | proposed | 0.9394 | 0.9394 | 585068 | 4.816 | 0.0194 | 0.0954 |
+| 0.90 | random | 0.9350 | 0.9349 | 1878077 | 6.994 | 0.0597 | 0.3241 |
+| 0.90 | resource | 0.9363 | 0.9363 | 1543990 | 6.291 | 0.0744 | 0.1113 |
+| 0.90 | utility | 0.9340 | 0.9342 | 1736993 | 6.712 | 0.0713 | 0.3057 |
+| 0.90 | proposed | 0.9364 | 0.9365 | 544307 | 4.732 | 0.0202 | 0.0727 |
 
 ## Proposed vs. resource-only baseline
 
-- **Correlation 0.00:** effective expected bits 3.6% lower; energy 1.4% lower; representation JS 87.0% lower; accuracy -0.0040 absolute.
-- **Correlation 0.50:** effective expected bits 7.3% lower; energy 2.7% lower; representation JS 90.7% lower; accuracy +0.0013 absolute.
-- **Correlation 0.90:** effective expected bits 5.8% lower; energy 3.2% lower; representation JS 79.8% lower; accuracy +0.0033 absolute.
+- **Correlation 0.00:** effective expected bits 61.7% lower; energy 23.2% lower; representation JS 82.3% lower; accuracy -0.0021 absolute.
+- **Correlation 0.50:** effective expected bits 62.3% lower; energy 23.6% lower; representation JS 81.3% lower; accuracy +0.0003 absolute.
+- **Correlation 0.90:** effective expected bits 64.7% lower; energy 24.8% lower; representation JS 72.8% lower; accuracy +0.0001 absolute.
 
 The simulator intentionally models correlated statistical/system heterogeneity,
 multi-hop expected-transmission cost, relay-energy externality, adaptive update sparsification
 with error feedback, and utility-aware staleness weighting.
-
-## Independent ns-3.47 LR-WPAN validation
-
-An executed ns-3.47 campaign used 10 paired seeds, five contention/scaling conditions, and two mappings from the FL simulator to IEEE 802.15.4 traffic (400 runs total). All 11 official LR-WPAN unit suites passed.
-
-For the **primary hop-equivalent dense-nominal condition** (12 contending nodes, 1 s report period), mean report delivery ratios were:
-
-- random: 79.25%
-- resource: 85.26%
-- utility: 85.31%
-- proposed: 79.96%
-
-Mean delivered-report delays were 47.30, 38.51, 39.64, and 46.24 ms respectively. This confirms that the proposed learning policy is not a pure MAC-latency optimum; resource-only scheduling retains a network-side advantage because it prioritizes cheaper paths.
-
-For the **ETX-equivalent sensitivity mapping** in the same condition, mean report delivery was 35.88% (random), 53.86% (resource), 45.53% (utility), and 60.92% (proposed), with mean delays of 96.85, 73.94, 84.46, and 67.68 ms. This mapping is reported as sensitivity evidence rather than the primary network claim because ETX already represents expected transmissions.
-
-The correct conclusion is therefore a **Pareto trade-off across learning representation, communication burden, relay energy, and MAC performance**, not unconditional dominance on every networking metric.
-
-## Host-hardware execution
-
-The full 36-run Python reference experiment completed on an Apple M1 MacBook Air in 19.32 s with approximately 40 MB maximum resident set size. No physical sensor-node/IEEE 802.15.4 hardware was connected, so the repository does not claim device-level radio or MCU measurements.

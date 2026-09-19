@@ -4,3 +4,12 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 results/*.tmp
+data/
+*.zip
+
+# Raw external datasets (download locally; do not commit)
+data/intel_lab/data.txt.gz
+data/intel_lab/mote_locs.txt
+data/intel_lab/connectivity.txt
+data/uci_har/har.zip
+data/uci_har/unpacked/

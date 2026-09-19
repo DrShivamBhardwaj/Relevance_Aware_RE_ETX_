@@ -34,8 +34,9 @@ class SimConfig:
     max_staleness: int = 4
     drift_v: float = 0.5
     relay_budget_j_per_round: float = 0.004
+    relay_pressure_weight: float = 3.0
     utility_ema: float = 0.65
-    compression_distortion_weight: float = 1.20
+    compression_distortion_weight: float = 0.10
     compression_candidates: tuple = (0.15, 0.30, 0.50, 0.75, 1.0)
     model_bits: int = 32
     index_bits: int = 16

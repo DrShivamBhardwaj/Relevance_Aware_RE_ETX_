@@ -182,7 +182,7 @@ def simulate(method: str, cfg: SimConfig):
             for event in events:
                 age = t - event["generated"]
                 stale = math.exp(-cfg.staleness_lambda * age)
-                if method == "proposed":
+                if method.startswith("proposed") and method != "proposed_age_only":
                     stale *= 1.0 + cfg.utility_staleness_mu * event["utility"]
                 raw_weights.append(stale * event["samples"])
             raw_weights = np.asarray(raw_weights, dtype=float)

@@ -79,7 +79,7 @@ Full reference run:
 .venv/bin/python summarize_results.py
 ~~~
 
-The default full run evaluates four policies (`random`, `resource`, `utility`, `proposed`) over three resource-data correlation levels (0.0, 0.5, 0.9) and three seeds (7, 11, 19).
+The final reference results evaluate four policies (`random`, `resource`, `utility`, `proposed`) over three resource-data correlation levels (0.0, 0.5, 0.9) and 10 seeds (7, 11, 19, 23, 29, 31, 37, 41, 43, 47).
 
 Outputs are written to `results/`:
 
@@ -92,7 +92,7 @@ A human-readable snapshot is in [RESULTS.md](RESULTS.md).
 
 ## Reproducibility status
 
-The included results are **executed synthetic-simulator results**, not hardware results and not ns-3 validation. They are intended to validate the algorithmic coupling and experimental pipeline before the next stage of network-emulation / hardware validation.
+The repository now contains executed synthetic results, Intel Berkeley Lab real-WSN replay, UCI HAR real sensing experiments, ns-3.47 LR-WPAN validation, and host-hardware execution evidence. Physical sensor-node radio/MCU measurements are still not claimed.
 
 The full default experiment plus tests executed successfully on the connected Mac in about 18 seconds for the current configuration.
 ## Repository layout
@@ -151,3 +151,20 @@ The full Python experiment was executed on an Apple M1 MacBook Air (8 cores, 8 G
 See `validation/hardware/HARDWARE_EXECUTION_REPORT.md`.
 
 A physical sensor-node probe found no connected USB/serial MCU or IEEE 802.15.4 development board. Therefore this repository does **not** claim on-device sensor hardware, radio-energy, RSSI/LQI, or physical packet-delivery measurements. Device-level hardware evidence remains a separate future experiment.
+
+## Real-data validation added
+
+The repository now includes two real sensing datasets and a frozen cross-layer operating point:
+
+- **Intel Berkeley Lab WSN**: real sensor readings, physical mote locations and measured connectivity; 48 learning clients after gateway/data filtering.
+- **UCI HAR**: 30 subject-clients, six activity classes, 561 inertial features.
+- **Frozen default**: relay-pressure weight `3.0`, compression-distortion weight `0.1`, selected after a 12-point × 10-seed joint cross-dataset sensitivity study.
+
+Detailed reports:
+
+- `validation/real_data/INTEL_LAB_REPORT.md`
+- `validation/real_data/UCI_HAR_REPORT.md`
+- `validation/SENSITIVITY_REPORT.md`
+- `FINAL_FORMULATION.md`
+- `PARAMETER_FREEZE.md`
+- `MANUSCRIPT_RECONSTRUCTION.md`
