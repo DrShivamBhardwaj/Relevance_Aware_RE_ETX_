@@ -26,9 +26,9 @@ The learning layer distinguishes network quality from statistical value. A clien
 U_i(t)=\alpha_g G_i(t)+\alpha_l L_i(t)+\alpha_h H_i(t),
 \]
 
-where \(G_i\) denotes update novelty (e.g. cosine distance from an edge/global reference), \(L_i\) denotes local loss reduction or learning difficulty, and \(H_i\) may denote a distribution/rarity term when available. The implementation uses privacy-compatible proxies based on local loss, update novelty, local improvement, and history; raw client data are not exposed to the scheduler.
+where \(G_i\) denotes update novelty (e.g. cosine distance from an edge/global reference), \(L_i\) denotes local loss reduction or learning difficulty, and \(H_i\) may denote a distribution/rarity term when available. In the executed scheduler, the pre-selection utility uses normalized current local loss together with an exponentially smoothed utility history. Update novelty and local improvement are observed only after a selected client trains, then update that history and the later staleness weight. Raw client examples are not exposed to the scheduler.
 
-Normalize the statistical target share as
+Normalize the statistical participation target share as
 
 \[
 \pi_i(t)=\frac{U_i(t)+\epsilon}{\sum_j(U_j(t)+\epsilon)}.
@@ -42,7 +42,16 @@ To prevent persistent exclusion of statistically informative but resource-poor c
 Q_i(t+1)=\big[Q_i(t)+\pi_i(t)-a_i(t)\big]^+,
 \]
 
-where \(a_i(t)\) is the realized round participation share. Mean-rate stability of \(Q_i\) implies long-term participation tracks the desired statistical share in aggregate rather than enforcing equal participation.
+where \(a_i(t)=x_i(t)/k_t\) for a selected set of size \(k_t>0\), and \(a_i(t)=0\) when no client is selected. Hence \(\sum_i a_i(t)=1\) whenever a round selects at least one client. The exact finite-horizon queue identity gives
+
+\[
+\frac1T\sum_{t=0}^{T-1} a_i(t)
+\ge
+\frac1T\sum_{t=0}^{T-1}\pi_i(t)
+-\frac{Q_i(T)-Q_i(0)}{T}.
+\]
+
+Therefore, if \(Q_i(T)/T\to0\) (rate stability), the long-term participation share meets the statistical target in the time-average sense. This is a **participation-share guarantee only**; it does not by itself guarantee equality between final aggregation influence and \(\pi_i\), because compression, staleness, packet loss, and hierarchical aggregation also affect influence.
 
 A post-hoc representation metric is
 
@@ -94,13 +103,15 @@ C_i(t,\rho_i)=\rho_i(t)\left(
 \right).
 \]
 
-The round scheduler ranks candidates by
+The executed round scheduler ranks candidates by
 
 \[
 \Gamma_i(t)=V\widetilde U_i(t)+Q_i(t)-V C_i(t,\rho_i),
 \]
 
-and admits at most \(K_t\) clients with highest \(\Gamma_i(t)\), subject to availability and residual-energy feasibility. This replaces the original manually weighted RACE-FL resource score.
+and, when \(M_t\) clients are eligible, selects exactly \(k_t=\min(K_t,M_t)\) clients with the largest scores. For fixed \(\rho_i(t)\), this top-\(k_t\) rule exactly maximizes \(\sum_{i\in\mathcal S_t}\Gamma_i(t)\) over all subsets of cardinality \(k_t\). Eligibility uses availability and a residual-energy threshold; the current code does **not** enforce the stronger hard constraint \(E_i^{\mathrm{train}}+E_i^{\mathrm{tx}}\le E_i^{\mathrm{res}}\) before selection.
+
+The score is **drift-plus-penalty inspired rather than an exact canonical Lyapunov minimizer**. In particular, the implementation normalizes route cost, energy scarcity, and relay pressure each round, and it uses the normalized path queue pressure inside \(C_i\) rather than the unnormalized term \(\sum_r Z_r E_{ir}\) that appears in the raw Lyapunov drift bound. This distinction is retained explicitly in the theory claims.
 
 The corresponding long-term systems objective is
 
@@ -134,23 +145,84 @@ The final implementation optimizes/controls
 \{x_i(t),\rho_i(t),\omega_i(t)\}
 \]
 
-over a routing substrate that supplies \(\mathcal P_i(t)\) and route state. Constraints include
+over a routing substrate that supplies \(\mathcal P_i(t)\) and route state. The executed implementation obeys
 
 \[
-\sum_i x_i(t)\le K_t,
-\qquad E_i^{\mathrm{train}}(t)+E_i^{\mathrm{tx}}(t)\le E_i^{\mathrm{res}}(t),
+\sum_i x_i(t)=k_t\le K_t,
+\qquad
+x_i(t)=0\ \text{when client }i\text{ is unavailable or }E_i^{\mathrm{res}}(t)\le E_{\min},
 \]
 
 \[
 0\le s_i(t)\le s_{\max},
-\qquad \rho_i(t)\in\mathcal R,
+\qquad \rho_i(t)\in\mathcal R.
 \]
 
-plus long-term participation and relay-energy constraints represented through \(Q_i\) and \(Z_r\).
+Residual-energy scarcity is priced in the scheduling cost and actual training/transmission energy is debited after selection. Thus a strict pre-selection energy-feasibility inequality is **not** claimed for the current code. Long-term participation-share and relay-energy targets are represented through \(Q_i\) and \(Z_r\), respectively.
 
-## 9. What is and is not claimed theoretically
+## 9. Exact theory supported by the implementation
 
-The scheduler has the standard structure of Lyapunov drift-plus-penalty control. Under bounded per-round utilities/costs and existence of a feasible stationary policy, standard Lyapunov arguments motivate an \(O(1/V)\) utility-cost gap with \(O(V)\) virtual-queue growth for the scheduling subproblem. The present implementation does **not yet claim a complete non-convex FL convergence theorem simultaneously covering biased selection, Top-k error feedback, hierarchy, and staleness**. A manuscript must state that distinction explicitly unless a formal proof is added.
+Let
+
+\[
+L(t)=\frac12\sum_i Q_i^2(t)+\frac12\sum_r Z_r^2(t).
+\]
+
+Define \(d_i(t)=\pi_i(t)-a_i(t)\) and \(h_r(t)=E_r^{\mathrm{relay}}(t)-\bar E_r\). From \(([q+y]^+)^2\le q^2+y^2+2qy\),
+
+\[
+L(t+1)-L(t)
+\le
+B(t)+\sum_iQ_i(t)d_i(t)+\sum_r Z_r(t)h_r(t),
+\]
+
+where
+
+\[
+B(t)=\frac12\sum_i d_i^2(t)+\frac12\sum_r h_r^2(t).
+\]
+
+If per-round relay energy is bounded, then \(B(t)\le B_{\max}<\infty\). Two exact sample-path consequences follow directly from telescoping the queue recursions:
+
+\[
+\frac1T\sum_{t<T} a_i(t)
+\ge
+\frac1T\sum_{t<T}\pi_i(t)-\frac{Q_i(T)-Q_i(0)}{T},
+\]
+
+and
+
+\[
+\frac1T\sum_{t<T}E_r^{\mathrm{relay}}(t)
+\le
+\bar E_r+\frac{Z_r(T)-Z_r(0)}{T}.
+\]
+
+Hence rate stability of \(Q_i\) implies satisfaction of the long-term participation-share target, and rate stability of \(Z_r\) implies satisfaction of the relay-energy budget.
+
+For compression, enumeration over the finite candidate set \(\mathcal R\) returns the exact minimizer of the stated **compression surrogate** \(J_i^{\mathrm{comp}}\). For selection, the top-\(k_t\) operation is the exact optimizer of the implemented additive score once candidate compression ratios are fixed.
+
+The implementation also uses error feedback. If \(e_i(t)\) is the residual, \(u_i(t)\) the raw update, and \(c_i(t)\) the transmitted sparse update, then
+
+\[
+e_i(t+1)=u_i(t)+e_i(t)-c_i(t),
+\]
+
+so
+
+\[
+\sum_{t=0}^{T-1}c_i(t)
+=
+\sum_{t=0}^{T-1}u_i(t)+e_i(0)-e_i(T).
+\]
+
+Thus discarded coordinates are conserved in the residual rather than permanently erased; this identity alone is not a convergence theorem.
+
+### 9.1 Claims deliberately not made
+
+Classical Lyapunov optimization can yield an \(O(1/V)\) time-average penalty gap with an \(O(V)\) queue trade-off when a controller directly minimizes an appropriate drift-plus-penalty bound under the required feasibility/slack assumptions (see M. J. Neely, *Stochastic Network Optimization with Application to Communication and Queueing Systems*, 2010, DOI 10.2200/S00271ED1V01Y201006CNT007). The executed controller does not satisfy those conditions exactly because it normalizes queue-derived pressures and separately chooses compression through a distortion surrogate. Moreover, the participation targets sum to one, so a uniform strict-Slater slack for all representation queues is generally unavailable. Therefore **no \(O(1/V)\)/\(O(V)\) performance theorem is claimed for the executed policy**.
+
+Likewise, the present work does **not** claim a complete non-convex FL convergence theorem simultaneously covering biased selection, Top-k error feedback, hierarchical aggregation, packet loss, and staleness. The proven statements are limited to the queue implications, one-step drift bound, finite-set compression optimality, top-\(k\) score optimality, and error-feedback conservation above.
 
 ## 10. Computational complexity
 

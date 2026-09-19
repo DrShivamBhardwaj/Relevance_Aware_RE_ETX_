@@ -78,6 +78,7 @@ def main():
     evidence = (ROOT / "EXPERIMENTAL_EVIDENCE_SUMMARY.md").read_text()
     freeze = (ROOT / "PARAMETER_FREEZE.md").read_text()
     readme = (ROOT / "README.md").read_text()
+    theory = (ROOT / "THEORY.md").read_text()
     required_text = [
         ("MANUSCRIPT_RECONSTRUCTION.md", manuscript, "\\(\\eta_R=3\\) and \\(\\beta=0.1\\)"),
         ("PARAMETER_FREEZE.md", freeze, "relay_pressure_weight = 3.0"),
@@ -85,6 +86,8 @@ def main():
         ("EXPERIMENTAL_EVIDENCE_SUMMARY.md", evidence, "compression_distortion_weight = 0.10"),
         ("README.md", readme, "Frozen default"),
         ("README.md", readme, "compression-distortion weight `0.1`"),
+        ("THEORY.md", theory, "finite-horizon participation-deficit bound"),
+        ("THEORY.md", theory, "must **not** transfer the canonical"),
         ("MANUSCRIPT_RECONSTRUCTION.md", manuscript, "55.67%"),
         ("MANUSCRIPT_RECONSTRUCTION.md", manuscript, "60.75%"),
         ("MANUSCRIPT_RECONSTRUCTION.md", manuscript, "86.49%"),

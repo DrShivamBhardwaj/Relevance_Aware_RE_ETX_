@@ -63,7 +63,7 @@ python3 -m venv .venv
 .venv/bin/pytest -q
 ~~~
 
-Current verified state: **3 tests passed**.
+Current verified state: **8 tests passed**, including queue-bound, finite-set compression, top-k selection, and error-feedback conservation checks.
 ## Run the simulator
 
 Short validation run:
@@ -160,5 +160,6 @@ Detailed reports:
 - `validation/real_data/UCI_HAR_REPORT.md`
 - `validation/SENSITIVITY_REPORT.md`
 - `FINAL_FORMULATION.md`
+- `THEORY.md` — exact queue/drift/decision guarantees and explicit non-claims
 - `PARAMETER_FREEZE.md`
 - `MANUSCRIPT_RECONSTRUCTION.md`

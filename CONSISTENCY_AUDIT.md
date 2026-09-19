@@ -98,6 +98,20 @@ To remove ambiguity before manuscript reconstruction:
 - final sensitivity figures are generated from the per-dataset `joint_grid.csv` files.
 
 Git history preserves all removed material.
+## Theory alignment audit
+
+The strengthened theory is recorded in `THEORY.md` and synchronized with `FINAL_FORMULATION.md` and the manuscript. The exact supported statements are:
+
+- finite-horizon participation-deficit bound and its rate-stability corollary;
+- finite-horizon relay-energy budget bound and its rate-stability corollary;
+- one-step quadratic Lyapunov drift upper bound;
+- exact minimization of the finite compression surrogate over the enumerated Top-k ratios;
+- exact top-`k_t` maximization of the implemented additive client score;
+- error-feedback conservation identity;
+- bounded positive raw staleness weights.
+
+The audit explicitly rejects transferring the classical `O(1/V)` / `O(V)` theorem to the executed normalized controller, and it does not claim complete non-convex FL convergence. The implementation tests now include numerical checks of the queue bounds, finite-set compression minimizer, top-k score selection, and error-feedback conservation.
+
 ## Remaining non-consistency limitations
 
 These are not audit failures, but they remain manuscript limitations:

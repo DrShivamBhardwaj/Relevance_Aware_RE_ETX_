@@ -62,15 +62,15 @@ The learning problem is therefore not equivalent to selecting the clients with m
 
 ### 4.1 Statistical utility
 
-For each client, a privacy-compatible utility estimate combines current learning difficulty, update novelty, and observed local improvement. A generic form is
+For each client, the controller maintains a privacy-compatible learning-value estimate. Conceptually,
 
 \[
 U_i(t)=\alpha_gG_i(t)+\alpha_lL_i(t)+\alpha_hH_i(t),
 \]
 
-where \(G_i\) represents update novelty, \(L_i\) local learning progress/difficulty, and \(H_i\) an optional distribution-rarity term when available. The implementation does not expose raw client data to the scheduler.
+where \(G_i\) represents update novelty, \(L_i\) learning progress/difficulty, and \(H_i\) an optional distribution-rarity term when available. In the executed implementation, the **pre-selection** score uses normalized current local loss and the exponentially smoothed utility history; update novelty and observed local improvement become available only after a client trains and are then used to update that history and to modulate staleness weighting. Raw client examples are not exposed to the scheduler.
 
-The normalized desired statistical influence is
+The normalized desired statistical participation target is
 
 \[
 \pi_i(t)=\frac{U_i(t)+\epsilon}{\sum_j(U_j(t)+\epsilon)}.
@@ -84,7 +84,17 @@ A virtual queue tracks the difference between desired and realized participation
 Q_i(t+1)=\left[Q_i(t)+\pi_i(t)-a_i(t)\right]^+.
 \]
 
-This is deliberately different from enforcing identical selection frequency. Clients are allowed unequal participation when their statistical value differs, but persistent starvation creates queue pressure that increases their future scheduling priority.
+Here \(a_i(t)=x_i(t)/k_t\) for a selected set of size \(k_t>0\), and \(a_i(t)=0\) when no client is selected. This is deliberately different from enforcing identical selection frequency. Clients are allowed unequal participation when their statistical value differs, but persistent starvation creates queue pressure that increases their future scheduling priority. Directly from the queue recursion,
+
+\[
+\frac1T\sum_{t<T}a_i(t)
+\ge
+\frac1T\sum_{t<T}\pi_i(t)
+-
+\frac{Q_i(T)-Q_i(0)}{T}.
+\]
+
+Thus rate stability of \(Q_i\) is sufficient for meeting the long-run **participation-share** target. It does not guarantee equality of final aggregation influence with \(\pi_i\), because compression, drops, staleness and hierarchical weighting intervene after selection.
 
 ### 4.3 Relay-energy queue
 
@@ -108,13 +118,13 @@ Let \(\rho_i(t)\) be the retained Top-k fraction. The controller evaluates a fin
 
 \[
 J_i^{\mathrm{comp}}(\rho)=
-\rho\left(\widetilde C_i^{\mathrm{route}}+eta_E\widetilde S_i+eta_R\widetilde R_i\right)
+\rho\left(\widetilde C_i^{\mathrm{route}}+\eta_E\widetilde S_i+\eta_R\widetilde R_i\right)
 +\beta U_i(t)(1-\rho)^2.
 \]
 
 The first term prices network burden; the second discourages aggressive compression of statistically important updates. Error feedback accumulates omitted coordinates for subsequent rounds. After a 10-seed sensitivity sweep on both real datasets, the common operating point is frozen at \(\eta_R=3\) and \(\beta=0.1\).
 
-### 4.5 Drift-plus-penalty scheduling
+### 4.5 Queue-informed drift-plus-penalty surrogate
 
 For each eligible client,
 
@@ -123,7 +133,9 @@ For each eligible client,
 \left(\widetilde C_i^{\mathrm{route}}+\eta_E\widetilde S_i+\eta_R\widetilde R_i\right).
 \]
 
-The controller selects up to \(K_t\) clients with highest \(\Gamma_i(t)\), subject to availability and residual-energy feasibility. This replaces the manually weighted resource score in the original RACE-FL manuscript.
+If \(M_t\) clients are eligible, the executed controller selects exactly \(k_t=\min(K_t,M_t)\) clients with the largest \(\Gamma_i(t)\). For fixed candidate compression ratios this top-\(k_t\) operation exactly maximizes the additive score over all subsets of cardinality \(k_t\). Eligibility is determined by availability and a residual-energy threshold; the implementation does not impose a stronger hard pre-selection constraint requiring the full prospective training-plus-transmission energy to be below the residual battery.
+
+The score is motivated by the Lyapunov drift terms but is not an exact canonical drift-plus-penalty minimizer: route cost, energy scarcity and relay pressure are normalized each round, and relay pressure enters as a normalized path-queue feature rather than the unnormalized product \(Z_rE_{ir}\) in the raw drift bound. This distinction limits the theoretical claims below.
 
 ### 4.6 Utility-aware staleness
 
@@ -134,6 +146,61 @@ If an update generated at round \(t_i\) arrives at round \(t\), its staleness is
 \]
 
 followed by normalization. Thus age still penalizes stale updates, but a statistically valuable delayed update is not discarded solely because it is slow.
+
+### 4.7 Exact queue and decision guarantees
+
+**Proposition 1 (finite-horizon queue guarantees).** Define the quadratic virtual-queue Lyapunov function
+
+\[
+\mathcal L(t)=\frac12\sum_iQ_i^2(t)+\frac12\sum_rZ_r^2(t).
+\]
+
+Let \(d_i(t)=\pi_i(t)-a_i(t)\) and \(h_r(t)=E_r^{\mathrm{relay}}(t)-\bar E_r\). Using \(([q+y]^+)^2\le q^2+y^2+2qy\),
+
+\[
+\mathcal L(t+1)-\mathcal L(t)
+\le
+B(t)+\sum_iQ_i(t)d_i(t)+\sum_rZ_r(t)h_r(t),
+\]
+
+where \(B(t)=\frac12\sum_i d_i^2(t)+\frac12\sum_r h_r^2(t)\), which is bounded whenever per-round relay energy is bounded. Telescoping the virtual queues gives the exact finite-horizon bounds
+
+\[
+\frac1T\sum_{t<T}a_i(t)
+\ge
+\frac1T\sum_{t<T}\pi_i(t)
+-
+\frac{Q_i(T)-Q_i(0)}{T},
+\]
+
+and
+
+\[
+\frac1T\sum_{t<T}E_r^{\mathrm{relay}}(t)
+\le
+\bar E_r+
+\frac{Z_r(T)-Z_r(0)}{T}.
+\]
+
+Therefore rate stability of \(Q_i\) and \(Z_r\) is sufficient for satisfying the corresponding long-run participation-share and relay-energy constraints. The proof follows directly from \(([q+y]^+)^2\le q^2+y^2+2qy\) and telescoping the two queue recursions.
+
+**Proposition 2 (per-round decision exactness).** Exhaustive enumeration of the finite compression set returns the exact minimizer of the stated compression surrogate, and the top-\(k_t\) step exactly maximizes the implemented additive client score over all eligible subsets of size \(k_t\). These are exact statements about the implemented surrogates, not global optimality claims for the end-to-end FL objective.
+
+**Lemma 1 (error-feedback conservation).** For Top-k error feedback, with raw update \(u_i(t)\), residual \(e_i(t)\), and transmitted sparse update \(c_i(t)\),
+
+\[
+e_i(t+1)=u_i(t)+e_i(t)-c_i(t),
+\]
+
+which implies
+
+\[
+\sum_{t<T}c_i(t)=\sum_{t<T}u_i(t)+e_i(0)-e_i(T).
+\]
+
+Hence omitted coordinates are conserved in the residual rather than permanently discarded.
+
+These guarantees are intentionally narrower than the classical Lyapunov-optimization result of an \(O(1/V)\) time-average penalty gap with \(O(V)\) backlog [12]. That theorem requires direct minimization of the relevant drift-plus-penalty bound under suitable feasibility/slack assumptions. The executed controller instead normalizes queue-derived pressures and separately chooses compression through a distortion surrogate; moreover, the participation targets sum to one, so uniform strict slack for all participation queues is generally unavailable. We therefore do **not** transfer the canonical \(O(1/V)\)/\(O(V)\) guarantee to the executed policy, nor do we claim a complete non-convex FL convergence theorem for the joint selection-compression-hierarchy-staleness process.
 
 ## 5. Experimental Methodology
 
@@ -211,7 +278,7 @@ The sensitivity study further shows that the relay-pressure coefficient and comp
 
 ## 8. Limitations
 
-The current evidence is stronger than the original simulation-only manuscript but remains incomplete in several respects. First, the host implementation runs on an Apple M1 computer; no physical IEEE 802.15.4 sensor mote was available during the experiment, so MCU training time, radio current draw, RSSI/LQI, and hardware PDR are not claimed. Second, the Intel dataset provides real historical connectivity but the FL process itself is a replay over those measurements rather than execution on the original Mica2Dot nodes. Third, the local models are intentionally lightweight linear predictors/classifiers; larger TinyML models should be tested before making model-complexity claims. Fourth, the current theoretical treatment rigorously motivates the scheduling controller through virtual queues, but a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, and staleness remains future work.
+The current evidence is stronger than the original simulation-only manuscript but remains incomplete in several respects. First, the host implementation runs on an Apple M1 computer; no physical IEEE 802.15.4 sensor mote was available during the experiment, so MCU training time, radio current draw, RSSI/LQI, and hardware PDR are not claimed. Second, the Intel dataset provides real historical connectivity but the FL process itself is a replay over those measurements rather than execution on the original Mica2Dot nodes. Third, the local models are intentionally lightweight linear predictors/classifiers; larger TinyML models should be tested before making model-complexity claims. Fourth, the theory now provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work.
 
 ## 9. Conclusion
 
@@ -240,3 +307,5 @@ This study reframes communication-efficient HFL for WSN-IoT systems as a joint s
 [10] Intel Berkeley Research Lab sensor dataset: https://db.csail.mit.edu/labdata/labdata.html.
 
 [11] UCI Human Activity Recognition Using Smartphones dataset. DOI: 10.24432/C54S4K.
+
+[12] M. J. Neely, *Stochastic Network Optimization with Application to Communication and Queueing Systems*, Morgan & Claypool, 2010. DOI: 10.2200/S00271ED1V01Y201006CNT007.
