@@ -1,0 +1,72 @@
+{
+  "methods": [
+    "random",
+    "resource",
+    "utility",
+    "proposed"
+  ],
+  "correlations": [
+    0.0,
+    0.5,
+    0.9
+  ],
+  "seeds": [
+    7,
+    11,
+    19
+  ],
+  "quick": false,
+  "config": {
+    "seed": 7,
+    "num_clients": 24,
+    "num_gateways": 4,
+    "num_classes": 5,
+    "feature_dim": 24,
+    "samples_per_client": 96,
+    "test_samples": 1000,
+    "rounds": 40,
+    "clients_per_round": 6,
+    "local_steps": 4,
+    "learning_rate": 0.14,
+    "l2": 0.001,
+    "area_size": 1.0,
+    "sensor_radius": 0.34,
+    "gateway_radius": 0.28,
+    "energy_initial_j": 10.0,
+    "energy_jitter": 1.5,
+    "local_step_energy_j": 0.004,
+    "tx_energy_per_bit_j": 1.5e-06,
+    "rx_energy_per_bit_j": 8e-07,
+    "bandwidth_bps": 200000.0,
+    "base_hop_delay_s": 0.025,
+    "round_slot_s": 0.2,
+    "etx_energy_weight": 0.65,
+    "min_compression_ratio": 0.15,
+    "fixed_compression_ratio": 0.5,
+    "staleness_lambda": 0.35,
+    "utility_staleness_mu": 0.8,
+    "max_staleness": 4,
+    "drift_v": 0.5,
+    "relay_budget_j_per_round": 0.004,
+    "utility_ema": 0.65,
+    "compression_distortion_weight": 1.2,
+    "compression_candidates": [
+      0.15,
+      0.3,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "model_bits": 32,
+    "index_bits": 16,
+    "header_bits": 96,
+    "correlation": 0.75,
+    "noniid_alpha": 0.35,
+    "rare_class_boost": 5.5,
+    "class_separation": 1.1,
+    "feature_noise": 1.6,
+    "label_noise": 0.04,
+    "availability_prob": 0.9,
+    "dropout_prob": 0.03
+  }
+}
