@@ -63,7 +63,7 @@ python3 -m venv .venv
 .venv/bin/pytest -q
 ~~~
 
-Current verified state: **8 tests passed**, including queue-bound, finite-set compression, top-k selection, and error-feedback conservation checks.
+Current verified state: **11 tests passed**, including queue-bound, finite-set compression, top-k selection, error-feedback conservation, and frozen publication-table integrity checks.
 ## Run the simulator
 
 Short validation run:
@@ -162,4 +162,6 @@ Detailed reports:
 - `FINAL_FORMULATION.md`
 - `THEORY.md` — exact queue/drift/decision guarantees and explicit non-claims
 - `PARAMETER_FREEZE.md`
+- `PUBLICATION_TABLES.md` — frozen main/supplementary result selection and manuscript-safe claims
+- `tables/TABLE_FREEZE_MANIFEST.json` — source/generated table hashes and frozen headline effects
 - `MANUSCRIPT_RECONSTRUCTION.md`

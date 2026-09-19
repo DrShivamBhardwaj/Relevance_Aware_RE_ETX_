@@ -137,6 +137,32 @@ def main():
         elif sha256(p) != expected:
             issues.append(f"checksum mismatch for {rel}")
 
+    table_manifest_path = ROOT / "tables/TABLE_FREEZE_MANIFEST.json"
+    publication_tables_path = ROOT / "PUBLICATION_TABLES.md"
+    if not table_manifest_path.exists():
+        issues.append("missing tables/TABLE_FREEZE_MANIFEST.json")
+    else:
+        table_manifest = json.loads(table_manifest_path.read_text())
+        if table_manifest.get("status") != "FROZEN":
+            issues.append("publication table manifest is not FROZEN")
+        for rel, expected in table_manifest.get("source_sha256", {}).items():
+            p = ROOT / rel
+            if not p.exists() or sha256(p) != expected:
+                issues.append(f"publication-table source hash mismatch: {rel}")
+        for rel, expected in table_manifest.get("generated_sha256", {}).items():
+            p = ROOT / rel
+            if not p.exists() or sha256(p) != expected:
+                issues.append(f"publication-table generated hash mismatch: {rel}")
+    if not publication_tables_path.exists():
+        issues.append("missing PUBLICATION_TABLES.md")
+    else:
+        publication_tables = publication_tables_path.read_text()
+        for needle in ("209.28% higher", "RMSE is statistically comparable", "Negative trade-offs are retained"):
+            if needle not in publication_tables:
+                issues.append(f"PUBLICATION_TABLES.md missing manuscript-safe statement: {needle!r}")
+    if "209.28% increase relative to resource-only" not in manuscript:
+        issues.append("manuscript does not expose the UCI HAR relay-energy trade-off")
+
     obsolete_active = [
         ROOT / "results/pre_tuning",
         ROOT / "results/final_synthetic",

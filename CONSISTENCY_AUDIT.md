@@ -112,6 +112,22 @@ The strengthened theory is recorded in `THEORY.md` and synchronized with `FINAL_
 
 The audit explicitly rejects transferring the classical `O(1/V)` / `O(V)` theorem to the executed normalized controller, and it does not claim complete non-convex FL convergence. The implementation tests now include numerical checks of the queue bounds, finite-set compression minimizer, top-k score selection, and error-feedback conservation.
 
+## Publication-table freeze
+
+Stage 3 freezes the manuscript result selection in `PUBLICATION_TABLES.md` and machine-readable CSV files under `tables/`. `tables/TABLE_FREEZE_MANIFEST.json` records SHA-256 hashes of every source result and generated table, so any later result drift causes the consistency audit to fail.
+
+The main-text policy is fixed as follows:
+
+- use \(c=0.9\) as the strongest correlated-heterogeneity stress condition;
+- retain \(c=0\) and \(c=0.5\) in supplementary tables;
+- use resource-only as the primary inferential contrast;
+- retain random and utility-only in descriptive tables;
+- report mean ± 95% CI for real-data tables;
+- report exact paired sign-flip tests, Holm correction, bootstrap intervals, and paired effect sizes;
+- explicitly retain the adverse UCI-HAR relay-hotspot result: proposed maximum relay energy is 1.415 J versus 0.458 J for resource-only, i.e. +209.28%.
+
+The test suite now also verifies table/source hashes and guards against suppressing this negative trade-off.
+
 ## Remaining non-consistency limitations
 
 These are not audit failures, but they remain manuscript limitations:
@@ -128,6 +144,7 @@ Run:
 ```bash
 .venv/bin/python audit_consistency.py
 .venv/bin/pytest -q
+# expected current state: 11 tests passed
 ```
 
 A submission build should proceed only if both commands pass.

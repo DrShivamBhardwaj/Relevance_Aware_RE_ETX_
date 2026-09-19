@@ -1,0 +1,5 @@
+evidence_layer,clients,task,rounds,clients_per_round,resource_data_corr,seeds,network_evidence
+Synthetic stress test,24,5-class synthetic classification,40,6,"0, 0.5, 0.9",10,multi-hop simulated WSN
+Intel Berkeley Lab,48 learning + 4 gateways,next-temperature regression,30,10,"0, 0.5, 0.9",10,real mote locations + measured connectivity
+UCI HAR,30 subjects,6-class activity recognition,25,8,"0, 0.5, 0.9",10,real sensing data + simulated multi-hop substrate
+ns-3.47 LR-WPAN,traffic replay,IEEE 802.15.4 delivery/latency,n/a,n/a,frozen traffic profiles,10,MAC/PHY CSMA/CA + ACK + retransmission

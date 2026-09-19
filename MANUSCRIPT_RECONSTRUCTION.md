@@ -224,7 +224,7 @@ The learning-layer traffic profile is replayed through ns-3.47 LR-WPAN with CSMA
 
 ### 5.5 Metrics and statistics
 
-Learning metrics include global accuracy/Macro-F1 or RMSE/MAE, worst-client performance, and dispersion across clients. Systems metrics include expected transmitted bits, modeled energy, maximum relay energy, residual energy, selected-route ETX/hops, and ns-3 report delivery/delay. Participation is summarized with Jain's index, while statistical influence mismatch is measured with Jensen-Shannon divergence. Real-data comparisons use 10 paired seeds and exact paired sign-flip permutation tests.
+Learning metrics include global accuracy/Macro-F1 or RMSE/MAE, worst-client performance, and dispersion across clients. Systems metrics include expected transmitted bits, modeled energy, maximum relay energy, residual energy, selected-route ETX/hops, and ns-3 report delivery/delay. Participation is summarized with Jain's index, while statistical influence mismatch is measured with Jensen-Shannon divergence. Real-data comparisons use 10 paired seeds, exact paired sign-flip permutation tests, bootstrap 95% confidence intervals for paired differences, paired effect sizes, and Holm correction across the reported metric family.
 
 ## 6. Results
 
@@ -234,29 +234,29 @@ At correlation \(c=0.9\), resource-only scheduling reaches 93.63% accuracy with 
 
 ### 6.2 Intel WSN results
 
-At \(c=0.9\), the Intel WSN experiment gives:
+At \(c=0.9\), the Intel WSN experiment gives mean ± 95% confidence interval over 10 paired seeds:
 
-| Method | RMSE (°C) | Effective bits | Energy (J) | Max relay energy (J) | Representation JS |
-|---|---:|---:|---:|---:|---:|
-| Random | 1.7381 | 2,515,488 | 6.986 | 0.2736 | 0.0749 |
-| Resource-only | 1.7451 | 2,216,534 | 6.298 | 0.1393 | 0.1231 |
-| Utility-only | **1.7293** | 2,692,320 | 7.392 | 0.3136 | 0.0561 |
-| Proposed | 1.7417 | **982,636** | **3.460** | **0.0976** | **0.0231** |
+| Method | RMSE (°C) ↓ | MAE (°C) ↓ | Effective Mbit ↓ | Energy (J) ↓ | Max relay energy (J) ↓ | Representation JS ↓ |
+|---|---:|---:|---:|---:|---:|---:|
+| Random | 1.7381 ± 0.0028 | 0.8021 ± 0.0074 | 2.515 ± 0.050 | 6.986 ± 0.116 | 0.2736 ± 0.0247 | 0.0749 ± 0.0060 |
+| Resource-only | 1.7451 ± 0.0030 | 0.8297 ± 0.0087 | 2.217 ± 0.014 | 6.298 ± 0.031 | 0.1393 ± 0.0060 | 0.1231 ± 0.0068 |
+| Utility-only | **1.7293 ± 0.0015** | **0.7786 ± 0.0055** | 2.692 ± 0.019 | 7.392 ± 0.045 | 0.3136 ± 0.0178 | 0.0561 ± 0.0025 |
+| Proposed | 1.7417 ± 0.0052 | 0.7968 ± 0.0113 | **0.983 ± 0.019** | **3.460 ± 0.043** | **0.0976 ± 0.0024** | **0.0231 ± 0.0023** |
 
-Relative to resource-only scheduling, the proposed controller reduces expected communication by 55.67%, total modeled energy by 45.06%, maximum relay energy by 29.94%, and representation divergence by 81.21%. MAE improves by 3.96% (exact paired sign-flip \(p=0.00195\)). The RMSE difference is small (-0.19%) and is not statistically significant under the same exact test (\(p=0.2246\)); it should therefore be described as comparable rather than superior.
+Relative to resource-only scheduling, the proposed controller reduces expected communication by 55.67%, total modeled energy by 45.06%, maximum relay energy by 29.94%, and representation divergence by 81.21%. MAE improves by 3.96%; these five improvements remain significant after Holm correction (Holm-adjusted \(p=0.0117\)). The RMSE difference is small (-0.19%) and is not statistically significant (exact paired sign-flip and Holm-adjusted \(p=0.2246\)); it is therefore described as comparable rather than superior. Utility-only obtains the lowest RMSE but at markedly higher communication, total energy, and relay burden.
 
 ### 6.3 UCI HAR results
 
-At \(c=0.9\):
+At \(c=0.9\), mean ± 95% confidence interval over 10 paired seeds is:
 
-| Method | Accuracy | Macro-F1 | Worst-client accuracy | Effective bits | Energy (J) | Representation JS |
-|---|---:|---:|---:|---:|---:|---:|
-| Random | 0.8216 | 0.7949 | 0.6479 | 41.42 M | 70.83 | 0.0590 |
-| Resource-only | 0.8754 | 0.8724 | 0.6814 | 29.65 M | 45.92 | 0.1634 |
-| Utility-only | 0.7188 | 0.6626 | 0.5682 | 42.33 M | 72.35 | 0.0763 |
-| Proposed | **0.9061** | **0.9060** | **0.7169** | **11.64 M** | **20.03** | **0.0327** |
+| Method | Accuracy ↑ | Macro-F1 ↑ | Worst-client accuracy ↑ | Effective Mbit ↓ | Energy (J) ↓ | Max relay energy (J) ↓ | Representation JS ↓ |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Random | 0.8216 ± 0.0345 | 0.7949 ± 0.0489 | 0.6479 ± 0.0409 | 41.416 ± 3.318 | 70.83 ± 7.38 | 3.812 ± 1.189 | 0.0590 ± 0.0103 |
+| Resource-only | 0.8754 ± 0.0196 | 0.8724 ± 0.0226 | 0.6814 ± 0.0173 | 29.651 ± 1.154 | 45.92 ± 1.80 | **0.458 ± 0.091** | 0.1634 ± 0.0302 |
+| Utility-only | 0.7188 ± 0.0303 | 0.6626 ± 0.0406 | 0.5682 ± 0.0270 | 42.334 ± 2.904 | 72.35 ± 6.54 | 5.036 ± 1.102 | 0.0763 ± 0.0101 |
+| Proposed | **0.9061 ± 0.0022** | **0.9060 ± 0.0024** | **0.7169 ± 0.0150** | **11.639 ± 0.713** | **20.03 ± 1.57** | 1.415 ± 0.344 | **0.0327 ± 0.0078** |
 
-Against resource-only scheduling, accuracy improves by 3.08 percentage points, Macro-F1 by 3.36 points, worst-client accuracy by 3.55 points, expected communication decreases by 60.75%, energy decreases by 56.38%, and representation divergence decreases by 79.97%. Exact paired sign-flip tests give \(p=0.00195\) for accuracy, Macro-F1, communication, energy, and representation divergence; worst-client accuracy gives \(p=0.0156\).
+Against resource-only scheduling, accuracy improves by 3.08 percentage points, Macro-F1 by 3.36 points, worst-client accuracy by 3.55 points, expected communication decreases by 60.75%, total modeled energy decreases by 56.38%, and representation divergence decreases by 79.97%. These differences remain significant after Holm correction (Holm-adjusted \(p=0.0156\)). However, maximum relay energy increases from 0.458 J to 1.415 J, a 209.28% increase relative to resource-only (Holm-adjusted \(p=0.0156\)). This negative trade-off is retained explicitly: resource-only scheduling minimizes the relay hotspot by strongly favoring cheap paths, whereas the proposed controller spends more relay energy to preserve statistical participation while still using substantially less relay energy than random or utility-only scheduling.
 
 ### 6.4 Ablation
 
@@ -272,7 +272,7 @@ Under the primary hop-equivalent dense-nominal condition, resource-only traffic 
 
 The experiments support the central premise that network-efficient clients and statistically valuable clients are not interchangeable. Resource-only scheduling consistently lowers some route costs, but it also produces substantially higher representation divergence in the real-data experiments. Utility-only selection has the opposite failure mode: it can overuse expensive routes and relays. The proposed controller operates between these extremes by introducing explicit pressure from participation deficit, route cost, relay queues, and compression distortion.
 
-The Intel experiment is particularly useful because the proposed controller does not win the lowest regression error. Utility-only selection achieves slightly lower RMSE, but at substantially higher communication, energy, and relay burden. This prevents an inappropriate “best on every metric” claim and motivates a Pareto interpretation. In contrast, UCI HAR exhibits a regime in which the systems-learning coupling improves both learning quality and efficiency, because the representation deficit prevents resource-only scheduling from repeatedly concentrating on a restricted client subset.
+The Intel experiment is particularly useful because the proposed controller does not win the lowest regression error. Utility-only selection achieves slightly lower RMSE, but at substantially higher communication, energy, and relay burden. This prevents an inappropriate “best on every metric” claim and motivates a Pareto interpretation. In contrast, UCI HAR exhibits a regime in which the systems-learning coupling improves both learning quality and overall communication/energy efficiency, because the representation deficit prevents resource-only scheduling from repeatedly concentrating on a restricted client subset. The exception is maximum relay energy: resource-only scheduling achieves the lowest relay hotspot (0.458 J versus 1.415 J for the proposed controller). This is not contradictory to the objective; it exposes the cost of preserving statistically valuable participation instead of always choosing the cheapest routes.
 
 The sensitivity study further shows that the relay-pressure coefficient and compression-distortion coefficient are genuine control parameters. Excessively high compression-distortion penalties increase traffic and energy, while too little relay pressure creates hotspot burden. A common operating point \((\eta_R,\beta)=(3,0.1)\) is frozen across datasets to avoid dataset-specific tuning.
 
@@ -282,7 +282,7 @@ The current evidence is stronger than the original simulation-only manuscript bu
 
 ## 9. Conclusion
 
-This study reframes communication-efficient HFL for WSN-IoT systems as a joint statistical-representation and network-resource problem. Instead of introducing another routing metric, the proposed controller uses route state as an input to learning orchestration and coordinates client participation, update fidelity, relay pressure, and staleness-aware aggregation. Real WSN data, real IoT sensing data, repeated statistical tests, ablations, sensitivity analysis, and ns-3 LR-WPAN replay show that the approach can substantially reduce communication and energy while preserving or improving learning quality and reducing representation mismatch. The remaining step for a complete systems paper is physical sensor-node validation and a full convergence treatment of the coupled learning dynamics.
+This study reframes communication-efficient HFL for WSN-IoT systems as a joint statistical-representation and network-resource problem. Instead of introducing another routing metric, the proposed controller uses route state as an input to learning orchestration and coordinates client participation, update fidelity, relay pressure, and staleness-aware aggregation. Real WSN data, real IoT sensing data, repeated statistical tests, ablations, sensitivity analysis, and ns-3 LR-WPAN replay show that the approach can substantially reduce communication and total modeled energy while preserving or improving learning quality and reducing representation mismatch. Relay-hotspot energy is also reduced in the Intel WSN experiment and relative to random/utility scheduling on UCI HAR, but it is not universally lower than the resource-only baseline. The remaining step for a complete systems paper is physical sensor-node validation and a full convergence treatment of the coupled learning dynamics.
 
 ## References used for positioning
 
