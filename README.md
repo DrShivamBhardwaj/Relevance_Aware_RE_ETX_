@@ -113,14 +113,12 @@ results/
 
 ## Research interpretation
 
-The current code is a research prototype, not a claim that the final algorithm is publication-complete. In particular, the synthetic setting should be followed by:
+The current code is a research prototype, not a claim that the final algorithm is publication-complete. The repository now includes real WSN/IoT datasets, ablation and sensitivity studies, 10-seed statistical validation, and ns-3.47 LR-WPAN replay. The remaining major extensions are:
 
-1. WSN/IoT datasets,
-2. stronger FL baselines,
-3. larger model families,
-4. sensitivity and ablation studies,
-5. ns-3 / Contiki-NG or equivalent networking validation,
-6. convergence / bounded-drift analysis for selection, compression and staleness together.
+1. stronger external FL baselines implemented under the same budget,
+2. larger/TinyML model families,
+3. physical sensor-node radio/MCU measurements,
+4. convergence / bounded-drift analysis for the coupled selection, compression and staleness dynamics.
 
 The implementation intentionally keeps the novelty claim narrower than “ETX-aware FL”: the primary candidate contribution is **route-level learning-value orchestration with representation and relay-energy constraints**.
 ## Executed ns-3.47 validation
@@ -142,13 +140,9 @@ The ns-3 evidence does **not** show that the proposed policy wins every pure MAC
 
 ## Executed host-hardware evidence
 
-The full Python experiment was executed on an Apple M1 MacBook Air (8 cores, 8 GB RAM):
+The final implementation was executed on an Apple M1 MacBook Air (8 cores, 8 GB RAM). The frozen campaign includes the 10-seed synthetic reference run, Intel WSN and UCI HAR experiments, ablations, the joint sensitivity grid, and ns-3.47 replay. Representative measured wall-clock times are documented in the hardware report rather than reused as sensor-node latency claims.
 
-- full 36-run reference experiment: **19.32 s wall-clock**
-- maximum resident set size: approximately **40 MB**
-- short validation configuration: **0.54 s**
-
-See `validation/hardware/HARDWARE_EXECUTION_REPORT.md`.
+See `validation/hardware/HARDWARE_EXECUTION_REPORT.md` for the final host execution timings and evidence boundary.
 
 A physical sensor-node probe found no connected USB/serial MCU or IEEE 802.15.4 development board. Therefore this repository does **not** claim on-device sensor hardware, radio-energy, RSSI/LQI, or physical packet-delivery measurements. Device-level hardware evidence remains a separate future experiment.
 

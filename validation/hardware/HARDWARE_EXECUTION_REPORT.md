@@ -1,36 +1,39 @@
-# Hardware execution report
+# Host-hardware execution report — final frozen configuration
 
-## What was physically executed
+## Physical host
 
-The Python WSN-HFL implementation was executed on a **MacBook Air (MacBookAir10,1) with Apple M1, 8 CPU cores and 8 GB RAM**. This is real host-hardware execution evidence for the learning/simulation code path.
+The final implementation was executed on a **MacBook Air (MacBookAir10,1) with Apple M1, 8 CPU cores and 8 GB RAM, arm64**. This is genuine host-hardware execution evidence for the Python learning/orchestration implementation; it is not sensor-node hardware evidence.
 
-The full reference experiment comprises:
+## Final executed workloads
 
-- 4 scheduling policies,
-- 3 system-data correlation levels,
-- 3 independent seeds,
-- 40 federated rounds per run.
+The frozen operating point is `relay_pressure_weight=3.0` and `compression_distortion_weight=0.10`.
 
-The full experiment completed successfully in **19.32 s wall-clock time** with a maximum resident set size of approximately **40.0 MB** as reported by macOS `/usr/bin/time -l`.
+The final execution campaign completed successfully on the physical host:
 
-A short validation configuration also completed in **0.54 s** with maximum resident set size approximately **39.5 MB**.
+- 10-seed synthetic reference experiment (4 policies × 3 correlation levels × 40 rounds): approximately **17.25 s** wall-clock in the final rerun.
+- Intel Berkeley Lab WSN experiment (4 policies × 3 correlation levels × 10 seeds × 30 rounds): approximately **57.57 s** wall-clock.
+- UCI HAR experiment (4 policies × 3 correlation levels × 10 seeds × 25 rounds): approximately **95.85 s** wall-clock.
+- Intel 10-seed ablation campaign: approximately **25.33 s** wall-clock.
+- 12-point × 10-seed joint parameter grid was executed on each of Intel WSN and UCI HAR; the resulting tables are committed as `results/intel_lab/joint_grid.csv` and `results/uci_har/joint_grid.csv`.
+- Updated ns-3.47 traffic replay: **400 LR-WPAN runs** plus **11/11 official LR-WPAN unit suites passed**.
 
-The detailed stdout and timing records are stored in this directory.
+These timings are execution records from the connected Mac and are included for reproducibility/engineering characterization; they are not used as MCU latency claims.
 
-## Device-level WSN hardware status
+## Physical WSN-node status
 
-A physical-device probe was also performed. No USB/serial MCU or IEEE 802.15.4 sensor board was connected to the Mac at execution time. No ESP32/Arduino-class serial device was detected, and neither `arduino-cli` nor PlatformIO was installed.
+A device probe found no connected compatible USB/serial MCU, ESP32/Arduino-class board, or IEEE 802.15.4 sensor mote during the experiment. Therefore the project does **not** claim:
 
-Therefore, this repository **does not claim physical sensor-radio, MCU energy, RSSI/LQI, packet-delivery, or on-device training measurements**.
+- on-device TinyML training time,
+- physical radio current/energy,
+- measured RSSI/LQI,
+- physical-node PDR,
+- real sensor-mote update latency.
 
-The valid evidence boundary is:
+The evidence boundary is therefore:
 
-1. executed host-hardware implementation evidence on Apple M1;
-2. executed ns-3.47 IEEE 802.15.4/LR-WPAN network simulation evidence;
-3. no physical WSN-node experiment yet.
+1. executed learning/orchestration implementation on real host hardware;
+2. real WSN/IoT datasets and measured Intel Lab connectivity;
+3. executed ns-3.47 IEEE 802.15.4/LR-WPAN validation;
+4. **no physical sensor-node testbed yet**.
 
-## Why this distinction matters
-
-Host execution verifies that the implementation is runnable and resource-light on the available computer, but it does not establish feasibility on constrained sensor MCUs. The ns-3 study provides protocol-level MAC/PHY contention evidence, but it is still simulation. A later hardware campaign should use actual sensor-class devices and measure wall-clock local-training time, radio traffic, energy/current draw, packet delivery, route changes, and update latency.
-
-No hardware result should be reported in a manuscript beyond the host-execution evidence above until suitable sensor nodes are physically connected and measured.
+Physical MCU/radio measurements should be added only after suitable sensor-class nodes are connected and instrumented.
