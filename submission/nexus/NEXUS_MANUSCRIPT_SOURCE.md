@@ -9,7 +9,7 @@ Assistant Professor, United Institute of Management, Prayagraj, India
 ORCID: 0009-0005-4554-7397
 
 *Corresponding author: abhishek.pandey2@bennett.edu.in  
-Shivam Bhardwaj: shibambhardwaj@gmail.com
+Shivam Bhardwaj: shivambhardwaj@gmail.com
 
 ## Highlights
 
@@ -229,7 +229,7 @@ which implies
 
 Hence omitted coordinates are conserved in the residual rather than permanently discarded.
 
-These guarantees are intentionally narrower than the classical Lyapunov-optimization result of an \(O(1/V)\) time-average penalty gap with \(O(V)\) backlog [12]. That theorem requires direct minimization of the relevant drift-plus-penalty bound under suitable feasibility/slack assumptions. The executed controller instead normalizes queue-derived pressures and separately chooses compression through a distortion surrogate; moreover, the participation targets sum to one, so uniform strict slack for all participation queues is generally unavailable. We therefore do **not** transfer the canonical \(O(1/V)\)/\(O(V)\) guarantee to the executed policy, nor do we claim a complete non-convex FL convergence theorem for the joint selection-compression-hierarchy-staleness process.
+These guarantees are intentionally narrower than the classical Lyapunov-optimization result of an \(O(1/V)\) time-average penalty gap with \(O(V)\) backlog [14]. That theorem requires direct minimization of the relevant drift-plus-penalty bound under suitable feasibility/slack assumptions. The executed controller instead normalizes queue-derived pressures and separately chooses compression through a distortion surrogate; moreover, the participation targets sum to one, so uniform strict slack for all participation queues is generally unavailable. We therefore do **not** transfer the canonical \(O(1/V)\)/\(O(V)\) guarantee to the executed policy, nor do we claim a complete non-convex FL convergence theorem for the joint selection-compression-hierarchy-staleness process.
 
 ## 5. Experimental Methodology
 
@@ -239,7 +239,7 @@ The controlled simulator uses 24 clients, four edge gateways, multi-hop ETX/resi
 
 ### 5.2 Intel Berkeley Lab WSN
 
-The Intel Berkeley Research Lab dataset contains readings and deployment information from 54 Mica2Dot motes. Temperature, humidity, light, and voltage are used as sensing variables; measured directed connectivity probabilities and physical mote locations provide a real WSN substrate. Four spatially distributed high-connectivity motes are treated as edge gateways and excluded from learning, leaving 48 learning clients.
+The Intel Berkeley Research Lab dataset [15] contains readings and deployment information from 54 Mica2Dot motes. Temperature, humidity, light, and voltage are used as sensing variables; measured directed connectivity probabilities and physical mote locations provide a real WSN substrate. Four spatially distributed high-connectivity motes are treated as edge gateways and excluded from learning, leaving 48 learning clients.
 
 The task is per-mote next-temperature regression. A 16-step history of temperature, humidity, log-light, and voltage forms 64 input features. Data are partitioned temporally within each mote. The experiment uses 30 federated rounds, 10 clients per round, three resource-data correlation settings, and 10 paired seeds.
 
@@ -247,7 +247,7 @@ The task is per-mote next-temperature regression. A 16-step history of temperatu
 
 ### 5.3 UCI Human Activity Recognition
 
-The UCI HAR dataset contains smartphone inertial measurements from 30 subjects performing six activities. Each subject is treated as one FL client. The original train and test files are recombined and then split 80/20 within each subject using a fixed partition seed, preserving client identity and providing local held-out evaluation. A regularized linear softmax model is trained over 561 standardized features. Experiments use 25 rounds, eight clients per round, three resource-data correlation settings, and 10 paired seeds.
+The UCI HAR dataset [16] contains smartphone inertial measurements from 30 subjects performing six activities. Each subject is treated as one FL client. The original train and test files are recombined and then split 80/20 within each subject using a fixed partition seed, preserving client identity and providing local held-out evaluation. A regularized linear softmax model is trained over 561 standardized features. Experiments use 25 rounds, eight clients per round, three resource-data correlation settings, and 10 paired seeds.
 
 ### 5.4 ns-3.47 IEEE 802.15.4 validation
 
@@ -259,7 +259,7 @@ Learning metrics include global accuracy/Macro-F1 or RMSE/MAE, worst-client perf
 
 ### 5.6 Full controller-optimization reproducibility rerun
 
-To verify that the frozen controller setting remained reproducible after manuscript assembly, we reran the complete implemented HFL optimization campaign from repository commit `21325708792fe079db24eed92c9fc16c83520621`. The codebase first passed all 11 automated tests. The rerun then executed 120 synthetic simulations (four scheduling policies × three resource-data correlation levels × 10 seeds), a 120-run Intel Berkeley Lab grid, and a 120-run UCI HAR grid, for 360 HFL simulations in total. Each real-data grid evaluated \(\eta_R\in\{1,2,3,5\}\) and \(\beta\in\{0.1,0.2,0.4\}\) over the same 10 paired seeds. The implementation uses local gradient descent/SGD-style client updates; it does not contain FedProx, FedAdam, or other server-optimizer-family baselines. Accordingly, “optimizer rerun” here refers to the implemented cross-layer controller and its frozen hyperparameter grid, not to a comparison among federated optimizer families.
+To verify that the frozen controller setting remained reproducible after manuscript assembly, we reran the complete implemented HFL optimization campaign from repository commit `21325708792fe079db24eed92c9fc16c83520621`. The codebase first passed all 11 automated tests. The rerun then executed 120 synthetic simulations (four scheduling policies × three resource-data correlation levels × 10 seeds), a 120-run Intel Berkeley Lab grid, and a 120-run UCI HAR grid, for 360 HFL simulations in total. Each real-data grid evaluated \(\eta_R\in\{1,2,3,5\}\) and \(\beta\in\{0.1,0.2,0.4\}\) over the same 10 paired seeds. The implementation uses full-batch local gradient-descent client updates; it does not contain FedProx, FedAdam, or other server-optimizer-family baselines. Accordingly, “optimizer rerun” here refers to the implemented cross-layer controller and its frozen hyperparameter grid, not to a comparison among federated optimizer families.
 
 The rerun left all tracked numerical result files unchanged relative to the frozen repository state. This provides a direct reproducibility check that the manuscript tables were not regenerated from a different seed set or post hoc parameter choice. Full commands, wall-clock timings, hashes, and selected operating-point values are recorded in `validation/OPTIMIZER_RERUN_REPORT.md`.
 
@@ -272,6 +272,8 @@ At correlation \(c=0.9\), resource-only scheduling reaches 93.63% accuracy with 
 ### 6.2 Intel WSN results
 
 At \(c=0.9\), the Intel WSN experiment gives mean ± 95% confidence interval over 10 paired seeds:
+
+**Table 1. Intel Berkeley Lab WSN results at strong resource-data correlation (c = 0.9). Values are mean ± 95% confidence interval over 10 paired seeds.**
 
 | Method | RMSE (°C) ↓ | MAE (°C) ↓ | Effective Mbit ↓ | Energy (J) ↓ | Max relay energy (J) ↓ | Representation JS ↓ |
 |---|---:|---:|---:|---:|---:|---:|
@@ -287,6 +289,8 @@ Relative to resource-only scheduling, the proposed controller reduces expected c
 ### 6.3 UCI HAR results
 
 At \(c=0.9\), mean ± 95% confidence interval over 10 paired seeds is:
+
+**Table 2. UCI HAR results at strong resource-data correlation (c = 0.9). Values are mean ± 95% confidence interval over 10 paired seeds.**
 
 | Method | Accuracy ↑ | Macro-F1 ↑ | Worst-client accuracy ↑ | Effective Mbit ↓ | Energy (J) ↓ | Max relay energy (J) ↓ | Representation JS ↓ |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -331,7 +335,7 @@ The sensitivity study further shows that the relay-pressure coefficient and comp
 
 ## 8. Limitations
 
-The current evidence is stronger than the original simulation-only manuscript but remains incomplete in several respects. First, the host implementation runs on an Apple M1 computer; no physical IEEE 802.15.4 sensor mote was available during the experiment, so MCU training time, radio current draw, RSSI/LQI, and hardware PDR are not claimed. Second, the Intel dataset provides real historical connectivity but the FL process itself is a replay over those measurements rather than execution on the original Mica2Dot nodes. Third, the local models are intentionally lightweight linear predictors/classifiers; larger TinyML models should be tested before making model-complexity claims. Fourth, the theory provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work. Fifth, the experimental baselines isolate scheduling choices within one implementation rather than reproducing every recent external HFL system; direct re-implementations of stronger literature baselines remain an important next comparison. Fifth, the experimental baselines isolate scheduling choices within one implementation rather than reproducing every recent external HFL system. The current code also does not implement FedProx, FedAdam/FedOpt, or server-momentum variants, so the reported optimizer rerun should not be interpreted as an optimizer-family comparison. Direct re-implementations of stronger literature baselines under the same WSN budget remain an important next comparison.
+The current evidence is stronger than the original simulation-only manuscript but remains incomplete in several respects. First, the host implementation runs on an Apple M1 computer; no physical IEEE 802.15.4 sensor mote was available during the experiment, so MCU training time, radio current draw, RSSI/LQI, and hardware PDR are not claimed. Second, the Intel dataset provides real historical connectivity but the FL process itself is a replay over those measurements rather than execution on the original Mica2Dot nodes. Third, the local models are intentionally lightweight linear predictors/classifiers; larger TinyML models should be tested before making model-complexity claims. Fourth, the theory provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work. Fifth, the experimental baselines isolate scheduling choices within one implementation rather than reproducing every recent external HFL system. The current code also does not implement FedProx, FedAdam/FedOpt, or server-momentum variants, so the reported optimizer rerun should not be interpreted as an optimizer-family comparison. Direct re-implementations of stronger literature baselines under the same WSN budget remain an important next comparison.
 
 ## 9. Conclusion
 

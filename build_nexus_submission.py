@@ -1,10 +1,10 @@
 from pathlib import Path
-import re, shutil, zipfile, os
+import re, shutil, zipfile, os, json
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT, WD_CELL_VERTICAL_ALIGNMENT
-from docx.oxml import OxmlElement
+from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import qn
 
 ROOT = Path(__file__).resolve().parent
@@ -44,7 +44,7 @@ BROADER = (
 FIGURES = [
     ("figures/final/02_system_architecture.png", "Figure 1. Cross-layer hierarchical architecture used in this study. Learning-capable sensor clients exchange model updates through relay and edge layers before cloud aggregation."),
     ("figures/final/01_network_topology.png", "Figure 2. Network-topology abstraction used for the Intel Berkeley Lab WSN experiment. Gateway nodes form the edge layer, while measured connectivity informs route feasibility and cost."),
-    ("figures/final/07_intel_berkeley_results.png", "Figure 3. Intel Berkeley Lab comparison under strong resource-data correlation (c = 0.9). Exact values and 95% confidence intervals are reported in Table 2."),
+    ("figures/final/07_intel_berkeley_results.png", "Figure 3. Intel Berkeley Lab comparison under strong resource-data correlation (c = 0.9). Exact values and 95% confidence intervals are reported in Table 1."),
     ("figures/final/06_uci_har_results.png", "Figure 4. UCI HAR comparison under strong resource-data correlation (c = 0.9). The resource-only policy minimizes the relay hotspot, whereas the proposed policy improves learning, communication, total modeled energy, and representation."),
     ("figures/final/04_ablation.png", "Figure 5. Component ablation on the Intel WSN and UCI HAR experiments. Removing representation control, adaptive compression, or relay pressure changes different parts of the learning-network trade-off."),
     ("figures/final/03_ns3_validation.png", "Figure 6. ns-3.47 IEEE 802.15.4/LR-WPAN replay of the frozen traffic profiles. The replay validates communication consequences of the offered load; the HFL optimizer itself is not executed inside ns-3."),
@@ -73,7 +73,7 @@ def transform_source():
                       "Raw client examples remain local, although scalar loss/utility metadata are reported to the scheduler; this is not a formal privacy guarantee.")
     src = src.replace(
         "Fourth, the theory now provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work.",
-        "Fourth, the theory provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work. Fifth, the experimental baselines isolate scheduling choices within one implementation rather than reproducing every recent external HFL system; direct re-implementations of stronger literature baselines remain an important next comparison.")
+        "Fourth, the theory provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work.")
     inserts = [
         ("The learning problem is therefore not equivalent to selecting the clients with minimum route cost. A statistically informative client can have a poor route, and repeatedly suppressing that client can bias long-run aggregation influence. The controller must balance statistical utility, communication cost, relay-energy depletion, and staleness.", 0),
         ("The task is per-mote next-temperature regression. A 16-step history of temperature, humidity, log-light, and voltage forms 64 input features. Data are partitioned temporally within each mote. The experiment uses 30 federated rounds, 10 clients per round, three resource-data correlation settings, and 10 paired seeds.", 1),
@@ -88,7 +88,7 @@ def transform_source():
     front = "# " + TITLE + "\n\n"
     front += "**Abhishek Kumar Pandey***  \nAssistant Professor, School of Computer Science Engineering and Technology, Bennett University  \nORCID: 0000-0003-3799-9754\n\n"
     front += "**Shivam Bhardwaj**  \nAssistant Professor, United Institute of Management, Prayagraj, India  \nORCID: 0009-0005-4554-7397\n\n"
-    front += "*Corresponding author: abhishek.pandey2@bennett.edu.in  \nShivam Bhardwaj: shibambhardwaj@gmail.com\n\n"
+    front += "*Corresponding author: abhishek.pandey2@bennett.edu.in  \nShivam Bhardwaj: shivambhardwaj@gmail.com\n\n"
     front += "## Highlights\n\n" + "\n".join("- " + h for h in HIGHLIGHTS) + "\n\n"
     front += "## In brief\n\n" + IN_BRIEF + "\n\n## Broader context\n\n" + BROADER + "\n\n"
     availability = """## Resource availability
@@ -146,6 +146,13 @@ Code, experiment manifests, processed outputs, statistical analyses, and the fro
 
 SOURCE = transform_source()
 (OUT / "NEXUS_MANUSCRIPT_SOURCE.md").write_text(SOURCE)
+OMML_MAP = json.loads((OUT / "omml_math_map.json").read_text())
+OMML_INLINE = OMML_MAP["inline"]
+OMML_BLOCK = OMML_MAP["block"]
+
+def _append_omml(parent, xml_text):
+    parent.append(parse_xml(xml_text))
+
 def set_cell_shading(cell, fill):
     tcPr = cell._tc.get_or_add_tcPr()
     shd = OxmlElement("w:shd"); shd.set(qn("w:fill"), fill); tcPr.append(shd)
@@ -174,24 +181,44 @@ def configure_doc(doc):
     add_page_number(sec.footer.paragraphs[0])
 
 def parse_inline_runs(p, text):
-    pos=0; pat=re.compile(r"(\*\*.*?\*\*|\*[^*]+\*)")
+    pos=0
+    pat=re.compile(r"(\*\*.*?\*\*|\*[^*]+\*|\\\(.*?\\\))")
     for m in pat.finditer(text):
         if m.start()>pos:
             rr=p.add_run(text[pos:m.start()]); rr.font.name="Times New Roman"
-        token=m.group(0); rr=p.add_run(token.strip("*")); rr.font.name="Times New Roman"
-        if token.startswith("**"): rr.bold=True
-        else: rr.italic=True
+        token=m.group(0)
+        if token.startswith("\\("):
+            key=token[2:-2].strip()
+            if key not in OMML_INLINE:
+                raise KeyError(f"Missing inline OMML mapping: {key}")
+            _append_omml(p._p, OMML_INLINE[key])
+        else:
+            rr=p.add_run(token.strip("*")); rr.font.name="Times New Roman"
+            if token.startswith("**"): rr.bold=True
+            else: rr.italic=True
         pos=m.end()
     if pos<len(text):
         rr=p.add_run(text[pos:]); rr.font.name="Times New Roman"
 
 def add_math_para(doc, text):
-    p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER
-    t=text.replace("\\left","").replace("\\right","").replace("\\sum","Σ").replace("\\le","≤").replace("\\ge","≥")
-    t=t.replace("\\rho","ρ").replace("\\pi","π").replace("\\eta","η").replace("\\lambda","λ").replace("\\mu","μ").replace("\\Gamma","Γ").replace("\\epsilon","ε")
-    t=re.sub(r"\\operatorname\{([^}]*)\}",r"\1",t); t=re.sub(r"\\(?:mathcal|mathrm|widetilde|mathbf|bar)\s*\{([^}]*)\}",r"\1",t)
-    t=re.sub(r"[{}]","",t)
-    r=p.add_run(t.strip()); r.font.name="Cambria Math"; r.font.size=Pt(10.5)
+    key=" ".join(text.split())
+    if key not in OMML_BLOCK:
+        raise KeyError(f"Missing block OMML mapping: {key}")
+    p=doc.add_paragraph()
+    _append_omml(p._p, OMML_BLOCK[key])
+    return p
+
+def add_table_caption(doc, text):
+    clean=re.sub(r"^\*\*|\*\*$", "", text).strip()
+    p=doc.add_paragraph()
+    p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_before=Pt(6)
+    p.paragraph_format.space_after=Pt(3)
+    r=p.add_run(clean)
+    r.bold=True
+    r.font.name="Times New Roman"
+    r.font.size=Pt(9)
+    return p
 
 def build_docx():
     doc=Document(); configure_doc(doc); lines=SOURCE.splitlines(); i=0
@@ -208,6 +235,8 @@ def build_docx():
             i+=1; continue
         if line.startswith("- "):
             p=doc.add_paragraph(style="List Bullet"); parse_inline_runs(p,line[2:]); i+=1; continue
+        if re.match(r"^\*\*Table \d+\.", line):
+            add_table_caption(doc, line); i+=1; continue
         if line.startswith("|") and i+1<len(lines) and re.match(r"^\|?\s*:?-+",lines[i+1]):
             block=[line]; i+=1
             while i<len(lines) and lines[i].startswith("|"): block.append(lines[i].rstrip()); i+=1
