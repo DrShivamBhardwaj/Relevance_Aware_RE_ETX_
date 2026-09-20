@@ -1,15 +1,24 @@
 # Cross-Layer Utility-Aware Hierarchical Federated Learning for Multi-Hop IoT Sensor Networks
 
-**Abhishek Kumar Pandey***  
-Assistant Professor, School of Computer Science Engineering and Technology, Bennett University  
-ORCID: 0000-0003-3799-9754
+**Abhinandan Tripathi¹, Vijay Kumar Tiwari², Mohd. Arif³, Abhishek Kumar Pandey⁴*, Shivam Bhardwaj⁵**
 
-**Shivam Bhardwaj**  
-Assistant Professor, United Institute of Management, Prayagraj, India  
-ORCID: 0009-0005-4554-7397
+¹Department of Computer Science and Engineering, Buddha Institute of Technology, Gorakhpur, India
 
-*Corresponding author: abhishek.pandey2@bennett.edu.in  
-Shivam Bhardwaj: shivambhardwaj@gmail.com
+²Department of Information Technology, Madan Mohan Malaviya University of Technology (MMMUT), Gorakhpur, India
+
+³Department of Computer Science and Engineering, Galgotias University, Greater Noida, India
+
+⁴Department of Computer Science and Engineering, Bennett University, Greater Noida, India
+
+⁵United Institute of Management, Prayagraj, India
+
+Emails: ¹abhinandan282@bit.ac.in; ²vktitca@mmmut.ac.in; ³md.arif@galgotiasuniversity.edu.in; ⁴abhishek.pandey2@bennett.edu.in; ⁵shibambhardwaj@gmail.com
+
+ORCID: Abhishek Kumar Pandey — 0000-0003-3799-9754; Shivam Bhardwaj — 0009-0005-4554-7397
+
+*Corresponding author: Abhishek Kumar Pandey (abhishek.pandey2@bennett.edu.in)
+
+All authors contributed equally to this work.
 
 ## Highlights
 
@@ -20,7 +29,7 @@ Shivam Bhardwaj: shivambhardwaj@gmail.com
 
 ## In brief
 
-Pandey and Bhardwaj study how hierarchical federated-learning decisions change when model updates traverse multi-hop sensor routes. Their controller coordinates utility-target participation, update fidelity, relay pressure, and staleness, and is evaluated with held-out seeds, compression-matched controls, real sensing data, and low-power wireless replay.
+Tripathi et al. study how hierarchical federated-learning decisions change when model updates traverse multi-hop sensor routes. Their controller coordinates utility-target participation, update fidelity, relay pressure, and staleness, and is evaluated with held-out seeds, compression-matched controls, real sensing data, and low-power wireless replay.
 
 ## Broader context
 
@@ -383,6 +392,22 @@ Seventh, the local predictors are linear and intentionally lightweight. Larger T
 ## 9. Conclusion
 
 This study develops a cross-layer HFL controller for multi-hop IoT sensing networks and, more importantly, subjects that controller to a stricter evaluation protocol. Correct cloud-level influence accounting, disjoint tuning/evaluation seeds, overlap-safe HAR validation, compression-matched controls, and a FedCG-adapted comparator change the central claim from dominance to trade-off. Adaptive fidelity is the principal source of traffic reduction. The participation-deficit mechanism strongly improves alignment with its utility-derived target, but independent coverage metrics do not establish universal statistical representativeness. On Intel, a resource-adaptive control provides a stronger pure resource/learning point; on HAR, the proposed controller improves held-out accuracy at additional traffic and relay cost. These results support utility-aware cross-layer orchestration as a configurable Pareto mechanism rather than as a universally optimal scheduler.
+
+## Author contributions
+
+All authors contributed equally to the conceptualization, methodology, investigation, validation, formal analysis, interpretation of results, manuscript preparation, critical revision, and final approval of the work.
+
+## Funding
+
+This research received no external funding.
+
+## Conflict of interest
+
+The authors declare no conflict of interest.
+
+## Declaration of generative AI and AI-assisted technologies in the writing process
+
+During the preparation of this manuscript, the authors used generative AI tools to support the literature-review process and language editing. All AI-assisted material was critically reviewed, verified, and edited by the authors, who take full responsibility for the accuracy, integrity, citations, and final content of the manuscript.
 
 ## Resource availability
 

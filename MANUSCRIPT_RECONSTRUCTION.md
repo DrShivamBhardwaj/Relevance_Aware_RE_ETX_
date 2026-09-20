@@ -356,6 +356,22 @@ Seventh, the local predictors are linear and intentionally lightweight. Larger T
 
 This study develops a cross-layer HFL controller for multi-hop IoT sensing networks and, more importantly, subjects that controller to a stricter evaluation protocol. Correct cloud-level influence accounting, disjoint tuning/evaluation seeds, overlap-safe HAR validation, compression-matched controls, and a FedCG-adapted comparator change the central claim from dominance to trade-off. Adaptive fidelity is the principal source of traffic reduction. The participation-deficit mechanism strongly improves alignment with its utility-derived target, but independent coverage metrics do not establish universal statistical representativeness. On Intel, a resource-adaptive control provides a stronger pure resource/learning point; on HAR, the proposed controller improves held-out accuracy at additional traffic and relay cost. These results support utility-aware cross-layer orchestration as a configurable Pareto mechanism rather than as a universally optimal scheduler.
 
+## Author contributions
+
+All authors contributed equally to the conceptualization, methodology, investigation, validation, formal analysis, interpretation of results, manuscript preparation, critical revision, and final approval of the work.
+
+## Funding
+
+This research received no external funding.
+
+## Conflict of interest
+
+The authors declare no conflict of interest.
+
+## Declaration of generative AI and AI-assisted technologies in the writing process
+
+During the preparation of this manuscript, the authors used generative AI tools to support the literature-review process and language editing. All AI-assisted material was critically reviewed, verified, and edited by the authors, who take full responsibility for the accuracy, integrity, citations, and final content of the manuscript.
+
 ## Resource availability
 
 ### Lead contact

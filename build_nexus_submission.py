@@ -21,7 +21,7 @@ HIGHLIGHTS = [
     "Matched controls isolate adaptive compression from client scheduling",
     "Utility-target alignment improves at an explicit network-cost trade-off",
 ]
-IN_BRIEF = ("Pandey and Bhardwaj study how hierarchical federated-learning decisions change when "
+IN_BRIEF = ("Tripathi et al. study how hierarchical federated-learning decisions change when "
             "model updates traverse multi-hop sensor routes. Their controller coordinates utility-target "
             "participation, update fidelity, relay pressure, and staleness, and is evaluated with "
             "held-out seeds, compression-matched controls, real sensing data, and low-power wireless replay.")
@@ -53,9 +53,16 @@ FIGURES = [
 def transform_source():
     src = (ROOT / "MANUSCRIPT_RECONSTRUCTION.md").read_text().strip()
     front = "# " + TITLE + "\n\n"
-    front += "**Abhishek Kumar Pandey***  \nAssistant Professor, School of Computer Science Engineering and Technology, Bennett University  \nORCID: 0000-0003-3799-9754\n\n"
-    front += "**Shivam Bhardwaj**  \nAssistant Professor, United Institute of Management, Prayagraj, India  \nORCID: 0009-0005-4554-7397\n\n"
-    front += "*Corresponding author: abhishek.pandey2@bennett.edu.in  \nShivam Bhardwaj: shivambhardwaj@gmail.com\n\n"
+    front += "**Abhinandan Tripathi¹, Vijay Kumar Tiwari², Mohd. Arif³, Abhishek Kumar Pandey⁴*, Shivam Bhardwaj⁵**\n\n"
+    front += "¹Department of Computer Science and Engineering, Buddha Institute of Technology, Gorakhpur, India\n\n"
+    front += "²Department of Information Technology, Madan Mohan Malaviya University of Technology (MMMUT), Gorakhpur, India\n\n"
+    front += "³Department of Computer Science and Engineering, Galgotias University, Greater Noida, India\n\n"
+    front += "⁴Department of Computer Science and Engineering, Bennett University, Greater Noida, India\n\n"
+    front += "⁵United Institute of Management, Prayagraj, India\n\n"
+    front += "Emails: ¹abhinandan282@bit.ac.in; ²vktitca@mmmut.ac.in; ³md.arif@galgotiasuniversity.edu.in; ⁴abhishek.pandey2@bennett.edu.in; ⁵shibambhardwaj@gmail.com\n\n"
+    front += "ORCID: Abhishek Kumar Pandey — 0000-0003-3799-9754; Shivam Bhardwaj — 0009-0005-4554-7397\n\n"
+    front += "*Corresponding author: Abhishek Kumar Pandey (abhishek.pandey2@bennett.edu.in)\n\n"
+    front += "All authors contributed equally to this work.\n\n"
     front += "## Highlights\n\n" + "\n".join("- " + h for h in HIGHLIGHTS) + "\n\n"
     front += "## In brief\n\n" + IN_BRIEF + "\n\n## Broader context\n\n" + BROADER + "\n\n"
     return front + src + "\n"
@@ -137,7 +144,7 @@ def add_table_caption(doc, text):
     return p
 
 def build_docx():
-    doc=Document(); configure_doc(doc); lines=SOURCE.splitlines(); i=0
+    doc=Document(); configure_doc(doc); lines=SOURCE.splitlines(); i=0; front_limit=lines.index("## Highlights")
     while i<len(lines):
         line=lines[i].rstrip()
         if i==0 and line.startswith("# "):
@@ -174,7 +181,7 @@ def build_docx():
             i+=1; add_math_para(doc," ".join(eq)); continue
         if not line: i+=1; continue
         p=doc.add_paragraph(); parse_inline_runs(p,line)
-        if i<16: p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+        if i<front_limit: p.alignment=WD_ALIGN_PARAGRAPH.CENTER
         i+=1
     out=OUT/"NEXUS_FINAL_MANUSCRIPT.docx"; doc.save(out); return out
 def esc_tex(s):
@@ -192,11 +199,17 @@ def markdown_to_tex():
         line=lines[i].rstrip()
         if i==0 and line.startswith("# "):
             out += [r"\begin{center}",r"{\LARGE\bfseries "+esc_tex(line[2:])+r"}\par\vspace{0.8em}",
-                    r"{\large Abhishek Kumar Pandey$^{1,*}$, Shivam Bhardwaj$^{2}$}\par",
-                    r"$^{1}$School of Computer Science Engineering and Technology, Bennett University\par",
-                    r"$^{2}$United Institute of Management, Prayagraj, India\par",
-                    r"$^*$Corresponding author: \href{mailto:abhishek.pandey2@bennett.edu.in}{abhishek.pandey2@bennett.edu.in}\par",
-                    r"ORCID: 0000-0003-3799-9754 (A.K.P.); 0009-0005-4554-7397 (S.B.)",r"\end{center}\vspace{0.8em}"]
+                    r"{\large Abhinandan Tripathi$^{1}$, Vijay Kumar Tiwari$^{2}$, Mohd. Arif$^{3}$, Abhishek Kumar Pandey$^{4,*}$, Shivam Bhardwaj$^{5}$}\par",
+                    r"$^{1}$Department of Computer Science and Engineering, Buddha Institute of Technology, Gorakhpur, India\par",
+                    r"$^{2}$Department of Information Technology, Madan Mohan Malaviya University of Technology (MMMUT), Gorakhpur, India\par",
+                    r"$^{3}$Department of Computer Science and Engineering, Galgotias University, Greater Noida, India\par",
+                    r"$^{4}$Department of Computer Science and Engineering, Bennett University, Greater Noida, India\par",
+                    r"$^{5}$United Institute of Management, Prayagraj, India\par",
+                    r"Emails: $^{1}$\href{mailto:abhinandan282@bit.ac.in}{abhinandan282@bit.ac.in}; $^{2}$\href{mailto:vktitca@mmmut.ac.in}{vktitca@mmmut.ac.in}; $^{3}$\href{mailto:md.arif@galgotiasuniversity.edu.in}{md.arif@galgotiasuniversity.edu.in};\par",
+                    r"$^{4}$\href{mailto:abhishek.pandey2@bennett.edu.in}{abhishek.pandey2@bennett.edu.in}; $^{5}$\href{mailto:shibambhardwaj@gmail.com}{shibambhardwaj@gmail.com}\par",
+                    r"ORCID: Abhishek Kumar Pandey — 0000-0003-3799-9754; Shivam Bhardwaj — 0009-0005-4554-7397\par",
+                    r"$^*$Corresponding author: Abhishek Kumar Pandey (\href{mailto:abhishek.pandey2@bennett.edu.in}{abhishek.pandey2@bennett.edu.in})\par",
+                    r"All authors contributed equally to this work.",r"\end{center}\vspace{0.8em}"]
             i+=1
             while i<len(lines) and not lines[i].startswith("## Highlights"): i+=1
             continue
