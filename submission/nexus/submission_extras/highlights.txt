@@ -1,4 +1,4 @@
-• Cross-layer scheduling links learning value to multi-hop network cost
-• Virtual queues reduce persistent exclusion of informative clients
-• Adaptive update fidelity cuts communication by 56-61% on real sensing data
-• Lower model traffic improves low-power wireless delivery and delay
+• Two-level cloud influence is tracked after edge and cloud normalization
+• Held-out evaluation separates parameter tuning from final inference
+• Matched controls isolate adaptive compression from client scheduling
+• Utility-target alignment improves at an explicit network-cost trade-off

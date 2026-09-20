@@ -4,7 +4,7 @@ import math
 import numpy as np
 
 from .config import SimConfig
-from .data import class_coverage, js_divergence, make_synthetic_data
+from .data import class_coverage, hierarchical_cloud_influence, js_divergence, make_synthetic_data
 from .model import accuracy, cosine_novelty, local_train, loss_and_grad, macro_f1, topk_compress
 from .scheduler import schedule
 from .topology import WSNTopology
@@ -70,7 +70,7 @@ def simulate(method: str, cfg: SimConfig):
     relay_queue = np.zeros(cfg.num_clients, dtype=float)
     relay_energy_cumulative = np.zeros(cfg.num_clients, dtype=float)
     participation = np.zeros(cfg.num_clients, dtype=float)
-    influence = np.zeros(cfg.num_clients, dtype=float)
+    cloud_influence = np.zeros(cfg.num_clients, dtype=float)
     target_cumulative = np.zeros(cfg.num_clients, dtype=float)
     global_update_ema = np.zeros_like(w)
     pending = []
@@ -176,7 +176,7 @@ def simulate(method: str, cfg: SimConfig):
 
         edge_deltas = []
         edge_weights = []
-        accepted_events = []
+        edge_members = []
         for gateway, events in by_gateway.items():
             raw_weights = []
             for event in events:
@@ -192,8 +192,7 @@ def simulate(method: str, cfg: SimConfig):
             delta = sum(wgt * ev["update"] for wgt, ev in zip(norm_weights, events))
             edge_deltas.append(delta)
             edge_weights.append(float(raw_weights.sum()))
-            for wgt, ev in zip(norm_weights, events):
-                accepted_events.append((float(wgt), ev))
+            edge_members.append([(ev["client"], float(wgt)) for wgt, ev in zip(norm_weights, events)])
 
         if edge_deltas:
             edge_weights_arr = np.asarray(edge_weights, dtype=float)
@@ -201,14 +200,13 @@ def simulate(method: str, cfg: SimConfig):
             cloud_delta = sum(a * d for a, d in zip(edge_weights_arr, edge_deltas))
             w += cloud_delta
             global_update_ema = 0.70 * global_update_ema + 0.30 * cloud_delta
-            for local_w, ev in accepted_events:
-                influence[ev["client"]] += local_w
+            cloud_influence += hierarchical_cloud_influence(edge_weights, edge_members, cfg.num_clients)
         x_test, y_test = test_data
         acc = accuracy(w, x_test, y_test)
         f1 = macro_f1(w, x_test, y_test, cfg.num_classes)
-        rep_js = js_divergence(influence + 1e-9, target_cumulative + 1e-9)
+        utility_target_js = js_divergence(cloud_influence + 1e-12, target_cumulative + 1e-12)
         global_class = client_probs.mean(axis=0)
-        learned_coverage = class_coverage(client_probs, influence + 1e-9)
+        learned_coverage = class_coverage(client_probs, cloud_influence + 1e-12)
         coverage_js = js_divergence(learned_coverage, global_class)
         history.append({
             "round": t + 1,
@@ -224,12 +222,12 @@ def simulate(method: str, cfg: SimConfig):
             "min_residual_energy_j": float(residual_energy.min()),
             "mean_residual_energy_j": float(residual_energy.mean()),
             "participation_jain": _jain(participation),
-            "representation_js": rep_js,
+            "utility_target_js": utility_target_js,
             "class_coverage_js": coverage_js,
             "relay_queue_max": float(relay_queue.max()),
             "relay_energy_max_j": float(relay_energy_cumulative.max()),
             "selected": len(selected),
-            "accepted_updates": len(accepted_events),
+            "accepted_updates": sum(len(members) for members in edge_members),
         })
 
     x_test, y_test = test_data
@@ -250,9 +248,9 @@ def simulate(method: str, cfg: SimConfig):
         "energy_j": total_energy,
         "min_residual_energy_j": float(residual_energy.min()),
         "participation_jain": _jain(participation),
-        "representation_js": js_divergence(influence + 1e-9, target_cumulative + 1e-9),
+        "utility_target_js": js_divergence(cloud_influence + 1e-12, target_cumulative + 1e-12),
         "class_coverage_js": js_divergence(
-            class_coverage(client_probs, influence + 1e-9), client_probs.mean(axis=0)
+            class_coverage(client_probs, cloud_influence + 1e-12), client_probs.mean(axis=0)
         ),
         "mean_route_cost": float(np.mean(difficulty)),
         "mean_route_hops": float(np.mean([r.hops for r in initial_routes])),

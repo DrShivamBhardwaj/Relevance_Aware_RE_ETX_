@@ -107,7 +107,7 @@ def report(summary, contrasts):
         "The ETX-equivalent mapping is retained as a sensitivity analysis because ETX is already an expected-transmission measure.",
         "Therefore, claims about absolute network superiority should be based on the hop-equivalent results; the ETX-equivalent results show sensitivity to the traffic mapping.",
         "",
-        "The proposed learning policy is not expected to minimize every pure MAC metric: it deliberately trades some network cost for statistical representation and relay-energy protection.",
+        "The proposed learning policy is not expected to minimize every pure MAC metric: it deliberately trades some network cost for utility-target participation and relay-load control.",
         "The correct claim is therefore Pareto-oriented rather than an unconditional network-performance win.",
     ]
     (RES / "NS3_VALIDATION_REPORT.md").write_text("\n".join(lines))

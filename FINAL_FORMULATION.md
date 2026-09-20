@@ -89,7 +89,7 @@ J_i^{\mathrm{comp}}(\rho)=
 
 where tildes denote normalized route, energy-scarcity, and relay-pressure terms. The first component prices network burden; the second penalizes compression distortion more strongly for statistically valuable updates. Top-k sparsification uses error feedback so discarded coordinates are accumulated for later transmission.
 
-The sensitivity study freezes \(\eta_R=3\) and \(\beta=0.1\) as the common cross-dataset operating point. This point was selected after a 10-seed sweep rather than chosen post hoc from a single run.
+The revised tuning-only sensitivity study freezes \(\eta_R=5\) and \(\beta=0.1\) as the common cross-dataset operating point. The setting is selected on 10 tuning seeds using a deterministic learning-feasibility plus systems-score rule; final comparisons use a disjoint 10-seed evaluation set.
 
 ## 6. Drift-plus-penalty client orchestration
 

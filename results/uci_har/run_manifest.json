@@ -3,13 +3,31 @@
   "doi": "10.24432/C54S4K",
   "source": "https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones",
   "task": "subject-as-client six-class activity recognition",
+  "split_protocol": "within-subject deterministic contiguous-block holdout: one of every five 10-window blocks assigned to test with one adjacent window purged from training at each boundary; approximately 80/20 and overlap-safe",
   "methods": [
     "random",
     "resource",
     "utility",
+    "random_adaptive",
+    "resource_adaptive",
+    "utility_adaptive",
+    "proposed_fixed_comp",
+    "fedcg_adapted",
     "proposed"
   ],
-  "seeds": [
+  "evaluation_seeds": [
+    53,
+    59,
+    61,
+    67,
+    71,
+    73,
+    79,
+    83,
+    89,
+    97
+  ],
+  "tuning_seeds": [
     7,
     11,
     19,
@@ -21,6 +39,7 @@
     43,
     47
   ],
+  "seed_protocol": "controller parameters tuned only on tuning_seeds; all final comparisons/statistics use disjoint evaluation_seeds",
   "correlations": [
     0.0,
     0.5,
@@ -58,7 +77,7 @@
     "max_staleness": 4,
     "drift_v": 0.5,
     "relay_budget_j_per_round": 0.004,
-    "relay_pressure_weight": 3.0,
+    "relay_pressure_weight": 5.0,
     "utility_ema": 0.65,
     "compression_distortion_weight": 0.1,
     "compression_candidates": [
@@ -80,6 +99,6 @@
     "availability_prob": 0.9,
     "dropout_prob": 0.03
   },
-  "runtime_s": 95.66618514060974,
+  "runtime_s": 191.97354316711426,
   "har_zip_sha256": "c00b803081a5c797cd5e4b83700a9810b38d53d9d84e01917e090e1fdbc81031"
 }

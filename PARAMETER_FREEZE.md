@@ -1,21 +1,20 @@
-# Parameter freeze after sensitivity analysis
+# Parameter freeze after held-out revision
 
-The final shared operating point is:
+The current shared operating point is:
 
-- relay-pressure coefficient `relay_pressure_weight = 3.0`
-- compression-distortion coefficient `compression_distortion_weight = 0.10`
-- drift parameter `V = 0.5`
-- compression candidates `{0.15, 0.30, 0.50, 0.75, 1.0}`
-- staleness decay `lambda = 0.35`
-- utility-staleness coefficient `mu = 0.80`
+- relay-pressure coefficient: 5.0
+- compression-distortion coefficient: 0.10
+- drift parameter V: 0.5
+- energy-scarcity coefficient: 0.5
+- compression candidates: {0.15, 0.30, 0.50, 0.75, 1.0}
+- fixed-compression control: 0.50
+- staleness decay lambda: 0.35
+- utility-staleness coefficient mu: 0.80
 
-The two-dimensional 10-seed grid is stored in:
+Parameter selection uses only tuning seeds 7, 11, 19, 23, 29, 31, 37, 41, 43, 47. Final comparisons and inferential statistics use disjoint held-out seeds 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.
 
-- `results/intel_lab/joint_grid.csv`
-- `results/uci_har/joint_grid.csv`
+The 12-point tuning grids are stored in results/intel_lab/joint_grid.csv and results/uci_har/joint_grid.csv. The deterministic selection rule and ranked grid are stored in results/OPERATING_POINT_SELECTION.json.
 
-One-factor sensitivity tables are stored in each dataset result directory as `sensitivity_summary.csv`.
+A point is learning-feasible when Intel RMSE is within 0.010 C of the best tuning-grid RMSE and HAR accuracy is within 0.5 percentage points of the best tuning-grid accuracy. Among feasible points, the selected setting minimizes an equal-weight min-max-normalized systems score over effective bits, total modeled energy, and maximum relay energy on both datasets.
 
-The selected point is not the single-metric optimum on every dataset. It is a cross-dataset Pareto operating point: aggressive compression substantially reduces communication/energy, relay pressure materially reduces hotspot energy, and learning/representation quality remains competitive. This parameter choice should be frozen before final manuscript comparisons to avoid tuning separately against each baseline or dataset.
-
-A full 2026-09-20 reproducibility rerun (360 HFL simulations after 11/11 tests) independently reproduced this frozen operating point without changing any tracked numerical result file; see validation/OPTIMIZER_RERUN_REPORT.md.
+Utility-target JS and independent coverage metrics are excluded from tuning and evaluated only on held-out seeds. The selected point is an engineering operating point, not a universal optimum.

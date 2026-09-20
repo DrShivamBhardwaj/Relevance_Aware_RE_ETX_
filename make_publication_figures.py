@@ -1,65 +1,119 @@
 import csv
 from pathlib import Path
 import matplotlib.pyplot as plt
+import numpy as np
 
 ROOT=Path(__file__).resolve().parent
-FIG=ROOT/'figures'; FIG.mkdir(exist_ok=True)
+FINAL=ROOT/'figures/final'
+FINAL.mkdir(parents=True,exist_ok=True)
+MAIN=['resource','resource_adaptive','fedcg_adapted','proposed_fixed_comp','proposed']
+LABELS=['Resource','Resource+adapt.','FedCG-adapt.','Proposed fixed','Proposed']
 
-def read(path):
-    with path.open(newline='') as f:return list(csv.DictReader(f))
 
-def save(fig,name):
-    for ext in ('pdf','png'): fig.savefig(FIG/f'{name}.{ext}',bbox_inches='tight',dpi=300)
+def read(p):
+    with p.open(newline='') as f:return list(csv.DictReader(f))
+
+def save(fig,path):
+    fig.savefig(path,bbox_inches='tight',dpi=600)
     plt.close(fig)
 
-def bars():
-    cases=[('Intel Lab',ROOT/'results/intel_lab/aggregate_summary.csv','rmse_c_mean','RMSE (°C)'),('UCI HAR',ROOT/'results/uci_har/aggregate_summary.csv','accuracy_mean','Accuracy')]
-    for title,path,metric,ylabel in cases:
-        rows=[r for r in read(path) if abs(float(r['correlation'])-.9)<1e-9]; methods=['random','resource','utility','proposed']
-        for key,label,suffix,scale in [(metric,ylabel,'performance_bar',1),('effective_bits_mean','Effective bits (million)','communication_bar',1e6),('representation_js_mean','JS divergence','representation_bar',1)]:
-            fig,ax=plt.subplots(figsize=(6.3,3.5)); vals=[float(next(r for r in rows if r['method']==m)[key])/scale for m in methods]
-            ax.bar(methods,vals); ax.set_title(f'{title}: {label} at correlation 0.9'); ax.set_ylabel(label); ax.grid(axis='y',alpha=.3)
-            save(fig,f'{title.lower().replace(" ","_")}_{suffix}')
+def c09(path):
+    return {r['method']:r for r in read(path) if abs(float(r['correlation'])-.9)<1e-12}
 
-def sensitivity():
-    for dataset in ['intel_lab','uci_har']:
-        rows=read(ROOT/f'results/{dataset}/joint_grid.csv')
-        for metric,label in [('effective_bits_mean','Effective bits'),('representation_js_mean','Representation JS'),('max_relay_energy_j_mean','Max relay energy')]:
-            fig,ax=plt.subplots(figsize=(6.8,4.0)); xs=sorted({float(r['relay_pressure_weight']) for r in rows}); betas=sorted({float(r['compression_distortion_weight']) for r in rows})
-            for beta in betas:
-                ys=[]
-                for x in xs:
-                    rr=next(z for z in rows if float(z['relay_pressure_weight'])==x and float(z['compression_distortion_weight'])==beta)
-                    y=float(rr[metric]); y=y/1e6 if 'bits' in metric else y; ys.append(y)
-                ax.plot(xs,ys,marker='o',label=f'beta={beta}')
-            ax.set_xlabel('Relay-pressure coefficient'); ax.set_ylabel(label+(' (million)' if 'bits' in metric else '')); ax.set_title(f'{dataset}: cross-layer sensitivity'); ax.grid(alpha=.3); ax.legend(fontsize=8)
-            save(fig,f'{dataset}_{metric}_sensitivity')
+def intel():
+    by=c09(ROOT/'results/intel_lab/aggregate_summary.csv')
+    fig,axs=plt.subplots(1,3,figsize=(12,3.7))
+    vals=[float(by[m]['rmse_c_mean']) for m in MAIN]
+    err=[float(by[m]['rmse_c_ci95']) for m in MAIN]
+    axs[0].bar(range(len(MAIN)),vals,yerr=err,capsize=2)
+    axs[0].set_ylabel('RMSE (°C)');axs[0].set_title('Learning error')
+    vals=[float(by[m]['effective_bits_mean'])/1e6 for m in MAIN]
+    err=[float(by[m]['effective_bits_ci95'])/1e6 for m in MAIN]
+    axs[1].bar(range(len(MAIN)),vals,yerr=err,capsize=2)
+    axs[1].set_ylabel('Effective traffic (Mbit)');axs[1].set_title('Communication')
+    vals=[float(by[m]['utility_target_js_mean']) for m in MAIN]
+    err=[float(by[m]['utility_target_js_ci95']) for m in MAIN]
+    axs[2].bar(range(len(MAIN)),vals,yerr=err,capsize=2)
+    axs[2].set_ylabel('Utility-target JS');axs[2].set_title('Target alignment')
+    for ax in axs:
+        ax.set_xticks(range(len(MAIN)),LABELS,rotation=35,ha='right');ax.grid(axis='y',alpha=.25)
+    fig.suptitle('Intel Berkeley Lab WSN — held-out evaluation, c = 0.9')
+    fig.tight_layout()
+    save(fig,FINAL/'07_intel_berkeley_results.png')
 
-def pareto():
-    for dataset,path,metric,label in [('intel_lab',ROOT/'results/intel_lab/aggregate_summary.csv','rmse_c_mean','RMSE (°C)'),('uci_har',ROOT/'results/uci_har/aggregate_summary.csv','accuracy_mean','Accuracy')]:
-        rows=[r for r in read(path) if abs(float(r['correlation'])-.9)<1e-9]
-        fig,ax=plt.subplots(figsize=(5.5,4))
-        for rr in rows:
-            x=float(rr['effective_bits_mean'])/1e6; y=float(rr[metric]); ax.scatter(x,y,s=75); ax.annotate(rr['method'],(x,y),xytext=(5,5),textcoords='offset points')
-        ax.set_xlabel('Effective bits (million)'); ax.set_ylabel(label); ax.set_title(f'{dataset}: communication-learning trade-off'); ax.grid(alpha=.3); save(fig,f'{dataset}_pareto_comm_perf')
+def har():
+    by=c09(ROOT/'results/uci_har/aggregate_summary.csv')
+    fig,axs=plt.subplots(1,3,figsize=(12,3.7))
+    vals=[100*float(by[m]['accuracy_mean']) for m in MAIN]
+    err=[100*float(by[m]['accuracy_ci95']) for m in MAIN]
+    axs[0].bar(range(len(MAIN)),vals,yerr=err,capsize=2)
+    axs[0].set_ylabel('Accuracy (%)');axs[0].set_title('Blocked holdout accuracy')
+    vals=[float(by[m]['effective_bits_mean'])/1e6 for m in MAIN]
+    err=[float(by[m]['effective_bits_ci95'])/1e6 for m in MAIN]
+    axs[1].bar(range(len(MAIN)),vals,yerr=err,capsize=2)
+    axs[1].set_ylabel('Effective traffic (Mbit)');axs[1].set_title('Communication')
+    vals=[float(by[m]['utility_target_js_mean']) for m in MAIN]
+    err=[float(by[m]['utility_target_js_ci95']) for m in MAIN]
+    axs[2].bar(range(len(MAIN)),vals,yerr=err,capsize=2)
+    axs[2].set_ylabel('Utility-target JS');axs[2].set_title('Target alignment')
+    for ax in axs:
+        ax.set_xticks(range(len(MAIN)),LABELS,rotation=35,ha='right');ax.grid(axis='y',alpha=.25)
+    fig.suptitle('UCI HAR — overlap-safe held-out evaluation, c = 0.9')
+    fig.tight_layout()
+    save(fig,FINAL/'06_uci_har_results.png')
+
+def ablation():
+    irows={r['variant']:r for r in read(ROOT/'results/intel_lab/ablation_summary.csv')}
+    hrows={r['variant']:r for r in read(ROOT/'results/uci_har/ablation_summary.csv')}
+    variants=['proposed','proposed_no_rep','proposed_fixed_comp','proposed_no_relay']
+    labels=['Full','No deficit','Fixed 50%','No relay']
+    fig,axs=plt.subplots(2,2,figsize=(9.5,7))
+    axs[0,0].bar(range(4),[float(irows[v]['effective_bits_mean'])/1e6 for v in variants]);axs[0,0].set_ylabel('Intel traffic (Mbit)')
+    axs[0,1].bar(range(4),[float(irows[v]['utility_target_js_mean']) for v in variants]);axs[0,1].set_ylabel('Intel utility-target JS')
+    axs[1,0].bar(range(4),[float(hrows[v]['effective_bits_mean'])/1e6 for v in variants]);axs[1,0].set_ylabel('HAR traffic (Mbit)')
+    axs[1,1].bar(range(4),[100*float(hrows[v]['accuracy_mean']) for v in variants]);axs[1,1].set_ylabel('HAR accuracy (%)')
+    for ax in axs.flat:
+        ax.set_xticks(range(4),labels,rotation=25,ha='right');ax.grid(axis='y',alpha=.25)
+    fig.suptitle('Component ablation on held-out evaluation seeds')
+    fig.tight_layout()
+    save(fig,FINAL/'04_ablation.png')
+
+def tradeoff():
+    cases=[('Intel',ROOT/'results/intel_lab/aggregate_summary.csv','rmse_c_mean','RMSE (°C)',False),
+           ('UCI HAR',ROOT/'results/uci_har/aggregate_summary.csv','accuracy_mean','Accuracy (%)',True)]
+    fig,axs=plt.subplots(1,2,figsize=(9.5,4.0))
+    for ax,(title,path,key,ylabel,percent) in zip(axs,cases):
+        by=c09(path)
+        for m,label in zip(MAIN,LABELS):
+            x=float(by[m]['effective_bits_mean'])/1e6
+            y=float(by[m][key])*(100 if percent else 1)
+            s=55+500*float(by[m]['max_relay_energy_j_mean'])/(max(float(by[z]['max_relay_energy_j_mean']) for z in MAIN)+1e-12)
+            ax.scatter([x],[y],s=s,alpha=.8);ax.annotate(label,(x,y),xytext=(5,4),textcoords='offset points',fontsize=7)
+        ax.set_xlabel('Effective traffic (Mbit)');ax.set_ylabel(ylabel);ax.set_title(title);ax.grid(alpha=.25)
+    fig.suptitle('Held-out learning–communication trade-off; marker size ∝ max relay energy')
+    fig.tight_layout()
+    save(fig,FINAL/'05_learning_communication_tradeoff.png')
 
 def ns3():
-    rows=read(ROOT/'validation/ns3_47_hfl/results/ns3_group_summary.csv'); methods=['random','resource','utility','proposed']; conditions=['dense_fast','dense_nominal','scale_nominal']
-    for metric,label,name in [('report_rdr_pct_mean','Report delivery ratio (%)','ns3_rdr'),('mean_delivered_report_delay_ms_mean','Mean delivered-report delay (ms)','ns3_delay')]:
-        fig,ax=plt.subplots(figsize=(7.2,4.0)); width=.18; pos=list(range(len(conditions)))
-        for j,m in enumerate(methods):
-            vals=[]
-            for c in conditions:
-                rr=next(r for r in rows if r['mapping']=='hop' and r['condition']==c and r['method']==m); vals.append(float(rr[metric]))
-            ax.bar([x+(j-1.5)*width for x in pos],vals,width=width,label=m)
-        ax.set_xticks(pos,conditions); ax.set_ylabel(label); ax.set_title('ns-3.47 LR-WPAN hop-equivalent validation'); ax.grid(axis='y',alpha=.3); ax.legend(fontsize=8); save(fig,name)
-
-def synthetic():
-    rows=[r for r in read(ROOT/'results/aggregate_summary.csv') if abs(float(r['correlation'])-.9)<1e-9]
-    fig,ax=plt.subplots(figsize=(5.5,4))
-    for rr in rows:
-        x=float(rr['effective_bits_mean'])/1e6; y=float(rr['accuracy_mean']); ax.scatter(x,y,s=75); ax.annotate(rr['method'],(x,y),xytext=(5,5),textcoords='offset points')
-    ax.set_xlabel('Effective bits (million)'); ax.set_ylabel('Accuracy'); ax.set_title('Synthetic correlated heterogeneity: trade-off'); ax.grid(alpha=.3); save(fig,'synthetic_tradeoff')
+    rows=read(ROOT/'validation/ns3_47_hfl/results/ns3_group_summary.csv')
+    methods=['random','resource','utility','proposed']; labels=['Random','Resource','Utility','Proposed']
+    conds=['dense_nominal','scale_nominal']
+    fig,axs=plt.subplots(1,2,figsize=(8.5,3.8))
+    x=np.arange(len(conds));width=.18
+    for j,(m,label) in enumerate(zip(methods,labels)):
+        vals=[];delay=[]
+        for c in conds:
+            r=next(z for z in rows if z['mapping']=='hop' and z['condition']==c and z['method']==m)
+            vals.append(float(r['report_rdr_pct_mean']));delay.append(float(r['mean_delivered_report_delay_ms_mean']))
+        axs[0].bar(x+(j-1.5)*width,vals,width,label=label)
+        axs[1].bar(x+(j-1.5)*width,delay,width,label=label)
+    axs[0].set_ylabel('Report delivery ratio (%)');axs[1].set_ylabel('Delivered-report delay (ms)')
+    for ax in axs:
+        ax.set_xticks(x,['Dense nominal','24-sensor nominal']);ax.grid(axis='y',alpha=.25)
+    axs[0].legend(fontsize=7)
+    fig.suptitle('ns-3.47 LR-WPAN replay — hop-equivalent held-out traffic')
+    fig.tight_layout()
+    save(fig,FINAL/'03_ns3_validation.png')
 
 if __name__=='__main__':
-    bars(); sensitivity(); pareto(); ns3(); synthetic(); print(f'wrote final figures to {FIG}')
+    intel();har();ablation();tradeoff();ns3();print('updated held-out result figures in',FINAL)

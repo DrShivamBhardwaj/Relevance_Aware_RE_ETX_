@@ -1,75 +1,51 @@
 # Experimental evidence summary
 
-This file summarizes the evidence base generated for the reconstructed WSN-IoT HFL manuscript. It distinguishes implemented evidence from remaining validation gaps.
+This file summarizes the evidence base after the held-out editorial revision.
 
-## Evidence layers completed
+## Completed evidence layers
 
-- Synthetic correlated system/data heterogeneity experiment.
-- Intel Berkeley Lab real WSN sensing + measured connectivity experiment.
-- UCI HAR real inertial-sensing experiment.
-- ns-3.47 IEEE 802.15.4/LR-WPAN communication replay.
-- Host-hardware execution timing/memory report.
-- 10-seed paired statistical robustness report.
-- Component ablations and parameter-sensitivity grid.
-- Full 360-run HFL controller reproducibility rerun.
+- Synthetic correlated system/data heterogeneity.
+- Intel Berkeley Lab real sensing data with measured WSN connectivity.
+- UCI HAR real inertial sensing with an overlap-safe blocked within-client holdout.
+- Compression-matched random/resource/utility controls.
+- FedCG-adapted gradient-diversity/capability comparator.
+- Disjoint tuning and held-out evaluation seeds.
+- Exact paired sign-flip tests, Holm corrections, bootstrap intervals, and effect sizes.
+- ns-3.47 IEEE 802.15.4/LR-WPAN replay.
+- 13/13 automated tests, including corrected two-level cloud-influence accounting.
 
-## Full optimizer rerun verification
+## Campaign size
 
-On 2026-09-20 the implementation passed 11/11 automated tests and reran 120 synthetic simulations, 120 Intel optimizer-grid runs, and 120 UCI HAR optimizer-grid runs. The frozen shared point (eta_R,beta,V)=(3,0.1,0.5) was reproduced without changing any tracked numerical result file. Exact commands, timings, hashes, and selected-point metrics are recorded in validation/OPTIMIZER_RERUN_REPORT.md. The current implementation does not include FedProx/FedAdam/FedOpt optimizer-family baselines; this verification concerns the implemented cross-layer controller.
+The revised campaign executes 1,000 HFL simulations: 240 tuning-grid runs, 540 held-out real-data comparison runs, 100 held-out ablation runs, and 120 held-out synthetic runs. A separate 400-run ns-3.47 campaign replays held-out synthetic traffic.
 
 ## Frozen operating point
 
-- `relay_pressure_weight = 3.0`
-- `compression_distortion_weight = 0.10`
-- `drift_v = 0.5`
-- Top-k candidate ratios: `{0.15, 0.30, 0.50, 0.75, 1.0}`
+Relay-pressure coefficient 5.0, compression-distortion coefficient 0.10, drift V = 0.5.
 
-## Intel Berkeley Lab WSN result at correlation 0.9
+## Intel held-out result at correlation 0.9
 
-| Method | RMSE (C) | MAE (C) | Effective bits | Energy (J) | Max relay energy (J) | Rep. JS |
-|---|---:|---:|---:|---:|---:|---:|
-| random | 1.7381 | 0.8021 | 2515488 | 6.986 | 0.2736 | 0.0749 |
-| resource | 1.7451 | 0.8297 | 2216534 | 6.298 | 0.1393 | 0.1231 |
-| utility | 1.7293 | 0.7786 | 2692320 | 7.392 | 0.3136 | 0.0561 |
-| proposed | 1.7417 | 0.7968 | 982636 | 3.460 | 0.0976 | 0.0231 |
+Proposed: RMSE 1.7348 C; MAE 0.7790 C; effective traffic 0.992 Mbit; modeled energy 3.482 J; maximum relay energy 0.0969 J; utility-target JS 0.0118; temperature-coverage JS 0.00375.
 
-Against resource-only scheduling, the proposed method changes:
+Resource-adaptive: RMSE 1.7285 C; effective traffic 0.916 Mbit; modeled energy 3.307 J; maximum relay energy 0.0902 J; utility-target JS 0.0843.
 
-- RMSE: -0.19% (comparable; sign-flip p-value is not significant).
-- MAE: -3.96%.
-- Effective communication: -55.67%.
-- Modeled energy: -45.06%.
-- Maximum relay energy: -29.94%.
-- Representation divergence: -81.21%.
+FedCG-adapted: RMSE 1.7362 C; effective traffic 0.980 Mbit; modeled energy 3.454 J; maximum relay energy 0.0964 J; utility-target JS 0.0911.
 
-## UCI HAR result at correlation 0.9
+Interpretation: the proposed method does not dominate the matched resource control. Its distinguishing gain is utility-target alignment, while its independent temperature-coverage metric is worse.
 
-| Method | Accuracy | Macro-F1 | Worst-client acc. | Effective bits | Energy (J) | Rep. JS |
-|---|---:|---:|---:|---:|---:|---:|
-| random | 0.8216 | 0.7949 | 0.6479 | 41416156 | 70.83 | 0.0590 |
-| resource | 0.8754 | 0.8724 | 0.6814 | 29651089 | 45.92 | 0.1634 |
-| utility | 0.7188 | 0.6626 | 0.5682 | 42333751 | 72.35 | 0.0763 |
-| proposed | 0.9061 | 0.9060 | 0.7169 | 11638512 | 20.03 | 0.0327 |
+## UCI HAR held-out result at correlation 0.9
 
-Against resource-only scheduling, the proposed method changes:
+Proposed: accuracy 0.8867; Macro-F1 0.8827; effective traffic 11.253 Mbit; modeled energy 19.20 J; maximum relay energy 1.242 J; utility-target JS 0.0275; class-coverage JS 0.000064.
 
-- Accuracy: +0.0308 absolute (+3.51% relative).
-- Macro-F1: +0.0336 absolute.
-- Worst-client accuracy: +0.0355 absolute.
-- Effective communication: -60.75%.
-- Modeled energy: -56.38%.
-- Representation divergence: -79.97%.
+Resource-adaptive: accuracy 0.8751; effective traffic 8.872 Mbit; modeled energy 14.34 J; maximum relay energy 0.170 J.
 
-## ns-3.47 evidence
+FedCG-adapted: accuracy 0.8760; effective traffic 9.311 Mbit; modeled energy 15.34 J; maximum relay energy 0.643 J.
 
-The ns-3.47 validation replays FL-derived traffic over IEEE 802.15.4/LR-WPAN with CSMA/CA, ACKs, retransmissions and channel contention. The report is stored in `validation/ns3_47_hfl/results/NS3_VALIDATION_REPORT.md`.
+Interpretation: proposed improves held-out accuracy over both matched comparators, but at higher traffic, total energy, and relay-hotspot cost. Independent class-coverage differences are small and not statistically significant.
 
-The ns-3 evidence validates the communication consequence of the traffic profile. It does not execute the full Python HFL optimizer inside ns-3.
+## Compression attribution
 
-## Statistical robustness
+Relative to proposed-fixed-50%, adaptive fidelity reduces effective traffic by 58.2% on Intel and 64.0% on HAR. Large communication savings must therefore not be attributed to client scheduling alone.
 
-Exact paired sign-flip permutation tests, Holm corrections and bootstrap confidence intervals are stored in `validation/statistics/STATISTICAL_ROBUSTNESS_REPORT.md` and `validation/statistics/statistical_tests.csv`.
+## Evidence boundary
 
-## Remaining gap
-
-Physical WSN-node/MCU radio experimentation has not yet been performed. No physical IEEE 802.15.4/ESP/Arduino-class sensor nodes were connected during execution, so the repository does not claim MCU current draw, RSSI/LQI, on-device training time or physical-radio packet measurements.
+No physical IEEE 802.15.4 mote/MCU experiment is claimed. Downlink global-model dissemination and scheduler metadata are not fully priced. The FedCG-adapted method is a favorable adaptation, not an exact reproduction of the original FedCG system model.

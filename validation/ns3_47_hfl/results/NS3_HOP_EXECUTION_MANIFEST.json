@@ -3,16 +3,16 @@
   "ns3_binary": "/Users/shivambhardwaj/ns3-validation/ns-3.47/build/scratch/ns3.47-hfl-lrwpan-load-validation-optimized",
   "correlation_source": 0.9,
   "seeds": [
-    7,
-    11,
-    19,
-    23,
-    29,
-    31,
-    37,
-    41,
-    43,
-    47
+    53,
+    59,
+    61,
+    67,
+    71,
+    73,
+    79,
+    83,
+    89,
+    97
   ],
   "conditions": [
     [
@@ -45,31 +45,31 @@
   "policy_load_mapping": {
     "random": {
       "compressed_bits_per_update": 3120.0,
-      "mean_selected_hops": 1.2725,
-      "mean_selected_etx": 2.508116162499565,
-      "effective_bits_per_update": 7825.322426998647,
-      "mapped_payload_bits": 3970.2
+      "mean_selected_hops": 1.2608333333333333,
+      "mean_selected_etx": 2.4095531447600074,
+      "effective_bits_per_update": 7517.805811651219,
+      "mapped_payload_bits": 3933.7999999999997
     },
     "resource": {
       "compressed_bits_per_update": 3120.0,
-      "mean_selected_hops": 1.1141666666666665,
-      "mean_selected_etx": 2.061951849399006,
-      "effective_bits_per_update": 6433.289770124899,
-      "mapped_payload_bits": 3476.1999999999994
+      "mean_selected_hops": 1.0995833333333334,
+      "mean_selected_etx": 1.9608325718892847,
+      "effective_bits_per_update": 6117.797624294565,
+      "mapped_payload_bits": 3430.7000000000003
     },
     "utility": {
       "compressed_bits_per_update": 3120.0,
-      "mean_selected_hops": 1.2166666666666666,
-      "mean_selected_etx": 2.3197019313038654,
-      "effective_bits_per_update": 7237.470025668063,
-      "mapped_payload_bits": 3795.9999999999995
+      "mean_selected_hops": 1.1891666666666665,
+      "mean_selected_etx": 2.2248233702671634,
+      "effective_bits_per_update": 6941.448915233546,
+      "mapped_payload_bits": 3710.1999999999994
     },
     "proposed": {
-      "compressed_bits_per_update": 1019.88,
-      "mean_selected_hops": 1.1949999999999998,
-      "mean_selected_etx": 2.2351565138267513,
-      "effective_bits_per_update": 2267.947890600918,
-      "mapped_payload_bits": 1218.7566
+      "compressed_bits_per_update": 1019.5,
+      "mean_selected_hops": 1.1808333333333334,
+      "mean_selected_etx": 2.182588753885003,
+      "effective_bits_per_update": 2214.939911636059,
+      "mapped_payload_bits": 1203.8595833333334
     }
   },
   "mapping_note": "hop: compressed update bits x mean selected hop count; etx: HFL effective bits/update including route ETX expectation. ns-3 then applies LR-WPAN CSMA/CA and MAC retries."

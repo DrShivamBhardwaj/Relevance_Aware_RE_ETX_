@@ -58,3 +58,22 @@ def js_divergence(p: np.ndarray, q: np.ndarray) -> float:
         return float(np.sum(a[mask] * np.log(np.clip(ratio, 1e-12, None))))
 
     return 0.5 * kl(p, m) + 0.5 * kl(q, m)
+
+
+def hierarchical_cloud_influence(edge_weights, edge_members, n_clients):
+    """Return exact per-client coefficients used by two-level aggregation.
+
+    edge_weights are the unnormalised edge totals used for cloud aggregation.
+    edge_members[g] contains (client_id, within_edge_normalised_weight) pairs.
+    The returned vector therefore applies both hierarchy levels and sums to one
+    whenever at least one edge contributes.
+    """
+    ew = np.asarray(edge_weights, dtype=float)
+    out = np.zeros(int(n_clients), dtype=float)
+    if ew.size == 0 or ew.sum() <= 0:
+        return out
+    ew = ew / ew.sum()
+    for edge_coeff, members in zip(ew, edge_members):
+        for client, local_coeff in members:
+            out[int(client)] += float(edge_coeff) * float(local_coeff)
+    return out

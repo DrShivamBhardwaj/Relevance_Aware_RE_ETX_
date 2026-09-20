@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 
 from .config import SimConfig
-from .data import class_coverage, js_divergence
+from .data import class_coverage, hierarchical_cloud_influence, js_divergence
 from .model import accuracy, cosine_novelty, local_train, loss_and_grad, macro_f1, topk_compress
 from .scheduler import schedule
 from .topology import WSNTopology
@@ -17,23 +17,49 @@ def _load_matrix(path):
     return np.loadtxt(path, dtype=float)
 
 
-def prepare_har(data_dir: Path, split_seed=2026):
-    key=(str(Path(data_dir).resolve()),split_seed)
+def prepare_har(data_dir: Path, split_seed=2026, block_size=10, fold_mod=5, purge_windows=1):
+    """Prepare subject-as-client HAR with an overlap-safe blocked holdout.
+
+    UCI HAR windows overlap by 50%. A random window split can therefore place
+    overlapping raw-signal content in both train and test. For each subject we
+    preserve file order, partition windows into contiguous blocks, assign one
+    in five blocks to test with a deterministic subject-specific offset, and
+    purge one adjacent window from training at every test boundary. This keeps
+    the holdout distributed across the subject record while preventing adjacent
+    overlapping windows from crossing train/test boundaries.
+    """
+    key=(str(Path(data_dir).resolve()),split_seed,block_size,fold_mod,purge_windows)
     if key in _HAR_CACHE:
         return _HAR_CACHE[key]
     base=Path(data_dir)/'unpacked'/'UCI HAR Dataset'
     X=np.vstack([_load_matrix(base/'train/X_train.txt'),_load_matrix(base/'test/X_test.txt')])
     y=np.concatenate([np.loadtxt(base/'train/y_train.txt',dtype=int),np.loadtxt(base/'test/y_test.txt',dtype=int)])-1
     subj=np.concatenate([np.loadtxt(base/'train/subject_train.txt',dtype=int),np.loadtxt(base/'test/subject_test.txt',dtype=int)])-1
-    rng=np.random.default_rng(split_seed)
     splits={}; train_parts=[]
     for i in range(30):
         idx=np.flatnonzero(subj==i)
-        rng.shuffle(idx)
-        cut=max(20,int(.8*len(idx))); cut=min(cut,len(idx)-10)
-        tr,te=idx[:cut],idx[cut:]
-        splits[i]=[X[tr].copy(),y[tr].copy(),X[te].copy(),y[te].copy()]
-        train_parts.append(X[tr])
+        n=len(idx)
+        fold=(split_seed+i)%fold_mod
+        test_mask=np.zeros(n,dtype=bool)
+        n_blocks=(n+block_size-1)//block_size
+        for b in range(n_blocks):
+            if b%fold_mod==fold:
+                lo=b*block_size; hi=min(n,(b+1)*block_size)
+                test_mask[lo:hi]=True
+        train_mask=~test_mask
+        # Remove train windows immediately adjacent to any test window. With
+        # 50% overlap, one purged neighbor is sufficient to eliminate shared
+        # raw samples across a boundary.
+        test_pos=np.flatnonzero(test_mask)
+        for pos in test_pos:
+            for q in range(max(0,pos-purge_windows),min(n,pos+purge_windows+1)):
+                if not test_mask[q]:
+                    train_mask[q]=False
+        train_idx=idx[train_mask]; test_idx=idx[test_mask]
+        if len(train_idx)<20 or len(test_idx)<10:
+            raise RuntimeError(f'Insufficient blocked HAR split for subject {i+1}')
+        splits[i]=[X[train_idx].copy(),y[train_idx].copy(),X[test_idx].copy(),y[test_idx].copy()]
+        train_parts.append(X[train_idx])
     pooled=np.vstack(train_parts); mean=pooled.mean(axis=0); std=pooled.std(axis=0); std[std<1e-8]=1.0
     for i in splits:
         xtr,ytr,xte,yte=splits[i]
@@ -83,32 +109,43 @@ def simulate_har(method: str, cfg: SimConfig, data_dir: Path, correlation=0.5):
     splits,_,_=prepare_har(data_dir)
     topology=WSNTopology(cfg,rng)
     initial=rng.uniform(cfg.energy_initial_j-cfg.energy_jitter,cfg.energy_initial_j+cfg.energy_jitter,size=cfg.num_clients)
-    residual=initial.copy(); init_routes=topology.all_routes(residual,initial)
+    residual=initial.copy()
     w=np.zeros((561+1,6),dtype=float)
 
-    # Natural subject rarity: feature-centroid deviation + label-distribution deviation.
+    # Natural subject rarity used only to impose controlled resource-data
+    # correlation. The independent class-coverage metric below uses the pooled
+    # training-label distribution rather than this utility target.
     global_cent=np.mean(np.vstack([v[0] for v in splits.values()]),axis=0)
-    global_label=np.mean(np.vstack([np.bincount(v[1],minlength=6)/len(v[1]) for v in splits.values()]),axis=0)
+    global_label_equal=np.mean(np.vstack([np.bincount(v[1],minlength=6)/len(v[1]) for v in splits.values()]),axis=0)
+    pooled_labels=np.concatenate([v[1] for v in splits.values()])
+    global_label_pooled=np.bincount(pooled_labels,minlength=6).astype(float)
+    global_label_pooled/=global_label_pooled.sum()
     rarity=np.zeros(cfg.num_clients); client_probs=np.zeros((cfg.num_clients,6))
     for i,(xtr,ytr,_,_) in splits.items():
         p=np.bincount(ytr,minlength=6).astype(float); p/=p.sum(); client_probs[i]=p
-        rarity[i]=np.linalg.norm(xtr.mean(axis=0)-global_cent)/math.sqrt(xtr.shape[1]) + js_divergence(p+1e-9,global_label+1e-9)
+        rarity[i]=np.linalg.norm(xtr.mean(axis=0)-global_cent)/math.sqrt(xtr.shape[1]) + js_divergence(p+1e-9,global_label_equal+1e-9)
     rarity=_norm(rarity)
     initial*=1.0-0.35*correlation*rarity; residual=initial.copy()
     avail=np.clip(cfg.availability_prob-0.25*correlation*rarity,.45,.99)
 
     errbuf=[np.zeros_like(w) for _ in range(cfg.num_clients)]
     util_hist=np.full(cfg.num_clients,.5); deficit=np.zeros(cfg.num_clients); relay_queue=np.zeros(cfg.num_clients); relay_cum=np.zeros(cfg.num_clients)
-    participation=np.zeros(cfg.num_clients); influence=np.zeros(cfg.num_clients); target_cum=np.zeros(cfg.num_clients); global_ema=np.zeros_like(w); pending=[]
+    participation=np.zeros(cfg.num_clients); cloud_influence=np.zeros(cfg.num_clients); target_cum=np.zeros(cfg.num_clients); global_ema=np.zeros_like(w); pending=[]
     total_eff=total_comp=total_raw=total_energy=0.0; total_hops=total_etx=0.0; total_updates=0
     full_bits=cfg.header_bits+w.size*(cfg.model_bits+cfg.index_bits); history=[]
     for t in range(cfg.rounds):
         routes=topology.all_routes(residual,initial)
-        losses=np.array([loss_and_grad(w,*splits[i][:2],cfg.l2)[0] for i in range(cfg.num_clients)])
+        if method=='fedcg_adapted':
+            lg=[loss_and_grad(w,*splits[i][:2],cfg.l2) for i in range(cfg.num_clients)]
+            losses=np.asarray([z[0] for z in lg],float)
+            stat_vectors=np.asarray([z[1].ravel() for z in lg],float)
+        else:
+            losses=np.array([loss_and_grad(w,*splits[i][:2],cfg.l2)[0] for i in range(cfg.num_clients)])
+            stat_vectors=None
         utility=.55*_norm(losses)+.45*_norm(util_hist)
         target=utility+1e-6; target/=target.sum(); target_cum+=target
         eligible=(residual>.05)&(rng.random(cfg.num_clients)<avail)
-        selected,ratios=schedule(method,cfg,rng,eligible,utility,routes,residual,initial,deficit,relay_queue)
+        selected,ratios=schedule(method,cfg,rng,eligible,utility,routes,residual,initial,deficit,relay_queue,stat_vectors=stat_vectors)
         share=np.zeros(cfg.num_clients)
         if selected: share[selected]=1.0/len(selected)
         deficit=np.maximum(0.0,deficit+target-share); relay_round=np.zeros(cfg.num_clients)
@@ -130,20 +167,43 @@ def simulate_har(method: str, cfg: SimConfig, data_dir: Path, correlation=0.5):
         arrivals=[e for e in pending if e['arrival']<=t]; pending=[e for e in pending if e['arrival']>t]; by_g=defaultdict(list)
         for e in arrivals:
             if t-e['generated']<=cfg.max_staleness: by_g[e['gateway']].append(e)
-        edge_delta=[]; edge_weight=[]; accepted=[]
+        edge_delta=[]; edge_weight=[]; edge_members=[]
         for g,events in by_g.items():
             rw=[]
             for e in events:
                 age=t-e['generated']; a=math.exp(-cfg.staleness_lambda*age)
-                if method.startswith('proposed') and method != 'proposed_age_only': a*=1.0+cfg.utility_staleness_mu*e['utility']
+                if method.startswith('proposed') and method != 'proposed_age_only':
+                    a*=1.0+cfg.utility_staleness_mu*e['utility']
                 rw.append(a*e['samples'])
             rw=np.asarray(rw,float)
             if rw.sum()<=0: continue
-            nw=rw/rw.sum(); edge_delta.append(sum(a*e['update'] for a,e in zip(nw,events))); edge_weight.append(float(rw.sum())); accepted.extend((float(a),e) for a,e in zip(nw,events))
+            nw=rw/rw.sum()
+            edge_delta.append(sum(a*e['update'] for a,e in zip(nw,events)))
+            edge_weight.append(float(rw.sum()))
+            edge_members.append([(e['client'],float(a)) for a,e in zip(nw,events)])
         if edge_delta:
-            ew=np.asarray(edge_weight); ew/=ew.sum(); cloud=sum(a*d for a,d in zip(ew,edge_delta)); w+=cloud; global_ema=.7*global_ema+.3*cloud
-            for a,e in accepted: influence[e['client']]+=a
-        m=evaluate_clients(w,splits,6); cov=class_coverage(client_probs,influence+1e-9)
-        history.append({'round':t+1,'method':method,'correlation':correlation,**m,'effective_bits':total_eff,'energy_j':total_energy,'representation_js':js_divergence(influence+1e-9,target_cum+1e-9),'class_coverage_js':js_divergence(cov,client_probs.mean(axis=0)),'participation_jain':_jain(participation),'max_relay_energy_j':float(relay_cum.max())})
-    m=evaluate_clients(w,splits,6); cov=class_coverage(client_probs,influence+1e-9)
-    return {'method':method,'seed':cfg.seed,'correlation':correlation,**m,'effective_bits':total_eff,'compressed_bits':total_comp,'raw_selected_bits':total_raw,'mean_selected_hops':total_hops/max(total_updates,1),'mean_selected_etx':total_etx/max(total_updates,1),'energy_j':total_energy,'min_residual_energy_j':float(residual.min()),'max_relay_energy_j':float(relay_cum.max()),'participation_jain':_jain(participation),'representation_js':js_divergence(influence+1e-9,target_cum+1e-9),'class_coverage_js':js_divergence(cov,client_probs.mean(axis=0))},history
+            ew=np.asarray(edge_weight,float); ew/=ew.sum()
+            cloud=sum(a*d for a,d in zip(ew,edge_delta)); w+=cloud; global_ema=.7*global_ema+.3*cloud
+            # Record the actual coefficient used in the cloud update: cloud
+            # edge weight times within-edge normalized client weight.
+            cloud_influence += hierarchical_cloud_influence(edge_weight, edge_members, cfg.num_clients)
+        m=evaluate_clients(w,splits,6)
+        cov=class_coverage(client_probs,cloud_influence+1e-12)
+        history.append({
+            'round':t+1,'method':method,'correlation':correlation,**m,
+            'effective_bits':total_eff,'energy_j':total_energy,
+            'utility_target_js':js_divergence(cloud_influence+1e-12,target_cum+1e-12),
+            'class_coverage_js':js_divergence(cov,global_label_pooled+1e-12),
+            'participation_jain':_jain(participation),
+            'max_relay_energy_j':float(relay_cum.max())
+        })
+    m=evaluate_clients(w,splits,6); cov=class_coverage(client_probs,cloud_influence+1e-12)
+    return {
+        'method':method,'seed':cfg.seed,'correlation':correlation,**m,
+        'effective_bits':total_eff,'compressed_bits':total_comp,'raw_selected_bits':total_raw,
+        'mean_selected_hops':total_hops/max(total_updates,1),'mean_selected_etx':total_etx/max(total_updates,1),
+        'energy_j':total_energy,'min_residual_energy_j':float(residual.min()),
+        'max_relay_energy_j':float(relay_cum.max()),'participation_jain':_jain(participation),
+        'utility_target_js':js_divergence(cloud_influence+1e-12,target_cum+1e-12),
+        'class_coverage_js':js_divergence(cov,global_label_pooled+1e-12)
+    },history

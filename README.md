@@ -1,182 +1,78 @@
-# Cross-Layer Statistical-Utility-Aware HFL for Multi-Hop WSN-IoT
+# Cross-Layer Utility-Aware HFL for Multi-Hop WSN-IoT
 
-Research implementation of a hierarchical federated-learning simulator for resource-constrained, multi-hop wireless sensor / IoT networks.
+Research implementation of hierarchical federated learning for resource-constrained multi-hop sensing networks. The project studies how client utility, participation history, route burden, update fidelity, staleness, and relay-energy pressure interact.
 
-The prototype studies a specific coupling: **which client update is worth transporting, at what fidelity, and with what staleness tolerance when the route itself consumes relay energy and statistically important clients may have expensive links**.
+## Scope and novelty boundary
 
-## Scope
+ETX/residual-energy routing is treated as prior network infrastructure. The research object is the learning-layer orchestration above that substrate. The repository reports modeled communication/energy, real sensing data, measured Intel WSN connectivity, and ns-3.47 LR-WPAN replay. It does not claim physical mote/MCU energy measurements, battery lifetime, or environmental sustainability.
 
-The simulated architecture is:
+## Revised evaluation protocol
 
-~~~text
-Learning-capable sensor / IoT node
-        -> multi-hop WSN relays
-        -> cluster-head / edge gateway
-        -> cloud aggregator
-~~~
+Parameter tuning and final inference are separated.
 
-Not every sensor is assumed to train a large model. The implementation represents learning-capable WSN/IoT nodes and separate relay burden explicitly.
+- Tuning seeds: 7, 11, 19, 23, 29, 31, 37, 41, 43, 47.
+- Held-out evaluation seeds: 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.
+- Tuning grid: relay-pressure coefficient {1,2,3,5}; compression-distortion coefficient {0.1,0.2,0.4}.
+- Frozen operating point: relay-pressure coefficient 5.0, compression-distortion coefficient 0.10, drift V = 0.5.
+- Final real-data comparisons and statistical tests use only held-out evaluation seeds.
 
-## Main mechanisms
+The deterministic selection rule is recorded in results/OPERATING_POINT_SELECTION.json. Utility-target JS and independent coverage metrics are excluded from parameter selection.
 
-- Multi-hop ETX / residual-energy-aware routing substrate.
-- Non-IID client data with controllable correlation between statistical heterogeneity and route difficulty.
-- Hierarchical client -> edge -> cloud aggregation.
-- Drift-plus-penalty-style client orchestration using statistical utility, participation deficit, route cost and relay pressure.
-- Client-specific Top-k model-update sparsification with error feedback.
-- Statistical-utility-aware staleness weighting.
-- Explicit source, relay-transmit and relay-receive energy accounting.
-- Participation Jain index, representation divergence, class-coverage divergence, effective transmitted bits and relay-energy metrics.
-## Important prior-work boundary
+## Baselines and controls
 
-This repository does **not** claim ETX, residual-energy-aware ETX routing, or relevance-aware sensing-payload adaptation as new contributions.
+Real-data experiments include random, resource-only, utility-only, compression-matched adaptive versions of those policies, proposed-fixed-50%-compression, a FedCG-adapted gradient-diversity/capability comparator, and the proposed controller. FedCG-adapted is explicitly an adaptation rather than an exact reproduction of the original FedCG system model.
 
-Those concepts belong to the earlier WSN study:
+## Corrected influence accounting
 
-- https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_
+Each client's realized cloud influence is recorded after both within-edge normalization and cloud-level edge normalization. Utility-target JS measures alignment with the controller-defined utility target. It is not interpreted as population representativeness. Independent diagnostics are temperature-coverage JS for Intel and class-coverage JS for HAR.
 
-In the present implementation, the RE-ETX-like network metric is treated as an **existing routing substrate / network-state input**. The new research object is the cross-layer coupling between:
+## UCI HAR evaluation
 
-~~~text
-statistical learning utility
-    <-> client participation
-    <-> multi-hop route burden
-    <-> model-update fidelity
-    <-> staleness / aggregation influence
-    <-> relay-energy depletion
-~~~
+Because UCI HAR windows overlap by 50%, the earlier random within-subject split was replaced. Each subject is now partitioned into ordered 10-window blocks; one of every five blocks is held out and the immediately adjacent training window is purged at each test boundary. This is an approximately 80/20 overlap-safe within-client holdout, not the canonical unseen-subject benchmark.
 
-See [PRIOR_WORK_BOUNDARY.md](PRIOR_WORK_BOUNDARY.md) for the explicit separation.
+## Current held-out results at correlation 0.9
 
-## Installation
+Intel proposed: RMSE 1.7348 C, effective traffic 0.992 Mbit, modeled energy 3.482 J, maximum relay energy 0.0969 J, utility-target JS 0.0118. Resource-adaptive obtains lower RMSE and lower traffic/energy. FedCG-adapted is statistically comparable to proposed on Intel RMSE and systems cost.
 
-Tested on macOS arm64 with Python 3.14.
+HAR proposed: accuracy 0.8867, Macro-F1 0.8827, effective traffic 11.253 Mbit, modeled energy 19.20 J, maximum relay energy 1.242 J, utility-target JS 0.0275. Proposed improves held-out accuracy over resource-adaptive and FedCG-adapted but uses more traffic, energy, and relay energy.
 
-~~~bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-~~~
+Adaptive update fidelity is the dominant communication-saving mechanism: proposed adaptive traffic is 58.2% lower than proposed-fixed-50% on Intel and 64.0% lower on HAR.
 
-## Tests
+## Reproducibility campaign
+
+The revised campaign contains 1,000 HFL simulations:
+
+- 240 tuning-grid runs,
+- 540 held-out real-data comparison runs,
+- 100 held-out ablation runs,
+- 120 held-out synthetic runs.
+
+A separate 400-run ns-3.47 campaign replays held-out synthetic traffic. The Python test suite passes 13/13 tests, including a dedicated two-level aggregation-influence test and frozen-table integrity checks.
+
+## Run commands
 
 ~~~bash
 .venv/bin/pytest -q
+.venv/bin/python run_joint_grid.py --dataset intel
+.venv/bin/python run_joint_grid.py --dataset har
+.venv/bin/python select_operating_point.py
+.venv/bin/python run_intel_lab_experiment.py
+.venv/bin/python run_har_experiment.py
+.venv/bin/python run_intel_ablation.py
+.venv/bin/python run_har_ablation.py
+.venv/bin/python run_experiment.py --out results/final_synthetic_10seed
+.venv/bin/python analyze_statistics.py
+.venv/bin/python freeze_publication_tables.py
 ~~~
 
-Current verified state: **11 tests passed**, including queue-bound, finite-set compression, top-k selection, error-feedback conservation, and frozen publication-table integrity checks.
-## Run the simulator
+The ns-3 runner is under validation/ns3_47_hfl/.
 
-Short validation run:
+## Key files
 
-~~~bash
-.venv/bin/python run_experiment.py --quick
-~~~
-
-Full reference run (the default seed list is the frozen 10-seed set):
-
-~~~bash
-.venv/bin/python run_experiment.py
-.venv/bin/python summarize_results.py
-~~~
-
-The final reference results evaluate four policies (`random`, `resource`, `utility`, `proposed`) over three resource-data correlation levels (0.0, 0.5, 0.9) and 10 seeds (7, 11, 19, 23, 29, 31, 37, 41, 43, 47).
-
-Outputs are written to `results/`:
-
-- `aggregate_summary.csv` — mean and standard deviation across seeds.
-- `raw_summary.csv` — per-seed final metrics.
-- `round_history.csv` — per-round trajectories.
-- `run_manifest.json` — exact experiment configuration.
-
-A human-readable snapshot is in [RESULTS.md](RESULTS.md).
-
-## Reproducibility status
-
-The repository now contains executed synthetic results, Intel Berkeley Lab real-WSN replay, UCI HAR real sensing experiments, ns-3.47 LR-WPAN validation, and host-hardware execution evidence. Physical sensor-node radio/MCU measurements are still not claimed.
-
-The full default experiment plus tests executed successfully on the connected Mac in about 18 seconds for the current configuration.
-## Repository layout
-
-~~~text
-src/wsn_hfl/
-  config.py       experiment parameters
-  topology.py     multi-hop WSN and route computation
-  data.py         correlated non-IID synthetic sensing data
-  model.py        softmax model, local SGD, Top-k + error feedback
-  scheduler.py    baselines and proposed cross-layer scheduler
-  simulator.py    hierarchical FL, queues, energy and metrics
-tests/
-run_experiment.py
-summarize_results.py
-results/
-~~~
-
-## Research interpretation
-
-The current code is a research prototype, not a claim that the final algorithm is publication-complete. The repository now includes real WSN/IoT datasets, ablation and sensitivity studies, 10-seed statistical validation, and ns-3.47 LR-WPAN replay. The remaining major extensions are:
-
-1. stronger external FL baselines implemented under the same budget,
-2. larger/TinyML model families,
-3. physical sensor-node radio/MCU measurements,
-4. convergence / bounded-drift analysis for the coupled selection, compression and staleness dynamics.
-
-The implementation intentionally keeps the novelty claim narrower than “ETX-aware FL”: the primary candidate contribution is **route-level learning-value orchestration with representation and relay-energy constraints**.
-## Full optimizer rerun verification (2026-09-20)
-
-The complete implemented HFL controller campaign was rerun from base commit `21325708792fe079db24eed92c9fc16c83520621` after manuscript assembly. The codebase passed **11/11 tests** before execution. The reproducibility campaign contained:
-
-- **120 synthetic simulations**: 4 policies × 3 correlation levels × 10 seeds;
-- **120 Intel Berkeley Lab optimizer runs**: 12 `(eta_R, beta)` settings × 10 seeds;
-- **120 UCI HAR optimizer runs**: 12 `(eta_R, beta)` settings × 10 seeds;
-- **360 HFL simulations total**.
-
-The rerun reproduced the frozen cross-dataset operating point `relay_pressure_weight=3.0`, `compression_distortion_weight=0.10`, `V=0.5`, and left all tracked numerical result files unchanged. This repository does not currently implement FedProx/FedAdam/FedOpt optimizer-family baselines; “optimizer rerun” refers to the implemented cross-layer HFL controller and its hyperparameter grid. See `validation/OPTIMIZER_RERUN_REPORT.md` for commands, timings, hashes, and exact selected-point metrics.
-
-## Executed ns-3.47 validation
-
-An independent IEEE 802.15.4/LR-WPAN validation has now been executed with ns-3.47.
-
-- 4 scheduling policies
-- 5 contention/scaling conditions
-- 10 paired seeds
-- 2 traffic mappings (hop-equivalent and ETX-equivalent)
-- **400 executed ns-3 runs**
-- **11/11 official LR-WPAN unit suites passed**
-
-The primary hop-equivalent mapping intentionally lets ns-3 generate retransmissions itself. The ETX-equivalent mapping is retained as a sensitivity analysis.
-
-See `validation/ns3_47_hfl/` and the generated `validation/ns3_47_hfl/results/NS3_VALIDATION_REPORT.md`.
-
-The ns-3 evidence does **not** show that the proposed policy wins every pure MAC metric. Under the conservative hop-equivalent mapping, resource-only scheduling often has lower delay because it deliberately chooses cheaper network paths. The proposed method is evaluated as a learning-network Pareto trade-off, not as an unconditional networking optimum.
-
-## Executed host-hardware evidence
-
-The final implementation was executed on an Apple M1 MacBook Air (8 cores, 8 GB RAM). The frozen campaign includes the 10-seed synthetic reference run, Intel WSN and UCI HAR experiments, ablations, the joint sensitivity grid, and ns-3.47 replay. Representative measured wall-clock times are documented in the hardware report rather than reused as sensor-node latency claims.
-
-See `validation/hardware/HARDWARE_EXECUTION_REPORT.md` for the final host execution timings and evidence boundary.
-
-A physical sensor-node probe found no connected USB/serial MCU or IEEE 802.15.4 development board. Therefore this repository does **not** claim on-device sensor hardware, radio-energy, RSSI/LQI, or physical packet-delivery measurements. Device-level hardware evidence remains a separate future experiment.
-
-## Real-data validation added
-
-The repository now includes two real sensing datasets and a frozen cross-layer operating point:
-
-- **Intel Berkeley Lab WSN**: real sensor readings, physical mote locations and measured connectivity; 48 learning clients after gateway/data filtering.
-- **UCI HAR**: 30 subject-clients, six activity classes, 561 inertial features.
-- **Frozen default**: relay-pressure weight `3.0`, compression-distortion weight `0.1`, selected after a 12-point × 10-seed joint cross-dataset sensitivity study.
-
-Detailed reports:
-
-- `validation/real_data/INTEL_LAB_REPORT.md`
-- `validation/real_data/UCI_HAR_REPORT.md`
-- `validation/SENSITIVITY_REPORT.md`
-- `FINAL_FORMULATION.md`
-- `THEORY.md` — exact queue/drift/decision guarantees and explicit non-claims
-- `PARAMETER_FREEZE.md`
-- `PUBLICATION_TABLES.md` — frozen main/supplementary result selection and manuscript-safe claims
-- `tables/TABLE_FREEZE_MANIFEST.json` — source/generated table hashes and frozen headline effects
-- `MANUSCRIPT_RECONSTRUCTION.md`
-
-## Final manuscript figures
-
-The authoritative manuscript image set is `figures/final/`. It contains exactly seven user-approved 600-dpi PNG files. Previous manuscript/publication figure copies were removed from `figures/` to prevent accidental reuse. The packaged set is `figures/FINAL_MANUSCRIPT_FIGURES.zip`.
+- MANUSCRIPT_RECONSTRUCTION.md — authoritative manuscript source.
+- submission/nexus/NEXUS_FINAL_MANUSCRIPT.docx — final Word manuscript.
+- results/OPERATING_POINT_SELECTION.json — deterministic tuning rule and selected point.
+- validation/statistics/statistical_tests.csv — held-out paired inference.
+- validation/real_data/INTEL_LAB_REPORT.md and UCI_HAR_REPORT.md — current real-data reports.
+- tables/TABLE_FREEZE_MANIFEST.json — hashes for frozen source/result tables.
+- figures/final/ — final manuscript figures.

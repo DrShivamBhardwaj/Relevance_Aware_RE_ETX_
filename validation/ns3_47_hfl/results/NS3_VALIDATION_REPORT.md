@@ -16,46 +16,46 @@ All results use 10 paired seeds. Official ns-3 LR-WPAN unit suites were also exe
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 3970 | 63.07 ± 12.48 | 48.16 ± 3.33 | 0.094 | 2.309 | 234.6 |
-| resource | 3476 | 66.25 ± 12.07 | 44.65 ± 3.58 | 0.087 | 2.178 | 207.4 |
-| utility | 3796 | 63.84 ± 12.73 | 46.09 ± 3.33 | 0.087 | 2.235 | 226.2 |
-| proposed | 1219 | 98.09 ± 3.51 | 13.46 ± 2.07 | 0.025 | 1.345 | 8.8 |
+| random | 3934 | 60.09 ± 15.15 | 46.89 ± 4.35 | 0.088 | 2.343 | 265.4 |
+| resource | 3431 | 64.89 ± 14.41 | 44.66 ± 4.14 | 0.088 | 2.239 | 226.0 |
+| utility | 3710 | 62.06 ± 15.24 | 46.08 ± 3.82 | 0.091 | 2.301 | 246.2 |
+| proposed | 1204 | 98.33 ± 2.25 | 13.25 ± 1.22 | 0.025 | 1.321 | 7.6 |
 
 ### dense_nominal
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 3970 | 84.12 ± 13.69 | 39.69 ± 3.42 | 0.040 | 1.544 | 44.1 |
-| resource | 3476 | 86.49 ± 12.05 | 37.45 ± 3.61 | 0.036 | 1.497 | 36.5 |
-| utility | 3796 | 85.09 ± 12.42 | 39.05 ± 3.67 | 0.040 | 1.524 | 41.4 |
-| proposed | 1219 | 99.47 ± 1.52 | 12.02 ± 1.34 | 0.009 | 1.138 | 1.2 |
+| random | 3934 | 85.44 ± 9.97 | 38.29 ± 2.74 | 0.032 | 1.492 | 41.2 |
+| resource | 3431 | 85.79 ± 8.99 | 35.99 ± 2.67 | 0.033 | 1.456 | 38.5 |
+| utility | 3710 | 86.49 ± 9.36 | 37.59 ± 2.28 | 0.035 | 1.473 | 37.3 |
+| proposed | 1204 | 99.47 ± 1.22 | 12.26 ± 0.99 | 0.016 | 1.173 | 1.2 |
 
 ### dense_relaxed
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 3970 | 93.56 ± 8.79 | 36.28 ± 2.87 | 0.018 | 1.251 | 8.7 |
-| resource | 3476 | 94.44 ± 8.00 | 34.56 ± 3.56 | 0.022 | 1.235 | 7.7 |
-| utility | 3796 | 93.75 ± 8.04 | 35.62 ± 2.97 | 0.018 | 1.238 | 8.0 |
-| proposed | 1219 | 100.00 ± 0.00 | 11.31 ± 0.61 | 0.005 | 1.034 | 0.0 |
+| random | 3934 | 93.95 ± 5.32 | 36.57 ± 1.96 | 0.020 | 1.259 | 8.1 |
+| resource | 3431 | 93.67 ± 4.69 | 34.47 ± 2.35 | 0.023 | 1.250 | 7.8 |
+| utility | 3710 | 92.72 ± 5.68 | 35.36 ± 1.82 | 0.022 | 1.259 | 9.3 |
+| proposed | 1204 | 99.82 ± 0.56 | 11.69 ± 0.96 | 0.009 | 1.095 | 0.2 |
 
 ### light_nominal
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 3970 | 92.72 ± 9.32 | 36.90 ± 3.83 | 0.016 | 1.254 | 8.7 |
-| resource | 3476 | 93.60 ± 7.71 | 34.89 ± 4.15 | 0.019 | 1.245 | 7.7 |
-| utility | 3796 | 93.42 ± 8.13 | 36.22 ± 3.87 | 0.019 | 1.249 | 7.9 |
-| proposed | 1219 | 100.00 ± 0.00 | 11.62 ± 1.28 | 0.004 | 1.073 | 0.0 |
+| random | 3934 | 92.81 ± 7.79 | 36.02 ± 2.87 | 0.017 | 1.240 | 9.2 |
+| resource | 3431 | 93.07 ± 7.81 | 33.94 ± 2.81 | 0.018 | 1.234 | 8.3 |
+| utility | 3710 | 92.81 ± 7.77 | 35.06 ± 2.75 | 0.020 | 1.239 | 8.8 |
+| proposed | 1204 | 100.00 ± 0.00 | 11.56 ± 0.76 | 0.006 | 1.076 | 0.0 |
 
 ### scale_nominal
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 3970 | 56.05 ± 9.07 | 46.15 ± 2.77 | 0.102 | 2.492 | 311.3 |
-| resource | 3476 | 60.70 ± 7.62 | 44.23 ± 2.82 | 0.097 | 2.379 | 271.7 |
-| utility | 3796 | 57.41 ± 8.51 | 45.14 ± 2.59 | 0.099 | 2.444 | 297.2 |
-| proposed | 1219 | 97.48 ± 2.06 | 13.75 ± 0.86 | 0.029 | 1.398 | 11.6 |
+| random | 3934 | 54.80 ± 9.94 | 46.23 ± 3.06 | 0.102 | 2.572 | 341.3 |
+| resource | 3431 | 57.72 ± 10.37 | 44.25 ± 3.05 | 0.105 | 2.480 | 305.2 |
+| utility | 3710 | 56.78 ± 9.97 | 45.53 ± 3.18 | 0.097 | 2.513 | 318.0 |
+| proposed | 1204 | 96.56 ± 3.28 | 13.83 ± 0.94 | 0.034 | 1.448 | 16.1 |
 
 ## ETX-equivalent mapping
 
@@ -63,46 +63,46 @@ All results use 10 paired seeds. Official ns-3 LR-WPAN unit suites were also exe
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 7825 | 3.40 ± 3.11 | 121.02 ± 20.92 | 0.199 | 4.191 | 1692.5 |
-| resource | 6433 | 10.75 ± 4.11 | 96.39 ± 14.05 | 0.183 | 3.733 | 1201.2 |
-| utility | 7237 | 4.34 ± 3.21 | 115.66 ± 13.68 | 0.208 | 4.142 | 1609.7 |
-| proposed | 2268 | 90.44 ± 8.01 | 24.74 ± 2.81 | 0.048 | 1.636 | 47.0 |
+| random | 7518 | 2.96 ± 1.10 | 115.80 ± 15.67 | 0.208 | 4.237 | 1696.5 |
+| resource | 6118 | 14.91 ± 4.71 | 86.53 ± 8.74 | 0.166 | 3.530 | 970.1 |
+| utility | 6941 | 6.69 ± 1.67 | 99.30 ± 12.28 | 0.188 | 3.928 | 1335.4 |
+| proposed | 2215 | 90.37 ± 8.04 | 23.95 ± 2.28 | 0.042 | 1.615 | 49.6 |
 
 ### dense_nominal
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 7825 | 44.87 ± 13.95 | 86.53 ± 5.39 | 0.093 | 2.273 | 255.1 |
-| resource | 6433 | 55.75 ± 14.54 | 73.97 ± 5.59 | 0.082 | 2.043 | 175.9 |
-| utility | 7237 | 47.94 ± 15.07 | 83.32 ± 6.31 | 0.092 | 2.215 | 235.1 |
-| proposed | 2268 | 96.14 ± 5.74 | 21.77 ± 2.42 | 0.020 | 1.297 | 9.6 |
+| random | 7518 | 44.12 ± 14.10 | 83.36 ± 4.96 | 0.094 | 2.305 | 274.9 |
+| resource | 6118 | 61.67 ± 15.12 | 65.11 ± 5.25 | 0.064 | 1.959 | 150.9 |
+| utility | 6941 | 52.28 ± 14.66 | 75.11 ± 4.84 | 0.079 | 2.145 | 207.0 |
+| proposed | 2215 | 97.15 ± 2.93 | 21.69 ± 1.61 | 0.018 | 1.286 | 6.6 |
 
 ### dense_relaxed
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 7825 | 73.47 ± 17.87 | 75.95 ± 4.56 | 0.037 | 1.536 | 47.7 |
-| resource | 6433 | 79.09 ± 16.07 | 65.62 ± 5.38 | 0.035 | 1.458 | 35.8 |
-| utility | 7237 | 73.58 ± 16.53 | 73.00 ± 4.33 | 0.039 | 1.523 | 47.7 |
-| proposed | 2268 | 99.47 ± 1.13 | 20.26 ± 1.98 | 0.009 | 1.106 | 0.6 |
+| random | 7518 | 74.98 ± 12.51 | 72.69 ± 3.19 | 0.041 | 1.508 | 46.1 |
+| resource | 6118 | 82.15 ± 10.66 | 58.84 ± 4.03 | 0.029 | 1.414 | 28.3 |
+| utility | 6941 | 79.18 ± 11.33 | 65.88 ± 3.66 | 0.031 | 1.446 | 36.1 |
+| proposed | 2215 | 98.24 ± 2.36 | 20.32 ± 1.37 | 0.013 | 1.164 | 2.0 |
 
 ### light_nominal
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 7825 | 77.72 ± 16.89 | 75.04 ± 7.10 | 0.030 | 1.429 | 35.5 |
-| resource | 6433 | 81.32 ± 17.26 | 64.03 ± 5.52 | 0.027 | 1.359 | 26.6 |
-| utility | 7237 | 79.12 ± 16.62 | 72.73 ± 7.23 | 0.030 | 1.403 | 32.8 |
-| proposed | 2268 | 99.21 ± 1.68 | 20.65 ± 2.17 | 0.013 | 1.132 | 0.9 |
+| random | 7518 | 75.09 ± 20.42 | 75.05 ± 7.23 | 0.031 | 1.477 | 41.5 |
+| resource | 6118 | 82.63 ± 16.50 | 59.09 ± 5.91 | 0.025 | 1.372 | 25.3 |
+| utility | 6941 | 79.21 ± 18.70 | 67.80 ± 7.02 | 0.033 | 1.440 | 31.9 |
+| proposed | 2215 | 98.77 ± 1.56 | 20.37 ± 1.80 | 0.008 | 1.146 | 1.4 |
 
 ### scale_nominal
 
 | Method | Payload bits | Report RDR % | Delay ms | Retries/frame | CSMA cycles/frame | Access failures |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 7825 | 5.18 ± 1.72 | 103.38 ± 15.79 | 0.204 | 4.273 | 1785.1 |
-| resource | 6433 | 11.01 ± 2.01 | 89.90 ± 8.35 | 0.185 | 3.843 | 1307.2 |
-| utility | 7237 | 5.92 ± 1.87 | 102.32 ± 16.13 | 0.208 | 4.205 | 1708.2 |
-| proposed | 2268 | 85.99 ± 6.50 | 25.26 ± 1.67 | 0.051 | 1.802 | 72.5 |
+| random | 7518 | 7.21 ± 4.56 | 107.12 ± 18.31 | 0.206 | 4.238 | 1758.0 |
+| resource | 6118 | 17.79 ± 4.47 | 77.67 ± 9.63 | 0.169 | 3.629 | 1071.8 |
+| utility | 6941 | 10.94 ± 5.50 | 91.87 ± 15.21 | 0.185 | 3.940 | 1410.8 |
+| proposed | 2215 | 86.91 ± 6.80 | 25.16 ± 1.61 | 0.057 | 1.802 | 70.0 |
 
 ## Interpretation boundary
 
@@ -110,5 +110,5 @@ The hop-equivalent mapping is the more conservative primary network validation b
 The ETX-equivalent mapping is retained as a sensitivity analysis because ETX is already an expected-transmission measure.
 Therefore, claims about absolute network superiority should be based on the hop-equivalent results; the ETX-equivalent results show sensitivity to the traffic mapping.
 
-The proposed learning policy is not expected to minimize every pure MAC metric: it deliberately trades some network cost for statistical representation and relay-energy protection.
+The proposed learning policy is not expected to minimize every pure MAC metric: it deliberately trades some network cost for utility-target participation and relay-load control.
 The correct claim is therefore Pareto-oriented rather than an unconditional network-performance win.

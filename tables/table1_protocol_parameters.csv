@@ -1,0 +1,18 @@
+parameter,value,role
+Tuning seeds,"7, 11, 19, 23, 29, 31, 37, 41, 43, 47",parameter selection only
+Held-out evaluation seeds,"53, 59, 61, 67, 71, 73, 79, 83, 89, 97",all final comparisons/inference
+Resource-data correlation,"0, 0.5, 0.9",controlled stress levels
+Relay-pressure coefficient eta_R,5.0,selected on tuning seeds
+Compression-distortion beta,0.10,selected on tuning seeds
+Drift V,0.5,controller
+Top-k candidates,"0.15, 0.30, 0.50, 0.75, 1.0",adaptive fidelity
+Fixed-compression controls,0.50,matched ablation/control
+Scarcity coefficient,0.5,executed scheduler/compression surrogate
+Staleness lambda / utility coefficient mu,0.35 / 0.80,aggregation
+Tx / Rx energy per bit,1.5e-6 / 8.0e-7 J,modeled communication energy
+Local-step energy,0.004 J,modeled local training energy
+Relay energy budget,0.004 J/round,virtual relay queue
+Header / model / index bits,96 / 32 / 16,traffic accounting
+Intel: rounds / K / lr / L2 / slot,30 / 10 / 0.010 / 0.010 / 0.20 s,regression
+HAR: rounds / K / lr / L2 / slot,25 / 8 / 0.020 / 0.001 / 0.25 s,classification
+HAR split,10-window blocks; 1-in-5 test; 1-neighbor purge,overlap-safe within-client holdout

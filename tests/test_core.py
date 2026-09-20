@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from wsn_hfl.config import SimConfig
+from wsn_hfl.data import hierarchical_cloud_influence
 from wsn_hfl.model import topk_compress
 from wsn_hfl.simulator import simulate
 from wsn_hfl.topology import WSNTopology
@@ -51,5 +52,17 @@ def test_smoke_simulation_produces_metrics():
     assert 0.0 <= summary["macro_f1"] <= 1.0
     assert summary["effective_bits"] > 0
     assert summary["energy_j"] > 0
-    assert summary["representation_js"] >= 0
+    assert summary["utility_target_js"] >= 0
     assert summary["participation_jain"] > 0
+
+
+def test_hierarchical_cloud_influence_uses_both_normalizations():
+    # Edge 0 carries total cloud weight 3 and two clients at 2/3,1/3.
+    # Edge 1 carries total cloud weight 1 and one client at 1.
+    got = hierarchical_cloud_influence(
+        [3.0, 1.0],
+        [[(0, 2.0/3.0), (1, 1.0/3.0)], [(2, 1.0)]],
+        4,
+    )
+    np.testing.assert_allclose(got, [0.5, 0.25, 0.25, 0.0])
+    assert abs(got.sum() - 1.0) < 1e-12

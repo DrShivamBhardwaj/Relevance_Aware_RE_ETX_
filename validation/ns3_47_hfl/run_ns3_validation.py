@@ -4,11 +4,15 @@ import json
 import subprocess
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'src'))
+from wsn_hfl.config import EVALUATION_SEEDS
+
 ROOT = Path(__file__).resolve().parents[2]
 VAL = Path(__file__).resolve().parent
 NS3_BIN = Path("/Users/shivambhardwaj/ns3-validation/ns-3.47/build/scratch/ns3.47-hfl-lrwpan-load-validation-optimized")
 AGG = ROOT / "results" / "aggregate_summary.csv"
-SEEDS = [7, 11, 19, 23, 29, 31, 37, 41, 43, 47]
+SEEDS = list(EVALUATION_SEEDS)
 CONDITIONS = [
     ("dense_fast", 12, 0.5),
     ("dense_nominal", 12, 1.0),

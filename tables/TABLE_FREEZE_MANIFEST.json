@@ -1,46 +1,24 @@
 {
   "status": "FROZEN",
-  "policy": "Main text uses c=0.9 as the predeclared strongest correlated-heterogeneity stress condition; all c levels remain in supplementary tables. Resource-only is the primary contrast because it isolates the cost of network-only scheduling. Negative trade-offs are retained.",
+  "metric_policy": "utility_target_js uses corrected cloud-level aggregation coefficients; independent coverage metrics are temperature_coverage_js (Intel) and class_coverage_js (HAR).",
+  "selection_protocol": "Tune only on the 10 tuning seeds. A grid point is learning-feasible when Intel RMSE is within 0.010 C of the best tuning-grid RMSE and HAR accuracy is within 0.5 percentage points of the best tuning-grid accuracy. Among feasible points, select the lowest equal-weight min-max normalized systems score over effective bits, total modeled energy, and maximum relay energy on both datasets. Utility-target and independent coverage metrics are excluded from tuning and reserved for held-out evaluation.",
   "source_sha256": {
-    "results/final_synthetic_10seed/aggregate_summary.csv": "c6cb598bccaefeeebe1f493c0e418cc70ec26b08013a1b4140b0f2d1c2dc6598",
-    "results/intel_lab/aggregate_summary.csv": "0d7d327ab45aa59650dd5dd9b0a1f2d3d1891b0ed6c081ce91187157af23c14b",
-    "results/uci_har/aggregate_summary.csv": "edcd9bb31c34bce3e2471964aaa584afd432cfd1908e92f63a1734241cf43255",
-    "validation/statistics/statistical_tests.csv": "1071d886685d9ad13eccbbaf6a112148f949458a536b423e02969cd67f190d23",
-    "results/intel_lab/ablation_summary.csv": "365a92a511d41c3a4027e9d1df2f415ff0e87ac0cd77f7031c68bc97eafa22e4",
-    "results/uci_har/ablation_summary.csv": "b779ccc547551e1d9f78a0f254ac7b63cc4750dc08eeb00936e1b004b3f96d99",
-    "validation/ns3_47_hfl/results/ns3_group_summary.csv": "d207e444798f59cd74f3a152314ad43fba4bd94e17e12302ce3735a625dfdb76",
-    "results/intel_lab/joint_grid.csv": "6be33d25410ab4723c144bad2274120bf6d57d02fd0a26d58100b3dd028f2dc2",
-    "results/uci_har/joint_grid.csv": "d0c8cfe3396697d3c83b7e1d835c4ffea0582fdd9e831fae034055b6c984d528"
+    "results/intel_lab/aggregate_summary.csv": "0dc152153262bb18358642c284bd8a041ae5ab4f4db81655197fbb883ddb3aaa",
+    "results/uci_har/aggregate_summary.csv": "df62cecc6d3ab5c9222cdb396de3afe860c822d363a4e289958966c245719654",
+    "results/intel_lab/ablation_summary.csv": "f5b7e5cd1afe80716d93d3312076184434a35ab057cc8e753bbedc7418eef9cc",
+    "results/uci_har/ablation_summary.csv": "e5c033446a8f7ade51fbd3c4d5904c373eec6c3233afecf6f56fb38139a74529",
+    "validation/statistics/statistical_tests.csv": "7c3964cf0c1400a053d60b3c07a5bd37c4b2af00cb5908e01eec2e7efdbc0466",
+    "results/intel_lab/joint_grid.csv": "d40770f5cafc449653944b0b516f1327519860de73fae153e6d08c79d7ebfa43",
+    "results/uci_har/joint_grid.csv": "acad7f3a8bd01028304dfedb9330d24d8f23efca4c3c9a5c43d6201483269943",
+    "results/OPERATING_POINT_SELECTION.json": "e488278e651f08b078ecd66ee7fd4f3ec7f802288d86b649db82daa7dc12e0c1"
   },
   "generated_sha256": {
-    "tables/table1_experimental_design.csv": "5f1b0e52be74d0d9b123ea5eb6d4d6d4d003bf6c067eaebcee63a3e0552cbcfa",
-    "tables/table2_intel_main.csv": "4decfd45e957c5740967f1eeb44494f6ba55424021669b3f71e831077d672c01",
-    "tables/table3_har_main.csv": "b5bfc091fc017e0d8143f44ee226bf96da8eed2b5a70f07c872728b26407df63",
-    "tables/table4_resource_contrasts.csv": "3934f284c6625f0b7eccfa7af597617cc2b7a8d901c1368ffeba709f82023e67",
-    "tables/table5_ablation.csv": "0bcb8b9f9be39ef55fb18ab188510b44b10c390e4a3d1b76ff7f890193d8d6ef",
-    "tables/table6_ns3_primary.csv": "ebc208ab5b3d602a3b04e3f764bf427b9813081be2f5ada6dd3cedfa5ec4e8d8",
-    "tables/table_s1_synthetic_all.csv": "4f396904c8f17928259bb5b6aec794cccd86cdd990649fbd7d4525f33b1b7a8c",
-    "tables/table_s2_intel_all_correlations.csv": "e4c2e6378567d73e9f289be4b43c405be9ff511d5d924b4a16505ab2033e145e",
-    "tables/table_s3_har_all_correlations.csv": "ca5994bb14bdfe691200dafc7cab420332fecfd7754b6b3b44c7e2dd39fff9c6",
-    "tables/table_s4_sensitivity_neighborhood.csv": "49e059a860f20c255598095b316f14646ae1ee3d0ed831fccf99771f6fe65aa7"
-  },
-  "frozen_claims": {
-    "intel_c0.9_vs_resource": {
-      "rmse_percent": -0.19115874495380666,
-      "mae_percent": -3.9560169583257316,
-      "effective_bits_percent": -55.667910702711154,
-      "energy_percent": -45.06117973662169,
-      "max_relay_energy_percent": -29.942411266905278,
-      "representation_js_percent": -81.20719290908187
-    },
-    "har_c0.9_vs_resource": {
-      "accuracy_pp": 3.0761812921889953,
-      "macro_f1_pp": 3.355313737879495,
-      "worst_client_accuracy_pp": 3.5546266351351163,
-      "effective_bits_percent": -60.7484499671929,
-      "energy_percent": -56.382052322072084,
-      "max_relay_energy_percent": 209.28139373728624,
-      "representation_js_percent": -79.96994884371881
-    }
+    "tables/table1_protocol_parameters.csv": "4cc5415b6ca9f85a96e80abf7785e5bc413cd121740431908ebc02edc062a24b",
+    "tables/table2_intel_main.csv": "19db37f8d85b055b843669d118aa6cf4383c81b72057c6c591a27e779d1fb153",
+    "tables/table3_har_main.csv": "5b90828a821c05f8b0a8aa523c51e59c71319bcac8d04701e9f0b6b8bd887577",
+    "tables/table4_heldout_contrasts.csv": "7c3964cf0c1400a053d60b3c07a5bd37c4b2af00cb5908e01eec2e7efdbc0466",
+    "tables/table_s1_all_controls_c09.csv": "07d28c766952755f5704dc8719f74a44fb8ba69bebeb004b8877a9f36477d689",
+    "tables/table_s2_ablation.csv": "af38c51b007adbe3aff5b56744300be71d4002c322a986e44d64c956faf544cd",
+    "tables/table_s3_tuning_grid.csv": "28d48ac33b90324c9d6ba965183d41b9a3deef097b68da8885f174a2493e3ff0"
   }
 }

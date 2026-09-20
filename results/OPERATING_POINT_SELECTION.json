@@ -1,0 +1,217 @@
+{
+  "protocol": "Tune only on the 10 tuning seeds. A grid point is learning-feasible when Intel RMSE is within 0.010 C of the best tuning-grid RMSE and HAR accuracy is within 0.5 percentage points of the best tuning-grid accuracy. Among feasible points, select the lowest equal-weight min-max normalized systems score over effective bits, total modeled energy, and maximum relay energy on both datasets. Utility-target and independent coverage metrics are excluded from tuning and reserved for held-out evaluation.",
+  "best_tuning_learning": {
+    "intel_rmse_c": 1.7345185627078528,
+    "har_accuracy": 0.8858690300344658
+  },
+  "selected": {
+    "relay_pressure_weight": 5.0,
+    "compression_distortion_weight": 0.1,
+    "feasible_learning": true,
+    "systems_score": 0.005033468579684507,
+    "components": {
+      "intel_bits": 0.006186911497631343,
+      "intel_energy": 0.0061869114976310525,
+      "intel_relay": 0.017826988482844648,
+      "har_bits": 0.0,
+      "har_energy": 0.0,
+      "har_relay": 0.0
+    },
+    "intel_rmse": 1.7422909074633275,
+    "har_accuracy": 0.8855736090595766
+  },
+  "ranking": [
+    {
+      "relay_pressure_weight": 5.0,
+      "compression_distortion_weight": 0.1,
+      "feasible_learning": true,
+      "systems_score": 0.005033468579684507,
+      "components": {
+        "intel_bits": 0.006186911497631343,
+        "intel_energy": 0.0061869114976310525,
+        "intel_relay": 0.017826988482844648,
+        "har_bits": 0.0,
+        "har_energy": 0.0,
+        "har_relay": 0.0
+      },
+      "intel_rmse": 1.7422909074633275,
+      "har_accuracy": 0.8855736090595766
+    },
+    {
+      "relay_pressure_weight": 3.0,
+      "compression_distortion_weight": 0.1,
+      "feasible_learning": true,
+      "systems_score": 0.1194928963892312,
+      "components": {
+        "intel_bits": 0.0,
+        "intel_energy": 0.0,
+        "intel_relay": 0.0,
+        "har_bits": 0.05195744086411977,
+        "har_energy": 0.07318462337495191,
+        "har_relay": 0.5918153140963155
+      },
+      "intel_rmse": 1.7417307659976191,
+      "har_accuracy": 0.8836533727227966
+    },
+    {
+      "relay_pressure_weight": 2.0,
+      "compression_distortion_weight": 0.1,
+      "feasible_learning": true,
+      "systems_score": 0.18381426369880863,
+      "components": {
+        "intel_bits": 0.006431977255525355,
+        "intel_energy": 0.006431977255525122,
+        "intel_relay": 0.07331406739789778,
+        "har_bits": 0.06877898309602785,
+        "har_energy": 0.09763432469591335,
+        "har_relay": 0.8502942524919623
+      },
+      "intel_rmse": 1.7410115186108228,
+      "har_accuracy": 0.8835548990645001
+    },
+    {
+      "relay_pressure_weight": 5.0,
+      "compression_distortion_weight": 0.2,
+      "feasible_learning": true,
+      "systems_score": 0.19594639841171899,
+      "components": {
+        "intel_bits": 0.26280551459451673,
+        "intel_energy": 0.26280551459452106,
+        "intel_relay": 0.28317164277660684,
+        "har_bits": 0.1493839938006099,
+        "har_energy": 0.14329875537576112,
+        "har_relay": 0.07421296932829827
+      },
+      "intel_rmse": 1.739248946802999,
+      "har_accuracy": 0.8847365829640571
+    },
+    {
+      "relay_pressure_weight": 1.0,
+      "compression_distortion_weight": 0.1,
+      "feasible_learning": true,
+      "systems_score": 0.21737673619769962,
+      "components": {
+        "intel_bits": 0.011469289734583703,
+        "intel_energy": 0.011469289734583226,
+        "intel_relay": 0.08874799199692707,
+        "har_bits": 0.08757507366941598,
+        "har_energy": 0.12293903082967024,
+        "har_relay": 0.9820597412210176
+      },
+      "intel_rmse": 1.7426596081387795,
+      "har_accuracy": 0.8858690300344658
+    },
+    {
+      "relay_pressure_weight": 3.0,
+      "compression_distortion_weight": 0.2,
+      "feasible_learning": true,
+      "systems_score": 0.2598728979499663,
+      "components": {
+        "intel_bits": 0.24560553547098685,
+        "intel_energy": 0.24560553547099037,
+        "intel_relay": 0.32965741295439804,
+        "har_bits": 0.19057181658482453,
+        "har_energy": 0.20131814652310048,
+        "har_relay": 0.3464789406954976
+      },
+      "intel_rmse": 1.7374694460169124,
+      "har_accuracy": 0.8842934515017233
+    },
+    {
+      "relay_pressure_weight": 2.0,
+      "compression_distortion_weight": 0.2,
+      "feasible_learning": true,
+      "systems_score": 0.3111903960086876,
+      "components": {
+        "intel_bits": 0.24614749022311236,
+        "intel_energy": 0.24614749022311608,
+        "intel_relay": 0.3282995620117458,
+        "har_bits": 0.22178687686828072,
+        "har_energy": 0.2425528010162478,
+        "har_relay": 0.5822081557096228
+      },
+      "intel_rmse": 1.7402835446988718,
+      "har_accuracy": 0.8809453471196456
+    },
+    {
+      "relay_pressure_weight": 1.0,
+      "compression_distortion_weight": 0.2,
+      "feasible_learning": true,
+      "systems_score": 0.39122778398850216,
+      "components": {
+        "intel_bits": 0.2566149452649229,
+        "intel_energy": 0.2566149452649271,
+        "intel_relay": 0.4551227632566394,
+        "har_bits": 0.26295125352904986,
+        "har_energy": 0.2904956659369718,
+        "har_relay": 0.8255671306785018
+      },
+      "intel_rmse": 1.7373993975843647,
+      "har_accuracy": 0.8857213195470213
+    },
+    {
+      "relay_pressure_weight": 3.0,
+      "compression_distortion_weight": 0.4,
+      "feasible_learning": true,
+      "systems_score": 0.7902871952313241,
+      "components": {
+        "intel_bits": 0.961137144176021,
+        "intel_energy": 0.9611371441760219,
+        "intel_relay": 0.7580884161053444,
+        "har_bits": 0.8729302120216067,
+        "har_energy": 0.8518042528864042,
+        "har_relay": 0.336626002022546
+      },
+      "intel_rmse": 1.7351611725098106,
+      "har_accuracy": 0.8842934515017232
+    },
+    {
+      "relay_pressure_weight": 5.0,
+      "compression_distortion_weight": 0.4,
+      "feasible_learning": false,
+      "systems_score": 0.720291631156111,
+      "components": {
+        "intel_bits": 1.0,
+        "intel_energy": 1.0,
+        "intel_relay": 0.7629761592893431,
+        "har_bits": 0.766020062746239,
+        "har_energy": 0.7329463622195981,
+        "har_relay": 0.059807202681485344
+      },
+      "intel_rmse": 1.7353464322809509,
+      "har_accuracy": 0.8805022156573117
+    },
+    {
+      "relay_pressure_weight": 2.0,
+      "compression_distortion_weight": 0.4,
+      "feasible_learning": false,
+      "systems_score": 0.9203066072105618,
+      "components": {
+        "intel_bits": 0.9576183981842352,
+        "intel_energy": 0.9576183981842354,
+        "intel_relay": 0.8045184103852356,
+        "har_bits": 0.9684673838672319,
+        "har_energy": 0.9601981095370643,
+        "har_relay": 0.8734189431053677
+      },
+      "intel_rmse": 1.7345185627078528,
+      "har_accuracy": 0.8714426390940423
+    },
+    {
+      "relay_pressure_weight": 1.0,
+      "compression_distortion_weight": 0.4,
+      "feasible_learning": false,
+      "systems_score": 0.9884286781712038,
+      "components": {
+        "intel_bits": 0.9652860345136122,
+        "intel_energy": 0.9652860345136104,
+        "intel_relay": 1.0,
+        "har_bits": 1.0,
+        "har_energy": 1.0,
+        "har_relay": 1.0
+      },
+      "intel_rmse": 1.7351933651919236,
+      "har_accuracy": 0.8772525849335302
+    }
+  ]
+}

@@ -8,8 +8,9 @@ from pathlib import Path
 import numpy as np
 
 from .config import SimConfig
-from .data import js_divergence
+from .data import class_coverage, hierarchical_cloud_influence, js_divergence
 from .model import cosine_novelty, topk_compress
+from .scheduler import representative_subset
 
 
 GATEWAY_MOTES = (10, 26, 48, 38)
@@ -221,7 +222,7 @@ def _adaptive_ratio(cfg, utility, route_cost, scarcity, relay_pressure):
     return best
 
 
-def _schedule(method, cfg, rng, eligible, utility, routes, residual, initial, deficit, relay_queue):
+def _schedule(method, cfg, rng, eligible, utility, routes, residual, initial, deficit, relay_queue, stat_vectors=None):
     cand = np.flatnonzero(eligible)
     if not len(cand):
         return [], {}
@@ -236,13 +237,18 @@ def _schedule(method, cfg, rng, eligible, utility, routes, residual, initial, de
         pressure[:] = 0.0
     util = _norm(utility)
     ratios = {int(i): cfg.fixed_compression_ratio for i in cand}
-    if method == "random":
+    base_method = method.removesuffix("_adaptive")
+    if base_method == "random":
         selected = rng.choice(cand, size=k, replace=False)
-    elif method == "resource":
+    elif base_method == "resource":
         score = rc + scarcity + pressure
         selected = cand[np.argsort(score[cand])[:k]]
-    elif method == "utility":
+    elif base_method == "utility":
         selected = cand[np.argsort(-util[cand])[:k]]
+    elif method == "fedcg_adapted":
+        if stat_vectors is None:
+            raise ValueError("fedcg_adapted requires current client gradient/statistical vectors")
+        selected = representative_subset(cand, stat_vectors, k, rc + scarcity)
     elif method.startswith("proposed"):
         score = np.full(cfg.num_clients, -np.inf)
         for i in cand:
@@ -256,6 +262,13 @@ def _schedule(method, cfg, rng, eligible, utility, routes, residual, initial, de
         selected = cand[np.argsort(-score[cand])[:k]]
     else:
         raise ValueError(method)
+
+    if method.endswith("_adaptive"):
+        for i in selected:
+            ratios[int(i)] = _adaptive_ratio(cfg, util[i], rc[i], scarcity[i], pressure[i])
+    elif method == "fedcg_adapted":
+        for i in selected:
+            ratios[int(i)] = _adaptive_ratio(cfg, util[i], rc[i], scarcity[i], 0.0)
     return [int(i) for i in selected], ratios
 
 
@@ -302,8 +315,24 @@ def simulate_intel(method, cfg, data_dir: Path, correlation=0.5):
     residual = initial.copy()
     init_routes = topo.all_routes(residual, initial)
 
+    # Independent temperature-distribution coverage metric. It is based on the
+    # pooled training target distribution and is not the controller's utility target.
+    pooled_y = np.concatenate([v[1] for v in splits.values()])
+    lo_y, hi_y = float(pooled_y.min()), float(pooled_y.max())
+    if hi_y - lo_y < 1e-12:
+        temp_edges = np.linspace(lo_y - 0.5, hi_y + 0.5, 11)
+    else:
+        temp_edges = np.linspace(lo_y, hi_y, 11)
+        temp_edges[0] -= 1e-9; temp_edges[-1] += 1e-9
+    global_temp_hist = np.histogram(pooled_y, bins=temp_edges)[0].astype(float)
+    global_temp_hist /= max(global_temp_hist.sum(), 1e-12)
+    client_temp_probs = np.zeros((cfg.num_clients, len(temp_edges)-1), dtype=float)
+    for i, (_, ytr, _, _) in splits.items():
+        h = np.histogram(ytr, bins=temp_edges)[0].astype(float)
+        client_temp_probs[i] = h / max(h.sum(), 1e-12)
+
     # Natural statistical rarity; correlation controls whether rare clients also become resource-constrained.
-    global_y = np.concatenate([v[1] for v in splits.values()])
+    global_y = pooled_y
     gmean = float(global_y.mean())
     rarity = np.zeros(cfg.num_clients)
     for i, (_, ytr, _, _) in splits.items():
@@ -315,7 +344,7 @@ def simulate_intel(method, cfg, data_dir: Path, correlation=0.5):
 
     utility_hist = np.full(cfg.num_clients, 0.5); deficit = np.zeros(cfg.num_clients)
     relay_queue = np.zeros(cfg.num_clients); relay_cum = np.zeros(cfg.num_clients)
-    participation = np.zeros(cfg.num_clients); influence = np.zeros(cfg.num_clients); target_cum = np.zeros(cfg.num_clients)
+    participation = np.zeros(cfg.num_clients); cloud_influence = np.zeros(cfg.num_clients); target_cum = np.zeros(cfg.num_clients)
     residual_buf = [np.zeros_like(w) for _ in range(cfg.num_clients)]
     global_update_ema = np.zeros_like(w); pending=[]
     total_eff_bits=total_comp_bits=total_raw_bits=total_energy=0.0
@@ -326,15 +355,19 @@ def simulate_intel(method, cfg, data_dir: Path, correlation=0.5):
     for t in range(cfg.rounds):
         routes = topo.all_routes(residual, initial)
         losses = np.zeros(cfg.num_clients)
+        stat_vectors = np.zeros((cfg.num_clients, w.size), dtype=float) if method == "fedcg_adapted" else None
         for i,(xtr,ytr,_,_) in splits.items():
-            losses[i]=regression_loss_grad(w,xtr,ytr,cfg.l2)[0]
+            loss_i, grad_i = regression_loss_grad(w,xtr,ytr,cfg.l2)
+            losses[i]=loss_i
+            if stat_vectors is not None:
+                stat_vectors[i]=grad_i.ravel()
         utility = 0.55*_norm(losses) + 0.45*_norm(utility_hist)
         utility[~client_mask]=0.0
         target = utility + 1e-6*client_mask
         target[~client_mask]=0.0
         target /= max(target.sum(),1e-12); target_cum += target
         eligible = client_mask & (residual>0.05) & (rng.random(cfg.num_clients)<avail_p)
-        selected, ratios = _schedule(method,cfg,rng,eligible,utility,routes,residual,initial,deficit,relay_queue)
+        selected, ratios = _schedule(method,cfg,rng,eligible,utility,routes,residual,initial,deficit,relay_queue,stat_vectors=stat_vectors)
         share=np.zeros(cfg.num_clients)
         if selected: share[selected]=1.0/len(selected)
         deficit=np.maximum(0.0,deficit+target-share)
@@ -365,7 +398,7 @@ def simulate_intel(method, cfg, data_dir: Path, correlation=0.5):
         by_g=defaultdict(list)
         for e in arrivals:
             if t-e["generated"]<=cfg.max_staleness: by_g[e["gateway"]].append(e)
-        edge_delta=[]; edge_weight=[]; accepted=[]
+        edge_delta=[]; edge_weight=[]; edge_members=[]
         for g,events in by_g.items():
             rw=[]
             for e in events:
@@ -375,20 +408,29 @@ def simulate_intel(method, cfg, data_dir: Path, correlation=0.5):
                 rw.append(a*e["samples"])
             rw=np.asarray(rw,float)
             if rw.sum()<=0: continue
-            nw=rw/rw.sum(); edge_delta.append(sum(a*e["update"] for a,e in zip(nw,events))); edge_weight.append(float(rw.sum()))
-            accepted.extend((float(a),e) for a,e in zip(nw,events))
+            nw=rw/rw.sum()
+            edge_delta.append(sum(a*e["update"] for a,e in zip(nw,events)))
+            edge_weight.append(float(rw.sum()))
+            edge_members.append([(e["client"],float(a)) for a,e in zip(nw,events)])
         if edge_delta:
-            ew=np.asarray(edge_weight); ew/=ew.sum(); cloud=sum(a*d for a,d in zip(ew,edge_delta)); w+=cloud
+            ew=np.asarray(edge_weight,float); ew/=ew.sum()
+            cloud=sum(a*d for a,d in zip(ew,edge_delta)); w+=cloud
             global_update_ema=0.7*global_update_ema+0.3*cloud
-            for a,e in accepted: influence[e["client"]]+=a
+            cloud_influence += hierarchical_cloud_influence(edge_weight, edge_members, cfg.num_clients)
         metrics=evaluate_regression(w,splits,y_mean,y_std)
+        temp_cov=class_coverage(client_temp_probs,cloud_influence+1e-12)
         history.append({"round":t+1,"method":method,"correlation":correlation,**metrics,
-                        "effective_bits":total_eff_bits,"energy_j":total_energy,"representation_js":js_divergence(influence+1e-9,target_cum+1e-9),
+                        "effective_bits":total_eff_bits,"energy_j":total_energy,
+                        "utility_target_js":js_divergence(cloud_influence+1e-12,target_cum+1e-12),
+                        "temperature_coverage_js":js_divergence(temp_cov,global_temp_hist+1e-12),
                         "participation_jain":_jain(participation[client_mask]),"max_relay_energy_j":float(relay_cum.max()),"min_residual_energy_j":float(residual.min())})
     metrics=evaluate_regression(w,splits,y_mean,y_std)
+    temp_cov=class_coverage(client_temp_probs,cloud_influence+1e-12)
     summary={"method":method,"seed":cfg.seed,"correlation":correlation,"clients":int(client_mask.sum()),**metrics,
              "effective_bits":total_eff_bits,"compressed_bits":total_comp_bits,"raw_selected_bits":total_raw_bits,
              "mean_selected_hops":total_hops/max(total_updates,1),"mean_selected_etx":total_etx/max(total_updates,1),
              "energy_j":total_energy,"min_residual_energy_j":float(residual.min()),"max_relay_energy_j":float(relay_cum.max()),
-             "participation_jain":_jain(participation[client_mask]),"representation_js":js_divergence(influence+1e-9,target_cum+1e-9)}
+             "participation_jain":_jain(participation[client_mask]),
+             "utility_target_js":js_divergence(cloud_influence+1e-12,target_cum+1e-12),
+             "temperature_coverage_js":js_divergence(temp_cov,global_temp_hist+1e-12)}
     return summary, history

@@ -34,7 +34,7 @@ class SimConfig:
     max_staleness: int = 4
     drift_v: float = 0.5
     relay_budget_j_per_round: float = 0.004
-    relay_pressure_weight: float = 3.0
+    relay_pressure_weight: float = 5.0
     utility_ema: float = 0.65
     compression_distortion_weight: float = 0.10
     compression_candidates: tuple = (0.15, 0.30, 0.50, 0.75, 1.0)
@@ -51,4 +51,10 @@ class SimConfig:
     dropout_prob: float = 0.03
 
 
+# Parameter tuning and final evaluation use disjoint seed ensembles.
+TUNING_SEEDS = (7, 11, 19, 23, 29, 31, 37, 41, 43, 47)
+EVALUATION_SEEDS = (53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+
+# Core methods retained for the synthetic reference campaign. Real-data scripts
+# add matched-compression controls and the FedCG-adapted comparator explicitly.
 METHODS = ("random", "resource", "utility", "proposed")

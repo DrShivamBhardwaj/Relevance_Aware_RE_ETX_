@@ -14,134 +14,50 @@ OUT.mkdir(parents=True, exist_ok=True)
 LATEX.mkdir(parents=True, exist_ok=True)
 (LATEX / "figures").mkdir(parents=True, exist_ok=True)
 
-TITLE = "Cross-Layer Edge Intelligence for Statistically Representative and Resource-Sustainable Federated Learning in Multi-Hop IoT Sensor Networks"
+TITLE = "Cross-Layer Utility-Aware Hierarchical Federated Learning for Multi-Hop IoT Sensor Networks"
 HIGHLIGHTS = [
-    "Cross-layer scheduling links learning value to multi-hop network cost",
-    "Virtual queues reduce persistent exclusion of informative clients",
-    "Adaptive update fidelity cuts communication by 56-61% on real sensing data",
-    "Lower model traffic improves low-power wireless delivery and delay",
+    "Two-level cloud influence is tracked after edge and cloud normalization",
+    "Held-out evaluation separates parameter tuning from final inference",
+    "Matched controls isolate adaptive compression from client scheduling",
+    "Utility-target alignment improves at an explicit network-cost trade-off",
 ]
-IN_BRIEF = ("Pandey and Bhardwaj show that choosing federated-learning clients only because "
-            "they are cheap to reach can distort which sensing data shape the model. Their "
-            "cross-layer controller balances statistical value, update fidelity, multi-hop "
-            "route burden, and relay energy across real sensing datasets and low-power wireless replay.")
+IN_BRIEF = ("Pandey and Bhardwaj study how hierarchical federated-learning decisions change when "
+            "model updates traverse multi-hop sensor routes. Their controller coordinates utility-target "
+            "participation, update fidelity, relay pressure, and staleness, and is evaluated with "
+            "held-out seeds, compression-matched controls, real sensing data, and low-power wireless replay.")
 BROADER = (
-    "Edge intelligence is moving learning closer to the places where data are produced, including "
-    "buildings, industrial sites, environmental deployments, and personal sensing devices. In these "
-    "settings, the communication path is part of the learning system rather than a neutral transport "
-    "layer. A model update from a remote or poorly connected device may consume several relay "
-    "transmissions, yet that same device may hold observations that are rare elsewhere in the network. "
-    "Scheduling only the cheapest devices can therefore save energy in the short term while narrowing "
-    "the data that influence the model. This study treats that tension as a cross-layer design problem. "
-    "The proposed controller considers learning value, participation history, multi-hop route burden, "
-    "relay-energy pressure, update compression, and staleness together. The resulting trade-offs are "
-    "tested with a real wireless-sensor deployment, a real human-activity dataset, controlled synthetic "
-    "heterogeneity, and low-power wireless-network replay. The broader aim is resource-conscious edge "
-    "intelligence that remains statistically inclusive when network conditions and data distributions "
-    "are both uneven."
+    "Edge intelligence increasingly supports environmental monitoring, infrastructure observation, "
+    "industrial sensing, and personal activity recognition, often where communication capacity and "
+    "battery energy are limited. In these deployments, selecting a learning client also selects the "
+    "route and relays that must transport its model update. The resulting design problem is not simply "
+    "to minimize traffic: inexpensive clients can dominate training while remote or difficult-to-reach "
+    "clients contribute less often. This study develops and audits a cross-layer controller that makes "
+    "that trade-off explicit. Importantly, the revised experiments separate parameter tuning from "
+    "held-out evaluation and compare selection policies under matched compression. The evidence therefore "
+    "supports a Pareto interpretation rather than a claim of universal network or statistical superiority. "
+    "Such transparent trade-offs are relevant when distributed intelligence must operate over low-power "
+    "sensing infrastructure without overstating sustainability or population-representativeness claims."
 )
 
+
 FIGURES = [
-    ("figures/final/02_system_architecture.png", "Figure 1. Cross-layer hierarchical architecture used in this study. Learning-capable sensor clients exchange model updates through relay and edge layers before cloud aggregation."),
-    ("figures/final/01_network_topology.png", "Figure 2. Network-topology abstraction used for the Intel Berkeley Lab WSN experiment. Gateway nodes form the edge layer, while measured connectivity informs route feasibility and cost."),
-    ("figures/final/07_intel_berkeley_results.png", "Figure 3. Intel Berkeley Lab comparison under strong resource-data correlation (c = 0.9). Exact values and 95% confidence intervals are reported in Table 1."),
-    ("figures/final/06_uci_har_results.png", "Figure 4. UCI HAR comparison under strong resource-data correlation (c = 0.9). The resource-only policy minimizes the relay hotspot, whereas the proposed policy improves learning, communication, total modeled energy, and representation."),
-    ("figures/final/04_ablation.png", "Figure 5. Component ablation on the Intel WSN and UCI HAR experiments. Removing representation control, adaptive compression, or relay pressure changes different parts of the learning-network trade-off."),
-    ("figures/final/03_ns3_validation.png", "Figure 6. ns-3.47 IEEE 802.15.4/LR-WPAN replay of the frozen traffic profiles. The replay validates communication consequences of the offered load; the HFL optimizer itself is not executed inside ns-3."),
-    ("figures/final/05_learning_communication_tradeoff.png", "Figure 7. Learning-communication trade-off on the two real sensing datasets. Bubble size represents maximum relay energy and makes the relay-hotspot cost visible alongside model quality and traffic.")
+    ("figures/final/02_system_architecture.png", "Figure 1. Cross-layer hierarchical architecture. Learning-capable sensor clients send model updates through multi-hop relay paths to edge gateways and then to the cloud."),
+    ("figures/final/01_network_topology.png", "Figure 2. Intel Berkeley Lab WSN topology abstraction. Gateway motes form the edge layer and measured directed connectivity defines route feasibility and ETX burden."),
+    ("figures/final/07_intel_berkeley_results.png", "Figure 3. Intel held-out evaluation at strong resource-data correlation. Main values and 95% confidence intervals are reported in Table 2."),
+    ("figures/final/06_uci_har_results.png", "Figure 4. UCI HAR held-out evaluation using the blocked overlap-safe within-client split. Main values and 95% confidence intervals are reported in Table 3."),
+    ("figures/final/04_ablation.png", "Figure 5. Component ablations on Intel and UCI HAR. Adaptive fidelity provides the largest traffic reduction, whereas the participation-deficit and relay-pressure terms affect different trade-off dimensions."),
+    ("figures/final/03_ns3_validation.png", "Figure 6. ns-3.47 IEEE 802.15.4/LR-WPAN replay of held-out synthetic traffic profiles. The replay validates communication consequences of offered load; the HFL controller itself is not executed inside ns-3."),
+    ("figures/final/05_learning_communication_tradeoff.png", "Figure 7. Held-out learning-communication trade-offs for compression-matched controls, the FedCG-adapted comparator, and the proposed controller."),
 ]
+
 def transform_source():
-    src = (ROOT / "MANUSCRIPT_RECONSTRUCTION.md").read_text()
-    src = re.sub(r"^# .*?\n", "", src, count=1)
-    src = src.split("## Final manuscript figure set")[0].rstrip()
-    src = src.replace("## References used for positioning", "## References")
-    src = src.replace(
-        "The synchronization and heterogeneity dimensions are similarly active. HiFlash combines adaptive staleness control with heterogeneity-aware client-edge association [5], while asynchronous HFL variants reduce blocking due to heterogeneous completion times. Communication-efficient HFL has additionally been studied through data-distribution shaping at the edge [7]. Recent HFL formulations jointly optimize client selection, edge scheduling, radio resources, and semi-synchronous operation [8].",
-        "The synchronization and heterogeneity dimensions are similarly active. HiFlash combines adaptive staleness control with heterogeneity-aware client-edge association [5], while communication-efficient HFL has also been studied by shaping data distributions at edge aggregators [7]. Wu et al. jointly consider client selection, edge-side decisions, radio resources, and time-energy cost in NOMA-enabled HFL [8]. These studies leave little room for treating hierarchy, staleness control, or a generic resource score as stand-alone novelty."
-    )
-    src = src.replace(
-        "A second literature branch shows that biased client selection can affect statistical coverage under non-IID data. Fairness-aware client-selection work introduces long-term participation considerations [4], and recent surveys emphasize that system heterogeneity can restrict the participation or influence of clients that possess valuable but resource-constrained data [9]. Adaptive compression also overlaps with statistical heterogeneity: FedCG-type methods combine representative client selection with capability-aware gradient compression [6].",
-        "A second literature branch shows that biased client selection can affect statistical coverage under non-IID data. Huang et al. explicitly balance effective participation and fairness when clients are volatile [4], while FedCG combines representative client selection with adaptive gradient compression [6]. Recent fairness analyses likewise stress that system heterogeneity can restrict the participation or influence of clients whose data remain statistically useful [13]."
-    )
-    src = src.replace(
-        "The present study therefore does **not** claim novelty for ETX routing, resource-aware selection, compression, or staleness individually. Its contribution is their cross-layer coupling with **statistical representation and relay-energy externality** in a multi-hop WSN-HFL setting, evaluated with both real sensing data and measured WSN connectivity.",
-        "Multi-hop FL itself is also established. Prior work has considered in-network aggregation with routing and spectrum allocation [9], routing-aware acceleration on physical wireless-edge testbeds [10], and two-hop HFL with adaptive grouping and resource allocation [11]; a recent survey organizes these and related topology-aware designs [12]. The present study therefore does **not** claim novelty for ETX routing, multi-hop FL, resource-aware selection, compression, or staleness individually. Its contribution is the coupling of learning value and participation history with **statistical representation and relay-energy externality** in a multi-hop WSN-HFL setting, evaluated with real sensing data and measured WSN connectivity."
-    )
-    src = src.replace("For each client, the controller maintains a privacy-compatible learning-value estimate.",
-                      "For each client, the controller maintains a learning-value estimate derived from model-side metadata.")
-    src = src.replace("Raw client examples are not exposed to the scheduler.",
-                      "Raw client examples remain local, although scalar loss/utility metadata are reported to the scheduler; this is not a formal privacy guarantee.")
-    src = src.replace(
-        "Fourth, the theory now provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work.",
-        "Fourth, the theory provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work.")
-    inserts = [
-        ("The learning problem is therefore not equivalent to selecting the clients with minimum route cost. A statistically informative client can have a poor route, and repeatedly suppressing that client can bias long-run aggregation influence. The controller must balance statistical utility, communication cost, relay-energy depletion, and staleness.", 0),
-        ("The task is per-mote next-temperature regression. A 16-step history of temperature, humidity, log-light, and voltage forms 64 input features. Data are partitioned temporally within each mote. The experiment uses 30 federated rounds, 10 clients per round, three resource-data correlation settings, and 10 paired seeds.", 1),
-        ("Utility-only obtains the lowest RMSE but at markedly higher communication, total energy, and relay burden.", 2),
-        ("This negative trade-off is retained explicitly: resource-only scheduling minimizes the relay hotspot by strongly favoring cheap paths, whereas the proposed controller spends more relay energy to preserve statistical participation while still using substantially less relay energy than random or utility-only scheduling.", 3),
-        ("These ablations show that representation control, adaptive update fidelity, and relay pressure serve distinct functions.", 4),
-        ("These results validate the communication consequences of the learned traffic profile, but they do not mean the Python HFL optimization itself is executed inside ns-3.", 5),
-        ("The proposed controller operates between these extremes by introducing explicit pressure from participation deficit, route cost, relay queues, and compression distortion.", 6),
-    ]
-    for marker, idx in inserts:
-        src = src.replace(marker, marker + "\n\n[[FIGURE:%d]]" % idx)
+    src = (ROOT / "MANUSCRIPT_RECONSTRUCTION.md").read_text().strip()
     front = "# " + TITLE + "\n\n"
     front += "**Abhishek Kumar Pandey***  \nAssistant Professor, School of Computer Science Engineering and Technology, Bennett University  \nORCID: 0000-0003-3799-9754\n\n"
     front += "**Shivam Bhardwaj**  \nAssistant Professor, United Institute of Management, Prayagraj, India  \nORCID: 0009-0005-4554-7397\n\n"
     front += "*Corresponding author: abhishek.pandey2@bennett.edu.in  \nShivam Bhardwaj: shivambhardwaj@gmail.com\n\n"
     front += "## Highlights\n\n" + "\n".join("- " + h for h in HIGHLIGHTS) + "\n\n"
     front += "## In brief\n\n" + IN_BRIEF + "\n\n## Broader context\n\n" + BROADER + "\n\n"
-    availability = """## Resource availability
-
-### Lead contact
-
-Requests concerning the manuscript should be directed to the corresponding author, Abhishek Kumar Pandey (abhishek.pandey2@bennett.edu.in).
-
-### Materials availability
-
-This computational study did not generate new physical materials.
-
-### Data and code availability
-
-Code, experiment manifests, processed outputs, statistical analyses, and the frozen manuscript figures are available in the public project repository: https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_/tree/wsn-hfl-crosslayer-final. The Intel Berkeley Research Lab sensor data and UCI Human Activity Recognition Using Smartphones data are publicly available from their original providers. The repository records the exact seeds and frozen controller parameters used for the reported results; the full 360-run reproducibility rerun, including hashes and host timings, is documented in validation/OPTIMIZER_RERUN_REPORT.md.
-
-"""
-    src = src.replace("## References\n", availability + "\n## References\n")
-    refs = """## References
-
-[1] L. Liu, J. Zhang, S. H. Song, and K. B. Letaief, “Client-Edge-Cloud Hierarchical Federated Learning,” IEEE International Conference on Communications, 2020. DOI: 10.1109/ICC40277.2020.9148862.
-
-[2] S. AbdulRahman, H. Tout, A. Mourad, and C. Talhi, “FedMCCS: Multicriteria Client Selection Model for Optimal IoT Federated Learning,” IEEE Internet of Things Journal, 8, 4723–4735, 2021. DOI: 10.1109/JIOT.2020.3028742.
-
-[3] W. Y. B. Lim, J. S. Ng, Z. Xiong, D. Niyato, C. Miao, and D. I. Kim, “Dynamic Edge Association and Resource Allocation in Self-Organizing Hierarchical Federated Learning Networks,” IEEE Journal on Selected Areas in Communications, 39(12), 3640–3653, 2021. DOI: 10.1109/JSAC.2021.3118401.
-
-[4] T. Huang, W. Lin, L. Shen, K. Li, and A. Y. Zomaya, “Stochastic Client Selection for Federated Learning With Volatile Clients,” IEEE Internet of Things Journal, 9(20), 20055–20070, 2022. DOI: 10.1109/JIOT.2022.3172113.
-
-[5] X. Chen, T. Ouyang, Z. Zhou, X. Zhang, S. Yang, and J. Zhang, “HiFlash: Communication-Efficient Hierarchical Federated Learning With Adaptive Staleness Control and Heterogeneity-Aware Client-Edge Association,” IEEE Transactions on Parallel and Distributed Systems, 2023. DOI: 10.1109/TPDS.2023.3238049.
-
-[6] Z. Jiang, Y. Xu, H.-Z. Xu, Z. Wang, and C. Qian, “Heterogeneity-Aware Federated Learning with Adaptive Client Selection and Gradient Compression,” IEEE INFOCOM, 2023. DOI: 10.1109/INFOCOM53939.2023.10229029.
-
-[7] Y. Deng, F. Lyu, T. Xia, Y. Zhou, Y. Zhang, J. Ren, and Y. Yang, “A Communication-Efficient Hierarchical Federated Learning Framework via Shaping Data Distribution at Edge,” IEEE/ACM Transactions on Networking, 32(3), 2600–2615, 2024. DOI: 10.1109/TNET.2024.3363916.
-
-[8] B. Wu, F. Fang, X. Wang, D. Cai, S. Fu, and Z. Ding, “Client Selection and Cost-Efficient Joint Optimization for NOMA-Enabled Hierarchical Federated Learning,” IEEE Transactions on Wireless Communications, 23(10), 14289–14303, 2024. DOI: 10.1109/TWC.2024.3411479.
-
-[9] X. Chen, G. Zhu, Y. Deng, and Y. M. Fang, “Federated Learning Over Multihop Wireless Networks With In-Network Aggregation,” IEEE Transactions on Wireless Communications, 2022. DOI: 10.1109/TWC.2022.3168538.
-
-[10] P. Pinyoanuntapong, P. Janakaraj, R. Balakrishnan, M. Lee, C. Chen, and P. Wang, “EdgeML: Towards Network-Accelerated Federated Learning over Wireless Edge,” Computer Networks, 218, 109396, 2022. DOI: 10.1016/j.comnet.2022.109396.
-
-[11] T. V. Nguyen, N. D. Ho, H. T. Hoang, C. D. Do, and K.-S. Wong, “Toward Efficient Hierarchical Federated Learning Design Over Multi-Hop Wireless Communications Networks,” IEEE Access, 10, 111910–111922, 2022. DOI: 10.1109/ACCESS.2022.3215758.
-
-[12] J. Wu, F. Dong, H. Leung, Z. Zhu, J. Zhou, and S. Drew, “Topology-Aware Federated Learning in Edge Computing: A Comprehensive Survey,” ACM Computing Surveys, 56(10), Article 262, 1–41, 2024. DOI: 10.1145/3659205.
-
-[13] M. Alsofyani, I. Al-Turaiki, and H. Mathkour, “A Fairness Perspective on Client Selection and Aggregation Methods for Non-IID Mitigation in Federated Learning: A Survey,” Electronics, 2026. DOI: 10.3390/electronics15143178.
-
-[14] M. J. Neely, Stochastic Network Optimization with Application to Communication and Queueing Systems, Morgan & Claypool, 2010. DOI: 10.2200/S00271ED1V01Y201006CNT007.
-
-[15] Intel Berkeley Research Lab sensor dataset. Available: https://db.csail.mit.edu/labdata/labdata.html.
-
-[16] UCI Machine Learning Repository, “Human Activity Recognition Using Smartphones.” DOI: 10.24432/C54S4K.
-"""
-    src = src[:src.index("## References")] + refs
     return front + src + "\n"
 
 SOURCE = transform_source()

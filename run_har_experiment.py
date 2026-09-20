@@ -3,11 +3,15 @@ from dataclasses import replace
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT/'src'))
-from wsn_hfl.config import SimConfig
+from wsn_hfl.config import EVALUATION_SEEDS, TUNING_SEEDS, SimConfig
 from wsn_hfl.har import simulate_har
 
-METHODS=('random','resource','utility','proposed')
-SEEDS=(7,11,19,23,29,31,37,41,43,47)
+METHODS=(
+    'random','resource','utility',
+    'random_adaptive','resource_adaptive','utility_adaptive',
+    'proposed_fixed_comp','fedcg_adapted','proposed'
+)
+SEEDS=EVALUATION_SEEDS
 CORRELATIONS=(0.0,0.5,0.9)
 
 
@@ -24,23 +28,50 @@ def write(path,rows):
 
 def main():
     data=ROOT/'data/uci_har'; out=ROOT/'results/uci_har'
-    cfg=replace(SimConfig(),num_clients=30,num_gateways=4,num_classes=6,feature_dim=561,rounds=25,clients_per_round=8,local_steps=1,learning_rate=.02,l2=.001,bandwidth_bps=250000.0,round_slot_s=.25,compression_distortion_weight=.1,relay_budget_j_per_round=.004,relay_pressure_weight=3.0)
+    cfg=replace(SimConfig(),num_clients=30,num_gateways=4,num_classes=6,feature_dim=561,rounds=25,clients_per_round=8,local_steps=1,learning_rate=.02,l2=.001,bandwidth_bps=250000.0,round_slot_s=.25,compression_distortion_weight=.1,relay_budget_j_per_round=.004,relay_pressure_weight=5.0)
     raw=[]; hist=[]; start=time.time()
     for corr in CORRELATIONS:
         for method in METHODS:
             for seed in SEEDS:
                 s,h=simulate_har(method,replace(cfg,seed=seed),data,corr); raw.append(s); hist.extend({'seed':seed,**r} for r in h)
             g=[r for r in raw if r['method']==method and r['correlation']==corr]
-            print(f"corr={corr:.1f} method={method:8s} acc={statistics.fmean(r['accuracy'] for r in g):.4f} macroF1={statistics.fmean(r['macro_f1'] for r in g):.4f} repJS={statistics.fmean(r['representation_js'] for r in g):.4f}")
-    numeric=['accuracy','macro_f1','worst_client_accuracy','p10_client_accuracy','client_accuracy_sd','effective_bits','compressed_bits','raw_selected_bits','mean_selected_hops','mean_selected_etx','energy_j','min_residual_energy_j','max_relay_energy_j','participation_jain','representation_js','class_coverage_js']
+            print(
+                f"corr={corr:.1f} method={method:19s} "
+                f"acc={statistics.fmean(r['accuracy'] for r in g):.4f} "
+                f"macroF1={statistics.fmean(r['macro_f1'] for r in g):.4f} "
+                f"utilityJS={statistics.fmean(r['utility_target_js'] for r in g):.4f}"
+            )
+    numeric=[
+        'accuracy','macro_f1','worst_client_accuracy','p10_client_accuracy','client_accuracy_sd',
+        'effective_bits','compressed_bits','raw_selected_bits','mean_selected_hops','mean_selected_etx',
+        'energy_j','min_residual_energy_j','max_relay_energy_j','participation_jain',
+        'utility_target_js','class_coverage_js'
+    ]
     agg=[]
     for corr in CORRELATIONS:
         for method in METHODS:
-            rows=[r for r in raw if r['method']==method and r['correlation']==corr]; o={'method':method,'correlation':corr,'n':len(rows)}
+            rows=[r for r in raw if r['method']==method and r['correlation']==corr]
+            o={'method':method,'correlation':corr,'n':len(rows)}
             for k in numeric:
                 m,sd,ci=msci([r[k] for r in rows]); o[k+'_mean']=m;o[k+'_sd']=sd;o[k+'_ci95']=ci
             agg.append(o)
     write(out/'raw_summary.csv',raw); write(out/'round_history.csv',hist); write(out/'aggregate_summary.csv',agg)
-    zipfile=data/'har.zip'; manifest={'dataset':'UCI Human Activity Recognition Using Smartphones','doi':'10.24432/C54S4K','source':'https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones','task':'subject-as-client six-class activity recognition','methods':METHODS,'seeds':SEEDS,'correlations':CORRELATIONS,'config':cfg.__dict__,'runtime_s':time.time()-start,'har_zip_sha256':hashlib.sha256(zipfile.read_bytes()).hexdigest()}
+    zipfile=data/'har.zip'
+    manifest={
+        'dataset':'UCI Human Activity Recognition Using Smartphones',
+        'doi':'10.24432/C54S4K',
+        'source':'https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones',
+        'task':'subject-as-client six-class activity recognition',
+        'split_protocol':'within-subject deterministic contiguous-block holdout: one of every five 10-window blocks assigned to test with one adjacent window purged from training at each boundary; approximately 80/20 and overlap-safe',
+        'methods':METHODS,
+        'evaluation_seeds':SEEDS,
+        'tuning_seeds':TUNING_SEEDS,
+        'seed_protocol':'controller parameters tuned only on tuning_seeds; all final comparisons/statistics use disjoint evaluation_seeds',
+        'correlations':CORRELATIONS,
+        'config':cfg.__dict__,'runtime_s':time.time()-start,
+        'har_zip_sha256':hashlib.sha256(zipfile.read_bytes()).hexdigest()
+    }
     (out/'run_manifest.json').write_text(json.dumps(manifest,indent=2,default=list)); print('completed',round(manifest['runtime_s'],2),'s')
+
+
 if __name__=='__main__': main()

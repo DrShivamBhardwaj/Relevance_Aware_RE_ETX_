@@ -1,55 +1,31 @@
-# Intel Berkeley Lab real-WSN validation report
+# Intel Berkeley Lab WSN held-out evaluation report
 
-## Dataset and task
+Final comparisons use 10 evaluation seeds that are disjoint from the 10 tuning seeds. Utility-target JS uses corrected cloud-level client coefficients after both edge and cloud normalization. Temperature-coverage JS is independent of the controller target and measures how the cloud-influence-weighted client temperature distribution matches the pooled training distribution.
 
-The experiment uses the Intel Berkeley Research Lab deployment: 54 Mica2Dot motes with measured temperature, humidity, light, voltage, physical locations, and aggregate directed connectivity probabilities. The original source is `https://db.csail.mit.edu/labdata/labdata.html`.
+| Method | RMSE (C) | MAE (C) | Effective Mbit | Energy (J) | Max relay E (J) | Utility-target JS | Temp.-coverage JS | Jain |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| random | 1.7427 ± 0.0029 | 0.8126 ± 0.0084 | 2.552 | 7.071 | 0.2661 | 0.0642 | 0.00020 | 0.8858 |
+| resource | 1.7473 ± 0.0018 | 0.8369 ± 0.0048 | 2.230 | 6.328 | 0.1378 | 0.1057 | 0.00082 | 0.7006 |
+| utility | 1.7293 ± 0.0015 | 0.7772 ± 0.0051 | 2.687 | 7.380 | 0.3234 | 0.0409 | 0.00416 | 0.5609 |
+| random_adaptive | 1.7543 ± 0.0079 | 0.8272 ± 0.0174 | 0.977 | 3.446 | 0.0963 | 0.0540 | 0.00020 | 0.8858 |
+| resource_adaptive | 1.7285 ± 0.0034 | 0.7638 ± 0.0114 | 0.916 | 3.307 | 0.0902 | 0.0843 | 0.00034 | 0.8187 |
+| utility_adaptive | 1.7422 ± 0.0042 | 0.8003 ± 0.0102 | 1.060 | 3.637 | 0.1127 | 0.0325 | 0.00472 | 0.5832 |
+| proposed_fixed_comp | 1.7369 ± 0.0029 | 0.8048 ± 0.0080 | 2.373 | 6.658 | 0.1430 | 0.0283 | 0.00258 | 0.6752 |
+| fedcg_adapted | 1.7362 ± 0.0023 | 0.7903 ± 0.0065 | 0.980 | 3.454 | 0.0964 | 0.0911 | 0.00027 | 0.8191 |
+| proposed | 1.7348 ± 0.0030 | 0.7790 ± 0.0060 | 0.992 | 3.482 | 0.0969 | 0.0118 | 0.00375 | 0.6627 |
 
-The learning task is **per-mote next-temperature regression**. Each sample uses a 16-step history of temperature, humidity, log-light and voltage (64 input features) to predict the next temperature. Clients are physical motes; four spatially distributed high-connectivity motes (10, 26, 48, 38) are treated as edge gateways. Gateway nodes are not learning clients.
+## Matched-compression interpretation
 
-Measured bidirectional packet-delivery probabilities are converted to ETX-style link costs using `1/(p_uv*p_vu)` when the product is at least 0.01. This is a benchmarking substrate, not a new routing contribution.
+The adaptive controls use the same client-specific Top-k ratio rule as the proposed method while preserving their original random/resource/utility selection logic. proposed_fixed_comp fixes the proposed selector at 50% Top-k. fedcg_adapted is a favorable gradient-diversity/capability comparator inspired by FedCG; it is not represented as an exact reproduction because FedCG does not assume this multi-hop HFL topology.
 
-## Experimental design
+## Ablation
 
-- 48 learning clients after gateway exclusion/data sufficiency filtering.
-- 30 federated rounds, 10 clients selected per round.
-- Four policies: random, resource-only, statistical-utility-only, and proposed cross-layer orchestration.
-- Resource-data correlation levels: 0.0, 0.5, 0.9.
-- 10 paired random seeds per condition.
-- Local model: regularized linear next-temperature predictor; Top-k update sparsification uses error feedback.
-
-## Main result at correlation = 0.9
-
-| Method | RMSE (C) | Effective bits | Energy (J) | Max relay energy (J) | Representation JS | Participation Jain |
+| Variant | RMSE | Effective Mbit | Energy (J) | Max relay E (J) | Utility-target JS | Temp.-coverage JS |
 |---|---:|---:|---:|---:|---:|---:|
-| random | 1.7381 +/- 0.0028 | 2515488 | 6.986 | 0.2736 | 0.0749 | 0.8910 |
-| resource | 1.7451 +/- 0.0030 | 2216534 | 6.298 | 0.1393 | 0.1231 | 0.6993 |
-| utility | 1.7293 +/- 0.0015 | 2692320 | 7.392 | 0.3136 | 0.0561 | 0.5591 |
-| proposed | 1.7417 +/- 0.0052 | 982636 | 3.460 | 0.0976 | 0.0231 | 0.6605 |
+| proposed | 1.7348 | 0.992 | 3.482 | 0.0969 | 0.0118 | 0.00375 |
+| proposed_no_rep | 1.7353 | 1.023 | 3.553 | 0.0990 | 0.0318 | 0.00465 |
+| proposed_fixed_comp | 1.7369 | 2.373 | 6.658 | 0.1430 | 0.0283 | 0.00258 |
+| proposed_age_only | 1.7356 | 0.991 | 3.479 | 0.0973 | 0.0115 | 0.00365 |
+| proposed_no_relay | 1.7359 | 1.044 | 3.601 | 0.1062 | 0.0112 | 0.00359 |
 
-Against the resource-only baseline at correlation 0.9, the proposed method changes:
-
-- RMSE: -0.19% (negative is better).
-- Effective communication burden: -55.67% (negative means fewer effective bits).
-- Total modeled energy: -45.06%.
-- Maximum relay energy: -29.94%.
-- Representation divergence: -81.21%.
-
-## Ablation at correlation = 0.9
-
-| Variant | RMSE (C) | Effective bits | Energy (J) | Rep. JS | Max relay energy (J) |
-|---|---:|---:|---:|---:|---:|
-| proposed | 1.7417 | 982636 | 3.460 | 0.0231 | 0.0976 |
-| proposed_no_rep | 1.7413 | 1006294 | 3.514 | 0.0401 | 0.1023 |
-| proposed_fixed_comp | 1.7333 | 2418802 | 6.763 | 0.0408 | 0.1642 |
-| proposed_age_only | 1.7423 | 983818 | 3.463 | 0.0239 | 0.0967 |
-| proposed_no_relay | 1.7419 | 1039319 | 3.590 | 0.0213 | 0.1089 |
-
-The ablation supports three distinct roles: removing the representation-deficit term roughly doubles representation divergence; fixing compression materially increases communication/energy; removing relay pressure substantially increases relay-energy concentration. Utility-aware staleness has a smaller effect in this dataset because most model updates arrive within low staleness.
-
-## Statistical contrasts
-
-Exact paired sign-flip permutation p-values (10 paired seeds, correlation 0.9) are stored in `results/intel_lab/paired_contrasts.csv`. These tests are reported as evidence about repeatability, not as proof of external validity.
-
-## Evidence boundary
-
-This is a real WSN **dataset/topology/connectivity** validation executed on the implementation. It is not a replay on the original 2004 Mica2Dot hardware. Physical-node radio/MCU measurements remain a separate future validation layer.
+Paired held-out-seed exact sign-flip tests and Holm-adjusted p-values are stored in validation/statistics/statistical_tests.csv.
