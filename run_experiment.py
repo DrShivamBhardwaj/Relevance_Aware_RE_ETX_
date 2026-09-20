@@ -41,7 +41,7 @@ def main():
     parser.add_argument("--quick", action="store_true", help="short smoke experiment")
     parser.add_argument("--correlations", nargs="*", type=float, default=[0.0, 0.5, 0.9])
     parser.add_argument("--methods", nargs="*", default=list(METHODS))
-    parser.add_argument("--seeds", nargs="*", type=int, default=[7, 11, 19])
+    parser.add_argument("--seeds", nargs="*", type=int, default=[7, 11, 19, 23, 29, 31, 37, 41, 43, 47])
     parser.add_argument("--out", default="results")
     args = parser.parse_args()
 

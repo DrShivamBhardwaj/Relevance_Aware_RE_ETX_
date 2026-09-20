@@ -13,3 +13,9 @@ data/intel_lab/mote_locs.txt
 data/intel_lab/connectivity.txt
 data/uci_har/har.zip
 data/uci_har/unpacked/
+# Nexus submission build hygiene
+submission/nexus/latex/*.aux
+submission/nexus/latex/*.log
+submission/nexus/latex/*.out
+submission/nexus/latex/*.pdf
+!submission/nexus/NEXUS_LATEX_PROJECT.zip

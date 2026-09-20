@@ -11,6 +11,11 @@ This file summarizes the evidence base generated for the reconstructed WSN-IoT H
 - Host-hardware execution timing/memory report.
 - 10-seed paired statistical robustness report.
 - Component ablations and parameter-sensitivity grid.
+- Full 360-run HFL controller reproducibility rerun.
+
+## Full optimizer rerun verification
+
+On 2026-09-20 the implementation passed 11/11 automated tests and reran 120 synthetic simulations, 120 Intel optimizer-grid runs, and 120 UCI HAR optimizer-grid runs. The frozen shared point (eta_R,beta,V)=(3,0.1,0.5) was reproduced without changing any tracked numerical result file. Exact commands, timings, hashes, and selected-point metrics are recorded in validation/OPTIMIZER_RERUN_REPORT.md. The current implementation does not include FedProx/FedAdam/FedOpt optimizer-family baselines; this verification concerns the implemented cross-layer controller.
 
 ## Frozen operating point
 

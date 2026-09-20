@@ -1,4 +1,31 @@
-# Statistical-Utility-Aware Cross-Layer Hierarchical Federated Learning for Multi-Hop WSN-IoT Networks
+# Cross-Layer Edge Intelligence for Statistically Representative and Resource-Sustainable Federated Learning in Multi-Hop IoT Sensor Networks
+
+**Abhishek Kumar Pandey***  
+Assistant Professor, School of Computer Science Engineering and Technology, Bennett University  
+ORCID: 0000-0003-3799-9754
+
+**Shivam Bhardwaj**  
+Assistant Professor, United Institute of Management, Prayagraj, India  
+ORCID: 0009-0005-4554-7397
+
+*Corresponding author: abhishek.pandey2@bennett.edu.in  
+Shivam Bhardwaj: shibambhardwaj@gmail.com
+
+## Highlights
+
+- Cross-layer scheduling links learning value to multi-hop network cost
+- Virtual queues reduce persistent exclusion of informative clients
+- Adaptive update fidelity cuts communication by 56-61% on real sensing data
+- Lower model traffic improves low-power wireless delivery and delay
+
+## In brief
+
+Pandey and Bhardwaj show that choosing federated-learning clients only because they are cheap to reach can distort which sensing data shape the model. Their cross-layer controller balances statistical value, update fidelity, multi-hop route burden, and relay energy across real sensing datasets and low-power wireless replay.
+
+## Broader context
+
+Edge intelligence is moving learning closer to the places where data are produced, including buildings, industrial sites, environmental deployments, and personal sensing devices. In these settings, the communication path is part of the learning system rather than a neutral transport layer. A model update from a remote or poorly connected device may consume several relay transmissions, yet that same device may hold observations that are rare elsewhere in the network. Scheduling only the cheapest devices can therefore save energy in the short term while narrowing the data that influence the model. This study treats that tension as a cross-layer design problem. The proposed controller considers learning value, participation history, multi-hop route burden, relay-energy pressure, update compression, and staleness together. The resulting trade-offs are tested with a real wireless-sensor deployment, a real human-activity dataset, controlled synthetic heterogeneity, and low-power wireless-network replay. The broader aim is resource-conscious edge intelligence that remains statistically inclusive when network conditions and data distributions are both uneven.
+
 
 ## Abstract
 
@@ -28,11 +55,11 @@ The principal contributions are:
 
 Client-edge-cloud hierarchical FL was formalized by Liu et al. [1], establishing that intermediate aggregation can reduce cloud communication while changing the convergence/communication trade-off. Resource-aware client selection predates the present work; FedMCCS, for example, uses multiple client criteria in IoT FL [2]. Dynamic client-edge association and resource allocation have also been jointly optimized in HFL [3]. These studies mean that neither hierarchy nor a multicriteria resource score is sufficient as a new contribution.
 
-The synchronization and heterogeneity dimensions are similarly active. HiFlash combines adaptive staleness control with heterogeneity-aware client-edge association [5], while asynchronous HFL variants reduce blocking due to heterogeneous completion times. Communication-efficient HFL has additionally been studied through data-distribution shaping at the edge [7]. Recent HFL formulations jointly optimize client selection, edge scheduling, radio resources, and semi-synchronous operation [8].
+The synchronization and heterogeneity dimensions are similarly active. HiFlash combines adaptive staleness control with heterogeneity-aware client-edge association [5], while communication-efficient HFL has also been studied by shaping data distributions at edge aggregators [7]. Wu et al. jointly consider client selection, edge-side decisions, radio resources, and time-energy cost in NOMA-enabled HFL [8]. These studies leave little room for treating hierarchy, staleness control, or a generic resource score as stand-alone novelty.
 
-A second literature branch shows that biased client selection can affect statistical coverage under non-IID data. Fairness-aware client-selection work introduces long-term participation considerations [4], and recent surveys emphasize that system heterogeneity can restrict the participation or influence of clients that possess valuable but resource-constrained data [9]. Adaptive compression also overlaps with statistical heterogeneity: FedCG-type methods combine representative client selection with capability-aware gradient compression [6].
+A second literature branch shows that biased client selection can affect statistical coverage under non-IID data. Huang et al. explicitly balance effective participation and fairness when clients are volatile [4], while FedCG combines representative client selection with adaptive gradient compression [6]. Recent fairness analyses likewise stress that system heterogeneity can restrict the participation or influence of clients whose data remain statistically useful [13].
 
-The present study therefore does **not** claim novelty for ETX routing, resource-aware selection, compression, or staleness individually. Its contribution is their cross-layer coupling with **statistical representation and relay-energy externality** in a multi-hop WSN-HFL setting, evaluated with both real sensing data and measured WSN connectivity.
+Multi-hop FL itself is also established. Prior work has considered in-network aggregation with routing and spectrum allocation [9], routing-aware acceleration on physical wireless-edge testbeds [10], and two-hop HFL with adaptive grouping and resource allocation [11]; a recent survey organizes these and related topology-aware designs [12]. The present study therefore does **not** claim novelty for ETX routing, multi-hop FL, resource-aware selection, compression, or staleness individually. Its contribution is the coupling of learning value and participation history with **statistical representation and relay-energy externality** in a multi-hop WSN-HFL setting, evaluated with real sensing data and measured WSN connectivity.
 
 ## 3. System Model and Problem Definition
 
@@ -58,17 +85,19 @@ E_r^{\mathrm{cum}}(T)=\sum_{t=1}^{T}\sum_i x_i(t)\mathbf 1[r\in\mathcal P_i(t)]E
 
 The learning problem is therefore not equivalent to selecting the clients with minimum route cost. A statistically informative client can have a poor route, and repeatedly suppressing that client can bias long-run aggregation influence. The controller must balance statistical utility, communication cost, relay-energy depletion, and staleness.
 
+[[FIGURE:0]]
+
 ## 4. Cross-Layer Statistical-Utility-Aware HFL
 
 ### 4.1 Statistical utility
 
-For each client, the controller maintains a privacy-compatible learning-value estimate. Conceptually,
+For each client, the controller maintains a learning-value estimate derived from model-side metadata. Conceptually,
 
 \[
 U_i(t)=\alpha_gG_i(t)+\alpha_lL_i(t)+\alpha_hH_i(t),
 \]
 
-where \(G_i\) represents update novelty, \(L_i\) learning progress/difficulty, and \(H_i\) an optional distribution-rarity term when available. In the executed implementation, the **pre-selection** score uses normalized current local loss and the exponentially smoothed utility history; update novelty and observed local improvement become available only after a client trains and are then used to update that history and to modulate staleness weighting. Raw client examples are not exposed to the scheduler.
+where \(G_i\) represents update novelty, \(L_i\) learning progress/difficulty, and \(H_i\) an optional distribution-rarity term when available. In the executed implementation, the **pre-selection** score uses normalized current local loss and the exponentially smoothed utility history; update novelty and observed local improvement become available only after a client trains and are then used to update that history and to modulate staleness weighting. Raw client examples remain local, although scalar loss/utility metadata are reported to the scheduler; this is not a formal privacy guarantee.
 
 The normalized desired statistical participation target is
 
@@ -214,6 +243,8 @@ The Intel Berkeley Research Lab dataset contains readings and deployment informa
 
 The task is per-mote next-temperature regression. A 16-step history of temperature, humidity, log-light, and voltage forms 64 input features. Data are partitioned temporally within each mote. The experiment uses 30 federated rounds, 10 clients per round, three resource-data correlation settings, and 10 paired seeds.
 
+[[FIGURE:1]]
+
 ### 5.3 UCI Human Activity Recognition
 
 The UCI HAR dataset contains smartphone inertial measurements from 30 subjects performing six activities. Each subject is treated as one FL client. The original train and test files are recombined and then split 80/20 within each subject using a fixed partition seed, preserving client identity and providing local held-out evaluation. A regularized linear softmax model is trained over 561 standardized features. Experiments use 25 rounds, eight clients per round, three resource-data correlation settings, and 10 paired seeds.
@@ -251,6 +282,8 @@ At \(c=0.9\), the Intel WSN experiment gives mean ± 95% confidence interval ove
 
 Relative to resource-only scheduling, the proposed controller reduces expected communication by 55.67%, total modeled energy by 45.06%, maximum relay energy by 29.94%, and representation divergence by 81.21%. MAE improves by 3.96%; these five improvements remain significant after Holm correction (Holm-adjusted \(p=0.0117\)). The RMSE difference is small (-0.19%) and is not statistically significant (exact paired sign-flip and Holm-adjusted \(p=0.2246\)); it is therefore described as comparable rather than superior. Utility-only obtains the lowest RMSE but at markedly higher communication, total energy, and relay burden.
 
+[[FIGURE:2]]
+
 ### 6.3 UCI HAR results
 
 At \(c=0.9\), mean ± 95% confidence interval over 10 paired seeds is:
@@ -264,15 +297,21 @@ At \(c=0.9\), mean ± 95% confidence interval over 10 paired seeds is:
 
 Against resource-only scheduling, accuracy improves by 3.08 percentage points, Macro-F1 by 3.36 points, worst-client accuracy by 3.55 points, expected communication decreases by 60.75%, total modeled energy decreases by 56.38%, and representation divergence decreases by 79.97%. These differences remain significant after Holm correction (Holm-adjusted \(p=0.0156\)). However, maximum relay energy increases from 0.458 J to 1.415 J, a 209.28% increase relative to resource-only (Holm-adjusted \(p=0.0156\)). This negative trade-off is retained explicitly: resource-only scheduling minimizes the relay hotspot by strongly favoring cheap paths, whereas the proposed controller spends more relay energy to preserve statistical participation while still using substantially less relay energy than random or utility-only scheduling.
 
+[[FIGURE:3]]
+
 ### 6.4 Ablation
 
 On Intel WSN, removing the representation-deficit term increases representation divergence from 0.0231 to 0.0401. Replacing adaptive compression with fixed 50% compression increases traffic from 0.983 M to 2.419 M bits and energy from 3.460 J to 6.763 J. Removing relay pressure increases maximum relay energy from 0.0976 J to 0.1089 J. Utility-aware staleness has a smaller effect in this dataset because most updates arrive with limited staleness.
 
 On UCI HAR, removing the representation queue increases representation divergence from 0.0327 to 0.0665. Fixed compression reduces accuracy to 79.12% and increases traffic to 33.62 M bits. Removing relay pressure increases maximum relay energy from 1.415 J to 1.654 J. These ablations show that representation control, adaptive update fidelity, and relay pressure serve distinct functions.
 
+[[FIGURE:4]]
+
 ### 6.5 ns-3 communication validation
 
 Under the primary hop-equivalent dense-nominal condition, resource-only traffic obtains an 86.49% report delivery ratio with 37.45 ms mean delivered-report delay. The final proposed traffic profile obtains 99.47% delivery with 12.02 ms mean delay. At the scaled 24-sensor nominal condition, the proposed profile also remains markedly more deliverable because its compressed updates place substantially less offered load on the LR-WPAN channel. These results validate the communication consequences of the learned traffic profile, but they do not mean the Python HFL optimization itself is executed inside ns-3.
+
+[[FIGURE:5]]
 
 ### 6.6 Optimizer rerun verification
 
@@ -284,54 +323,66 @@ On the Apple M1 host used for the repository execution record, the explicit 10-s
 
 The experiments support the central premise that network-efficient clients and statistically valuable clients are not interchangeable. Resource-only scheduling consistently lowers some route costs, but it also produces substantially higher representation divergence in the real-data experiments. Utility-only selection has the opposite failure mode: it can overuse expensive routes and relays. The proposed controller operates between these extremes by introducing explicit pressure from participation deficit, route cost, relay queues, and compression distortion.
 
+[[FIGURE:6]]
+
 The Intel experiment is particularly useful because the proposed controller does not win the lowest regression error. Utility-only selection achieves slightly lower RMSE, but at substantially higher communication, energy, and relay burden. This prevents an inappropriate “best on every metric” claim and motivates a Pareto interpretation. In contrast, UCI HAR exhibits a regime in which the systems-learning coupling improves both learning quality and overall communication/energy efficiency, because the representation deficit prevents resource-only scheduling from repeatedly concentrating on a restricted client subset. The exception is maximum relay energy: resource-only scheduling achieves the lowest relay hotspot (0.458 J versus 1.415 J for the proposed controller). This is not contradictory to the objective; it exposes the cost of preserving statistically valuable participation instead of always choosing the cheapest routes.
 
 The sensitivity study further shows that the relay-pressure coefficient and compression-distortion coefficient are genuine control parameters. Excessively high compression-distortion penalties increase traffic and energy, while too little relay pressure creates hotspot burden. A common operating point \((\eta_R,\beta)=(3,0.1)\) is frozen across datasets to avoid dataset-specific tuning.
 
 ## 8. Limitations
 
-The current evidence is stronger than the original simulation-only manuscript but remains incomplete in several respects. First, the host implementation runs on an Apple M1 computer; no physical IEEE 802.15.4 sensor mote was available during the experiment, so MCU training time, radio current draw, RSSI/LQI, and hardware PDR are not claimed. Second, the Intel dataset provides real historical connectivity but the FL process itself is a replay over those measurements rather than execution on the original Mica2Dot nodes. Third, the local models are intentionally lightweight linear predictors/classifiers; larger TinyML models should be tested before making model-complexity claims. Fourth, the theory now provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work. Fifth, the experimental baselines isolate scheduling choices within one implementation rather than reproducing every recent external HFL system. The current code also does not implement FedProx, FedAdam/FedOpt, or server-momentum variants, so the reported optimizer rerun should not be interpreted as an optimizer-family comparison. Direct re-implementations of stronger literature baselines under the same WSN budget remain an important next comparison.
+The current evidence is stronger than the original simulation-only manuscript but remains incomplete in several respects. First, the host implementation runs on an Apple M1 computer; no physical IEEE 802.15.4 sensor mote was available during the experiment, so MCU training time, radio current draw, RSSI/LQI, and hardware PDR are not claimed. Second, the Intel dataset provides real historical connectivity but the FL process itself is a replay over those measurements rather than execution on the original Mica2Dot nodes. Third, the local models are intentionally lightweight linear predictors/classifiers; larger TinyML models should be tested before making model-complexity claims. Fourth, the theory provides exact finite-horizon virtual-queue bounds, a one-step drift inequality, finite-set compression optimality, top-k score optimality, and error-feedback conservation; however, a complete non-convex convergence proof jointly covering biased selection, Top-k error feedback, hierarchy, packet loss, and staleness remains future work. Fifth, the experimental baselines isolate scheduling choices within one implementation rather than reproducing every recent external HFL system; direct re-implementations of stronger literature baselines remain an important next comparison. Fifth, the experimental baselines isolate scheduling choices within one implementation rather than reproducing every recent external HFL system. The current code also does not implement FedProx, FedAdam/FedOpt, or server-momentum variants, so the reported optimizer rerun should not be interpreted as an optimizer-family comparison. Direct re-implementations of stronger literature baselines under the same WSN budget remain an important next comparison.
 
 ## 9. Conclusion
 
 This study reframes communication-efficient HFL for WSN-IoT systems as a joint statistical-representation and network-resource problem. Instead of introducing another routing metric, the proposed controller uses route state as an input to learning orchestration and coordinates client participation, update fidelity, relay pressure, and staleness-aware aggregation. Real WSN data, real IoT sensing data, repeated statistical tests, ablations, sensitivity analysis, and ns-3 LR-WPAN replay show that the approach can substantially reduce communication and total modeled energy while preserving or improving learning quality and reducing representation mismatch. Relay-hotspot energy is also reduced in the Intel WSN experiment and relative to random/utility scheduling on UCI HAR, but it is not universally lower than the resource-only baseline. The remaining step for a complete systems paper is physical sensor-node validation and a full convergence treatment of the coupled learning dynamics.
 
-## References used for positioning
+## Resource availability
 
-[1] L. Liu, J. Zhang, S. H. Song, and K. B. Letaief, “Client-Edge-Cloud Hierarchical Federated Learning,” IEEE ICC, 2020. DOI: 10.1109/ICC40277.2020.9148862.
+### Lead contact
 
-[2] A. AbdulRahman et al., “FedMCCS: Multicriteria Client Selection Model for Optimal IoT Federated Learning,” IEEE Internet of Things Journal. DOI: 10.1109/JIOT.2020.3028742.
+Requests concerning the manuscript should be directed to the corresponding author, Abhishek Kumar Pandey (abhishek.pandey2@bennett.edu.in).
 
-[3] Dynamic edge association/resource allocation work in hierarchical FL, IEEE JSAC. DOI: 10.1109/JSAC.2021.3118401.
+### Materials availability
 
-[4] Long-term fairness-aware client selection in FL, IEEE Internet of Things Journal. DOI: 10.1109/JIOT.2022.3172113.
+This computational study did not generate new physical materials.
 
-[5] Q. Wu, X. Chen, T. Ouyang et al., “HiFlash: Communication-Efficient Hierarchical Federated Learning With Adaptive Staleness Control and Heterogeneity-Aware Client-Edge Association,” IEEE TPDS, 2023. DOI: 10.1109/TPDS.2023.3238049.
+### Data and code availability
 
-[6] Heterogeneity-aware representative client selection with adaptive gradient compression, IEEE INFOCOM 2023. DOI: 10.1109/INFOCOM53939.2023.10229029.
+Code, experiment manifests, processed outputs, statistical analyses, and the frozen manuscript figures are available in the public project repository: https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_/tree/wsn-hfl-crosslayer-final. The Intel Berkeley Research Lab sensor data and UCI Human Activity Recognition Using Smartphones data are publicly available from their original providers. The repository records the exact seeds and frozen controller parameters used for the reported results; the full 360-run reproducibility rerun, including hashes and host timings, is documented in validation/OPTIMIZER_RERUN_REPORT.md.
 
-[7] Y. Deng, F. Lyu, T. Xia et al., “A Communication-Efficient Hierarchical Federated Learning Framework via Shaping Data Distribution at Edge,” IEEE/ACM Transactions on Networking, 2024. DOI: 10.1109/TNET.2024.3363916.
 
-[8] Client selection, edge scheduling, and resource allocation in semi-synchronous HFL, IEEE Transactions on Wireless Communications, 2024. DOI: 10.1109/TWC.2024.3411479.
+## References
 
-[9] M. Alsofyani, I. Al-Turaiki, and H. Mathkour, “A Fairness Perspective on Client Selection and Aggregation Methods for Non-IID Mitigation in Federated Learning: A Survey,” Electronics, 2026. DOI: 10.3390/electronics15143178.
+[1] L. Liu, J. Zhang, S. H. Song, and K. B. Letaief, “Client-Edge-Cloud Hierarchical Federated Learning,” IEEE International Conference on Communications, 2020. DOI: 10.1109/ICC40277.2020.9148862.
 
-[10] Intel Berkeley Research Lab sensor dataset: https://db.csail.mit.edu/labdata/labdata.html.
+[2] S. AbdulRahman, H. Tout, A. Mourad, and C. Talhi, “FedMCCS: Multicriteria Client Selection Model for Optimal IoT Federated Learning,” IEEE Internet of Things Journal, 8, 4723–4735, 2021. DOI: 10.1109/JIOT.2020.3028742.
 
-[11] UCI Human Activity Recognition Using Smartphones dataset. DOI: 10.24432/C54S4K.
+[3] W. Y. B. Lim, J. S. Ng, Z. Xiong, D. Niyato, C. Miao, and D. I. Kim, “Dynamic Edge Association and Resource Allocation in Self-Organizing Hierarchical Federated Learning Networks,” IEEE Journal on Selected Areas in Communications, 39(12), 3640–3653, 2021. DOI: 10.1109/JSAC.2021.3118401.
 
-[12] M. J. Neely, *Stochastic Network Optimization with Application to Communication and Queueing Systems*, Morgan & Claypool, 2010. DOI: 10.2200/S00271ED1V01Y201006CNT007.
+[4] T. Huang, W. Lin, L. Shen, K. Li, and A. Y. Zomaya, “Stochastic Client Selection for Federated Learning With Volatile Clients,” IEEE Internet of Things Journal, 9(20), 20055–20070, 2022. DOI: 10.1109/JIOT.2022.3172113.
 
-## Final manuscript figure set
+[5] X. Chen, T. Ouyang, Z. Zhou, X. Zhang, S. Yang, and J. Zhang, “HiFlash: Communication-Efficient Hierarchical Federated Learning With Adaptive Staleness Control and Heterogeneity-Aware Client-Edge Association,” IEEE Transactions on Parallel and Distributed Systems, 2023. DOI: 10.1109/TPDS.2023.3238049.
 
-The manuscript must use **only** the following user-approved final figures. Superseded figure versions are not to be reinserted.
+[6] Z. Jiang, Y. Xu, H.-Z. Xu, Z. Wang, and C. Qian, “Heterogeneity-Aware Federated Learning with Adaptive Client Selection and Gradient Compression,” IEEE INFOCOM, 2023. DOI: 10.1109/INFOCOM53939.2023.10229029.
 
-1. `figures/final/01_network_topology.png` — WSN deployment/topology illustration.
-2. `figures/final/02_system_architecture.png` — cloud–edge–cluster-head/relay–sensor/client architecture.
-3. `figures/final/03_ns3_validation.png` — ns-3.47 LR-WPAN validation.
-4. `figures/final/04_ablation.png` — Intel and UCI HAR ablation results.
-5. `figures/final/05_learning_communication_tradeoff.png` — Intel/UCI HAR learning–communication trade-off.
-6. `figures/final/06_uci_har_results.png` — UCI HAR comparative results.
-7. `figures/final/07_intel_berkeley_results.png` — Intel Berkeley Lab comparative results.
+[7] Y. Deng, F. Lyu, T. Xia, Y. Zhou, Y. Zhang, J. Ren, and Y. Yang, “A Communication-Efficient Hierarchical Federated Learning Framework via Shaping Data Distribution at Edge,” IEEE/ACM Transactions on Networking, 32(3), 2600–2615, 2024. DOI: 10.1109/TNET.2024.3363916.
 
-Figure numbers/captions are intentionally excluded from the PNG artwork and must be typeset explicitly in the manuscript. All seven PNG files are stored with 600 dpi metadata.
+[8] B. Wu, F. Fang, X. Wang, D. Cai, S. Fu, and Z. Ding, “Client Selection and Cost-Efficient Joint Optimization for NOMA-Enabled Hierarchical Federated Learning,” IEEE Transactions on Wireless Communications, 23(10), 14289–14303, 2024. DOI: 10.1109/TWC.2024.3411479.
+
+[9] X. Chen, G. Zhu, Y. Deng, and Y. M. Fang, “Federated Learning Over Multihop Wireless Networks With In-Network Aggregation,” IEEE Transactions on Wireless Communications, 2022. DOI: 10.1109/TWC.2022.3168538.
+
+[10] P. Pinyoanuntapong, P. Janakaraj, R. Balakrishnan, M. Lee, C. Chen, and P. Wang, “EdgeML: Towards Network-Accelerated Federated Learning over Wireless Edge,” Computer Networks, 218, 109396, 2022. DOI: 10.1016/j.comnet.2022.109396.
+
+[11] T. V. Nguyen, N. D. Ho, H. T. Hoang, C. D. Do, and K.-S. Wong, “Toward Efficient Hierarchical Federated Learning Design Over Multi-Hop Wireless Communications Networks,” IEEE Access, 10, 111910–111922, 2022. DOI: 10.1109/ACCESS.2022.3215758.
+
+[12] J. Wu, F. Dong, H. Leung, Z. Zhu, J. Zhou, and S. Drew, “Topology-Aware Federated Learning in Edge Computing: A Comprehensive Survey,” ACM Computing Surveys, 56(10), Article 262, 1–41, 2024. DOI: 10.1145/3659205.
+
+[13] M. Alsofyani, I. Al-Turaiki, and H. Mathkour, “A Fairness Perspective on Client Selection and Aggregation Methods for Non-IID Mitigation in Federated Learning: A Survey,” Electronics, 2026. DOI: 10.3390/electronics15143178.
+
+[14] M. J. Neely, Stochastic Network Optimization with Application to Communication and Queueing Systems, Morgan & Claypool, 2010. DOI: 10.2200/S00271ED1V01Y201006CNT007.
+
+[15] Intel Berkeley Research Lab sensor dataset. Available: https://db.csail.mit.edu/labdata/labdata.html.
+
+[16] UCI Machine Learning Repository, “Human Activity Recognition Using Smartphones.” DOI: 10.24432/C54S4K.
+

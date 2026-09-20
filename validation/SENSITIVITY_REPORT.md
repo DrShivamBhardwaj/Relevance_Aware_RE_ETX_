@@ -47,3 +47,7 @@ At the frozen setting (`eta_R=3`, `beta=0.1`):
 - UCI HAR vs resource-only: accuracy `+3.08` percentage points, Macro-F1 `+3.36` points, communication `-60.75%`, energy `-56.38%`, representation JS `-79.97%`. The resource-only baseline retains lower max relay energy on HAR; the proposed method instead occupies a broader learning/communication/representation Pareto point.
 
 This trade-off must be preserved in the manuscript; the method is not claimed to dominate every pure networking metric.
+
+## Independent full rerun verification
+
+On 2026-09-20 the complete implemented controller campaign was rerun from base commit 21325708792fe079db24eed92c9fc16c83520621 after 11/11 automated tests passed. The Intel and HAR 12-point grids were each executed over all 10 frozen seeds (120 runs per dataset), and the synthetic 4-policy × 3-correlation × 10-seed reference campaign was rerun separately. The rerun reproduced the same shared point (eta_R,beta)=(3,0.1) and left the tracked result CSVs unchanged. Full evidence is in validation/OPTIMIZER_RERUN_REPORT.md.

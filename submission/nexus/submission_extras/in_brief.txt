@@ -1,0 +1,1 @@
+Pandey and Bhardwaj show that choosing federated-learning clients only because they are cheap to reach can distort which sensing data shape the model. Their cross-layer controller balances statistical value, update fidelity, multi-hop route burden, and relay energy across real sensing datasets and low-power wireless replay.

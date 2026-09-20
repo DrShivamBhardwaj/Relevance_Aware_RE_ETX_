@@ -72,7 +72,7 @@ Short validation run:
 .venv/bin/python run_experiment.py --quick
 ~~~
 
-Full reference run:
+Full reference run (the default seed list is the frozen 10-seed set):
 
 ~~~bash
 .venv/bin/python run_experiment.py
@@ -121,6 +121,17 @@ The current code is a research prototype, not a claim that the final algorithm i
 4. convergence / bounded-drift analysis for the coupled selection, compression and staleness dynamics.
 
 The implementation intentionally keeps the novelty claim narrower than “ETX-aware FL”: the primary candidate contribution is **route-level learning-value orchestration with representation and relay-energy constraints**.
+## Full optimizer rerun verification (2026-09-20)
+
+The complete implemented HFL controller campaign was rerun from base commit `21325708792fe079db24eed92c9fc16c83520621` after manuscript assembly. The codebase passed **11/11 tests** before execution. The reproducibility campaign contained:
+
+- **120 synthetic simulations**: 4 policies × 3 correlation levels × 10 seeds;
+- **120 Intel Berkeley Lab optimizer runs**: 12 `(eta_R, beta)` settings × 10 seeds;
+- **120 UCI HAR optimizer runs**: 12 `(eta_R, beta)` settings × 10 seeds;
+- **360 HFL simulations total**.
+
+The rerun reproduced the frozen cross-dataset operating point `relay_pressure_weight=3.0`, `compression_distortion_weight=0.10`, `V=0.5`, and left all tracked numerical result files unchanged. This repository does not currently implement FedProx/FedAdam/FedOpt optimizer-family baselines; “optimizer rerun” refers to the implemented cross-layer HFL controller and its hyperparameter grid. See `validation/OPTIMIZER_RERUN_REPORT.md` for commands, timings, hashes, and exact selected-point metrics.
+
 ## Executed ns-3.47 validation
 
 An independent IEEE 802.15.4/LR-WPAN validation has now been executed with ns-3.47.

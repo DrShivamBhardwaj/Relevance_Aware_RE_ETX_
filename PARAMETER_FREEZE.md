@@ -17,3 +17,5 @@ The two-dimensional 10-seed grid is stored in:
 One-factor sensitivity tables are stored in each dataset result directory as `sensitivity_summary.csv`.
 
 The selected point is not the single-metric optimum on every dataset. It is a cross-dataset Pareto operating point: aggressive compression substantially reduces communication/energy, relay pressure materially reduces hotspot energy, and learning/representation quality remains competitive. This parameter choice should be frozen before final manuscript comparisons to avoid tuning separately against each baseline or dataset.
+
+A full 2026-09-20 reproducibility rerun (360 HFL simulations after 11/11 tests) independently reproduced this frozen operating point without changing any tracked numerical result file; see validation/OPTIMIZER_RERUN_REPORT.md.
