@@ -1,0 +1,14 @@
+{
+  "status": "MANUALLY_VERIFIED_AUTHORITATIVE_FINAL",
+  "source_file": "/Users/shivambhardwaj/Downloads/NEXUS_.docx",
+  "sha256": "efdc35fe4fe5c75c13b77f858f25404c83c9cf55018d490859853da7aa7e29c0",
+  "bytes": 8685086,
+  "canonical_repository_copies": [
+    "NEXUS_SUBMISSION_READY_FINAL.docx",
+    "submission/nexus/NEXUS_SUBMISSION_READY_FINAL.docx",
+    "submission/nexus/NEXUS_FINAL_MANUSCRIPT.docx"
+  ],
+  "desktop_archive_copy": "/Users/shivambhardwaj/Desktop/PhD/abhishek sir ppr/original/paper2/NEXUS_FINAL_MANUSCRIPT.docx",
+  "policy": "Do not regenerate, rewrite, normalize, or replace this DOCX without explicit author instruction. Preserve exact bytes when replicating the final manuscript.",
+  "tracked_insertions_present_in_author_file": true
+}
