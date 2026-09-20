@@ -309,3 +309,17 @@ This study reframes communication-efficient HFL for WSN-IoT systems as a joint s
 [11] UCI Human Activity Recognition Using Smartphones dataset. DOI: 10.24432/C54S4K.
 
 [12] M. J. Neely, *Stochastic Network Optimization with Application to Communication and Queueing Systems*, Morgan & Claypool, 2010. DOI: 10.2200/S00271ED1V01Y201006CNT007.
+
+## Final manuscript figure set
+
+The manuscript must use **only** the following user-approved final figures. Superseded figure versions are not to be reinserted.
+
+1. `figures/final/01_network_topology.png` — WSN deployment/topology illustration.
+2. `figures/final/02_system_architecture.png` — cloud–edge–cluster-head/relay–sensor/client architecture.
+3. `figures/final/03_ns3_validation.png` — ns-3.47 LR-WPAN validation.
+4. `figures/final/04_ablation.png` — Intel and UCI HAR ablation results.
+5. `figures/final/05_learning_communication_tradeoff.png` — Intel/UCI HAR learning–communication trade-off.
+6. `figures/final/06_uci_har_results.png` — UCI HAR comparative results.
+7. `figures/final/07_intel_berkeley_results.png` — Intel Berkeley Lab comparative results.
+
+Figure numbers/captions are intentionally excluded from the PNG artwork and must be typeset explicitly in the manuscript. All seven PNG files are stored with 600 dpi metadata.

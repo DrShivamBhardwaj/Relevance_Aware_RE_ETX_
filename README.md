@@ -165,3 +165,7 @@ Detailed reports:
 - `PUBLICATION_TABLES.md` — frozen main/supplementary result selection and manuscript-safe claims
 - `tables/TABLE_FREEZE_MANIFEST.json` — source/generated table hashes and frozen headline effects
 - `MANUSCRIPT_RECONSTRUCTION.md`
+
+## Final manuscript figures
+
+The authoritative manuscript image set is `figures/final/`. It contains exactly seven user-approved 600-dpi PNG files. Previous manuscript/publication figure copies were removed from `figures/` to prevent accidental reuse. The packaged set is `figures/FINAL_MANUSCRIPT_FIGURES.zip`.

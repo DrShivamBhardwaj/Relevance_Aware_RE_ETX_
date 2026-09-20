@@ -1,0 +1,12 @@
+FINAL MANUSCRIPT FIGURE SET — USER APPROVED
+Only these seven images are to be used in the manuscript.
+Captions remain outside the image and must be written explicitly in the manuscript.
+All PNG files carry 600 dpi metadata.
+
+01_network_topology.png
+02_system_architecture.png
+03_ns3_validation.png
+04_ablation.png
+05_learning_communication_tradeoff.png
+06_uci_har_results.png
+07_intel_berkeley_results.png
