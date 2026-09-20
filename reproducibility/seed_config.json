@@ -1,0 +1,11 @@
+{
+  "tuning_seeds": [7, 11, 19, 23, 29, 31, 37, 41, 43, 47],
+  "evaluation_seeds": [53, 59, 61, 67, 71, 73, 79, 83, 89, 97],
+  "seed_policy": "Controller parameters are selected only on tuning_seeds. Final real-data comparisons, paired inference, and the control-plane audit use only evaluation_seeds.",
+  "correlations": [0.0, 0.5, 0.9],
+  "frozen_operating_point": {
+    "relay_pressure_weight": 5.0,
+    "compression_distortion_weight": 0.1,
+    "drift_v": 0.5
+  }
+}

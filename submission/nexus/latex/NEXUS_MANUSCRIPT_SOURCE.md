@@ -1,4 +1,4 @@
-# Cross-Layer Utility-Aware Hierarchical Federated Learning for Multi-Hop IoT Sensor Networks
+# Energy-Information Co-Design for Resource-Bounded Edge Intelligence: A Systems-Learning Federated Framework
 
 **Abhinandan Tripathi¹, Vijay Kumar Tiwari², Mohd. Arif³, Abhishek Kumar Pandey⁴*, Shivam Bhardwaj⁵**
 
@@ -22,42 +22,47 @@ All authors contributed equally to this work.
 
 ## Highlights
 
-- Two-level cloud influence is tracked after edge and cloud normalization
-- Held-out evaluation separates parameter tuning from final inference
-- Matched controls isolate adaptive compression from client scheduling
-- Utility-target alignment improves at an explicit network-cost trade-off
+- Network state is exposed directly to federated learning orchestration
+- Control-plane signaling is measured rather than assumed negligible
+- Matched controls reveal Pareto trade-offs between accuracy and relay cost
+- ns-3 replay links offered-load reduction to packet-network behavior
 
 ## In brief
 
-Tripathi et al. study how hierarchical federated-learning decisions change when model updates traverse multi-hop sensor routes. Their controller coordinates utility-target participation, update fidelity, relay pressure, and staleness, and is evaluated with held-out seeds, compression-matched controls, real sensing data, and low-power wireless replay.
+Tripathi et al. frame federated edge intelligence as an energy-information co-design problem. Their controller coordinates utility-target participation, update fidelity, relay pressure, and staleness while explicitly pricing pre-selection signaling. Held-out real-data experiments and ns-3 low-power wireless replay expose workload-dependent Pareto trade-offs rather than universal dominance.
 
 ## Broader context
 
-Edge intelligence increasingly supports environmental monitoring, infrastructure observation, industrial sensing, and personal activity recognition, often where communication capacity and battery energy are limited. In these deployments, selecting a learning client also selects the route and relays that must transport its model update. The resulting design problem is not simply to minimize traffic: inexpensive clients can dominate training while remote or difficult-to-reach clients contribute less often. This study develops and audits a cross-layer controller that makes that trade-off explicit. Importantly, the revised experiments separate parameter tuning from held-out evaluation and compare selection policies under matched compression. The evidence therefore supports a Pareto interpretation rather than a claim of universal network or statistical superiority. Such transparent trade-offs are relevant when distributed intelligence must operate over low-power sensing infrastructure without overstating sustainability or population-representativeness claims.
+Resource-bounded edge intelligence increasingly supports environmental sensing, infrastructure observation, wearable analytics, and industrial monitoring. In these systems, selecting a learning client is also a physical resource-allocation decision because the selected update determines network load, relay burden, and delay. This study develops a systems-learning co-design framework that exposes multi-hop network state directly to federated orchestration. The evaluation deliberately separates learning gains from network costs, prices control metadata instead of treating scheduler information as free, and distinguishes open-loop packet replay from closed-loop co-simulation. The resulting evidence is best interpreted as a configurable Pareto mechanism for resource-bounded distributed AI rather than a universal efficiency or sustainability claim.
 
 ## Abstract
 
-Hierarchical federated learning (HFL) reduces repeated cloud communication through intermediate edge aggregation, but in multi-hop wireless sensor and Internet of Things networks the learning decision also determines which routes and relays carry model traffic. This coupling can place statistically useful clients behind costly paths and can make apparent communication gains depend more on update compression than on client scheduling. We develop a cross-layer HFL controller that combines a utility-target participation-deficit queue, route and residual-energy cost, relay-pressure feedback, adaptive Top-k sparsification with error feedback, and utility-aware staleness weighting. The revised evaluation corrects hierarchical influence accounting by applying both within-edge and cloud-level aggregation coefficients, separates 10 tuning seeds from 10 held-out evaluation seeds, uses an overlap-safe blocked split for UCI HAR, and adds compression-matched controls plus a FedCG-inspired gradient-diversity comparator. On Intel Berkeley Lab WSN data at strong resource-data correlation, the proposed controller achieves 1.7348 °C RMSE with 0.992 Mbit effective traffic; its learning and systems metrics are statistically comparable to the FedCG-adapted comparator, while utility-target influence divergence is 87.1% lower. A resource-adaptive control obtains lower RMSE and 8.3% less traffic, showing that the proposed method is not a universal networking optimum. On blocked UCI HAR, the proposed controller reaches 88.67% accuracy, 1.16 percentage points above resource-adaptive and 1.07 points above FedCG-adapted, but uses 26.8% and 20.9% more traffic, respectively. Independent temperature- and class-coverage metrics do not establish universal distributional superiority. Adaptive update fidelity is the dominant traffic-saving mechanism: relative to the same proposed selector at fixed 50% Top-k, it cuts traffic by 58.2% on Intel and 64.0% on HAR. ns-3.47 IEEE 802.15.4 replay confirms that the lower synthetic offered load materially improves delivery under contention. The evidence therefore supports a Pareto-oriented cross-layer controller rather than claims of statistical representativeness or resource sustainability.
+Resource-bounded edge intelligence is governed by a coupling that conventional learning-only optimization often hides: selecting a client determines not only which local information influences the model, but also how many bits must traverse the network, which routes and relays carry them, and whether delayed updates remain useful. We formulate this interaction as a systems-learning co-design problem and develop a hierarchical federated controller that exposes multi-hop network state directly to learning orchestration. The controller coordinates utility-target participation, route and residual-energy cost, relay-pressure feedback, adaptive Top-k update fidelity with error feedback, and utility-aware staleness weighting. The evaluation separates parameter tuning from held-out inference, corrects two-level aggregation-influence accounting, uses an overlap-safe blocked protocol for UCI HAR, and adds compression-matched controls plus a FedCG-adapted comparator. On Intel Berkeley Lab sensing data at strong resource-data correlation, the proposed controller achieves 1.7348 °C RMSE with 0.992 Mbit of model-update traffic. Resource-adaptive obtains lower RMSE and lower network cost, whereas the proposed controller reduces utility-target divergence by 86.0%, exposing a genuine Pareto trade-off rather than universal dominance. On blocked UCI HAR, the proposed method reaches 88.67% accuracy, 1.16 percentage points above resource-adaptive, while model-update traffic increases by 26.8% and maximum relay energy by 628.9%. Adaptive update fidelity reduces model-update traffic by 58.2% on Intel and 64.0% on HAR relative to the same scheduler at fixed 50% Top-k. A conservative control-plane audit further shows that metadata cost is workload dependent: ETX-weighted pre-selection signaling is 1.219 Mbit on Intel and 0.306 Mbit on HAR. Even after this overhead is included, adaptive fidelity retains 38.4% and 63.3% control-inclusive uplink traffic reductions, respectively. Finally, ns-3.47 IEEE 802.15.4 replay demonstrates how reduced offered load changes delivery, delay, and channel contention. The evidence supports energy-information co-design as a configurable Pareto mechanism for resource-bounded distributed AI while distinguishing model-level gains from network-level costs and from claims requiring physical sensor-node validation.
 
-**Keywords:** hierarchical federated learning; wireless sensor networks; Internet of Things; non-IID data; client selection; adaptive compression; ETX; relay energy; staleness; utility-target participation.
+**Keywords:** resource-bounded edge intelligence; energy-information co-design; distributed AI; federated learning; adaptive sparsification; network-aware learning; relay energy; staleness; edge-cloud systems.
 
 ## 1. Introduction
 
-Federated learning (FL) enables distributed devices to train a shared model without centralizing raw observations. In wireless sensor network (WSN) and Internet of Things (IoT) deployments, however, a client update may traverse several lossy links and shared relays before reaching an edge gateway. The communication path is therefore part of the learning system rather than a neutral transport layer. A decision to select one client instead of another changes not only the data that influence training but also the radio traffic, relay burden, delay, and residual-energy trajectory of the network.
+Edge intelligence is increasingly expected to operate where computation, communication capacity, and energy are simultaneously constrained. Environmental sensing, wearable intelligence, infrastructure monitoring, and industrial Internet-of-Things systems illustrate a common systems problem: the information that is most valuable for learning is not necessarily the information that is cheapest to acquire or transport. In distributed learning, client selection is therefore both a statistical decision and a physical resource-allocation decision.
 
-Hierarchical FL reduces repeated end-to-cloud exchanges by introducing edge aggregation, but it does not remove this systems-learning coupling. A scheduler that always favors clients with cheap routes can concentrate learning on an easily reachable subset. Conversely, a scheduler that considers only current model loss or update utility can repeatedly use expensive routes and create relay hotspots. Compression adds a second coupling: changing the retained model-update fraction can dominate the traffic and energy outcome even when the selected client set is unchanged.
+This coupling is especially pronounced when model updates traverse multiple wireless hops before reaching an edge gateway. Selecting client i determines the local information entering training, but it also selects a route, an expected retransmission burden, intermediate relay activity, an arrival delay, and a contribution to future residual-energy imbalance. Treating communication as an independent transport service consequently hides an externality of distributed AI: statistically useful updates can be physically expensive, while inexpensive routes can repeatedly favor an easily reachable subset of clients.
 
-The present study addresses this narrower problem: **how should an HFL controller jointly decide which eligible clients participate, what update fidelity they use, and how delayed updates are weighted when multi-hop route burden, relay pressure, utility history, and participation deficit interact?** The ETX/residual-energy routing layer itself is treated as prior infrastructure rather than a new contribution.
+We address this problem through **systems-learning co-design**. Rather than allowing the learning scheduler to optimize statistical utility while the network independently attempts to deliver the resulting updates, the proposed controller exposes route burden, residual-energy scarcity, relay pressure, update fidelity, and update age directly to learning orchestration. The resulting controller asks three coupled questions in each communication round: which eligible clients should participate, how much of each update should be retained, and how strongly should delayed information influence hierarchical aggregation?
 
-The revised study is deliberately conservative about what its metrics establish. The participation queue tracks a utility-derived target share, not an externally defined population distribution. We therefore use the term **utility-target alignment** for the corresponding Jensen-Shannon (JS) divergence. Independent coverage measures are reported separately: temperature-distribution coverage for Intel and class-distribution coverage for HAR. The implementation also records each client's true cloud-level influence only after both within-edge and cloud-level normalization.
+This perspective differs from simply minimizing communication volume. A resource-only policy can reduce energy while narrowing the information entering training. A learning-only policy can repeatedly activate statistically useful but expensive routes and create relay hotspots. Adaptive sparsification introduces a third coupling because the retained update fraction changes both statistical fidelity and physical transmission burden. The relevant object is therefore a Pareto surface connecting predictive performance, communication demand, relay stress, and participation objectives rather than a single scalar notion of efficiency.
+
+The present study deliberately treats ETX/residual-energy routing, hierarchy, sparsification, and staleness as established ingredients. Its contribution is the way these mechanisms are exposed to one another and audited under a common execution model. The revised evaluation is correspondingly conservative: the participation queue tracks a utility-derived target share rather than an externally defined population distribution, and the associated Jensen-Shannon divergence is therefore called **utility-target alignment**. Independent coverage diagnostics are reported separately. Cloud influence is also recorded only after both within-edge and cloud-level normalization.
 
 The principal contributions are:
 
-1. A cross-layer HFL formulation for multi-hop sensing networks in which participation decisions price route burden, residual-energy scarcity, and relay-pressure externalities while retaining a utility-target deficit term.
-2. A client-specific finite-set Top-k fidelity rule with error feedback, coupled to the same route, scarcity, and relay-pressure state used by the scheduler.
-3. Correct two-level aggregation-influence accounting and a clear separation between utility-target alignment, equal-frequency fairness, and independent data-distribution coverage.
-4. A held-out evaluation protocol with disjoint tuning and evaluation seeds, compression-matched controls, a FedCG-inspired external comparator, component ablations, and exact paired statistical tests.
-5. Validation using synthetic correlated heterogeneity, the Intel Berkeley Lab WSN dataset, UCI HAR with an overlap-safe blocked within-client holdout, and ns-3.47 IEEE 802.15.4/LR-WPAN traffic replay.
+1. A systems-learning co-design formulation in which client participation prices multi-hop route burden, residual-energy scarcity, and relay-pressure externalities while retaining a utility-target participation-deficit term.
+2. A client-specific finite-set Top-k fidelity rule with error feedback, coupled to the same network state that informs scheduling.
+3. Correct two-level aggregation-influence accounting and an explicit separation between controller-target alignment, participation equality, and independent data-distribution coverage.
+4. A measured control-plane audit that accounts for the bytes and a conservative radio-energy upper bound required to obtain pre-selection metadata instead of treating scheduler information as free.
+5. A held-out evaluation protocol with disjoint tuning and evaluation seeds, compression-matched controls, a FedCG-adapted comparator, component ablations, exact paired statistical tests, and real sensing datasets.
+6. Discrete-event ns-3.47 IEEE 802.15.4 replay that tests the packet-network consequences of the offered load produced by the learning/compression stack while explicitly distinguishing open-loop replay from closed-loop co-simulation.
+
+The analytical and empirical evidence serve different purposes. Exact queue identities, finite-set compression decisions, top-k score selection, and error-feedback conservation are established for the implemented controller. By contrast, packet contention, acknowledgments, retransmissions, finite deadlines, and delayed arrivals are discrete systems phenomena that disappear when the network is reduced to a smooth communication penalty. We therefore use mathematical analysis where it applies exactly and executable network replay where the physical abstraction matters, rather than claiming a non-convex convergence theorem for a relaxed system that is not the one being executed.
 
 ## 2. Related Work and Positioning
 
@@ -93,9 +98,11 @@ E_r^{\mathrm{cum}}(T)=\sum_{t=1}^{T}\sum_i x_i(t)\mathbf 1[r\in\mathcal P_i(t)]E
 
 The learning problem is therefore not equivalent to selecting clients with minimum route cost. A high-loss or historically informative client can have a poor route, while cheap clients can dominate repeated selections. The controller is designed to expose rather than hide this trade-off.
 
+Figure 1 is a **conceptual systems schematic**, not a prescribed physical deployment. The illustrated client-relay-edge-cloud branches communicate the hierarchy used by the controller; routing and scheduling operate on graph/network state rather than on a rigid geometric layout or a fixed floor plan.
+
 [[FIGURE:0]]
 
-## 4. Cross-Layer Utility-Aware HFL
+## 4. Systems-Learning Co-Design Controller
 
 ### 4.1 Executed utility signal
 
@@ -106,6 +113,8 @@ U_i(t)=\alpha_gG_i(t)+\alpha_lL_i(t)+\alpha_hH_i(t),
 \]
 
 where \(G_i\) denotes update novelty, \(L_i\) learning difficulty/progress, and \(H_i\) an optional rarity term. The **executed pre-selection utility** is more specific: it is 0.55 times the per-round min-max-normalized current local loss plus 0.45 times the min-max-normalized exponentially smoothed utility history. No distribution-rarity term is used directly in the executed scheduling score. After a selected client trains, its history is updated from cosine novelty and non-negative local improvement. The improvement transform uses task-specific saturation constants documented in the repository. Raw examples remain local, but scalar loss/utility metadata are assumed available to the scheduler; this is not a formal privacy guarantee.
+
+Throughout Sections 4-8, notation is fixed consistently. U_i(t) denotes the executed pre-selection utility used by the target share and scheduling score; Q_i(t) denotes the client participation-deficit queue; Z_r(t) denotes relay-pressure state; and rho_i(t) denotes the **retained** Top-k fraction, not the discarded fraction. The post-training novelty/improvement signal updates the smoothed utility history and the utility attached to the transmitted update; it is not substituted retrospectively into the pre-selection score.
 
 The normalized desired utility-target participation share is
 
@@ -133,9 +142,9 @@ Here \(a_i(t)=x_i(t)/k_t\) for a selected set of size \(k_t>0\), and \(a_i(t)=0\
 
 Rate stability of \(Q_i\) is therefore sufficient for the long-run **participation-share** target. It does not prove equality between the target and final cloud influence, because compression, drops, staleness, edge normalization, and cloud normalization occur after selection.
 
-### 4.3 Relay-energy queue
+### 4.3 Relay-pressure queue
 
-For relay \(r\),
+For relay \(r\), the controller maintains a virtual pressure queue relative to a relay-energy reference level:
 
 \[
 Z_r(t+1)=\left[Z_r(t)+E_r^{\mathrm{relay}}(t)-\bar E_r\right]^+,
@@ -147,7 +156,7 @@ and route pressure for client \(i\) is
 R_i(t)=\sum_{r\in\mathcal P_i(t)}Z_r(t).
 \]
 
-The term increases when repeated model traffic funnels through the same relay corridor.
+The term increases when repeated model traffic funnels through the same relay corridor. In the executed policy, this relay-energy level is a **pressure reference**, not a hard per-round physical energy cap. The queue therefore biases future selections away from repeatedly stressed routes but does not by itself guarantee that a finite experiment will satisfy a strict cumulative relay budget.
 
 ### 4.4 Adaptive update fidelity
 
@@ -190,7 +199,13 @@ Within an edge gateway, client weights are normalized to sum to one. Edge aggreg
 
 Two different JS metrics are intentionally separated. **Utility-target JS** compares cumulative true cloud influence with the cumulative utility-derived target. It measures controller-target alignment and is partly endogenous to the controller. It is not treated as an independent population-representativeness metric. **Independent coverage JS** compares the cloud-influence-weighted empirical data distribution with a pooled training-data reference: a 10-bin temperature distribution for Intel and the six-class activity distribution for HAR.
 
-### 4.8 Exact queue and decision guarantees
+### 4.8 Round-level execution
+
+Algorithm 1 makes the execution order explicit. Metadata are collected before selection; the retained fraction is chosen from the finite candidate set; the top-scoring eligible clients train; compressed updates are placed on their routes; client and relay queues are updated; and only arrived updates enter hierarchical aggregation. This ordering matters because a method that computes utility after client selection, or charges route pressure only after aggregation, implements a different controller.
+
+[[ALGORITHM:1]]
+
+### 4.9 Analytical properties of the implemented controller
 
 **Proposition 1 (finite-horizon queue guarantees).** Define
 
@@ -243,6 +258,8 @@ which implies
 
 Hence omitted coordinates are retained in the residual rather than permanently discarded.
 
+The coupled system is intentionally not replaced by a smooth convex relaxation solely to obtain a stronger-looking convergence statement. Binary participation, finite-set sparsification, route changes, availability, packet retransmissions, and delayed arrivals are part of the executed system. A stylized theorem obtained after removing these mechanisms would characterize a different optimization problem. The paper therefore separates exact controller-level properties from packet-level empirical evidence: the former establish what the implemented decision rules guarantee, whereas ns-3 replay evaluates communication phenomena that the analytical abstraction omits.
+
 These guarantees remain narrower than the classical Lyapunov result of an \(O(1/V)\) time-average penalty gap with \(O(V)\) backlog [14]. The executed normalized controller does not directly minimize the canonical drift-plus-penalty bound, and the utility-target participation shares sum to one. We therefore do not transfer the classical scaling theorem to this policy and do not claim a complete non-convex convergence theorem for the coupled selection-compression-hierarchy-staleness process.
 
 ## 5. Experimental Methodology
@@ -265,8 +282,9 @@ These guarantees remain narrower than the classical Lyapunov result of an \(O(1/
 | Staleness decay / utility coefficient | 0.35 / 0.80 | aggregation |
 | Tx / Rx energy per bit | 1.5e-6 / 8.0e-7 J | modeled radio energy |
 | Local-step energy | 0.004 J | modeled local training energy |
-| Relay energy budget | 0.004 J per round | relay virtual queue |
-| Header / value / index bits | 96 / 32 / 16 | traffic accounting |
+| Relay-pressure reference | 0.004 J per round | virtual-queue reference, not hard cap |
+| Header / value / index bits | 96 / 32 / 16 | model-update traffic accounting |
+| Candidate metadata packet | 168 bits = 21 bytes | 96-bit header + 32-bit loss + 32-bit residual-energy estimate + 8-bit availability |
 | Intel rounds / selected clients / lr / L2 | 30 / 10 / 0.010 / 0.010 | regression |
 | HAR rounds / selected clients / lr / L2 | 25 / 8 / 0.020 / 0.001 | classification |
 | HAR holdout | 10-window blocks; one-in-five test; one-neighbor purge | overlap-safe within-client validation |
@@ -282,6 +300,8 @@ The controlled simulator uses 24 clients, four gateways, multi-hop ETX/residual-
 ### 5.4 Intel Berkeley Lab WSN
 
 The Intel Berkeley Research Lab dataset [15] contains sensor readings, locations, and a measured directed connectivity matrix for 54 Mica2Dot motes. Four spatially distributed high-connectivity motes are treated as edge gateways and excluded from learning, leaving 48 learning clients. The task is per-mote next-temperature regression from a 16-step history of temperature, humidity, log-light, and voltage. Data are temporally partitioned within each mote. Measured bidirectional delivery probabilities determine link ETX; a disconnected-path fallback is assigned a conservative ETX of 100.
+
+Figure 2 is a dataset-specific topology abstraction, not an exact architectural floor plan. Node locations provide spatial context, whereas route feasibility and ETX burden are computed from the measured connectivity information used by the implementation.
 
 [[FIGURE:1]]
 
@@ -301,13 +321,25 @@ Learning metrics are RMSE/MAE for Intel and accuracy/Macro-F1 plus worst-client 
 
 Final real-data comparisons use exact paired sign-flip tests on the 10 held-out seeds, percentile bootstrap 95% confidence intervals for paired mean differences, paired effect sizes, and Holm correction within each dataset-baseline metric family.
 
-### 5.8 ns-3.47 communication replay
+### 5.8 Control-plane signaling audit
+
+Network-aware selection requires pre-selection information, so a scheduler cannot legitimately treat all control metadata as free. We therefore add a conservative accounting-only audit. Each candidate reports one 168-bit (21-byte) packet per round: a 96-bit header, a 32-bit local-loss scalar, a 32-bit residual-energy estimate, and an 8-bit availability flag. The raw volume is T × N × 168 bits. To place metadata on the same basis as model updates, the audit multiplies each packet by that client's realized route ETX and sums over clients and rounds. A conservative radio-energy upper bound multiplies the ETX-weighted control bits by the sum of the configured Tx and Rx energy-per-bit coefficients. The audit is post-hoc: metadata energy is **not** fed back into residual energy or scheduling, so it cannot alter the reported learning trajectory.
+
+The control-plane audit is intentionally stricter than a claim of negligible signaling. Its purpose is to test whether the adaptive-compression advantage survives when scheduler information is priced. It still excludes global-model downlink dissemination and therefore does not represent complete end-to-end device communication energy.
+
+### 5.9 ns-3.47 communication replay
 
 Synthetic held-out traffic profiles are replayed in ns-3.47 LR-WPAN with CSMA/CA, acknowledgments, retries, and contention. The primary hop-equivalent mapping multiplies compressed update bits by mean selected hops and lets ns-3 generate its own MAC retransmissions. An ETX-equivalent mapping is retained as a stress sensitivity because ETX already contains expected transmission attempts. Five load/scaling conditions, four policies, two mappings, and 10 held-out seeds yield 400 ns-3 runs. The HFL optimizer itself is not executed inside ns-3.
 
-### 5.9 Reproducibility campaign
+### 5.10 Open-loop replay versus closed-loop co-simulation
 
-The editorial revision executes 240 tuning-grid HFL runs, 540 held-out real-data comparison runs, 100 held-out ablation runs, and 120 held-out synthetic runs: 1,000 HFL simulations in total, plus 400 ns-3 runs. A regression test was added specifically for two-level aggregation influence, and the revised frozen-table integrity checks bring the Python test suite to 13 passing tests. Dataset checksums, seed lists, parameter-selection rules, raw per-seed outputs, and statistical contrasts are retained in the repository.
+The current Python-to-ns-3 workflow is deliberately **open loop**. Python first completes the learning/controller trajectory and exports an offered-load profile; ns-3 then resolves MAC contention, acknowledgments, retries, delivery ratio, and packet delay. This design gives clean causal attribution from offered load to network behavior but does not permit packet outcomes to change future learning decisions. In a closed-loop co-simulation, packet drops or deadline misses would alter realized participation, stale updates would modify aggregation, measured retransmission energy would feed relay pressure, and updated link statistics could change subsequent routes and client selections. The present replay should therefore be interpreted as network-consequence validation rather than full cyber-physical co-simulation.
+
+### 5.11 Reproducibility campaign
+
+The primary evaluation contains 240 tuning-grid HFL runs, 540 held-out real-data comparison runs, 100 held-out ablation runs, and 120 held-out synthetic runs: 1,000 HFL simulations in total, plus 400 ns-3 runs. The control-plane audit adds 40 accounting runs (proposed and proposed-fixed compression across the 10 held-out seeds on both real datasets). A regression test verifies two-level aggregation influence, and the frozen-table integrity checks are retained.
+
+Repository verification is explicit rather than implicit. The tuning and held-out seed sets are defined in src/wsn_hfl/config.py and mirrored in reproducibility/seed_config.json; host hardware and the evidence boundary are documented in reproducibility/HARDWARE_SPECIFICATIONS.md; reproduction commands are listed in reproducibility/REPRODUCTION_COMMANDS.md; Tables 2 and 3 trace to the per-seed real-data outputs, aggregate summaries, and validation/statistics/statistical_tests.csv; and the control-plane audit is reproduced by analyze_control_plane_overhead.py. Dataset checksums, operating-point selection records, and frozen publication-table hashes are also committed.
 
 ## 6. Results
 
@@ -355,43 +387,78 @@ On HAR, adaptive fidelity reduces proposed traffic from 31.232 Mbit to 11.253 Mb
 
 [[FIGURE:4]]
 
-### 6.5 ns-3 communication replay
+### 6.5 Control-plane overhead audit
 
-Under the primary hop-equivalent dense-nominal condition, proposed held-out synthetic traffic maps to 1,204 payload bits per report-equivalent update, compared with 3,431 for resource-only. The mean report delivery ratio is 99.47% for proposed and 85.79% for resource-only; mean delivered-report delay is 12.26 ms versus 35.99 ms. At the 24-sensor scale-nominal condition, report delivery is 96.56% for proposed versus 57.72% for resource-only. These differences validate the communication consequence of lower offered load, not the superiority of the learning scheduler in isolation. The traffic reduction itself is strongly influenced by adaptive compression.
+The control-plane result is workload dependent rather than universally negligible. On Intel, 48 learning clients over 30 rounds generate 241,920 raw metadata bits (29.53 KiB). ETX weighting increases the held-out mean to 1.219 Mbit, with a conservative metadata radio-energy upper bound of 2.803 J. This is 122.8% of the proposed controller's 0.992 Mbit compressed model-update traffic, so control signaling is material for the small regression model.
+
+On HAR, 30 clients over 25 rounds generate 126,000 raw metadata bits (15.38 KiB). The ETX-weighted mean is 0.306 Mbit with a 0.705 J conservative radio-energy upper bound, only 2.72% of the proposed 11.253 Mbit model-update traffic.
+
+**Table 4. Conservative pre-selection metadata audit at correlation 0.9. Values are means over 10 held-out evaluation seeds.**
+
+| Dataset | Raw metadata | ETX-weighted metadata (Mbit) | Metadata radio-energy upper bound (J) | Metadata / proposed model traffic | Proposed control-inclusive uplink (Mbit) | Proposed-fixed control-inclusive uplink (Mbit) | Adaptive reduction after metadata |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Intel | 29.53 KiB | 1.219 | 2.803 | 122.8% | 2.211 | 3.592 | 38.4% |
+| UCI HAR | 15.38 KiB | 0.306 | 0.705 | 2.72% | 11.559 | 31.539 | 63.3% |
+
+Thus metadata does not erase the adaptive-fidelity advantage, but it materially changes the size of that advantage for lightweight models. The correct claim is therefore that control overhead is small relative to model traffic for HAR but not for Intel. Even under the conservative all-client-per-round accounting model, proposed adaptive fidelity retains a 38.4% control-inclusive uplink reduction on Intel and 63.3% on HAR relative to the same proposed selector at fixed 50% Top-k. These totals still exclude downlink global-model dissemination.
+
+### 6.6 ns-3 communication replay
+
+Under the primary hop-equivalent dense-nominal condition, proposed held-out synthetic traffic maps to 1,204 payload bits per report-equivalent update, compared with 3,431 for resource-only. The mean report delivery ratio is 99.47% for proposed and 85.79% for resource-only; mean delivered-report delay is 12.26 ms versus 35.99 ms. At the 24-sensor scale-nominal condition, report delivery is 96.56% for proposed versus 57.72% for resource-only. These differences establish a narrower but operationally important result: lower offered load survives translation into a contention-aware IEEE 802.15.4 network and materially changes delivery, delay, and access failures. They do **not** independently prove superiority of the learning scheduler, because the replay is open loop and packet outcomes do not feed back into future client selection. The traffic reduction itself is strongly influenced by adaptive compression.
 
 [[FIGURE:5]]
 
-### 6.6 Cross-dataset interpretation
+### 6.7 Cross-dataset interpretation
 
-The held-out results reject a simple “best method” interpretation. On Intel, resource-adaptive offers the strongest resource/learning point among the matched controls, while proposed most closely matches its own utility-derived target. FedCG-adapted is statistically comparable to proposed on Intel RMSE and systems cost. On HAR, proposed achieves the strongest mean accuracy and Macro-F1 among the main controls but spends substantially more traffic and relay energy than resource-adaptive and FedCG-adapted. Independent coverage metrics do not mirror utility-target JS, confirming that target alignment is not equivalent to representativeness.
+The held-out results reject a simple “best method” interpretation and instead expose two different Pareto regimes. On Intel, resource-adaptive provides the stronger prediction/resource operating point, with lower error, traffic, energy, and relay burden, while proposed most closely matches its own utility-derived target. FedCG-adapted is statistically comparable to proposed on Intel RMSE and systems cost. On HAR, proposed improves held-out accuracy from 87.51% to 88.67% relative to resource-adaptive, but model-update traffic rises by 26.8%, modeled energy by 33.9%, and maximum relay energy by 628.9%. Against FedCG-adapted, the accuracy advantage is 1.07 percentage points with 20.9% more model-update traffic and 93.0% more maximum relay energy. These are not hidden implementation penalties; they are the physical price of prioritizing utility-target participation and learning quality in this operating regime. Independent coverage metrics do not mirror utility-target JS, confirming that target alignment is not equivalent to representativeness.
 
 [[FIGURE:6]]
 
-The practical design implication is that adaptive fidelity and client scheduling should be evaluated separately. A fixed-compression baseline can make a coupled controller appear dramatically more communication-efficient even when most of the reduction comes from the compression rule. Conversely, a pure resource controller can minimize traffic and hotspot energy while accepting weaker alignment with the utility target. The revised evaluation makes these trade-offs explicit.
+The practical design implication is that a deployment should choose an operating point according to the objective it actually values. A relay-lifetime-constrained deployment can legitimately prefer resource-adaptive, whereas an application with a stricter prediction requirement may accept the additional network burden of the proposed HAR operating point. The contribution is therefore the ability to expose and control this exchange rather than collapse competing objectives into a claim of universal superiority.
+
+Adaptive fidelity and client scheduling should also be evaluated separately. A fixed-compression baseline can make a coupled controller appear dramatically more communication-efficient even when most of the reduction comes from the compression rule. Conversely, a pure resource controller can minimize traffic and hotspot energy while accepting weaker alignment with the utility target. The revised evaluation makes these trade-offs explicit.
 
 ## 7. Discussion
 
-The strongest evidence from the revision is methodological. First, corrected two-level influence accounting materially changes the interpretation of the JS metric: it is now the true cloud coefficient accumulated across hierarchy, but it remains an endogenous utility-target diagnostic. Second, held-out tuning prevents parameter-selection outcomes from being reused as inferential evidence. Third, compression-matched controls show that adaptive update fidelity is the principal source of the large communication reductions previously attributed to the combined controller.
+### 7.1 Evidence hierarchy: exact analysis and executable systems behavior
 
-The Intel result is particularly important for claim discipline. Resource-adaptive achieves lower error, traffic, energy, and relay hotspot than proposed. That does not invalidate the proposed mechanism; it shows that utility-target alignment carries a measurable opportunity cost. Similarly, the independent temperature-coverage metric favors FedCG-adapted/resource-adaptive over proposed. The appropriate conclusion is therefore that the controller supplies a tunable systems-learning trade-off, not a universal definition of statistical representativeness.
+The strongest evidence from the revision is the separation between what can be established exactly for the implemented decision rules and what must be tested in an executable network. Corrected two-level influence accounting materially changes the interpretation of the JS metric: it is now the true cloud coefficient accumulated across the hierarchy, but it remains an endogenous utility-target diagnostic. Disjoint tuning and held-out seeds prevent parameter-selection outcomes from being reused as inferential evidence, while compression-matched controls show that adaptive update fidelity is the principal source of the large model-traffic reductions.
 
-HAR presents a different regime. With the overlap-safe blocked holdout, proposed gains about one percentage point of accuracy over both resource-adaptive and FedCG-adapted while substantially improving utility-target alignment. Yet the network cost is higher, especially maximum relay energy. This is a useful cross-layer result because it demonstrates why a deployment must choose an operating point according to whether prediction quality, route efficiency, hotspot avoidance, or target-aligned participation is the dominant requirement.
+A systems-learning controller should not be judged exclusively through a convergence-rate lens. Smooth or convex surrogate analyses can isolate optimization behavior, but packet contention, retransmissions, finite-set sparsification, route changes, and asynchronous arrival are the mechanisms that determine feasibility in a resource-bounded edge system. The present approach therefore uses analytical results where they apply exactly and executable evidence where the physical abstraction matters. The queue identities and finite-set decisions establish controller-level properties; real sensing data and ns-3 replay expose consequences that disappear when communication is reduced to a differentiable scalar penalty. These forms of evidence are complementary rather than interchangeable.
 
-The broader relevance to low-power edge intelligence is consequently not a claim that the current simulator proves sustainability. Rather, it demonstrates how learning objectives can be audited together with the network externalities they impose. Environmental monitoring, infrastructure sensing, and wearable activity systems all face variants of this coupling, but deployment-specific hardware measurements are still necessary before translating modeled joules into lifetime or sustainability outcomes.
+### 7.2 Model-complexity scaling
+
+The current experiments deliberately use lightweight predictors so that orchestration effects can be isolated. Moving to a 1D-CNN, MobileNet-like TinyML model, or another nonlinear edge architecture changes both communication volume and local compute cost. If a model contains P trainable parameters and retains fraction rho under index-based Top-k transmission, the approximate sparse payload is 96 + ceil(rho P)(32 + 16) bits under the present value/index accounting. Ignoring the fixed header, sparse transmission is smaller than a dense 32-bit update only when rho < 2/3. A scalable implementation should therefore switch between sparse and dense encodings rather than attach a 16-bit index to every retained coordinate when rho is large.
+
+Model size also changes the transmission-to-computation energy ratio. Architectures with high arithmetic intensity can move the system toward compute-dominated energy, whereas large parameter tensors with modest compute intensity can remain communication dominated. Deep models additionally exhibit layer-dependent update scales, so global Top-k may over-select coordinates from high-magnitude layers; layer-wise sparsification, structured sparsity, or joint quantization can become preferable. The present experiments establish the orchestration mechanism for lightweight edge models, not the same communication-computation optimum for every TinyML architecture.
+
+### 7.3 Pareto interpretation across workloads
+
+Intel and HAR occupy different Pareto regimes. Intel shows that resource-adaptive can simultaneously provide lower error and lower systems cost, whereas the proposed controller buys substantially stronger utility-target alignment. HAR reverses part of that ordering: proposed improves held-out accuracy by about one percentage point over resource-adaptive and FedCG-adapted, but at materially higher traffic and relay cost. This cross-dataset reversal is a useful systems result because it shows why no fixed orchestration principle dominates across sensing workloads.
+
+The broader relevance to resource-bounded edge intelligence is consequently not a claim that the current simulator proves environmental sustainability. Rather, it demonstrates how learning objectives can be audited together with the network externalities they impose. Environmental monitoring, infrastructure sensing, and wearable activity systems all face variants of this coupling, but deployment-specific hardware measurements remain necessary before modeled joules are translated into battery lifetime or sustainability outcomes.
 
 ## 8. Limitations
 
-First, energy is modeled rather than measured on physical IEEE 802.15.4 sensor hardware. No claim is made about MCU current draw, radio current, RSSI/LQI, battery lifetime, or embodied/environmental sustainability. Second, Intel uses historical measured connectivity and sensing traces; the original motes do not execute the FL process. Third, the HAR protocol is a blocked within-client holdout designed for subject-as-client FL and should not be compared directly with the canonical unseen-subject benchmark.
+First, energy is modeled rather than measured on physical IEEE 802.15.4 sensor hardware. No claim is made about MCU current draw, radio current, RSSI/LQI, battery lifetime, embodied energy, or environmental sustainability. Second, Intel uses historical measured connectivity and sensing traces; the original motes do not execute the FL process. Third, the HAR protocol is a blocked within-client holdout designed for subject-as-client FL and should not be compared directly with the canonical unseen-subject benchmark.
 
-Fourth, the utility target is controller-defined. Low utility-target JS proves alignment with that target, not independent population representativeness. The independent coverage metrics are intentionally reported to expose this distinction. Fifth, the pre-selection utility assumes scalar local-loss metadata from all candidate clients each round; downlink model dissemination and metadata reporting are not fully charged in the current communication-energy accounting. Reported energy therefore refers to the implemented local-training and model-update transport model rather than complete device energy.
+Fourth, the utility target is controller defined. Low utility-target JS proves alignment with that target, not independent population representativeness. Fifth, the new control-plane audit prices all-client pre-selection metadata, but it remains an accounting diagnostic rather than a closed-loop energy charge. Global-model downlink dissemination is still excluded, and reported control-inclusive values therefore remain uplink-side rather than complete device communication energy. Event-triggered, eligibility-gated, or piggybacked metadata could substantially reduce the Intel control burden but is not implemented here.
 
-Sixth, FedCG-adapted is not an exact reimplementation of FedCG. It uses a gradient-diversity facility-location principle and adaptive compression under the current candidate pool, but the original algorithm's topology and optimization assumptions differ. The comparator also receives current eligible-client gradients without charging their acquisition cost, making it a deliberately favorable reference rather than an unfairly weak baseline.
+Sixth, the ns-3 workflow is open loop. The replay resolves contention, retries, delivery, and delay after the learning trajectory has already been generated; packet drops do not cause future client timeouts, route changes, or altered queue evolution. Closed-loop Python-ns-3 co-simulation remains a stronger future validation target.
 
-Seventh, the local predictors are linear and intentionally lightweight. Larger TinyML models may change computation, compression sensitivity, and update geometry. Eighth, the theory establishes finite-horizon queue bounds, finite-set compression optimality, top-k score optimality, and error-feedback conservation, but not a complete non-convex convergence result for the coupled process. Finally, the current revision does not implement every recent HFL architecture or optimizer family; FedProx, FedAdam/FedOpt, server momentum, graph-based HFL [17], and learning-topology co-optimization [18] remain additional comparisons rather than claimed completed experiments.
+Seventh, FedCG-adapted is not an exact reimplementation of FedCG. It uses a gradient-diversity facility-location principle and adaptive compression under the current candidate pool, but the original algorithm's topology and optimization assumptions differ. The comparator also receives current eligible-client gradients without charging their acquisition cost, making it a deliberately favorable reference rather than an unfairly weak baseline.
+
+Eighth, local predictors are linear and intentionally lightweight. Larger TinyML models may alter computation, sparsification sensitivity, update geometry, and the relative value of communication savings. Ninth, the relay virtual queue uses a reference level rather than enforcing a hard prospective energy cap; the HAR result demonstrates that hotspot energy can still become large when the controller prioritizes learning/target objectives. Finally, the theory establishes finite-horizon queue bounds, finite-set compression optimality, top-k score optimality, and error-feedback conservation, but not a complete non-convex convergence theorem for the coupled selection-compression-hierarchy-network process.
 
 ## 9. Conclusion
 
-This study develops a cross-layer HFL controller for multi-hop IoT sensing networks and, more importantly, subjects that controller to a stricter evaluation protocol. Correct cloud-level influence accounting, disjoint tuning/evaluation seeds, overlap-safe HAR validation, compression-matched controls, and a FedCG-adapted comparator change the central claim from dominance to trade-off. Adaptive fidelity is the principal source of traffic reduction. The participation-deficit mechanism strongly improves alignment with its utility-derived target, but independent coverage metrics do not establish universal statistical representativeness. On Intel, a resource-adaptive control provides a stronger pure resource/learning point; on HAR, the proposed controller improves held-out accuracy at additional traffic and relay cost. These results support utility-aware cross-layer orchestration as a configurable Pareto mechanism rather than as a universally optimal scheduler.
+This work reframes network-aware federated learning as an **energy-information co-design problem for resource-bounded edge intelligence**. The central systems question is not simply how to reduce model traffic, but how to allocate scarce communication and relay resources without disconnecting learning decisions from the value and timing of distributed information.
+
+The proposed controller exposes route burden, residual-energy scarcity, relay pressure, participation deficit, update fidelity, and staleness to a common orchestration layer. A stricter experimental protocol reveals that this coupling does not generate universal dominance. On Intel, resource-adaptive provides a stronger prediction/resource operating point, whereas the proposed policy achieves substantially closer utility-target alignment. On HAR, the proposed controller improves held-out accuracy but does so at substantial relay-energy and communication cost. These reversals are a principal finding rather than a weakness: they demonstrate that resource-bounded distributed AI is intrinsically Pareto constrained.
+
+Adaptive update fidelity remains the dominant mechanism behind the observed model-traffic reductions. Importantly, the control-plane audit shows that metadata cannot always be treated as free. Signaling is small relative to HAR model traffic but material for the lightweight Intel model; nevertheless, adaptive fidelity retains a 38.4% control-inclusive uplink traffic reduction on Intel and 63.3% on HAR relative to the same proposed scheduler at fixed 50% Top-k.
+
+Finally, ns-3.47 replay establishes that reduced offered load produces measurable packet-network benefits under contention while also defining the boundary of the evidence: replay is open loop and does not yet allow packet outcomes to alter future learning decisions. Closed-loop packet/learning co-simulation and nonlinear TinyML architectures are therefore the next steps toward experimentally grounded resource-aware distributed intelligence.
 
 ## Author contributions
 
@@ -401,13 +468,13 @@ All authors contributed equally to the conceptualization, methodology, investiga
 
 This research received no external funding.
 
-## Conflict of interest
+## Declaration of interests
 
-The authors declare no conflict of interest.
+The authors declare no competing interests.
 
 ## Declaration of generative AI and AI-assisted technologies in the writing process
 
-During the preparation of this manuscript, the authors used generative AI tools to support the literature-review process and language editing. All AI-assisted material was critically reviewed, verified, and edited by the authors, who take full responsibility for the accuracy, integrity, citations, and final content of the manuscript.
+During the preparation of this manuscript, the authors used OpenAI ChatGPT to support literature-review organization and language editing. The tool was not treated as an evidence source and was not used to replace author verification of citations, data, analyses, or conclusions. All AI-assisted material was critically reviewed, verified, and edited by the authors, who take full responsibility for the accuracy, integrity, citations, and final content of the manuscript.
 
 ## Resource availability
 
@@ -421,7 +488,7 @@ This computational study did not generate new physical materials.
 
 ### Data and code availability
 
-Code, experiment manifests, tuning and held-out seed lists, raw per-seed outputs, statistical analyses, and manuscript figures are available in the public project repository: https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_/tree/wsn-hfl-crosslayer-final. Intel Berkeley Lab sensor data and UCI HAR are publicly available from their original providers. The repository records the operating-point selection rule and the corrected hierarchical-influence test.
+Code, experiment manifests, tuning and held-out seed lists, raw per-seed outputs, statistical analyses, control-plane audit outputs, and the seven user-verified manuscript figures are available in the public project repository: https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_/tree/wsn-hfl-crosslayer-final. Intel Berkeley Lab sensor data and UCI HAR are publicly available from their original providers. The repository records the operating-point selection rule, corrected hierarchical-influence test, seed configuration, host-hardware specification, reproduction commands, and SHA-256 hashes that lock the approved final figure set.
 
 ## References
 

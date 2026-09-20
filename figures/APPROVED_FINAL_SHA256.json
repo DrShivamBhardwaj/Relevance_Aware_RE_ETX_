@@ -1,0 +1,34 @@
+{
+  "status": "USER_VERIFIED_LOCKED",
+  "source": "NEXUS_SUBMISSION_READY_FINAL.docx",
+  "images": {
+    "01_network_topology.png": {
+      "sha256": "41466f15d6f6eb92270e1e96ee4ba0a0526d51c76c0a1a124358f4884eef317b",
+      "bytes": 1423103
+    },
+    "02_system_architecture.png": {
+      "sha256": "c43164cfb7f7efb6d5e17fda0772f2241f98ceeb24e53d248f92f30e76b0fa27",
+      "bytes": 1045261
+    },
+    "03_ns3_validation.png": {
+      "sha256": "edf5f06695a872b7dc502b140551144da700366905238ea4d2c8ceebee067be6",
+      "bytes": 1419231
+    },
+    "04_ablation.png": {
+      "sha256": "7208a457a4a7d56521b99f09936b677270c3843d56a0bc3c80495de18393caa8",
+      "bytes": 1084789
+    },
+    "05_learning_communication_tradeoff.png": {
+      "sha256": "8ed130f0f79eca0782435eb1ae8c7ccbeda7a1ad35bdf1fc371e9abd5e71ea8a",
+      "bytes": 1234200
+    },
+    "06_uci_har_results.png": {
+      "sha256": "88989c3d7d1d0d0fb53dde13fa6d40dd5eaa1915c8cef0ac35db373b9e94f44c",
+      "bytes": 1236130
+    },
+    "07_intel_berkeley_results.png": {
+      "sha256": "5c42c98dc445e71ed20debc273497f8bda1b47a96b4e44f49f23d7febb5fc565",
+      "bytes": 1169646
+    }
+  }
+}

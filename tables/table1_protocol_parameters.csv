@@ -11,8 +11,9 @@ Scarcity coefficient,0.5,executed scheduler/compression surrogate
 Staleness lambda / utility coefficient mu,0.35 / 0.80,aggregation
 Tx / Rx energy per bit,1.5e-6 / 8.0e-7 J,modeled communication energy
 Local-step energy,0.004 J,modeled local training energy
-Relay energy budget,0.004 J/round,virtual relay queue
-Header / model / index bits,96 / 32 / 16,traffic accounting
+Relay-pressure reference,0.004 J/round,"virtual-queue reference, not hard cap"
+Header / model / index bits,96 / 32 / 16,model-update traffic accounting
+Candidate metadata packet,168 bits = 21 bytes,header + loss + residual-energy estimate + availability
 Intel: rounds / K / lr / L2 / slot,30 / 10 / 0.010 / 0.010 / 0.20 s,regression
 HAR: rounds / K / lr / L2 / slot,25 / 8 / 0.020 / 0.001 / 0.25 s,classification
 HAR split,10-window blocks; 1-in-5 test; 1-neighbor purge,overlap-safe within-client holdout

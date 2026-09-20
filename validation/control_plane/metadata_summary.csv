@@ -1,0 +1,3 @@
+dataset,raw_metadata_kib,metadata_effective_mbit,metadata_radio_energy_upper_j,metadata_pct_of_proposed_model_traffic,proposed_control_inclusive_mbit,proposed_fixed_control_inclusive_mbit,model_only_reduction_pct,control_inclusive_reduction_pct
+intel_lab,29.53125,1.218662728490601,2.8029242755283814,122.81488082940632,2.2109388437794,3.591580477103027,58.18292736724061,38.44106075655178
+uci_har,15.380859375,0.3064101168561781,0.7047432687692096,2.7229126249260562,11.559437997781993,31.538650139955998,63.96933964342716,63.34834260031486

@@ -132,9 +132,18 @@ def simulate_har(method: str, cfg: SimConfig, data_dir: Path, correlation=0.5):
     util_hist=np.full(cfg.num_clients,.5); deficit=np.zeros(cfg.num_clients); relay_queue=np.zeros(cfg.num_clients); relay_cum=np.zeros(cfg.num_clients)
     participation=np.zeros(cfg.num_clients); cloud_influence=np.zeros(cfg.num_clients); target_cum=np.zeros(cfg.num_clients); global_ema=np.zeros_like(w); pending=[]
     total_eff=total_comp=total_raw=total_energy=0.0; total_hops=total_etx=0.0; total_updates=0
+    # Accounting-only control-plane diagnostic: 96-bit header + 32-bit local
+    # loss + 32-bit residual-energy estimate + 8-bit availability flag per
+    # candidate per round. It is not charged back into residual energy.
+    metadata_packet_bits=cfg.header_bits+32+32+8
+    metadata_raw_bits=metadata_effective_bits=metadata_radio_energy_upper_j=0.0
     full_bits=cfg.header_bits+w.size*(cfg.model_bits+cfg.index_bits); history=[]
     for t in range(cfg.rounds):
         routes=topology.all_routes(residual,initial)
+        metadata_raw_bits+=metadata_packet_bits*cfg.num_clients
+        round_meta_eff=metadata_packet_bits*sum(max(r.etx_sum,1.0) for r in routes)
+        metadata_effective_bits+=round_meta_eff
+        metadata_radio_energy_upper_j+=round_meta_eff*(cfg.tx_energy_per_bit_j+cfg.rx_energy_per_bit_j)
         if method=='fedcg_adapted':
             lg=[loss_and_grad(w,*splits[i][:2],cfg.l2) for i in range(cfg.num_clients)]
             losses=np.asarray([z[0] for z in lg],float)
@@ -205,5 +214,10 @@ def simulate_har(method: str, cfg: SimConfig, data_dir: Path, correlation=0.5):
         'energy_j':total_energy,'min_residual_energy_j':float(residual.min()),
         'max_relay_energy_j':float(relay_cum.max()),'participation_jain':_jain(participation),
         'utility_target_js':js_divergence(cloud_influence+1e-12,target_cum+1e-12),
-        'class_coverage_js':js_divergence(cov,global_label_pooled+1e-12)
+        'class_coverage_js':js_divergence(cov,global_label_pooled+1e-12),
+        'metadata_packet_bits':metadata_packet_bits,
+        'metadata_raw_bits':metadata_raw_bits,
+        'metadata_effective_bits':metadata_effective_bits,
+        'metadata_radio_energy_upper_j':metadata_radio_energy_upper_j,
+        'control_inclusive_uplink_bits':total_eff+metadata_effective_bits
     },history

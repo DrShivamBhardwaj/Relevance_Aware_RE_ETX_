@@ -17,7 +17,7 @@ def write(name,data):
         for k in r:
             if k not in fields:fields.append(k)
     with p.open('w',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(data)
+        w=csv.DictWriter(f,fieldnames=fields,lineterminator='\n');w.writeheader();w.writerows(data)
     return p
 
 def row_for(data,method,c=.9):
@@ -42,6 +42,7 @@ def main():
       'intel_grid':ROOT/'results/intel_lab/joint_grid.csv',
       'har_grid':ROOT/'results/uci_har/joint_grid.csv',
       'selection':ROOT/'results/OPERATING_POINT_SELECTION.json',
+      'control_plane':ROOT/'validation/control_plane/metadata_summary.csv',
     }
     intel,har=rows(src['intel']),rows(src['har'])
     table1=[
@@ -57,8 +58,9 @@ def main():
       {'parameter':'Staleness lambda / utility coefficient mu','value':'0.35 / 0.80','role':'aggregation'},
       {'parameter':'Tx / Rx energy per bit','value':'1.5e-6 / 8.0e-7 J','role':'modeled communication energy'},
       {'parameter':'Local-step energy','value':'0.004 J','role':'modeled local training energy'},
-      {'parameter':'Relay energy budget','value':'0.004 J/round','role':'virtual relay queue'},
-      {'parameter':'Header / model / index bits','value':'96 / 32 / 16','role':'traffic accounting'},
+      {'parameter':'Relay-pressure reference','value':'0.004 J/round','role':'virtual-queue reference, not hard cap'},
+      {'parameter':'Header / model / index bits','value':'96 / 32 / 16','role':'model-update traffic accounting'},
+      {'parameter':'Candidate metadata packet','value':'168 bits = 21 bytes','role':'header + loss + residual-energy estimate + availability'},
       {'parameter':'Intel: rounds / K / lr / L2 / slot','value':'30 / 10 / 0.010 / 0.010 / 0.20 s','role':'regression'},
       {'parameter':'HAR: rounds / K / lr / L2 / slot','value':'25 / 8 / 0.020 / 0.001 / 0.25 s','role':'classification'},
       {'parameter':'HAR split','value':'10-window blocks; 1-in-5 test; 1-neighbor purge','role':'overlap-safe within-client holdout'},
@@ -116,6 +118,8 @@ def main():
 
     if src['stats'].exists():
         write('table4_heldout_contrasts.csv',rows(src['stats']))
+    if src['control_plane'].exists():
+        write('table5_control_plane_metadata.csv', rows(src['control_plane']))
 
     generated=sorted(OUT.glob('table*.csv'))
     manifest={

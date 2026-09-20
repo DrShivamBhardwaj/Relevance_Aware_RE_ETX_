@@ -349,11 +349,26 @@ def simulate_intel(method, cfg, data_dir: Path, correlation=0.5):
     global_update_ema = np.zeros_like(w); pending=[]
     total_eff_bits=total_comp_bits=total_raw_bits=total_energy=0.0
     total_hops=total_etx=0.0; total_updates=0
+    # Accounting-only control-plane diagnostic. Each learning client is assumed
+    # to report a 96-bit header, 32-bit local loss, 32-bit residual-energy
+    # estimate, and 8-bit availability flag once per round. This overhead is
+    # measured on the realized routes but is not fed back into residual energy,
+    # so it cannot alter the learned model or scheduler decisions.
+    metadata_packet_bits = cfg.header_bits + 32 + 32 + 8
+    metadata_raw_bits = metadata_effective_bits = metadata_radio_energy_upper_j = 0.0
     full_bits = cfg.header_bits + w.size*(cfg.model_bits+cfg.index_bits)
     history=[]
 
     for t in range(cfg.rounds):
         routes = topo.all_routes(residual, initial)
+        candidate_ids = np.flatnonzero(client_mask)
+        metadata_raw_bits += metadata_packet_bits * len(candidate_ids)
+        round_meta_eff = metadata_packet_bits * sum(max(routes[i].etx_sum, 1.0) for i in candidate_ids)
+        metadata_effective_bits += round_meta_eff
+        # Conservative upper bound: charge Tx+Rx at every ETX-equivalent hop,
+        # including the gateway-side reception even where the implemented
+        # device-energy model omits gateway Rx energy.
+        metadata_radio_energy_upper_j += round_meta_eff * (cfg.tx_energy_per_bit_j + cfg.rx_energy_per_bit_j)
         losses = np.zeros(cfg.num_clients)
         stat_vectors = np.zeros((cfg.num_clients, w.size), dtype=float) if method == "fedcg_adapted" else None
         for i,(xtr,ytr,_,_) in splits.items():
@@ -432,5 +447,10 @@ def simulate_intel(method, cfg, data_dir: Path, correlation=0.5):
              "energy_j":total_energy,"min_residual_energy_j":float(residual.min()),"max_relay_energy_j":float(relay_cum.max()),
              "participation_jain":_jain(participation[client_mask]),
              "utility_target_js":js_divergence(cloud_influence+1e-12,target_cum+1e-12),
-             "temperature_coverage_js":js_divergence(temp_cov,global_temp_hist+1e-12)}
+             "temperature_coverage_js":js_divergence(temp_cov,global_temp_hist+1e-12),
+             "metadata_packet_bits":metadata_packet_bits,
+             "metadata_raw_bits":metadata_raw_bits,
+             "metadata_effective_bits":metadata_effective_bits,
+             "metadata_radio_energy_upper_j":metadata_radio_energy_upper_j,
+             "control_inclusive_uplink_bits":total_eff_bits+metadata_effective_bits}
     return summary, history

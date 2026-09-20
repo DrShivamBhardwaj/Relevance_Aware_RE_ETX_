@@ -10,15 +10,17 @@
     "validation/statistics/statistical_tests.csv": "7c3964cf0c1400a053d60b3c07a5bd37c4b2af00cb5908e01eec2e7efdbc0466",
     "results/intel_lab/joint_grid.csv": "d40770f5cafc449653944b0b516f1327519860de73fae153e6d08c79d7ebfa43",
     "results/uci_har/joint_grid.csv": "acad7f3a8bd01028304dfedb9330d24d8f23efca4c3c9a5c43d6201483269943",
-    "results/OPERATING_POINT_SELECTION.json": "e488278e651f08b078ecd66ee7fd4f3ec7f802288d86b649db82daa7dc12e0c1"
+    "results/OPERATING_POINT_SELECTION.json": "e488278e651f08b078ecd66ee7fd4f3ec7f802288d86b649db82daa7dc12e0c1",
+    "validation/control_plane/metadata_summary.csv": "4ad67c985271110bf4e377b33c73a40e06ef99f31947f015b06fe80732cb48aa"
   },
   "generated_sha256": {
-    "tables/table1_protocol_parameters.csv": "4cc5415b6ca9f85a96e80abf7785e5bc413cd121740431908ebc02edc062a24b",
-    "tables/table2_intel_main.csv": "19db37f8d85b055b843669d118aa6cf4383c81b72057c6c591a27e779d1fb153",
-    "tables/table3_har_main.csv": "5b90828a821c05f8b0a8aa523c51e59c71319bcac8d04701e9f0b6b8bd887577",
-    "tables/table4_heldout_contrasts.csv": "7c3964cf0c1400a053d60b3c07a5bd37c4b2af00cb5908e01eec2e7efdbc0466",
-    "tables/table_s1_all_controls_c09.csv": "07d28c766952755f5704dc8719f74a44fb8ba69bebeb004b8877a9f36477d689",
-    "tables/table_s2_ablation.csv": "af38c51b007adbe3aff5b56744300be71d4002c322a986e44d64c956faf544cd",
-    "tables/table_s3_tuning_grid.csv": "28d48ac33b90324c9d6ba965183d41b9a3deef097b68da8885f174a2493e3ff0"
+    "tables/table1_protocol_parameters.csv": "33a827d5df4bb75f8fdfffe0c63f756e028bb723eec470c42082b6b72b2592a0",
+    "tables/table2_intel_main.csv": "448d2e7353b48fd6f2ec1609d429c4e853aa468dc2f66c3423b738c611b65d19",
+    "tables/table3_har_main.csv": "5075a47085ef9a5eabdf820cb0ce621014ebf4daf7a8f623ac8e26e4cae1e89a",
+    "tables/table4_heldout_contrasts.csv": "d915aef5cab1352d5f600e259d29971e940f06d7eb81efa77c0f3004a142b5b3",
+    "tables/table5_control_plane_metadata.csv": "4ad67c985271110bf4e377b33c73a40e06ef99f31947f015b06fe80732cb48aa",
+    "tables/table_s1_all_controls_c09.csv": "aee62232d6845f714c7decb2620f4b26b0b9848761a0a494ad4bcb6f561c91ea",
+    "tables/table_s2_ablation.csv": "3cf9253885d4626866fef8f884bdc033946d306df06baf5abc8654a76f8ef6cc",
+    "tables/table_s3_tuning_grid.csv": "75b732a5f1fc612bff21454d15a8cee9b56a0d8883bb5541f9e43deba4163b3d"
   }
 }

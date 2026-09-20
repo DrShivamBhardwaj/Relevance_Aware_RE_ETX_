@@ -1,4 +1,4 @@
-• Two-level cloud influence is tracked after edge and cloud normalization
-• Held-out evaluation separates parameter tuning from final inference
-• Matched controls isolate adaptive compression from client scheduling
-• Utility-target alignment improves at an explicit network-cost trade-off
+• Network state is exposed directly to federated learning orchestration
+• Control-plane signaling is measured rather than assumed negligible
+• Matched controls reveal Pareto trade-offs between accuracy and relay cost
+• ns-3 replay links offered-load reduction to packet-network behavior

@@ -14,29 +14,26 @@ OUT.mkdir(parents=True, exist_ok=True)
 LATEX.mkdir(parents=True, exist_ok=True)
 (LATEX / "figures").mkdir(parents=True, exist_ok=True)
 
-TITLE = "Cross-Layer Utility-Aware Hierarchical Federated Learning for Multi-Hop IoT Sensor Networks"
+TITLE = "Energy-Information Co-Design for Resource-Bounded Edge Intelligence: A Systems-Learning Federated Framework"
 HIGHLIGHTS = [
-    "Two-level cloud influence is tracked after edge and cloud normalization",
-    "Held-out evaluation separates parameter tuning from final inference",
-    "Matched controls isolate adaptive compression from client scheduling",
-    "Utility-target alignment improves at an explicit network-cost trade-off",
+    "Network state is exposed directly to federated learning orchestration",
+    "Control-plane signaling is measured rather than assumed negligible",
+    "Matched controls reveal Pareto trade-offs between accuracy and relay cost",
+    "ns-3 replay links offered-load reduction to packet-network behavior",
 ]
-IN_BRIEF = ("Tripathi et al. study how hierarchical federated-learning decisions change when "
-            "model updates traverse multi-hop sensor routes. Their controller coordinates utility-target "
-            "participation, update fidelity, relay pressure, and staleness, and is evaluated with "
-            "held-out seeds, compression-matched controls, real sensing data, and low-power wireless replay.")
+IN_BRIEF = ("Tripathi et al. frame federated edge intelligence as an energy-information co-design problem. "
+            "Their controller coordinates utility-target participation, update fidelity, relay pressure, and "
+            "staleness while explicitly pricing pre-selection signaling. Held-out real-data experiments and "
+            "ns-3 low-power wireless replay expose workload-dependent Pareto trade-offs rather than universal dominance.")
 BROADER = (
-    "Edge intelligence increasingly supports environmental monitoring, infrastructure observation, "
-    "industrial sensing, and personal activity recognition, often where communication capacity and "
-    "battery energy are limited. In these deployments, selecting a learning client also selects the "
-    "route and relays that must transport its model update. The resulting design problem is not simply "
-    "to minimize traffic: inexpensive clients can dominate training while remote or difficult-to-reach "
-    "clients contribute less often. This study develops and audits a cross-layer controller that makes "
-    "that trade-off explicit. Importantly, the revised experiments separate parameter tuning from "
-    "held-out evaluation and compare selection policies under matched compression. The evidence therefore "
-    "supports a Pareto interpretation rather than a claim of universal network or statistical superiority. "
-    "Such transparent trade-offs are relevant when distributed intelligence must operate over low-power "
-    "sensing infrastructure without overstating sustainability or population-representativeness claims."
+    "Resource-bounded edge intelligence increasingly supports environmental sensing, infrastructure observation, "
+    "wearable analytics, and industrial monitoring. In these systems, selecting a learning client is also a physical "
+    "resource-allocation decision because the selected update determines network load, relay burden, and delay. "
+    "This study develops a systems-learning co-design framework that exposes multi-hop network state directly to "
+    "federated orchestration. The evaluation deliberately separates learning gains from network costs, prices control "
+    "metadata instead of treating scheduler information as free, and distinguishes open-loop packet replay from "
+    "closed-loop co-simulation. The resulting evidence is best interpreted as a configurable Pareto mechanism for "
+    "resource-bounded distributed AI rather than a universal efficiency or sustainability claim."
 )
 
 
@@ -48,6 +45,23 @@ FIGURES = [
     ("figures/final/04_ablation.png", "Figure 5. Held-out component ablations on Intel and UCI HAR at c = 0.9. 'No deficit' removes the utility-target participation-deficit term. Adaptive fidelity is the principal source of traffic reduction, while relay pressure and participation deficit affect different trade-off dimensions."),
     ("figures/final/03_ns3_validation.png", "Figure 6. ns-3.47 IEEE 802.15.4/LR-WPAN hop-equivalent replay of held-out synthetic traffic. Report delivery ratio, delivered-report delay, and channel-access failures are shown for dense-nominal and 24-sensor-nominal conditions. The HFL controller itself is not executed inside ns-3."),
     ("figures/final/05_learning_communication_tradeoff.png", "Figure 7. Held-out learning-versus-uplink-model-update-traffic trade-offs at c = 0.9. Marker area scales with maximum relay energy. The figure includes compression-matched controls, the FedCG-adapted comparator, and the proposed controller."),
+]
+
+ALGORITHM1_ROWS = [
+    ("1", "Update current routes, ETX burdens, residual-energy state, and candidate availability."),
+    ("2", "Collect one 21-byte control packet per candidate: header, local loss, residual-energy estimate, and availability."),
+    ("3", "Compute pre-selection utility U_i(t) and utility-target share pi_i(t)."),
+    ("4", "Construct the eligible set using availability and the residual-energy threshold."),
+    ("5", "For each eligible client, evaluate every retained Top-k fraction rho in {0.15, 0.30, 0.50, 0.75, 1.00}."),
+    ("6", "Choose rho_i(t) that minimizes the implemented route-scarcity-relay-pressure plus distortion surrogate."),
+    ("7", "Compute scheduling score Gamma_i(t) and select the K_t highest-scoring eligible clients."),
+    ("8", "Update the client participation-deficit queues Q_i(t) from target and realized participation."),
+    ("9", "Selected clients perform local optimization and update their utility history from novelty and non-negative local improvement."),
+    ("10", "Apply error-feedback Top-k compression and transmit the sparse update over the selected multi-hop route."),
+    ("11", "Accumulate source/relay energy and update relay-pressure queues Z_r(t)."),
+    ("12", "Admit updates whose modeled arrival time falls within the staleness limit; discard updates that exceed it."),
+    ("13", "Aggregate arrived client updates at each edge using sample count, staleness decay, and update utility."),
+    ("14", "Normalize edge contributions at the cloud, update the global model, and record true two-level cloud influence."),
 ]
 
 def transform_source():
@@ -143,6 +157,31 @@ def add_table_caption(doc, text):
     r.font.size=Pt(9)
     return p
 
+def add_algorithm_box(doc):
+    cap=doc.add_paragraph()
+    cap.alignment=WD_ALIGN_PARAGRAPH.CENTER
+    cap.paragraph_format.space_before=Pt(6)
+    cap.paragraph_format.space_after=Pt(3)
+    rr=cap.add_run("Algorithm 1. Systems-learning co-design execution per communication round.")
+    rr.bold=True; rr.font.name="Times New Roman"; rr.font.size=Pt(9.5)
+    tbl=doc.add_table(rows=1+len(ALGORITHM1_ROWS), cols=2)
+    tbl.alignment=WD_TABLE_ALIGNMENT.CENTER
+    tbl.style="Table Grid"
+    tbl.autofit=False
+    tbl.columns[0].width=Inches(0.42)
+    tbl.columns[1].width=Inches(5.78)
+    set_cell_text(tbl.cell(0,0),"Step",bold=True,color="FFFFFF",size=8.5)
+    set_cell_text(tbl.cell(0,1),"Operation",bold=True,color="FFFFFF",size=8.5)
+    set_cell_shading(tbl.cell(0,0),"17365D"); set_cell_shading(tbl.cell(0,1),"17365D")
+    for ri,(step,op) in enumerate(ALGORITHM1_ROWS, start=1):
+        set_cell_text(tbl.cell(ri,0),step,bold=True,size=8.2)
+        set_cell_text(tbl.cell(ri,1),op,size=8.2)
+        tbl.cell(ri,0).vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        tbl.cell(ri,1).vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        tbl.cell(ri,0).paragraphs[0].alignment=WD_ALIGN_PARAGRAPH.CENTER
+        tbl.cell(ri,1).paragraphs[0].alignment=WD_ALIGN_PARAGRAPH.JUSTIFY
+    doc.add_paragraph()
+
 def build_docx():
     doc=Document(); configure_doc(doc); lines=SOURCE.splitlines(); i=0; front_limit=lines.index("## Highlights")
     while i<len(lines):
@@ -151,6 +190,8 @@ def build_docx():
             p=doc.add_paragraph(style="Title"); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run(line[2:]).bold=True; i+=1; continue
         if line.startswith("## "): doc.add_paragraph(line[3:],style="Heading 1"); i+=1; continue
         if line.startswith("### "): doc.add_paragraph(line[4:],style="Heading 2"); i+=1; continue
+        if line=="[[ALGORITHM:1]]":
+            add_algorithm_box(doc); i+=1; continue
         if line.startswith("[[FIGURE:"):
             idx=int(re.search(r"(\d+)",line).group(1)); rel,cap=FIGURES[idx]
             p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run().add_picture(str(ROOT/rel),width=Inches(6.25))
@@ -221,6 +262,12 @@ def markdown_to_tex():
             out.append(r"\section*{"+esc_tex(h)+r"}" if h in ("Highlights","In brief","Broader context","Resource availability","References","Abstract") else r"\section{"+esc_tex(re.sub(r"^\d+\.\s*","",h))+r"}")
             i+=1; continue
         if line.startswith("### "): out.append(r"\subsection*{"+esc_tex(re.sub(r"^\d+\.\d+\s*","",line[4:]))+r"}"); i+=1; continue
+        if line=="[[ALGORITHM:1]]":
+            out += [r"\begin{center}",r"\fbox{\begin{minipage}{0.95\linewidth}",r"\textbf{Algorithm 1. Systems--learning co-design execution per communication round.}",r"\begin{enumerate}"]
+            for _,op in ALGORITHM1_ROWS:
+                out.append(r"\item "+esc_tex(op))
+            out += [r"\end{enumerate}",r"\end{minipage}}",r"\end{center}"]
+            i+=1; continue
         if line.startswith("[[FIGURE:"):
             idx=int(re.search(r"(\d+)",line).group(1)); rel,cap=FIGURES[idx]; fn=Path(rel).name
             out += [r"\begin{figure}[htbp]",r"\centering",r"\includegraphics[width=0.96\linewidth]{figures/"+fn+r"}",r"\caption{"+esc_tex(re.sub(r"^Figure \d+\.\s*","",cap))+r"}",r"\end{figure}"]; i+=1; continue
