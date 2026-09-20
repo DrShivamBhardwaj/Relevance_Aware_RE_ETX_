@@ -73,7 +73,7 @@ The learning problem is therefore not equivalent to selecting clients with minim
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.96\linewidth]{figures/02_system_architecture.png}
-\caption{Cross-layer hierarchical architecture. Learning-capable sensor clients send model updates through multi-hop relay paths to edge gateways and then to the cloud.}
+\caption{Conceptual cross-layer HFL architecture. Learning-capable clients exchange models through multi-hop relays and edge gateways. Downlink dissemination is shown for system completeness; reported communication totals in this study refer to uplink model-update traffic unless stated otherwise.}
 \end{figure}
 \section{Cross-Layer Utility-Aware HFL}
 \subsection*{Executed utility signal}
@@ -193,7 +193,7 @@ The Intel Berkeley Research Lab dataset [15] contains sensor readings, locations
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.96\linewidth]{figures/01_network_topology.png}
-\caption{Intel Berkeley Lab WSN topology abstraction. Gateway motes form the edge layer and measured directed connectivity defines route feasibility and ETX burden.}
+\caption{Intel Berkeley Lab WSN measured topology abstraction. Gateway motes are the configured edge gateways. Dashed links show a visually filtered subset of measured bidirectional-connectivity support; routing uses the full measured connectivity matrix and ETX values.}
 \end{figure}
 \subsection*{UCI Human Activity Recognition}
 UCI HAR contains smartphone inertial features for 30 subjects and six activities [16]. Each subject is treated as a persistent FL client. Because the original benchmark separates subjects between train and test, the files are recombined before constructing per-subject local datasets. The original HAR windows overlap by 50\%; a random within-subject split can therefore leak overlapping signal content. The revised protocol preserves window order, partitions each subject record into contiguous 10-window blocks, assigns one of every five blocks to test using a deterministic subject-specific offset, and removes the immediately adjacent training window at each test boundary. This yields an approximately 80/20 overlap-safe within-client holdout. It is not the canonical unseen-subject UCI HAR benchmark.\par
@@ -227,7 +227,7 @@ Proposed & 1.7348 ± 0.0030 & 0.7790 ± 0.0060 & 0.992 ± 0.021 & 3.482 ± 0.049
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.96\linewidth]{figures/07_intel_berkeley_results.png}
-\caption{Intel held-out evaluation at strong resource-data correlation. Main values and 95\% confidence intervals are reported in Table 2.}
+\caption{Intel held-out evaluation at c = 0.9. Raw means are annotated and tabulated. The line plot normalizes each metric to its own within-metric maximum only for visual comparison; it is not a composite performance score. Confidence intervals are reported in Table 2.}
 \end{figure}
 Relative to the fixed-compression resource baseline, the proposed controller reduces traffic by 55.5\% and modeled energy by 45.0\%, but the matched resource-adaptive control shows that those headline savings cannot be attributed to scheduling alone. Resource-adaptive uses 8.3\% less traffic and 5.3\% less modeled energy than proposed and obtains lower RMSE and MAE. The proposed controller instead reduces utility-target JS by 86.0\% relative to resource-adaptive. Its temperature-coverage JS is worse, not better. Against FedCG-adapted, RMSE, traffic, energy, and maximum relay energy are statistically comparable after Holm correction, while utility-target JS is 87.1\% lower. This result supports a target-alignment trade-off rather than statistical-representativeness superiority.\par
 \subsection*{UCI HAR held-out evaluation}
@@ -247,7 +247,7 @@ Proposed & 0.8867 ± 0.0012 & 0.8827 ± 0.0011 & 0.5683 ± 0.0294 & 11.253 ± 0.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.96\linewidth]{figures/06_uci_har_results.png}
-\caption{UCI HAR held-out evaluation using the blocked overlap-safe within-client split. Main values and 95\% confidence intervals are reported in Table 3.}
+\caption{UCI HAR held-out evaluation at c = 0.9 using the blocked overlap-safe within-client split. Raw means are annotated and tabulated. The line plot uses within-metric normalization only for visualization; it is not a composite score. Confidence intervals are reported in Table 3.}
 \end{figure}
 The proposed controller improves held-out accuracy by 1.16 percentage points over resource-adaptive and by 1.07 points over FedCG-adapted; both differences remain significant after Holm correction. The gain is purchased with additional network cost: relative to resource-adaptive, proposed traffic increases 26.8\%, modeled energy 33.9\%, and maximum relay energy 628.9\%. Against FedCG-adapted, traffic increases 20.9\%, energy 25.1\%, and maximum relay energy 93.0\%. Utility-target JS is 82.3\% lower than resource-adaptive and 79.5\% lower than FedCG-adapted. In contrast, class-coverage JS differences are small and non-significant. This is exactly the distinction intended by the revised metric terminology.\par
 \subsection*{Compression and component ablations}
@@ -256,21 +256,21 @@ On HAR, adaptive fidelity reduces proposed traffic from 31.232 Mbit to 11.253 Mb
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.96\linewidth]{figures/04_ablation.png}
-\caption{Component ablations on Intel and UCI HAR. Adaptive fidelity provides the largest traffic reduction, whereas the participation-deficit and relay-pressure terms affect different trade-off dimensions.}
+\caption{Held-out component ablations on Intel and UCI HAR at c = 0.9. 'No deficit' removes the utility-target participation-deficit term. Adaptive fidelity is the principal source of traffic reduction, while relay pressure and participation deficit affect different trade-off dimensions.}
 \end{figure}
 \subsection*{ns-3 communication replay}
 Under the primary hop-equivalent dense-nominal condition, proposed held-out synthetic traffic maps to 1,204 payload bits per report-equivalent update, compared with 3,431 for resource-only. The mean report delivery ratio is 99.47\% for proposed and 85.79\% for resource-only; mean delivered-report delay is 12.26 ms versus 35.99 ms. At the 24-sensor scale-nominal condition, report delivery is 96.56\% for proposed versus 57.72\% for resource-only. These differences validate the communication consequence of lower offered load, not the superiority of the learning scheduler in isolation. The traffic reduction itself is strongly influenced by adaptive compression.\par
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.96\linewidth]{figures/03_ns3_validation.png}
-\caption{ns-3.47 IEEE 802.15.4/LR-WPAN replay of held-out synthetic traffic profiles. The replay validates communication consequences of offered load; the HFL controller itself is not executed inside ns-3.}
+\caption{ns-3.47 IEEE 802.15.4/LR-WPAN hop-equivalent replay of held-out synthetic traffic. Report delivery ratio, delivered-report delay, and channel-access failures are shown for dense-nominal and 24-sensor-nominal conditions. The HFL controller itself is not executed inside ns-3.}
 \end{figure}
 \subsection*{Cross-dataset interpretation}
 The held-out results reject a simple “best method” interpretation. On Intel, resource-adaptive offers the strongest resource/learning point among the matched controls, while proposed most closely matches its own utility-derived target. FedCG-adapted is statistically comparable to proposed on Intel RMSE and systems cost. On HAR, proposed achieves the strongest mean accuracy and Macro-F1 among the main controls but spends substantially more traffic and relay energy than resource-adaptive and FedCG-adapted. Independent coverage metrics do not mirror utility-target JS, confirming that target alignment is not equivalent to representativeness.\par
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.96\linewidth]{figures/05_learning_communication_tradeoff.png}
-\caption{Held-out learning-communication trade-offs for compression-matched controls, the FedCG-adapted comparator, and the proposed controller.}
+\caption{Held-out learning-versus-uplink-model-update-traffic trade-offs at c = 0.9. Marker area scales with maximum relay energy. The figure includes compression-matched controls, the FedCG-adapted comparator, and the proposed controller.}
 \end{figure}
 The practical design implication is that adaptive fidelity and client scheduling should be evaluated separately. A fixed-compression baseline can make a coupled controller appear dramatically more communication-efficient even when most of the reduction comes from the compression rule. Conversely, a pure resource controller can minimize traffic and hotspot energy while accepting weaker alignment with the utility target. The revised evaluation makes these trade-offs explicit.\par
 \section{Discussion}

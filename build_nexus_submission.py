@@ -41,13 +41,13 @@ BROADER = (
 
 
 FIGURES = [
-    ("figures/final/02_system_architecture.png", "Figure 1. Cross-layer hierarchical architecture. Learning-capable sensor clients send model updates through multi-hop relay paths to edge gateways and then to the cloud."),
-    ("figures/final/01_network_topology.png", "Figure 2. Intel Berkeley Lab WSN topology abstraction. Gateway motes form the edge layer and measured directed connectivity defines route feasibility and ETX burden."),
-    ("figures/final/07_intel_berkeley_results.png", "Figure 3. Intel held-out evaluation at strong resource-data correlation. Main values and 95% confidence intervals are reported in Table 2."),
-    ("figures/final/06_uci_har_results.png", "Figure 4. UCI HAR held-out evaluation using the blocked overlap-safe within-client split. Main values and 95% confidence intervals are reported in Table 3."),
-    ("figures/final/04_ablation.png", "Figure 5. Component ablations on Intel and UCI HAR. Adaptive fidelity provides the largest traffic reduction, whereas the participation-deficit and relay-pressure terms affect different trade-off dimensions."),
-    ("figures/final/03_ns3_validation.png", "Figure 6. ns-3.47 IEEE 802.15.4/LR-WPAN replay of held-out synthetic traffic profiles. The replay validates communication consequences of offered load; the HFL controller itself is not executed inside ns-3."),
-    ("figures/final/05_learning_communication_tradeoff.png", "Figure 7. Held-out learning-communication trade-offs for compression-matched controls, the FedCG-adapted comparator, and the proposed controller."),
+    ("figures/final/02_system_architecture.png", "Figure 1. Conceptual cross-layer HFL architecture. Learning-capable clients exchange models through multi-hop relays and edge gateways. Downlink dissemination is shown for system completeness; reported communication totals in this study refer to uplink model-update traffic unless stated otherwise."),
+    ("figures/final/01_network_topology.png", "Figure 2. Intel Berkeley Lab WSN measured topology abstraction. Gateway motes are the configured edge gateways. Dashed links show a visually filtered subset of measured bidirectional-connectivity support; routing uses the full measured connectivity matrix and ETX values."),
+    ("figures/final/07_intel_berkeley_results.png", "Figure 3. Intel held-out evaluation at c = 0.9. Raw means are annotated and tabulated. The line plot normalizes each metric to its own within-metric maximum only for visual comparison; it is not a composite performance score. Confidence intervals are reported in Table 2."),
+    ("figures/final/06_uci_har_results.png", "Figure 4. UCI HAR held-out evaluation at c = 0.9 using the blocked overlap-safe within-client split. Raw means are annotated and tabulated. The line plot uses within-metric normalization only for visualization; it is not a composite score. Confidence intervals are reported in Table 3."),
+    ("figures/final/04_ablation.png", "Figure 5. Held-out component ablations on Intel and UCI HAR at c = 0.9. 'No deficit' removes the utility-target participation-deficit term. Adaptive fidelity is the principal source of traffic reduction, while relay pressure and participation deficit affect different trade-off dimensions."),
+    ("figures/final/03_ns3_validation.png", "Figure 6. ns-3.47 IEEE 802.15.4/LR-WPAN hop-equivalent replay of held-out synthetic traffic. Report delivery ratio, delivered-report delay, and channel-access failures are shown for dense-nominal and 24-sensor-nominal conditions. The HFL controller itself is not executed inside ns-3."),
+    ("figures/final/05_learning_communication_tradeoff.png", "Figure 7. Held-out learning-versus-uplink-model-update-traffic trade-offs at c = 0.9. Marker area scales with maximum relay energy. The figure includes compression-matched controls, the FedCG-adapted comparator, and the proposed controller."),
 ]
 
 def transform_source():
@@ -98,7 +98,7 @@ def add_page_number(paragraph):
 def configure_doc(doc):
     sec = doc.sections[0]
     sec.top_margin=Inches(.75); sec.bottom_margin=Inches(.75); sec.left_margin=Inches(.85); sec.right_margin=Inches(.85)
-    n=doc.styles["Normal"]; n.font.name="Times New Roman"; n.font.size=Pt(11); n.paragraph_format.space_after=Pt(5); n.paragraph_format.line_spacing=1.08
+    n=doc.styles["Normal"]; n.font.name="Times New Roman"; n.font.size=Pt(11); n.paragraph_format.space_after=Pt(5); n.paragraph_format.line_spacing=1.08; n.paragraph_format.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY
     for sname,size in [("Title",16),("Heading 1",13),("Heading 2",11.5),("Heading 3",11)]:
         st=doc.styles[sname]; st.font.name="Times New Roman"; st.font.size=Pt(size); st.font.bold=True
     add_page_number(sec.footer.paragraphs[0])
@@ -181,7 +181,10 @@ def build_docx():
             i+=1; add_math_para(doc," ".join(eq)); continue
         if not line: i+=1; continue
         p=doc.add_paragraph(); parse_inline_runs(p,line)
-        if i<front_limit: p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+        if i<front_limit:
+            p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+        else:
+            p.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY
         i+=1
     out=OUT/"NEXUS_FINAL_MANUSCRIPT.docx"; doc.save(out); return out
 def esc_tex(s):
