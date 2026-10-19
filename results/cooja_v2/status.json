@@ -1,0 +1,22 @@
+{
+  "status": "480 executed research runs; independent audits passed",
+  "primary_runs": 200,
+  "primary_seed_pairs": 20,
+  "exploratory_runs": 280,
+  "exploratory_cases": 7,
+  "seeds_per_exploratory_case": 4,
+  "component_tests_passed": 21,
+  "executed_source_commit": "8c99e28f1732c494e58d27ab2a3ecf9b3b511efa",
+  "github_actions_run": 39206635771,
+  "primary_conclusion": "relevance has worse RMSE than exact-size shuffled control",
+  "archives": {
+    "primary_evidence.tar.xz": {
+      "bytes": 4671952,
+      "sha256": "64b614a5fdaec243bdcfafd22bafb52ab7b9242d8eafd7c8ea859bbc446da1f6"
+    },
+    "exploratory_evidence.tar.xz": {
+      "bytes": 7308064,
+      "sha256": "e57896df393321091116c4ff77146dbf4961e164a454457f607ff1bd29522469"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "canonical": "200 complete GitHub Actions primary runs",
+  "local_overlap_runs": 97,
+  "max_absolute_difference": {
+    "receiver_rmse": 0,
+    "on_time_pdr": 0,
+    "nominal_radio_energy_j": 0,
+    "offered_application_bytes": 0
+  },
+  "mismatches": [],
+  "local_stop_reason": "redundant primary execution stopped after all canonical GitHub jobs succeeded; completed local overlaps retained; partial duplicates are not additional seeds"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "recovered only after exact original hash and summary match",
+  "results": [
+    {
+      "run": "bias_s1001_temporal_matched",
+      "status": "byte-identical raw-log recovery",
+      "sha256": "1915f0be55e4643f8d560a341994044f1773aa4ddc7af0b8c0564747fe2ce447",
+      "summary_identical": true,
+      "old_hash": "18dbf0932857f6e0b8e7eb3fa27cc93e6068398a92c563771dbd4bdf81834e82"
+    },
+    {
+      "run": "drift_s1001_full",
+      "status": "byte-identical raw-log recovery",
+      "sha256": "f9f79616185afa60d092b8c1a9f53b19a34f1b2ea9f3ad49928f43c35d93ae7c",
+      "summary_identical": true,
+      "old_hash": "ff618f07de41ff83f1c19b57edb414f9feab3117a1afcce29b9ee1c7384ced6f"
+    }
+  ]
+}

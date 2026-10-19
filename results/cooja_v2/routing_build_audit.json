@@ -1,0 +1,1207 @@
+{
+  "status": "all 200 primary compiled MRHOF objects match the routing treatment",
+  "runs": 200,
+  "method": "nm undefined-symbol inspection of digest-verified original GitHub artifact object files",
+  "results": [
+    {
+      "run": "primary_s1001_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1001_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1001_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1001_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1001_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1001_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1001_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1001_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1001_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1001_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1091_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1091_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1091_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1091_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1091_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1091_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1091_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1091_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1091_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1091_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1213_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1213_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1213_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1213_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1213_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1213_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1213_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1213_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1213_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1213_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1327_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1327_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1327_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1327_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1327_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1327_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1327_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1327_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1327_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1327_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1453_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1453_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1453_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1453_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1453_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1453_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1453_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1453_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1453_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1453_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1013_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1013_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1013_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1013_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1013_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1013_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1013_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1013_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1013_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1013_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1123_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1123_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1123_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1123_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1123_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1123_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1123_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1123_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1123_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1123_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1237_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1237_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1237_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1237_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1237_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1237_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1237_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1237_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1237_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1237_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1361_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1361_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1361_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1361_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1361_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1361_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1361_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1361_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1361_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1361_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1481_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1481_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1481_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1481_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1481_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1481_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1481_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1481_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1481_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1481_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1031_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1031_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1031_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1031_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1031_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1031_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1031_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1031_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1031_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1031_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1151_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1151_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1151_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1151_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1151_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1151_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1151_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1151_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1151_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1151_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1277_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1277_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1277_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1277_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1277_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1277_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1277_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1277_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1277_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1277_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1381_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1381_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1381_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1381_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1381_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1381_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1381_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1381_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1381_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1381_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1511_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1511_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1511_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1511_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1511_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1511_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1511_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1511_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1511_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1511_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1061_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1061_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1061_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1061_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1061_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1061_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1061_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1061_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1061_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1061_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1181_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1181_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1181_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1181_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1181_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1181_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1181_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1181_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1181_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1181_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1301_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1301_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1301_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1301_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1301_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1301_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1301_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1301_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1301_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1301_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1423_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1423_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1423_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1423_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1423_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1423_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1423_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1423_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1423_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1423_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1543_adaptive",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1543_adaptive_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1543_balanced",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1543_full",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1543_full_without_context",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1543_rd_local",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1543_rd_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1543_shuffled",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    },
+    {
+      "run": "primary_s1543_shuffled_etx_replay",
+      "expected_energy_hook": false,
+      "compiled_hook_reference": false,
+      "object_sha256": "9748d49671ac6af0ecb456aa35b35d5b268bce98e6cff92e9b6bc201a0cb4917"
+    },
+    {
+      "run": "primary_s1543_temporal_matched",
+      "expected_energy_hook": true,
+      "compiled_hook_reference": true,
+      "object_sha256": "280f7d54589f2bd5bbd115ff004d231ee34c83a29e5dec2996bb5907b2ddee3f"
+    }
+  ]
+}

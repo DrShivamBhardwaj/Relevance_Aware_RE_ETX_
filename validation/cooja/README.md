@@ -1,6 +1,6 @@
 # Executable Cooja validation
 
-This package extends the archived payload-allocation study with an actual source representation, receiver error, distributed neighbour context, and transmission-level controls. No Cooja study results have yet been produced in this session. Configuration generation and native compilation must not be described as Cooja execution.
+This package extends the archived payload-allocation study with an actual source representation, receiver error, distributed neighbour context, and transmission-level controls. The executed revision-2 study completed 200 primary and 280 exploratory research runs, all passing independent source/log/control audits. Results and raw archives are under `results/cooja_v2/`. The exact-size primary comparison favours shuffling over the relevance rule; no superiority claim is supported.
 
 ## Pinned components
 
@@ -24,7 +24,7 @@ python3 validation/cooja/analyse.py cooja-output --output cooja-analysis.json
 
 The `smoke` profile is an infrastructure and packet-path check, not an inferential experiment. `primary` runs 20 new seeds, 25 sources, 60 rounds, and ten policies. `all` adds exploratory weak-event, persistent-event, drift, sensor-bias, radio-outage, 100-node and shorter-report-period cases on four seeds. Parallel jobs use `--shard K --shards M`; combine the resulting run folders before analysis.
 
-The workflow triggers a smoke run on an authorised push. Its manual dispatch accepts `primary` or `all`; publishing the workflow and executing it require account-authorised GitHub access. An output folder contains a manifest, generated input, console log, Cooja test log, offered report trace and summary. A failed or incomplete run cannot pass the analysis gate.
+The workflow runs four primary shards on a push, each preceded by component, upstream IPv6 and ten-policy smoke gates. Manual dispatch also accepts `primary` or `all`. Archival-only commits may use `[skip ci]` to avoid duplicating the research runs. An output folder contains a manifest, generated input, console log, Cooja test log, offered report trace and summary. A failed or incomplete run cannot pass the analysis gate.
 
 ## Implemented method
 
@@ -40,13 +40,13 @@ All policies use 16-bit reports for the first ten rounds; warm-up is excluded fr
 
 The primary contrast is adaptive versus shuffled receiver RMSE over a fixed external horizon. Every source/round is in the denominator. An unavailable or late report receives the declared zero-block reconstruction; it is never silently excluded. Delay has a one-period deadline. There is no FND/HND/LND or wall-clock battery-life claim in this validation.
 
-Radio activity includes data, beacons, routing control and retransmissions. The optional radio-energy calculation assumes 3 V and CC2420 nominal TX/RX currents 17.4/18.8 mA from https://www.ti.com/lit/ds/symlink/cc2420.pdf. It excludes CPU, sensing and unmodelled circuit states and is not calibrated total-device energy. Native Cooja CPU timing cannot establish embedded runtime. Raw activity times remain the primary accounting record.
+Radio activity includes data, beacons, routing control and retransmissions. The optional radio-energy calculation assumes 3 V and CC2420 nominal TX/RX currents 17.4/18.8 mA from https://www.ti.com/lit/ds/symlink/cc2420.pdf. It excludes CPU, sensing and unmodelled circuit states and is not calibrated total-device energy. Native Cooja CPU timing cannot establish embedded runtime. Raw activity times remain the primary accounting record. Activity ends at each source’s final snapshot, before the simulation drain; radio work after that snapshot and sink activity are excluded, even where a legacy raw summary descriptor says full-run.
 
 The declared zero estimator, thresholds, virtual reserve and workload are frozen in `design.json` before Cooja outputs. This is a prospective project analysis plan, not an externally registered study. Weak signals, missing context, biases, outages and scaling may overturn the proposed method's advantage; negative results must be retained.
 
-## Local checks completed
+## Executed checks
 
-The portable codec and control/analysis invariants have automated tests. The firmware has been compiled with the pinned Contiki-NG native target, CSMA and the modified MRHOF hook. These checks verify software components, not the pending Cooja packet path, measured utility, topology behaviour or statistical conclusions.
+The portable codec and control/analysis invariants have automated tests. The firmware has been compiled with the pinned Contiki-NG native target, CSMA and the modified MRHOF hook. The 21 component tests passed, and all four successful GitHub jobs passed the upstream IPv6 and ten-policy smoke gates before the 200 primary runs. Independent audits additionally passed all 280 local exploratory outcomes. Component checks alone are not statistical evidence.
 
 ## Pre-execution revision 2
 

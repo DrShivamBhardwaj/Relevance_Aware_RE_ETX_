@@ -1,22 +1,19 @@
 # Reviewer issue resolution status
 
-Status: component implementation and local checks completed; Cooja experiments and manuscript integration remain pending.
+All 480 declared Cooja research runs completed and passed independent audit. Implementation defects and unsupported claims were addressed; empirical limitations remain visible.
 
-| Review concern | Implemented response | Remaining evidence |
+| Concern | Resolution and evidence | Remaining boundary |
 | --- | --- | --- |
-| Payload bits had no specified content | 250-sample progressive codec and explicit decoder; full-depth lossless and bounded-error tests | Actual network reconstruction errors |
-| Novelty was weak | Receiver utility per offered transmission budget is the new evaluation question | Scientific advantage is not established before execution |
-| Mean bits did not match frame distribution | Per-round exact offered payload-size multiset replay; common full-depth warm-up | Verify packet path, MAC behaviour and measured results |
-| Central and dead-neighbour context | TTL-limited one-hop context beacons; no central context reads | Outage/stale-context Cooja outcomes |
-| Lifetime and survivorship denominators | Fixed horizon; unavailable/late reports enter reconstruction error | Execute complete offered-report population |
-| Statistical fragility | Twenty new seeds; one primary contrast; paired effects and exact sensitivity; historical global correction retained | New Cooja seed-level observations |
-| Easy event regime | Weak, persistent, drifting and biased workloads specified | Exploratory outcomes must be retained even if negative |
-| Geometry was not scalability | 25/100 sources at fixed spacing; delivered-hop instrumentation | Executed density-preserving scaling |
-| Channel/energy inconsistency | Actual Contiki CSMA/RPL; radio activity with declared CC2420 nominal-current model | Cooja native is not hardware or complete-device energy |
-| Weak age-routing formulation | Excluded from the new controller; no freshness-superiority claim | Historical negative result remains narrowly scoped |
-| Missing-route crash | Initialised zero-work result; failure-path tests pass | Additional packet-path testing in Cooja |
-| Reproducibility | Pinned sources, analysis requirements, output manifests, workflow, isolated archives | Public branch/release pending explicit approval |
-| Figure resolution and final paper presentation | No speculative Cooja figures inserted | Regenerate figures and revise paper after actual results |
-| Author metadata/declarations | No author roles invented | Author contribution/email confirmation still required |
+| Undefined payload content | Progressive 250-sample codec and receiver decoder; source/SSE audit on 480 runs | One synthetic range and representation |
+| Confounding traffic volume with assignment | Exact per-round size multisets; paired 20-seed primary contrast | Offered bytes do not match realised airtime |
+| Central/dead-neighbour context | Live TTL-limited one-hop beacons | Unauthenticated advertisements; native memory limits |
+| Survivorship | Fixed offered-report denominator, deadlines, retained zero-delivery outcomes | Zero imputation is an estimator assumption |
+| Weak baselines | Conventional causal distortion-price and own shuffle | Primary RD decisions collapse to fixed eight bits; budgets differ from relevance |
+| Routing attribution | Fixed-schedule ETX/reserve 2-by-2 replay | Interaction interval crosses zero; conditional offline intervention |
+| Novelty and superiority | Reframed as controlled attribution/failure evidence | No new superior protocol established |
+| Statistical fragility | 20 paired seeds, frozen primary contrast, exact sensitivity, secondary Holm correction | Seven four-seed stress cases remain exploratory |
+| Energy interpretation | Source-window TX/listen accounting, declared currents | No drain, sink, CPU/sensing energy or battery-life claim |
+| Code defects | Initialised absent-route result and 21 passing component tests | Hardware/testbed validation remains future work |
+| Reproducibility | Public pinned source, raw archives, 480-run audit, successful Actions | Two damaged exploratory logs recovered by exact replay; original hashes and summaries matched |
 
-No new Cooja results, hardware results, statistical superiority, or submission readiness is claimed. The old manuscript remains a historical-results draft until the new evidence is available.
+The matched-budget primary RMSE difference is +0.004750 [0.000117, 0.009383], favouring shuffling. Secondary delivery improvement does not survive correction; energy savings and routing synergy are unsupported. All seven exploratory RMSE intervals cross zero. These outcomes must remain in any scientific account of this implementation.
