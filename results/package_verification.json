@@ -1,0 +1,35 @@
+{
+  "verified_at_utc": "2026-10-19T16:54:31.039385+00:00",
+  "canonical_archives_sha256_verified": true,
+  "primary_runs_independently_audited": 200,
+  "exploratory_runs_independently_audited": 280,
+  "regenerated_json_comparison": {
+    "primary-audit_matches_archive": true,
+    "exploratory-audit_matches_archive": true,
+    "primary-analysis_matches_archive": true,
+    "exploratory-analysis_matches_archive": true
+  },
+  "component_tests": {
+    "command": "python -m unittest discover -s tests -v",
+    "passed": 21,
+    "failed": 0
+  },
+  "historical_audit": {
+    "unique_control_runs": 70,
+    "paired_tests": 49,
+    "all_archived_primary_pvalues_reproduced": true,
+    "analysis": "Retrospective sensitivity; one Holm family of 49 network tests",
+    "limitations": [
+      "No new simulation runs",
+      "No equivalence test",
+      "No held-out calibration seeds",
+      "Intervals are marginal"
+    ]
+  },
+  "updated_document_assets": {
+    "original_png_figures": 9,
+    "numbered_csv_tables": 10,
+    "full_manuscript_included": false
+  },
+  "new_simulations_executed_for_packaging": false
+}

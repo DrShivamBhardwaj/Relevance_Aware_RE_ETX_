@@ -2,7 +2,7 @@
 
 Executed source: `8c99e28f1732c494e58d27ab2a3ecf9b3b511efa`. Primary results come from successful [Actions run 39206635771](https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_/actions/runs/39206635771), four shards, 20 paired seeds and ten policies (200 runs). The exploratory archive retains seven predeclared cases, four paired seeds each and ten policies (280 runs). Smoke outcomes are excluded from the research analysis.
 
-`primary_evidence.tar.xz` and `exploratory_evidence.tar.xz` contain raw Cooja test/console logs, offered traces, generated configurations, source headers, summaries and manifests. Full build dependencies and firmware objects are omitted; source and raw-log hashes are retained. Extract each into a common evidence directory, then follow `REPRODUCIBILITY.md`. Archive SHA256 values are in `status.json`.
+`primary_evidence.tar.xz` and `exploratory_evidence.tar.xz` contain raw Cooja test/console logs, offered traces, generated configurations, source headers, summaries and manifests. Full build dependencies and firmware objects are omitted; source and raw-log hashes are retained. Extract each into a common evidence directory, then follow the package-root `REPRODUCIBILITY.md`. Archive SHA256 values are in `status.json`.
 
 Analysis JSON files retain all paired tests, effect sizes and secondary Holm adjustments. Seed CSVs contain all 480 policy outcomes. Independent audit JSONs reproduce source truth, decoder SSE, denominators, raw-log hashes and offered control schedules. Hold-imputation and always-zero diagnostics are explicitly post-hoc. The 97 local primary replicas agree exactly with canonical GitHub results and are not extra replicates. Routing-object verification is recorded separately.
 

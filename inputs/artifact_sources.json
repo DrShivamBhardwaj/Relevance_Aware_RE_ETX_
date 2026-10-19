@@ -1,0 +1,56 @@
+{
+  "figures": {
+    "1": {
+      "role": "conceptual architecture",
+      "source": "historical source code",
+      "reproduction": "figures/fig01.svg"
+    },
+    "2": {
+      "role": "analytical map and fragmentation",
+      "source": "historical/simulator/semantic_payload.py; historical/config.py"
+    },
+    "3": {
+      "role": "energy-weight sweep",
+      "source": "results/master_validation/raw/re_etx_multiseed_raw.csv"
+    },
+    "4": {
+      "role": "death milestones",
+      "source": "results/master_validation/statistics/control_multiseed_raw.csv"
+    },
+    "5": {
+      "role": "delivery, delay and per-delivery energy",
+      "source": "results/master_validation/statistics/control_multiseed_raw.csv"
+    },
+    "6": {
+      "role": "survival curves",
+      "source": "results/master_validation/raw/control_rounds.tar.gz"
+    },
+    "7": {
+      "role": "delivery totals, retries and goodput",
+      "source": "results/master_validation/statistics/control_multiseed_raw.csv"
+    },
+    "8": {
+      "role": "paired Cooja effects",
+      "source": "results/cooja_v2/cooja_primary_analysis.json"
+    },
+    "9": {
+      "role": "post-hoc estimator sensitivity",
+      "source": "results/cooja_v2/cooja_primary_audit.json"
+    }
+  },
+  "tables": {
+    "1": "descriptive prior-work comparison; not experiment output",
+    "2": "historical/config.py",
+    "3": "historical/run_control_multiseed.py",
+    "4": "results/master_validation/statistics/control_multiseed_raw.csv",
+    "5": "results/master_validation/statistics/planned_paired_tests_holm.csv",
+    "6": "results/master_validation/statistics/control_multiseed_raw.csv",
+    "7": "results/master_validation/statistics/event_quality_summary.csv; within_round_targeting_summary.csv",
+    "8": "results/master_validation/statistics/topology_sensitivity_summary.csv",
+    "9": "results/cooja_v2/primary_seed_results.csv",
+    "10": "results/cooja_v2/cooja_robustness_analysis.json"
+  },
+  "table_format": "UTF-8 CSV; multiline cells and displayed precision retained. Merged section rows repeat their label across columns.",
+  "figure_format": "Original PNG display assets; numerical regeneration may differ in styling.",
+  "excluded": "Full document, bibliography, journal files, author metadata and the algorithm layout table are not included."
+}

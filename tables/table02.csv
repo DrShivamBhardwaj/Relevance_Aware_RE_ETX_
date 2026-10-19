@@ -1,0 +1,15 @@
+Parameter,Value,Parameter,Value
+Sensors; initial energy,100; 0.5 J each,Field; sink,"100 × 100 m; (50,150) m"
+Full application report,4000 bits,Frame payload; overhead,800; 216 bits
+Bit rate; retry limit,250 kbps; 3 retries,Processing delay,1 ms per hop
+Carrier; transmit power,2.4 GHz; 0 dBm,Noise floor,−100 dBm
+Path-loss exponent,2.4,Shadowing standard deviation,4 dB
+Sensor-link radius,30 m,Full-message eligibility,Success ≥0.90
+Electronics energy,50 nJ/bit,Amplifier coefficients,10 pJ/bit/m²; 1.3 fJ/bit/m⁴
+Temporal correlation,0.85,Spatial correlation length,25 m
+Innovation-noise scale,0.10,Event start probability,0.03 per inactive round
+Event amplitude; width,3; 18 m,Event duration,4–10 rounds
+Relevance neighbourhood,20 m,Warm-up; EWMA factor,50 rounds; 0.02
+Temporal/spatial weights,0.6 / 0.4,Energy weight in ablation,0.25
+Minimum payload ratio,0.25,Protection thresholds,0.50 and 0.85
+Stop condition,All nodes dead,Maximum rounds,5000

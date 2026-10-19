@@ -11,7 +11,7 @@ This package extends the archived payload-allocation study with an actual source
 
 ## Run
 
-On a connected Linux host or the supplied GitHub Actions workflow:
+On a connected Linux host (see the package-root `REPRODUCIBILITY.md` for pinned checkouts):
 
 ```bash
 # If an existing compatible checkout is available:
@@ -24,7 +24,7 @@ python3 validation/cooja/analyse.py cooja-output --output cooja-analysis.json
 
 The `smoke` profile is an infrastructure and packet-path check, not an inferential experiment. `primary` runs 20 new seeds, 25 sources, 60 rounds, and ten policies. `all` adds exploratory weak-event, persistent-event, drift, sensor-bias, radio-outage, 100-node and shorter-report-period cases on four seeds. Parallel jobs use `--shard K --shards M`; combine the resulting run folders before analysis.
 
-The workflow runs four primary shards on a push, each preceded by component, upstream IPv6 and ten-policy smoke gates. Manual dispatch also accepts `primary` or `all`. Archival-only commits may use `[skip ci]` to avoid duplicating the research runs. An output folder contains a manifest, generated input, console log, Cooja test log, offered report trace and summary. A failed or incomplete run cannot pass the analysis gate.
+The original repository's `cooja-validation` branch contains the execution workflow used for the archived four primary shards. That workflow preceded each shard with component, upstream IPv6 and ten-policy smoke gates. This artifact branch does not automatically rerun simulations. An output folder contains a manifest, generated input, console log, Cooja test log, offered report trace and summary. A failed or incomplete run cannot pass the analysis gate.
 
 ## Implemented method
 

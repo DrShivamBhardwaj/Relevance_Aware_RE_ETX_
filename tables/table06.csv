@@ -1,0 +1,9 @@
+Outcome,C5,C6,C7,C3
+"Attempted mean payload, bits",1744.00,1748.05,1610.89,1747.84
+"FND, rounds",267.6,295.8,297.8,275.2
+"HND, rounds",844.0,869.6,929.8,870.1
+"LND, rounds",2626.6,2634.0,2825.8,2636.4
+"PDR, %",97.758,97.825,97.956,97.812
+"Delay, ms",493.0,481.2,448.7,481.6
+"Energy/delivered report, mJ",0.538,0.525,0.489,0.526
+Retries/generated report,0.0941,0.0922,0.0861,0.0918

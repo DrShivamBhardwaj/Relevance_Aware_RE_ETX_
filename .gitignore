@@ -1,16 +1,8 @@
-.venv/
 __pycache__/
-*.pyc
-.DS_Store
-*.log
-.ipynb_checkpoints/
-
-*.tar.gz
-*.zip
-
-# Generated firmware and run products; evidence is archived explicitly.
-validation/cooja/build/
-validation/cooja/*.native
-validation/cooja/*.cooja
-validation/cooja/*.o
+*.py[cod]
+.venv/
 cooja-output/
+cooja-analysis.json
+*.o
+*.native
+build/

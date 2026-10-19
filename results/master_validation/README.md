@@ -128,19 +128,19 @@ Representative regression/sanity runs are also retained directly under
 
 ## Analysis Scripts
 
-- `../../analyze_control_results.py`
-- `../../analyze_event_quality.py`
-- `../../analyze_targeting_results.py`
-- `../../analyze_topology_sensitivity.py`
+- `../../historical/analyze_control_results.py`
+- `../../historical/analyze_event_quality.py`
+- `../../historical/analyze_targeting_results.py`
+- `../../historical/analyze_topology_sensitivity.py`
 
 ## Batch Runners
 
-- `../../run_control_multiseed.py`
-- `../../run_event_quality_multiseed.py`
-- `../../run_targeting_multiseed.py`
-- `../../run_topology_sensitivity.py`
+- `../../historical/run_control_multiseed.py`
+- `../../historical/run_event_quality_multiseed.py`
+- `../../historical/run_targeting_multiseed.py`
+- `../../historical/run_topology_sensitivity.py`
 
 ## Calibration / Correction Utilities
 
-- `../../calibrate_topology_depth.py`
-- `../../correct_topology_c5_budget.py`
+- `../../historical/calibrate_topology_depth.py`
+- `../../historical/correct_topology_c5_budget.py`

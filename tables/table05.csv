@@ -1,0 +1,8 @@
+Outcome,Mean change,95% interval,Holm p
+"FND, rounds",+149.7,"[138.8, 160.6]",3.55 × 10⁻⁹
+"HND, rounds",+461.0,"[408.1, 513.9]",1.74 × 10⁻⁷
+"LND, rounds",+1367.8,"[1243.7, 1491.9]",2.32 × 10⁻⁸
+"PDR, percentage points",+2.462,"[1.667, 3.256]",0.00100
+"Delay, ms",−564.4,"[−602.7, −526.1]",1.93 × 10⁻⁹
+"Energy/delivered report, mJ",−0.622,"[−0.663, −0.580]",1.83 × 10⁻⁹
+Retries/generated report,−0.0997,"[−0.1325, −0.0670]",0.00107

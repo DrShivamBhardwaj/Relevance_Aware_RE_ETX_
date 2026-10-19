@@ -1,0 +1,8 @@
+Paper case,Age route term,Payload rule,Experimental role
+C1,Off,Fixed 4000 bits,Full-payload RE-ETX reference
+C2,On,Fixed 4000 bits,Routing-age ablation
+"C3, retained method",Off,Temporal-spatial relevance adaptive,Retained payload controller
+C4,On,Temporal-spatial relevance adaptive,Full extension
+C5,Off,Fixed 1744 bits,Approximate mean-budget fixed control
+C6,Off,Adaptive lengths shuffled among live sources,Payload-allocation control
+C7,Off,Temporal-only relevance adaptive,Spatial-feature ablation

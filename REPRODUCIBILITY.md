@@ -1,27 +1,69 @@
-# Reproducibility and evidence generations
+# Reproducing the evidence
 
-The historical ten-seed C1–C7 outputs remain in `results/master_validation/`, from archived source `b5d5ac75c981b1eff0171a8cb885ef5764183d85`. They predate the absent-route fix and progressive codec. `tools/audit_submission_evidence.py` retains retrospective t-test and exact sign-flip multiplicity sensitivities under `results/cooja_preflight/historical_audit/`.
+Run commands from the package root unless stated otherwise. Install `requirements.txt` in an isolated Python 3.12 environment. Raw-evidence verification needs temporary disk space beyond the compressed archives.
 
-The independent Cooja experiment executes source commit `8c99e28f1732c494e58d27ab2a3ecf9b3b511efa`. Its frozen revision-2 design is in `validation/cooja/design.json`. Subsequent archival commits add reports and reproduction helpers without changing that executed core.
-
-All 200 primary runs succeeded on [GitHub Actions run 39206635771](https://github.com/DrShivamBhardwaj/Relevance_Aware_RE_ETX_/actions/runs/39206635771). All four jobs also passed the component, upstream IPv6 and ten-policy smoke checks. The seven declared exploratory cases completed another 280 local runs against the same pinned core. The archived independent audits passed 200 primary and 280 exploratory runs. Ninety-seven duplicate local primary outcomes agree exactly with the canonical GitHub outcomes; these are replication checks, not extra seeds.
-
-## Reanalyse retained evidence
+## Archived Cooja results
 
 ```bash
-python3 -m pip install -r validation/cooja/requirements-analysis.txt
-mkdir evidence
-# Both archives contain unique run folders, not smoke duplicates.
-tar -xJf results/cooja_v2/primary_evidence.tar.xz -C evidence
-tar -xJf results/cooja_v2/exploratory_evidence.tar.xz -C evidence
-python3 validation/cooja/audit_outputs.py evidence/primary --output primary-audit.json
-python3 validation/cooja/analyse.py evidence/primary --output primary-analysis.json
-python3 validation/cooja/audit_outputs.py evidence/exploratory --output exploratory-audit.json
-python3 validation/cooja/analyse.py evidence/exploratory --output exploratory-analysis.json
+python tools/verify_package.py --raw
 ```
 
-The independent audit compiles the retained portable C codec using GCC. It verifies every source block and received SSE, raw-log hashes, offered denominators, exact-size permutations and fixed routing schedules. The post-hoc hold estimator and no-transmission diagnostic do not replace the frozen zero-imputation primary endpoint. `results/cooja_v2/README.md` describes raw evidence and limitations.
+This checks SHA-256 integrity, run identities and counts, independently regenerates source truth and decoder error from the raw evidence, checks denominators and matched controls, and reruns paired inference. The regenerated audit and analysis must match the archived JSON exactly. No new simulator execution is involved. Primary and exploratory raw evidence are kept separate.
 
-To execute new runs, follow `validation/cooja/README.md` using pinned Contiki-NG/Cooja. Never overwrite an existing run. `tools/run_cooja_robustness.py` executes only the seven declared stress cases. `tools/resume_cooja.py` archives incomplete infrastructure attempts before resuming; it does not discard valid zero-delivery outcomes.
+For inspection or plotting, extract both archives into a fresh directory:
 
-`results/cooja_preflight/` is a historical pre-execution checkpoint. Its zero-run status is retained as provenance, not the current execution status. No hardware, MCU timing, battery-life or total-device energy result is claimed.
+```bash
+mkdir -p /tmp/relevance-evidence
+tar -xJf results/cooja_v2/primary_evidence.tar.xz -C /tmp/relevance-evidence
+tar -xJf results/cooja_v2/exploratory_evidence.tar.xz -C /tmp/relevance-evidence
+python validation/cooja/analyse.py /tmp/relevance-evidence/primary --output /tmp/relevance-primary.json
+python validation/cooja/audit_outputs.py /tmp/relevance-evidence/primary --output /tmp/relevance-primary-audit.json
+python tools/plot_cooja_results.py /tmp/relevance-evidence/primary --analysis /tmp/relevance-primary.json --audit /tmp/relevance-primary-audit.json --output /tmp/relevance-plots
+```
+
+The plotting utility produces numerical Cooja figures in several formats. Original document figures are retained in `figures/`; regenerating plots may change styling. Figure 1 has an editable SVG. The table CSVs preserve displayed values; full-precision results are under `results/`.
+
+## New Cooja executions
+
+Use a connected Linux environment with Git, Java 17, GCC and Make. Obtain the exact upstream versions:
+
+```bash
+git clone https://github.com/contiki-ng/contiki-ng.git /tmp/relevance-contiki-ng
+git -C /tmp/relevance-contiki-ng checkout c20b12cd2db707d6c07918f8b26cfeb52cf298ca
+git -C /tmp/relevance-contiki-ng submodule update --init --recursive
+git -C /tmp/relevance-contiki-ng/tools/cooja checkout 33d41ae9f8acd6075fb903b0bcd5b4122bad8d8f
+export CONTIKI_DIR=/tmp/relevance-contiki-ng
+COOJA_OUTPUT=/tmp/relevance-new-smoke bash validation/cooja/RUN_COOJA.sh smoke
+COOJA_OUTPUT=/tmp/relevance-new-primary bash validation/cooja/RUN_COOJA.sh primary
+COOJA_OUTPUT=/tmp/relevance-new-all bash validation/cooja/RUN_COOJA.sh all
+```
+
+Use separate fresh output paths. `primary` runs 20 seeds and ten policies; `all` also includes the seven four-seed exploratory cases. Do not count smoke runs or deterministic replay copies as independent research replicates. See `validation/cooja/README.md` for routing and radio accounting. Source hashes in a new run will reflect this packaged layout; canonical archive manifests retain the executed source hashes.
+
+## Historical evidence
+
+```bash
+python tools/audit_submission_evidence.py
+```
+
+This reproduces all 49 archived primary paired p-values from the 70 control rows and writes the retrospective global-Holm sensitivity audit. It preserves the frozen original statistics.
+
+Historical batch scripts use relative paths and call sibling scripts. Run them in an isolated copy of `historical/`, with that copy as the working directory:
+
+```bash
+mkdir -p /tmp/relevance-historical
+cp -R historical/. /tmp/relevance-historical/
+cd /tmp/relevance-historical
+python run_control_multiseed.py
+python analyze_control_results.py
+```
+
+Other runners cover residual-energy weights, event quality, targeting and topology sensitivity. Topology C5 budgets are 1744, 1648 and 1568 bits for shallow, medium and deep regimes; retain the calibration/correction procedure in the archived scripts. To analyze existing historical outputs without rerunning, copy the packaged `results/master_validation/` into the isolated copy's `results/master_validation/` first. Some batch runners skip existing results, so use a fresh directory for a new experiment. Historical environment snapshots are retained with the archived results; cross-version stochastic reruns are not guaranteed to be bit-identical.
+
+## Component tests
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+These test progressive packing and decoding, distortion-based allocation, exact shuffled budgets, missing-report accounting and physical-work accounting on transmission failures. They do not replace the raw-log audit or constitute additional experimental evidence.

@@ -1,0 +1,7 @@
+Measure,C5,C6,C7,C3
+Event-report delivery ratio,0.9815,0.9810,0.9841,0.9784
+"Event mean attempted payload, bits",1744.0,2367.7,1863.9,3208.0
+"Non-event mean attempted payload, bits",1744.0,1719.8,1599.3,1681.4
+Event payload preservation,0.4360,0.5919,0.4660,0.8020
+Event payload delivery ratio,0.4280,0.5803,0.4580,0.7840
+"Within-round event/non-event payload gap, bits",0.0,13.3,201.6,1218.7

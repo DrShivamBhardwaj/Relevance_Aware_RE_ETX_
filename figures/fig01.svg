@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="850" viewBox="0 0 1720 850">
+<rect width="1720" height="850" fill="white"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#54666c" stroke-width="1.6" stroke-linejoin="round"/></marker></defs>
+<text x="515" y="53" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#287b7e">SOURCE ALLOCATION</text>
+<text x="515" y="426" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#536b73">ROUTE SELECTION</text>
+<rect x="55" y="186" width="310" height="204" rx="12" fill="#fbfcfc" stroke="#9dadaf" stroke-width="2"/>
+<path d="M79 253H341" stroke="#dae1e1" stroke-width="1.5"/>
+<text x="210.0" y="229" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#263b43">Sensor observations</text>
+<text x="210.0" y="288" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Current and past values</text>
+<text x="210.0" y="320" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">All original positions</text>
+<rect x="505" y="80" width="310" height="212" rx="12" fill="#f0f7f6" stroke="#287b7e" stroke-width="2"/>
+<path d="M529 147H791" stroke="#bad4d2" stroke-width="1.5"/>
+<text x="660.0" y="123" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#263b43">Relevance scoring</text>
+<text x="660.0" y="176" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Temporal change</text>
+<text x="660.0" y="208" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Spatial disagreement</text>
+<text x="660.0" y="240" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">EWMA baseline</text>
+<rect x="955" y="80" width="310" height="212" rx="12" fill="#f0f7f6" stroke="#287b7e" stroke-width="2"/>
+<path d="M979 147H1241" stroke="#bad4d2" stroke-width="1.5"/>
+<text x="1110.0" y="123" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#263b43">Payload allocation</text>
+<text x="1110.0" y="182" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Short or full report</text>
+<text x="1110.0" y="214" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Byte-aligned length</text>
+<rect x="55" y="493" width="310" height="204" rx="12" fill="#fbfcfc" stroke="#9dadaf" stroke-width="2"/>
+<path d="M79 560H341" stroke="#dae1e1" stroke-width="1.5"/>
+<text x="210.0" y="536" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#263b43">Network state</text>
+<text x="210.0" y="595" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Residual energy</text>
+<text x="210.0" y="627" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Link reliability</text>
+<rect x="505" y="453" width="310" height="204" rx="12" fill="#fbfcfc" stroke="#9dadaf" stroke-width="2"/>
+<path d="M529 520H791" stroke="#dae1e1" stroke-width="1.5"/>
+<text x="660.0" y="496" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#263b43">RE-ETX routing</text>
+<text x="660.0" y="555" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Live-node graph</text>
+<text x="660.0" y="587" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Path to sink</text>
+<rect x="1355" y="264" width="310" height="220" rx="12" fill="#fbfcfc" stroke="#9dadaf" stroke-width="2"/>
+<path d="M1379 331H1641" stroke="#dae1e1" stroke-width="1.5"/>
+<text x="1510.0" y="307" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#263b43">Frame transmission</text>
+<text x="1510.0" y="366" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Fragmentation and retries</text>
+<text x="1510.0" y="398" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">TX and relay RX costs</text>
+<rect x="955" y="564" width="310" height="165" rx="12" fill="#fbfcfc" stroke="#9dadaf" stroke-width="2"/>
+<path d="M979 631H1241" stroke="#dae1e1" stroke-width="1.5"/>
+<text x="1110.0" y="607" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#263b43">Updated state</text>
+<text x="1110.0" y="660" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#536b73">Delivery and energy</text>
+<path d="M365 288 L425 288 L425 186 L505 186" fill="none" stroke="#54666c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M815 186 L955 186" fill="none" stroke="#54666c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M1265 186 L1310 186 L1310 326 L1355 326" fill="none" stroke="#54666c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="1456" y="224" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#536b73">Report length</text>
+<path d="M365 595 L425 595 L425 555 L505 555" fill="none" stroke="#54666c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M815 555 L1310 555 L1310 424 L1355 424" fill="none" stroke="#54666c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="1060" y="540" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#536b73">Selected path</text>
+<path d="M1510 484 L1510 646 L1265 646" fill="none" stroke="#54666c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M955 646 L890 646 L890 786 L210 786 L210 697" fill="none" stroke="#54666c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" stroke-dasharray="8 7"/>
+<text x="550" y="773" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#536b73">Next-round energy update</text>
+<path d="M80 414V439H340V414" stroke="#9dadaf" stroke-width="1.5" fill="none"/>
+<text x="210" y="465" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#536b73">Central context; no exchange cost</text>
+</svg>

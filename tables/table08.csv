@@ -1,0 +1,19 @@
+Profile and outcome,C1,C5,C3
+Shallow (1.483) initial mean hops,Shallow (1.483) initial mean hops,Shallow (1.483) initial mean hops,Shallow (1.483) initial mean hops
+"HND, rounds",200.7,357.8,383.3
+"LND, rounds",1290.4,2663.8,2642.5
+"PDR, %",90.496,95.294,95.404
+"Delay, ms",958.1,452.8,442.3
+"Energy/report, mJ",1.631,0.764,0.744
+Medium (2.910) initial mean hops,Medium (2.910) initial mean hops,Medium (2.910) initial mean hops,Medium (2.910) initial mean hops
+"HND, rounds",49.9,96.2,112.3
+"LND, rounds",1063.3,2206.6,2138.4
+"PDR, %",86.443,93.404,93.765
+"Delay, ms",2170.4,1002.1,959.5
+"Energy/report, mJ",4.917,2.209,2.105
+Deep (4.929) initial mean hops,Deep (4.929) initial mean hops,Deep (4.929) initial mean hops,Deep (4.929) initial mean hops
+"HND, rounds",29.1,65.5,74.7
+"LND, rounds",934.4,2303.9,1952.7
+"PDR, %",86.343,94.299,94.160
+"Delay, ms",2512.2,1018.6,1050.6
+"Energy/report, mJ",7.604,2.983,3.082

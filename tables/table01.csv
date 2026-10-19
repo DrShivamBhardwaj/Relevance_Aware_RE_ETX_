@@ -1,0 +1,8 @@
+Study,Main control,Relationship to this work
+ETX [4]; ETXRE [10],Route/link cost,Reliability and energy substrate
+"Prediction and recovery [7, 8]",Data reduction; sensing,Receiver fidelity is evaluated in those works
+"Correlated-information scheduling [9, 17]",Update timing,Correlation is used here to set report length
+Energy/relevance monitoring [11],Sampling and prediction,Closely related source-control motivation
+Learned ETX [21],Learned routing metric,No learned routing model is used here
+Adaptive payload management [22],Payload structure and transmission,Contemporary payload-control context
+Present study,Budget and precision controls,"Historical attribution, exact-size replay, routing interaction and receiver reconstruction"

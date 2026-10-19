@@ -1,5 +1,0 @@
-make: Entering directory '/workspace/scratch/4b6f51f568a1/cooja_validation/validation/cooja'
-  CC        allocation.c
-  LD        build/native/allocation.native
-  CP        build/native/allocation.native --> allocation.native
-make: Leaving directory '/workspace/scratch/4b6f51f568a1/cooja_validation/validation/cooja'
