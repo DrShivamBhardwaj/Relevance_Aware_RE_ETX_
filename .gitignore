@@ -7,3 +7,10 @@ __pycache__/
 
 *.tar.gz
 *.zip
+
+# Generated firmware and run products; evidence is archived explicitly.
+validation/cooja/build/
+validation/cooja/*.native
+validation/cooja/*.cooja
+validation/cooja/*.o
+cooja-output/

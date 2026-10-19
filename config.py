@@ -118,7 +118,7 @@ class SimulationConfig:
     )
 
 
-    # Dual-journal control experiments
+    # Controlled control experiments
     #
     # LEGACY  = preserve previous behaviour exactly
     # C1      = fixed 4000-bit payload, RE-ETX

@@ -1,0 +1,16 @@
+{
+  "cooja_study_runs_executed": 0,
+  "native_contiki_build": "passed",
+  "native_binary_sha256": "0e3c60e76540d9e5e49e3f3b0a9d17186f05c246497fb69353d3d7785f2fe536",
+  "contiki_commit": "c20b12cd2db707d6c07918f8b26cfeb52cf298ca",
+  "cooja_commit": "33d41ae9f8acd6075fb903b0bcd5b4122bad8d8f",
+  "python": "3.12.14",
+  "tests_passed": 17,
+  "generated_configuration": "validated XML; not Cooja-executed",
+  "blockers": [
+    "Desktop Commander offline",
+    "Gradle download unavailable in current network",
+    "Public push and GitHub Actions blocked pending explicit publication approval"
+  ],
+  "scope": "Native firmware compilation and component tests are not Cooja simulation or hardware results"
+}

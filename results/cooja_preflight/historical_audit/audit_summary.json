@@ -1,0 +1,12 @@
+{
+  "unique_control_runs": 70,
+  "paired_tests": 49,
+  "all_archived_primary_pvalues_reproduced": true,
+  "analysis": "Retrospective sensitivity; one Holm family of 49 network tests",
+  "limitations": [
+    "No new simulation runs",
+    "No equivalence test",
+    "No held-out calibration seeds",
+    "Intervals are marginal"
+  ]
+}

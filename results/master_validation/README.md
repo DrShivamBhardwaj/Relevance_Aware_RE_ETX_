@@ -1,4 +1,4 @@
-# Dual-Journal Validation Package
+# Controlled Validation Package
 
 This directory contains the reproducibility artifacts used to strengthen the
 experimental validation of the relevance-aware payload adaptation and

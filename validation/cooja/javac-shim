@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# A full JDK compiler module is still required. For runtimes without a javac launcher.
+exec java -m jdk.compiler/com.sun.tools.javac.Main "$@"

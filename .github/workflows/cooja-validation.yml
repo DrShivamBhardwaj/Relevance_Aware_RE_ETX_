@@ -1,0 +1,71 @@
+name: Cooja validation
+on:
+  push:
+    branches: [cooja-validation]
+    paths: ['validation/cooja/**', 'tests/**', 'simulator/**', '.github/workflows/cooja-validation.yml']
+  workflow_dispatch:
+    inputs:
+      profile:
+        type: choice
+        description: Experiment profile
+        options: [smoke, primary, all]
+        default: smoke
+permissions:
+  contents: read
+jobs:
+  cooja:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON((inputs.profile != 'smoke') && '[0,1,2,3]' || '[0]') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: study
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: contiki-ng/contiki-ng
+          ref: c20b12cd2db707d6c07918f8b26cfeb52cf298ca
+          path: contiki
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test codec and analysis gates
+        run: |
+          python -m pip install -r study/validation/cooja/requirements-analysis.txt
+          cd study
+          python -m unittest discover -s tests -v
+      - name: Set up pinned Cooja
+        run: |
+          git -C contiki submodule update --init --depth 1 tools/cooja
+          cd contiki/tools/cooja
+          ./gradlew --no-daemon build
+      - name: Run upstream IPv6 simulation
+        run: |
+          mkdir -p cooja-output/upstream
+          cd contiki/tools/cooja
+          ./gradlew --no-daemon run --args="--no-gui --contiki=$GITHUB_WORKSPACE/contiki --logdir=$GITHUB_WORKSPACE/cooja-output/upstream $GITHUB_WORKSPACE/contiki/tests/07-simulation-base/08-ipv6-unicast.csc"
+      - name: Run study smoke gate
+        run: python study/validation/cooja/run_suite.py --contiki "$GITHUB_WORKSPACE/contiki" --output "$GITHUB_WORKSPACE/cooja-output/smoke" --profile smoke
+      - name: Execute study
+        env:
+          STUDY_PROFILE: ${{ inputs.profile || 'primary' }}
+          STUDY_SHARD: ${{ matrix.shard }}
+        run: |
+          shards=1
+          if test "$STUDY_PROFILE" != smoke; then shards=4; fi
+          python study/validation/cooja/run_suite.py --contiki "$GITHUB_WORKSPACE/contiki" --output "$GITHUB_WORKSPACE/cooja-output/study" --profile "$STUDY_PROFILE" --shard "$STUDY_SHARD" --shards "$shards"
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cooja-evidence-${{ matrix.shard }}
+          path: cooja-output/

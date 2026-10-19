@@ -1,0 +1,80 @@
+{
+  "status": "prospective execution plan; no Cooja study outputs available at creation",
+  "source": "synthetic deterministic blocks of 250 signed 16-bit samples",
+  "primary_contrast": "adaptive versus shuffled identical per-round offered payload multiset",
+  "primary_outcome": "fixed-horizon receiver RMSE with zero reconstruction for unavailable or late reports",
+  "secondary_outcomes": [
+    "on-time report delivery",
+    "radio activity",
+    "nominal CC2420 radio-energy estimate",
+    "delivery delay",
+    "mean delivered hop count from source hop limit and received IPv6 TTL"
+  ],
+  "warmup": "10 report rounds, full 16-bit depth for every policy; excluded from primary utility",
+  "primary_nodes": 25,
+  "primary_rounds": 60,
+  "primary_period_seconds": 10,
+  "primary_seeds": [
+    1001,
+    1013,
+    1031,
+    1061,
+    1091,
+    1123,
+    1151,
+    1181,
+    1213,
+    1237,
+    1277,
+    1301,
+    1327,
+    1361,
+    1381,
+    1423,
+    1453,
+    1481,
+    1511,
+    1543
+  ],
+  "policies": [
+    "adaptive",
+    "shuffled",
+    "balanced",
+    "full",
+    "temporal_matched",
+    "full_without_context",
+    "adaptive_etx_replay",
+    "shuffled_etx_replay",
+    "rd_local",
+    "rd_shuffled"
+  ],
+  "inference": "One original primary RMSE contrast remains adaptive vs shuffled. Secondary seed-level effects and routing interaction plus RD-vs-own-shuffle; Holm across all secondary contrasts within each case. Exploration labelled; no cross-case significance claim.",
+  "robustness": [
+    "weak event",
+    "persistent event",
+    "background drift",
+    "sensor bias",
+    "radio outage",
+    "100 nodes at unchanged spacing",
+    "5-second reporting"
+  ],
+  "claim_boundary": "Cooja native network simulation, not hardware timing or calibrated total-device energy; rank hook uses an advertised radio-reserve proxy",
+  "design_revision": 2,
+  "revision_timing": "Revised before the first Cooja study execution; no study outcomes inspected",
+  "routing_factorial": "Replay identical adaptive and shuffled per-source per-round offered schedules under standard ETX and residual-radio-reserve MRHOF; secondary paired difference-in-differences",
+  "rd_baseline": {
+    "decision": "argmin local actual codec MSE + price * data_bytes / 250",
+    "depths": [
+      4,
+      8,
+      12,
+      16
+    ],
+    "target_data_bytes": 250,
+    "price_initial": 0.001,
+    "dual_step": 0.01,
+    "price_projection": "nonnegative",
+    "update": "after each post-warm-up offered block",
+    "claims": "causal conventional baseline; no new optimality theorem or hard budget guarantee"
+  }
+}

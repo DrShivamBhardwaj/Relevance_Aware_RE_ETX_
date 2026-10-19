@@ -254,7 +254,7 @@ total = len(MODES) * len(SEEDS)
 counter = 0
 
 print("=" * 90)
-print("DUAL-JOURNAL CONTROL EXPERIMENTS")
+print("CONTROLLED CONTROL EXPERIMENTS")
 print("=" * 90)
 print("Modes :", MODES)
 print("Seeds :", SEEDS)

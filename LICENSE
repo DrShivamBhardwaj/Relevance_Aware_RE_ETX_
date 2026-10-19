@@ -1,0 +1,9 @@
+Licensing scope
+
+The new validation/cooja components are covered by validation/cooja/LICENSE.
+Contiki-NG and Cooja retain their upstream licence notices and are obtained
+from the pinned upstream repositories rather than relicensed here.
+
+The historical simulator previously had an empty licence file. This update
+does not retroactively assign a licence to that material. The repository owner
+must confirm licensing terms for the legacy code before general redistribution.

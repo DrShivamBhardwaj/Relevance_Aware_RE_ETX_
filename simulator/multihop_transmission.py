@@ -118,6 +118,7 @@ class MultiHopTransmitter:
             app_bits = int(self.config.packet_size)
 
         app_bits = int(app_bits)
+        radio_bits = 0
 
         if path is None:
             return MultiHopResult(
