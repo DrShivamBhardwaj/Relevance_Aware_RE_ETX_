@@ -1,0 +1,12 @@
+{
+  "variant": "baseline",
+  "seed": 173,
+  "parameters": {},
+  "completed": true,
+  "FND": 265.0,
+  "HND": 851.0,
+  "LND": 2629.0,
+  "pdr_percent": 97.344,
+  "delay_ms": 465.985,
+  "energy_per_delivered_j": 0.000488072
+}
