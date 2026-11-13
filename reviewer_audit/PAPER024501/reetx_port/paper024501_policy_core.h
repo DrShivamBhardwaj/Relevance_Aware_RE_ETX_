@@ -25,14 +25,20 @@ static float paper_sink_cost(float etx,float frac_i,float lambda) {
 static float paper_sensor_cost(float etx,float frac_i,float frac_j,float lambda) {
  return etx*(1.0f+lambda*(paper_scarcity(frac_i)+paper_scarcity(frac_j))*0.5f);
 }
-static unsigned short paper_payload_bits(float relevance) {
- float v=paper_clip(relevance,0.0f,1.0f);
- float ratio=0.25f + 0.75f*v;
- if(v>=0.50f && ratio<0.75f)ratio=0.75f;
- if(v>=0.85f)ratio=1.0f;
- /* Original ceiling and byte alignment; small arithmetic epsilon prevents
-    binary float issues for exact round-tenths comparison fixtures. */
- unsigned int bits=(unsigned int)ceilf(4000.0f*ratio-1e-5f);
+static unsigned short paper_payload_bits(double relevance) {
+ /* Use 64-bit IEEE floating-point arithmetic like NumPy's float64.
+    Truncating to float32 or subtracting an epsilon near byte boundaries
+    provably disagrees with the manuscript's executable mapping. */
+ double v=relevance;
+ double ratio;
+ unsigned int bits;
+ if(v<0.0)v=0.0;
+ if(v>1.0)v=1.0;
+ volatile double scaled=0.75*v;
+ ratio=0.25 + scaled;
+ if(v>=0.50 && ratio<0.75)ratio=0.75;
+ if(v>=0.85)ratio=1.0;
+ bits=(unsigned int)ceil(4000.0*ratio);
  bits=((bits+7u)/8u)*8u;
  if(bits>4000u)bits=4000u;
  return (unsigned short)bits;

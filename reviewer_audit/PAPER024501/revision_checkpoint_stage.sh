@@ -13,6 +13,14 @@ if [[ "$(git branch --show-current)" != "review/PAPER024501-audit" ]]; then exit
 for script in analyze_receiver_campaign.py analyze_receiver_100round_matched.py analyze_full_energy.py; do
  "$HOME/ns3-validation/.venv/bin/python" "$BASE/$script" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo "STAT_STAGE_FAILED $script" >>"$BASE/revision_checkpoint_stage.log"
 done
+# Extend with original-source scalar reconstruction diagnostics and genuine
+# phase-aligned testbed data. The original source still has no decoder.
+for script in analyze_scalar_100round.py analyze_scalar_200round.py; do
+ "$HOME/ns3-validation/.venv/bin/python" "$BASE/$script" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo "SCALAR_ANALYSIS_PENDING $script" >>"$BASE/revision_checkpoint_stage.log"
+done
+"$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/reetx_port/hardware/audit_hardware_ab.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo "HARDWARE_AB_PENDING" >>"$BASE/revision_checkpoint_stage.log"
+"$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/energy_phase_probe_v2/analyze_v2.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo "POWER_V2_PENDING" >>"$BASE/revision_checkpoint_stage.log"
+"$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/build_gap_closure_report.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo "GAP_REPORT_PENDING" >>"$BASE/revision_checkpoint_stage.log"
 # Evidence-only research memo; refuses incomplete input arrays.
 "$HOME/ns3-validation/.venv/bin/python" "$BASE/build_validation_memo.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'VALIDATION_MEMO_INCOMPLETE' >>"$BASE/revision_checkpoint_stage.log"
 "$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/build_response_docx.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'DOCX_DRAFT_FAILED' >>"$BASE/revision_checkpoint_stage.log"

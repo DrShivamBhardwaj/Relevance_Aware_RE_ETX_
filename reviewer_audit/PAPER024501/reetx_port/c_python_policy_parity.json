@@ -1,0 +1,7 @@
+{
+  "n_relevance_points": 1001,
+  "matching": 1001,
+  "mismatches": [],
+  "same_rule_on_full_grid": true,
+  "scope": "formula parity only, not radio/energy or receiver validation"
+}

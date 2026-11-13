@@ -1,0 +1,94 @@
+{
+  "paper": "PAPER024501",
+  "reviewer_fidelity": {
+    "state": "NOT_ESTABLISHED_FOR_ORIGINAL_MANUSCRIPT",
+    "new_scalar_reference_runs": 80,
+    "source_model": "actual original simulator scalar observations; new Q8.8 source and sink contract",
+    "by_policy": {
+      "C1": {
+        "100round_rmse": 0.0011286222,
+        "100round_event_f1": 0.9562915973,
+        "200round_rmse": 0.0033421894,
+        "200round_event_f1": 0.9640720347,
+        "200round_received": 19215.0,
+        "200round_attempted": 19236.1
+      },
+      "C3": {
+        "100round_rmse": 0.0011286222,
+        "100round_event_f1": 0.9562915973,
+        "200round_rmse": 0.0011278055,
+        "200round_event_f1": 0.9644517934,
+        "200round_received": 20000.0,
+        "200round_attempted": 20000.0
+      },
+      "C5": {
+        "100round_rmse": 0.0011286222,
+        "100round_event_f1": 0.9562915973,
+        "200round_rmse": 0.0011278055,
+        "200round_event_f1": 0.9644517934,
+        "200round_received": 20000.0,
+        "200round_attempted": 20000.0
+      },
+      "C6": {
+        "100round_rmse": 0.0011286222,
+        "100round_event_f1": 0.9562915973,
+        "200round_rmse": 0.0011278055,
+        "200round_event_f1": 0.9644517934,
+        "200round_received": 20000.0,
+        "200round_attempted": 20000.0
+      }
+    },
+    "reason": "The original manuscript defines bit length but no source bitstream encoder/decoder. Equal scalar-reference performance does not establish a semantic utility advantage."
+  },
+  "component_energy": {
+    "state": "PARTIAL_HARDWARE_MEASUREMENT_NOT_FULL_COMPONENT_CALIBRATION",
+    "board_power_experiment": 458482,
+    "initial_phase_experiment": 458510,
+    "initial_phase_windows": 15,
+    "new_light_CPU_radio_phase_experiment": null,
+    "new_phase_windows": 0,
+    "new_phase_evidence_verified": false,
+    "reason": "Not all sensing CPU radio packet-control and idle activity currents are calibrated to the original algorithm; no real RE-ETX battery ledger."
+  },
+  "full_REETX_hardware": {
+    "state": "PARTIAL_DIAGNOSTIC_PORT_NOT_PAPER_EQUIVALENT",
+    "Cooja_matched_scenarios": 12,
+    "factorial": {
+      "adaptive_direct": {
+        "runs": 3,
+        "source3_mean_delivered": 0.0,
+        "source3_mean_attempted": 89.0,
+        "source3_parent2_fraction": 0.0,
+        "mean_app_bits": 1369.1385767790262
+      },
+      "adaptive_reetx": {
+        "runs": 3,
+        "source3_mean_delivered": 89.0,
+        "source3_mean_attempted": 89.0,
+        "source3_parent2_fraction": 1.0,
+        "mean_app_bits": 1366.38202247191
+      },
+      "fixed_direct": {
+        "runs": 3,
+        "source3_mean_delivered": 0.0,
+        "source3_mean_attempted": 89.0,
+        "source3_parent2_fraction": 0.0,
+        "mean_app_bits": 4000.0
+      },
+      "fixed_reetx": {
+        "runs": 3,
+        "source3_mean_delivered": 89.0,
+        "source3_mean_attempted": 89.0,
+        "source3_parent2_fraction": 1.0,
+        "mean_app_bits": 4000.0
+      }
+    },
+    "physical_experiment_id": 458513,
+    "physical_probe_captured": true,
+    "physical_relay_choices_observed": 0,
+    "python_c_payload_grid_match": true,
+    "corrected_firmware_deployed_on_hardware": false,
+    "reason": "Physical experiment uses beacon PRR, modeled energy fraction, synthetic sensing and only three nodes; no 100-node Dijkstra or calibrated message ETX."
+  },
+  "all_three_closed": false
+}

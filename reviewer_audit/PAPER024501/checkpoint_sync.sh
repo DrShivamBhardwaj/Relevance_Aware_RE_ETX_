@@ -36,6 +36,27 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/receiver_campaign_100r/*_seed*.json
         "$BASE"/receiver_campaign_100r/*.csv
         "$BASE"/receiver_campaign_100r/progress.json
+        "$BASE"/receiver_scalar_100r/*_seed*.json
+        "$BASE"/receiver_scalar_100r/*.csv
+        "$BASE"/receiver_scalar_100r/progress.json
+        "$BASE"/receiver_scalar_200r/*_seed*.json
+        "$BASE"/receiver_scalar_200r/*.csv
+        "$BASE"/receiver_scalar_200r/progress.json
+        "$BASE"/reetx_port/c_python_policy_parity.json
+        "$BASE"/reetx_port/factorial_paced/results.csv
+        "$BASE"/reetx_port/factorial_paced/progress.json
+        "$BASE"/reetx_port/hardware/m3_reetx_ab_state.json
+        "$BASE"/reetx_port/hardware/hardware_ab_audit.json
+        "$BASE"/reetx_port/hardware/physical_mode_summary.csv
+        "$BASE"/reetx_port/hardware/matched_trace.csv
+        "$BASE"/energy_phase_probe/phase_run_state.json
+        "$BASE"/energy_phase_probe/phase_power_audit.json
+        "$BASE"/energy_phase_probe/*.csv
+        "$BASE"/energy_phase_probe_v2/phase_v2_run_state.json
+        "$BASE"/energy_phase_probe_v2/phase_v2_audit.json
+        "$BASE"/energy_phase_probe_v2/*.csv
+        "$BASE"/gap_closure_status.json
+        "$BASE"/PAPER024501_GAP_CLOSURE_REPORT.md
         "$BASE"/cooja_transport/campaign_results.json
         "$BASE"/cooja_transport/campaign_progress.json
         "$BASE"/cooja_transport/campaign_summary.json
