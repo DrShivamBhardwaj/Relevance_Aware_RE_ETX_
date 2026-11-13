@@ -87,6 +87,7 @@ def main():
   capture(expid,s)
   archive(expid,s)
   s["completed"]=True
+  s.pop("last_error", None)
   s["conclusion"]="Measurement archive downloaded; power calibration and classification pending validated data parse"
   save(s)
   print(json.dumps(s,indent=2))

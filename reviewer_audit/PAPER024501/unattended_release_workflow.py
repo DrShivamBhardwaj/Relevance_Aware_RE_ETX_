@@ -42,6 +42,14 @@ def sha(p):
 
 
 def save(state):
+    prior = {}
+    try:
+        prior = json.loads(STATE.read_text())
+    except (FileNotFoundError, ValueError):
+        pass
+    state["created_utc"] = prior.get("created_utc", state.get("created_utc", NOW))
+    if {k:v for k,v in prior.items() if k != "updated_utc"} == {k:v for k,v in state.items() if k != "updated_utc"}:
+        return
     state["updated_utc"] = datetime.now(timezone.utc).isoformat()
     temp = STATE.with_suffix(".json.tmp")
     temp.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n")
@@ -95,7 +103,13 @@ def create_manuscript(state):
     ).hexdigest()
     hash_file = DEST / "manuscript_inputs.sha256"
     if OUT.is_file() and hash_file.is_file() and hash_file.read_text().strip() == fingerprint:
-        state["manuscript"] = {"status": "working_draft_cached", "document": str(OUT.relative_to(ROOT)), "source_found": True}
+        try:
+            previous = json.loads(STATE.read_text()).get("manuscript", {})
+        except (FileNotFoundError, ValueError):
+            previous = {}
+        state["manuscript"] = previous if previous.get("status") == "red_marked_evidence_draft_NOT_submission_ready" else {
+            "status":"red_marked_evidence_draft_NOT_submission_ready",
+            "document":str(OUT.relative_to(ROOT)), "source_found":True}
         return
 
     doc = Document(SOURCE)
@@ -189,8 +203,13 @@ def make_response(state):
     response_hash_file = DEST / "reviewer_response_inputs.sha256"
     fingerprint = hashlib.sha256((sha(REVIEWS) + (sha(MEMO) if MEMO.exists() else "") + sha(pathlib.Path(__file__))).encode()).hexdigest()
     if RESPONSE.is_file() and response_hash_file.is_file() and response_hash_file.read_text().strip() == fingerprint:
-        state["responses"] = {"status":"draft_cached", "count":len(rows),
-                              "document":str(RESPONSE.relative_to(ROOT)), "missing_page_references":True}
+        try:
+            previous = json.loads(STATE.read_text()).get("responses", {})
+        except (FileNotFoundError, ValueError):
+            previous = {}
+        state["responses"] = previous if previous.get("status") == "draft_not_submission_ready" else {
+            "status":"draft_not_submission_ready","count":len(rows),
+            "document":str(RESPONSE.relative_to(ROOT)),"missing_page_references":True}
         return
     d = Document()
     d.styles["Normal"].font.name = "Times New Roman"

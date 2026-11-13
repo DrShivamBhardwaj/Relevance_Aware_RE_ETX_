@@ -15,5 +15,7 @@ done
 "$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/build_response_docx.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'DOCX_DRAFT_FAILED' >>"$BASE/revision_checkpoint_stage.log"
 # The real submitted source and IJWMT template are in Mac Downloads, not in repo.
 "$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/unattended_release_workflow.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'SOURCE_MANUSCRIPT_PIPELINE_FAILED' >>"$BASE/revision_checkpoint_stage.log"
+# Render/inspect a working draft without claiming human editorial QA.
+"$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/render_manuscript_preflight.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'DOCX_RENDER_AUDIT_FAILED' >>"$BASE/revision_checkpoint_stage.log"
 # Resume only the already reserved IoT-LAB experiment (if needed).
 /bin/bash "$BASE/ensure_power_worker.sh" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'POWER_RESUME_CHECK_FAILED' >>"$BASE/revision_checkpoint_stage.log"

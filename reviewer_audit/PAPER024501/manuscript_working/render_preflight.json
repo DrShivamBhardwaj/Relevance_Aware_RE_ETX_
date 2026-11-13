@@ -1,0 +1,59 @@
+{
+  "pdf_rendered": true,
+  "page_count": 19,
+  "embedded_image_resolution_audit": [
+    {
+      "width_pixels": 3900,
+      "height_pixels": 1740,
+      "dpi_x": 668.6,
+      "dpi_y": 668.6,
+      "meets_300": true
+    },
+    {
+      "width_pixels": 3900,
+      "height_pixels": 1350,
+      "dpi_x": 668.6,
+      "dpi_y": 668.6,
+      "meets_300": true
+    },
+    {
+      "width_pixels": 3900,
+      "height_pixels": 1350,
+      "dpi_x": 668.6,
+      "dpi_y": 668.6,
+      "meets_300": true
+    },
+    {
+      "width_pixels": 3900,
+      "height_pixels": 1410,
+      "dpi_x": 668.6,
+      "dpi_y": 668.6,
+      "meets_300": true
+    },
+    {
+      "width_pixels": 3900,
+      "height_pixels": 1410,
+      "dpi_x": 668.6,
+      "dpi_y": 668.6,
+      "meets_300": true
+    },
+    {
+      "width_pixels": 3900,
+      "height_pixels": 1560,
+      "dpi_x": 668.6,
+      "dpi_y": 668.6,
+      "meets_300": true
+    },
+    {
+      "width_pixels": 3900,
+      "height_pixels": 1410,
+      "dpi_x": 668.6,
+      "dpi_y": 668.6,
+      "meets_300": true
+    }
+  ],
+  "all_inline_images_300dpi": true,
+  "visual_qa_complete": false,
+  "journal_submission_ready": false,
+  "explanation": "Automated preflight only; pages, equations and tables still need human visual inspection"
+}

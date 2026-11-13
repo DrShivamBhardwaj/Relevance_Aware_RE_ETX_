@@ -58,6 +58,7 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/payload_mapping_review.csv
         "$BASE"/manuscript_working/*.docx
         "$BASE"/manuscript_working/*.json
+        "$BASE"/manuscript_working/rendered/*.pdf
         "$BASE"/manuscript_working/*.sha256
         "$BASE"/hardware_power_calibration/m3_power_run_state.json
         "$BASE"/hardware_power_calibration/power_archive_audit.json
