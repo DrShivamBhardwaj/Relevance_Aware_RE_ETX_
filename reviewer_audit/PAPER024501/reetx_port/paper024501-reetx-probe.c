@@ -50,6 +50,7 @@ static uint16_t last_sink_seq=0,last_relay_seq=0;
 static uint16_t expected_sink=0,expected_relay=0;
 static uint16_t count_sink=0,count_relay=0;
 static unsigned int complete_reports;
+static unsigned tx_total,tx_index,tx_parent,tx_bits,tx_seq,tx_bytes;
 static uint16_t rx_seq[4];
 static uint8_t rx_seen[4],rx_total[4];
 static uint16_t rx_bits[4];
@@ -175,46 +176,64 @@ static void send_beacon(uint16_t seq) {
  put16(pkt+10,(uint16_t)(paper_clip(rank,0,65)*1000.0f));
  send_frame(pkt,HEADER,NULL);
 }
-static void send_report(uint16_t seq) {
+static void start_report(uint16_t seq) {
  float observed=(float)(((seq*37u)+(unsigned)role()*13u)%101u)/100.0f;
  float r=score_relevance(observed);
- uint16_t bits=PAPER_FIXED?4000:paper_payload_bits(r);
- uint16_t bytes=bits/8u;
- unsigned total=(bytes+FRAG-1u)/FRAG;
- unsigned i;
- uint8_t parent=select_parent();
+ tx_bits=PAPER_FIXED?4000:paper_payload_bits(r);
+ tx_bytes=tx_bits/8u;
+ tx_total=(tx_bytes+FRAG-1u)/FRAG;
+ tx_index=0;
+ tx_seq=seq;
+ tx_parent=select_parent();
  printf("PAPER_PARENT source=%u seq=%u mode=%u parent=%u relevance_x100=%u payload_bits=%u etx_sink_x100=%u etx_relay_x100=%u energy_x100=%u\n",
-     role(),seq,PAPER_FIXED,parent,(unsigned)(r*100),bits,
+     role(),seq,PAPER_FIXED,tx_parent,(unsigned)(r*100),tx_bits,
      (unsigned)(100.0f/prr(count_sink,expected_sink)),
      (unsigned)(100.0f/prr(count_relay,expected_relay)),
      (unsigned)(100*my_energy));
- for(i=0;i<total;i++) {
-    unsigned n=bytes-i*FRAG;
-    uint8_t pkt[HEADER+FRAG]={0};
-    if(n>FRAG)n=FRAG;
-    pkt[0]=TYPE_DATA;pkt[1]=role();pkt[2]=parent;
-    put16(pkt+4,seq);pkt[6]=(uint8_t)i;pkt[7]=(uint8_t)total;
-    put16(pkt+8,bits);
-    memset(pkt+HEADER,(int)((seq+i)&255),n);
-    send_frame(pkt,(uint16_t)(HEADER+n),parent==2?&relay:&sink);
- }
+}
+static void send_next_fragment(void) {
+ unsigned n;
+ uint8_t pkt[HEADER+FRAG]={0};
+ if(tx_index>=tx_total)return;
+ n=tx_bytes-tx_index*FRAG;
+ if(n>FRAG)n=FRAG;
+ pkt[0]=TYPE_DATA;pkt[1]=role();pkt[2]=(uint8_t)tx_parent;
+ put16(pkt+4,(uint16_t)tx_seq);pkt[6]=(uint8_t)tx_index;
+ pkt[7]=(uint8_t)tx_total;
+ put16(pkt+8,(uint16_t)tx_bits);
+ memset(pkt+HEADER,(int)((tx_seq+tx_index)&255),n);
+ send_frame(pkt,(uint16_t)(HEADER+n),tx_parent==2?&relay:&sink);
+ tx_index++;
 }
 PROCESS(paper_reetx_probe,"PAPER024501 network policy probe");
 AUTOSTART_PROCESSES(&paper_reetx_probe);
 PROCESS_THREAD(paper_reetx_probe,ev,data) {
- static struct etimer timer;
+ static struct etimer beacon_timer;
+ static struct etimer fragment_timer;
  static uint16_t seq;
  PROCESS_BEGIN();
  nullnet_set_input_callback(receive);
  seq=0;
- printf("PAPER_PROBE_START role=%u payload_fixed=%u direct_only=%u\n",role(),PAPER_FIXED,PAPER_DIRECT_ONLY);
- etimer_set(&timer,INTERVAL);
+ printf("PAPER_PROBE_START role=%u payload_fixed=%u direct_only=%u\n",
+        role(),PAPER_FIXED,PAPER_DIRECT_ONLY);
+ etimer_set(&beacon_timer,INTERVAL);
  while(1) {
-  PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
-  seq++;
-  send_beacon(seq);
-  if(role()>1 && seq%2==0)send_report(seq);
-  etimer_reset(&timer);
+  PROCESS_WAIT_EVENT();
+  if(ev!=PROCESS_EVENT_TIMER)continue;
+  if(data==&beacon_timer) {
+    seq++;
+    send_beacon(seq);
+    if(role()>1 && seq%2==0) {
+      start_report(seq);
+      send_next_fragment();
+      if(tx_index<tx_total)
+        etimer_set(&fragment_timer,CLOCK_SECOND/8);
+    }
+    etimer_reset(&beacon_timer);
+  } else if(data==&fragment_timer) {
+    send_next_fragment();
+    if(tx_index<tx_total)etimer_reset(&fragment_timer);
+  }
  }
  PROCESS_END();
 }
