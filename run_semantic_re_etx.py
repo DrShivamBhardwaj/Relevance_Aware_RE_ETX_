@@ -19,6 +19,7 @@ from simulator.semantic_relevance import SemanticRelevanceEstimator
 from simulator.semantic_age import SemanticAgeTracker
 from simulator.semantic_payload import SemanticPayloadController
 from reviewer_audit.PAPER024501.energy_profile import ExtendedEnergyProfile
+from reviewer_audit.PAPER024501.receiver_reference_codec import ReceiverReferenceCodec
 
 
 def rotate_schedule(
@@ -261,6 +262,8 @@ def run():
     # ------------------------------------------------
 
     extra_energy = ExtendedEnergyProfile(config, radio, topology)
+    receiver_codec = (ReceiverReferenceCodec(config.num_nodes,config.seed)
+                      if os.environ.get("REVIEW_RECEIVER_CODEC","0")=="1" else None)
 
     for round_id in range(
         1,
@@ -535,6 +538,13 @@ def run():
                 )
                 non_event_payload_bits_round += int(
                     semantic_payload_bits[source]
+                )
+
+            if receiver_codec is not None:
+                receiver_codec.record(
+                    source, round_id, current_observation[source],
+                    event_truth[source], int(semantic_payload_bits[source]),
+                    result.success
                 )
 
             metrics.register_frame_stats(
@@ -1142,6 +1152,9 @@ def run():
 
     print()
 
+    if receiver_codec is not None:
+        for name,value in receiver_codec.results().items():
+            print(f"Reference receiver {name:<10} : {value:.9f}")
     print(f"Review sensing energy J     : {extra_energy.e_sense:.9f}")
     print(f"Review CPU energy J         : {extra_energy.e_cpu:.9f}")
     print(f"Review idle energy J        : {extra_energy.e_idle:.9f}")
