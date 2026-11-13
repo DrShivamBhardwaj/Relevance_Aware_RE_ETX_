@@ -1,0 +1,17 @@
+{
+  "scenario": "zero_extra",
+  "mode": "C3",
+  "seed": 11,
+  "passed": true,
+  "assumptions": {},
+  "FND": 275.0,
+  "HND": 814.0,
+  "LND": 2706.0,
+  "PDR_percent": 98.236,
+  "energy_per_delivered_j": 0.000530026,
+  "sensing_j": 0.0,
+  "cpu_j": 0.0,
+  "idle_j": 0.0,
+  "control_j": 0.0,
+  "ack_j": 0.0
+}

@@ -1,0 +1,7 @@
+{
+  "completed": 18,
+  "planned": 40,
+  "not_original_codec": true,
+  "assumed_codec": "progressive quantized DCT, 256 sample reports, 16 bits/coefficient, sink last-report hold",
+  "rounds_per_run": 200
+}
