@@ -72,7 +72,7 @@ def capture(expid,s):
 def archive(expid,s):
  if s.get("archive_retrieved"):return
  # Archive cannot be read until experiment reaches terminal state.
- run([CLI,"wait","-i",str(expid),"--state","Terminated,Finished,Error","--timeout","650","--step","15"],timeout=685)
+ run([CLI,"wait","-i",str(expid),"--state","Terminated,Stopped,Error","--timeout","650","--step","15"],timeout=685)
  p=subprocess.run([str(CLI),"get","-i",str(expid),"-a"],cwd=WD,capture_output=True,text=True,timeout=120)
  (WD/"archive_fetch.log").write_text(p.stdout+"\n"+p.stderr)
  target=WD/(str(expid)+".tar.gz")

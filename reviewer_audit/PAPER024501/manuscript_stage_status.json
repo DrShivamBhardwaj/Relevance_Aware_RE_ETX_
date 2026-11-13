@@ -1,15 +1,14 @@
 {
-  "input_source": "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/PAPER024501_submitted_source.docx",
-  "template": "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/IJWMT_template.docx",
-  "source_exists": false,
-  "template_exists": false,
-  "draft_generated": false,
+  "source_exists": true,
+  "template_exists": true,
+  "draft_generated": true,
+  "draft_path": "reviewer_audit/PAPER024501/manuscript_working/PAPER024501_IJWMT_RED_MARKED_EVIDENCE_DRAFT.docx",
   "submission_ready": false,
-  "missing_author_confirmation": [
-    "ORCID iDs",
-    "biographical profiles",
-    "passport photographs",
-    "nine journal declarations"
-  ],
-  "blocked_reason": "Source attached to ChatGPT is not present on Mac or GitHub. Original formatting, equations and figures cannot be reconstructed faithfully."
+  "unresolved": [
+    "Full paper-equivalent receiver codec validation",
+    "M3 calibrated per-state energy",
+    "Cooja/M3 RE-ETX policy implementation",
+    "Authors' verified profiles/photos/declarations",
+    "Final equation, references and visual QA approval"
+  ]
 }

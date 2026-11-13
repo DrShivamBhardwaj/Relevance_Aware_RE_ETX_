@@ -54,6 +54,13 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/REVISION_RESPONSE_DRAFT.md
         "$BASE"/PAPER024501_Revision_Response_DRAFT.docx
         "$BASE"/manuscript_stage_status.json
+        "$BASE"/unattended_release_status.json
+        "$BASE"/payload_mapping_review.csv
+        "$BASE"/manuscript_working/*.docx
+        "$BASE"/manuscript_working/*.json
+        "$BASE"/manuscript_working/*.sha256
+        "$BASE"/hardware_power_calibration/m3_power_run_state.json
+        "$BASE"/hardware_power_calibration/power_archive_audit.json
         "$BASE"/PAPER024501_IJWMT_WORKING_DRAFT.docx
         "$BASE"/extended_energy_accounting.csv
         "$BASE"/extended_energy_accounting_meta.json

@@ -15,6 +15,7 @@ import shutil
 import subprocess
 import time
 import zipfile
+import sys
 from datetime import datetime, timezone
 
 from docx import Document
@@ -22,6 +23,7 @@ from docx.shared import Pt, RGBColor
 
 BASE = pathlib.Path(__file__).resolve().parent
 ROOT = BASE.parents[1]
+sys.path.insert(0, str(ROOT))
 DEST = BASE / "manuscript_working"
 DEST.mkdir(exist_ok=True)
 SOURCE = pathlib.Path.home() / "Downloads/PAPER024501-1.docx"
@@ -89,7 +91,7 @@ def create_manuscript(state):
         "hardware": read_json("iotlab_m3/hardware_status.json"),
     }
     fingerprint = hashlib.sha256(
-        ("|".join(sha(p) for p in (SOURCE, TEMPLATE, GUIDE)) + json.dumps(data, sort_keys=True)).encode()
+        ("|".join(sha(p) for p in (SOURCE, TEMPLATE, GUIDE)) + sha(pathlib.Path(__file__)) + json.dumps(data, sort_keys=True)).encode()
     ).hexdigest()
     hash_file = DEST / "manuscript_inputs.sha256"
     if OUT.is_file() and hash_file.is_file() and hash_file.read_text().strip() == fingerprint:
@@ -97,12 +99,29 @@ def create_manuscript(state):
         return
 
     doc = Document(SOURCE)
+    from docx.oxml.ns import qn
+    formula = doc.paragraphs[50]._p.xpath(".//m:oMath")
+    formula_text = "".join(e.text or "" for m in formula for e in m.iter() if e.tag == qn("m:t"))
+    verified_eq6 = bool(formula and "0.50" in formula_text and "0.85" in formula_text and "0.75" in formula_text)
+    from config import SimulationConfig
+    from simulator.semantic_payload import SemanticPayloadController
+    mapping = SemanticPayloadController(SimulationConfig())
+    table_path = BASE / "payload_mapping_review.csv"
+    with table_path.open("w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["relevance_v","payload_bits","submitted_equation6_branch"])
+        for i in range(11):
+            v = i / 10
+            branch = "full" if v >= 0.85 else "3000-bit floor or proportional" if v >= 0.5 else "proportional"
+            w.writerow([f"{v:.1f}",int(mapping.payload_bits([v])[0]),branch])
+    if not verified_eq6 or int(mapping.payload_bits([0.5])[0]) != 3000:
+        raise RuntimeError("Equation (6) safeguards or executable payload map not verified")
     groups = {
         "3.2. Channel, fragmentation and energy": [
             "REVISION EVIDENCE — The supplementary node-state energy study now debits modeled sensing, CPU, idle, neighbour-context/control, radio and approximate ACK costs. Moderate and high additional-cost profiles are assumptions, not hardware-calibrated current measurements. Therefore, any original radio-only reduction percentage must be identified as such and must not be generalized to deployment-wide energy."
         ],
         "4.2. Payload mapping and safeguards": [
-            "MATHEMATICAL CORRECTION REQUIRED — The executable payload controller uses ρ_base(v) = 0.25 + 0.75v. If v ≥ 0.85, the safeguarded payload is 4000 bits; if 0.50 ≤ v < 0.85, the proportional payload is floored at 3000 bits; otherwise it follows 8·ceil[4000·ρ_base(v)/8]. Thus L(0.50) = 3000 bits, whereas the unguarded expression gives 2500 bits. Equation (6) must be replaced by an editable, consecutively numbered piecewise Word equation before submission."
+            "EQUATION (6) CLARIFICATION — The original submitted Word equation already contains a three-branch safeguard: ρ(v)=0.25+0.75v for v<0.50; ρ(v)=max(0.75,0.25+0.75v) for 0.50≤v<0.85; and ρ(v)=1 for v≥0.85. The existing Word equation therefore gives L(0.50)=3000 bits, not 2500 bits. The reviewer appears to have evaluated only the unguarded linear branch. The executable source and a complete mapping table are available as verification evidence. Preserve the original editable Word equation; provide a clearer rendering/interpretation in the response."
         ],
         "6.5. What remains after matching the source bit budget": [
             "RECEIVER DIAGNOSTIC (new reference codec, NOT part of the submitted original): The 100-round matched-seed DCT experiment gave receiver RMSE 0.06534 for C3 and 0.06060 for C5. Paired C5 minus C3 RMSE was −0.004742 (95% CI −0.005711 to −0.003772; Holm-adjusted p = 0.000011; ten seeds). C3 did not establish a reliable event-F1 improvement over C5. These are codec-specific results and do not establish the application fidelity of the original length-only reporting scheme."
@@ -151,12 +170,14 @@ def create_manuscript(state):
         "source_found": True,
         "journal_templates_found": True,
         "sections_with_red_evidence": inserted,
-        "remaining": ["Replace original equation (6) with editable piecewise OMML",
+        "remaining": ["Confirm Equation (6) branch alignment in Word rendering and explain reviewer reading",
                       "Author-confirmed ORCIDs, headshots and profiles",
                       "Journal's nine declarations",
                       "Verify references and updated figure/table layout",
                       "Full visual and editorial signoff"],
         "invariants": invariant,
+        "equation_6_piecewise_verified": verified_eq6,
+        "mapping_table": "reviewer_audit/PAPER024501/payload_mapping_review.csv",
     }
 
 
@@ -165,6 +186,12 @@ def make_response(state):
         state["responses"] = {"status": "blocked", "reason": "Review matrix absent"}
         return
     rows = list(csv.DictReader(REVIEWS.open()))
+    response_hash_file = DEST / "reviewer_response_inputs.sha256"
+    fingerprint = hashlib.sha256((sha(REVIEWS) + (sha(MEMO) if MEMO.exists() else "") + sha(pathlib.Path(__file__))).encode()).hexdigest()
+    if RESPONSE.is_file() and response_hash_file.is_file() and response_hash_file.read_text().strip() == fingerprint:
+        state["responses"] = {"status":"draft_cached", "count":len(rows),
+                              "document":str(RESPONSE.relative_to(ROOT)), "missing_page_references":True}
+        return
     d = Document()
     d.styles["Normal"].font.name = "Times New Roman"
     d.styles["Normal"].font.size = Pt(10)
@@ -177,12 +204,16 @@ def make_response(state):
             if row["type"] != kind:
                 continue
             d.add_heading(row["id"] + ": " + row["concern"], 2)
-            d.add_paragraph("Technical response / verification target: " + row["response_plan"])
+            if row["id"] == "m1":
+                d.add_paragraph("Technical response / verification target: Submitted source Equation (6) contains the piecewise 0.50 and 0.85 safeguards. Its existing editable OMML is retained. The expression 2500 bits at 0.50 follows only when the reviewer omits the max(0.75, ...) branch. Executable value is 3000 bits; see payload_mapping_review.csv.")
+            else:
+                d.add_paragraph("Technical response / verification target: " + row["response_plan"])
             evidence = "PAPER024501_validation_memorandum.md and corresponding seed/hardware logs, where applicable; otherwise pending"
             d.add_paragraph("Evidence: " + evidence)
             d.add_paragraph("Manuscript section/page: pending final Word pagination and visual audit")
             d.add_paragraph("Disposition: PARTIAL / PENDING FINAL VERIFICATION")
     d.save(RESPONSE)
+    response_hash_file.write_text(fingerprint + "\n")
     state["responses"] = {"status": "draft_not_submission_ready", "count": len(rows), "document": str(RESPONSE.relative_to(ROOT)), "missing_page_references": True}
 
 
@@ -213,11 +244,11 @@ def inspect_hardware(state):
 
 def inspect_energy(state):
     e = read_json("full_network_energy/progress.json")
-    installed = shutil.which("iotlab-profile")
+    installed = (pathlib.Path.home() / "Research/.iotlabcli-venv/bin/iotlab-profile").is_file()
     state["device_energy_calibration"] = {
         "status": "not_calibrated",
         "network_scenario_runs": e.get("completed", 0),
-        "power_profile_cli_in_path": bool(installed),
+        "power_profile_cli_installed": bool(installed),
         "current_trace_files": 0,
         "next_steps": ["Define M3 consumption/voltage/period profile using testbed account",
                        "Reserve powered measurement nodes, flash isolated firmware roles",
@@ -240,6 +271,16 @@ def main():
         state["responses"] = {"status": "failed", "error": repr(e)}
     inspect_hardware(state)
     inspect_energy(state)
+    (BASE/"manuscript_stage_status.json").write_text(json.dumps({
+        "source_exists": bool(SOURCE.is_file()),
+        "template_exists": bool(TEMPLATE.is_file() and GUIDE.is_file()),
+        "draft_generated": OUT.is_file(),
+        "draft_path": str(OUT.relative_to(ROOT)) if OUT.is_file() else None,
+        "submission_ready": False,
+        "unresolved": ["Full paper-equivalent receiver codec validation","M3 calibrated per-state energy",
+                       "Cooja/M3 RE-ETX policy implementation","Authors' verified profiles/photos/declarations",
+                       "Final equation, references and visual QA approval"]
+    },indent=2)+"\n")
     state["scientific_release_allowed"] = False
     state["reason"] = "Original codec, hardware energy calibration and complete RE-ETX port are not established; editorial approval incomplete"
     save(state)

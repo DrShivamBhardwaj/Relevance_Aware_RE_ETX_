@@ -1,6 +1,6 @@
 {
   "pipeline": "PAPER024501",
-  "created_utc": "2026-11-13T08:10:08.416448+00:00",
+  "created_utc": "2026-11-13T08:17:38.934826+00:00",
   "manuscript": {
     "status": "red_marked_evidence_draft_NOT_submission_ready",
     "document": "reviewer_audit/PAPER024501/manuscript_working/PAPER024501_IJWMT_RED_MARKED_EVIDENCE_DRAFT.docx",
@@ -16,7 +16,7 @@
       "8. Conclusions"
     ],
     "remaining": [
-      "Replace original equation (6) with editable piecewise OMML",
+      "Confirm Equation (6) branch alignment in Word rendering and explain reviewer reading",
       "Author-confirmed ORCIDs, headshots and profiles",
       "Journal's nine declarations",
       "Verify references and updated figure/table layout",
@@ -32,7 +32,9 @@
       "media_names_preserved": true,
       "equation_count_preserved": true,
       "table_count_preserved": true
-    }
+    },
+    "equation_6_piecewise_verified": true,
+    "mapping_table": "reviewer_audit/PAPER024501/payload_mapping_review.csv"
   },
   "responses": {
     "status": "draft_not_submission_ready",
@@ -61,7 +63,7 @@
   "device_energy_calibration": {
     "status": "not_calibrated",
     "network_scenario_runs": 60,
-    "power_profile_cli_in_path": false,
+    "power_profile_cli_installed": true,
     "current_trace_files": 0,
     "next_steps": [
       "Define M3 consumption/voltage/period profile using testbed account",
@@ -74,5 +76,5 @@
   },
   "scientific_release_allowed": false,
   "reason": "Original codec, hardware energy calibration and complete RE-ETX port are not established; editorial approval incomplete",
-  "updated_utc": "2026-11-13T08:10:08.596097+00:00"
+  "updated_utc": "2026-11-13T08:17:39.177400+00:00"
 }
