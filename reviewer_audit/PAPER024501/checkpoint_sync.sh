@@ -33,6 +33,11 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/receiver_campaign/*_seed*.json
         "$BASE"/receiver_campaign/*.csv
         "$BASE"/receiver_campaign/progress.json
+        "$BASE"/receiver_campaign_100r/*_seed*.json
+        "$BASE"/receiver_campaign_100r/*.csv
+        "$BASE"/receiver_campaign_100r/progress.json
+        "$BASE"/cooja_transport/campaign_results.json
+        "$BASE"/cooja_transport/campaign_progress.json
         "$BASE"/full_network_energy/*_seed*.json
         "$BASE"/full_network_energy/*.csv
         "$BASE"/full_network_energy/progress.json
