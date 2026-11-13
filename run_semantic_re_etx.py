@@ -18,6 +18,7 @@ from simulator.sensing import CorrelatedSensingField
 from simulator.semantic_relevance import SemanticRelevanceEstimator
 from simulator.semantic_age import SemanticAgeTracker
 from simulator.semantic_payload import SemanticPayloadController
+from reviewer_audit.PAPER024501.energy_profile import ExtendedEnergyProfile
 
 
 def rotate_schedule(
@@ -259,6 +260,8 @@ def run():
     # Simulation
     # ------------------------------------------------
 
+    extra_energy = ExtendedEnergyProfile(config, radio, topology)
+
     for round_id in range(
         1,
         config.max_rounds + 1
@@ -279,6 +282,7 @@ def run():
         # after every packet.
         # --------------------------------------------
 
+        extra_energy.round_cost(network, round_id)
         current_observation = sensing.step()
 
         semantic_output = semantic_estimator.compute(
@@ -499,6 +503,8 @@ def run():
                     semantic_payload_bits[source]
                 )
             )
+
+            extra_energy.ack_cost(network, path, result.frame_attempts, round_id)
 
             round_airtime += (
                 result.airtime
@@ -1136,6 +1142,11 @@ def run():
 
     print()
 
+    print(f"Review sensing energy J     : {extra_energy.e_sense:.9f}")
+    print(f"Review CPU energy J         : {extra_energy.e_cpu:.9f}")
+    print(f"Review idle energy J        : {extra_energy.e_idle:.9f}")
+    print(f"Review control energy J     : {extra_energy.e_control:.9f}")
+    print(f"Review ACK energy J         : {extra_energy.e_ack:.9f}")
     print(
         f"CSV output                  : "
         f"{output_path}"
