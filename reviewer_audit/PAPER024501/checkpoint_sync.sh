@@ -21,6 +21,8 @@ trap 'rm -rf "$LOCK"' EXIT
  cd "$ROOT" || exit 1
  actual="$(git branch --show-current)"
  if [ "$actual" != "$BRANCH" ]; then echo "SKIP wrong branch: $actual"; exit 2; fi
+ # Lightweight self-contained reviewer-analysis and response draft refresh:
+ /bin/bash "$BASE/revision_checkpoint_stage.sh" >>"$LOG" 2>&1 || echo 'REVISION_REFRESH_FAILED' >>"$LOG"
  git diff --quiet -- config.py run_semantic_re_etx.py || { echo 'SKIP source files changed during simulation'; exit 3; }
  # Keep full per-round trajectories LOCAL; version only compact completed
  # seed summaries and progress needed to resume the experiment.
@@ -29,6 +31,15 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/network_parameter_sweep/*.csv
         "$BASE"/network_parameter_sweep/progress.json
         "$BASE"/pipeline_status.json
+        "$BASE"/revision_gate_status.json
+        "$BASE"/receiver_validation_gate.json
+        "$BASE"/revision_response_matrix.csv
+        "$BASE"/REVISION_RESPONSE_DRAFT.md
+        "$BASE"/PAPER024501_Revision_Response_DRAFT.docx
+        "$BASE"/extended_energy_accounting.csv
+        "$BASE"/extended_energy_accounting_meta.json
+        "$BASE"/topology_paired_mechanism_audit.csv
+        "$BASE"/topology_mechanism_audit_meta.json
         "$BASE"/archive_check.json
         "$BASE"/context_overhead_sensitivity.csv)
  if [ ${#files[@]} -gt 0 ]; then git add -- "${files[@]}"; fi
