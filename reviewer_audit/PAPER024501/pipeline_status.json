@@ -1,0 +1,48 @@
+{
+  "created": "2026-11-13T00:34:56.790768+00:00",
+  "stages": {
+    "archive_integrity": {
+      "status": "passed",
+      "started": "2026-11-13T00:34:56.791646+00:00",
+      "command": [
+        "/Users/shivambhardwaj/ns3-validation/.venv/bin/python",
+        "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/audit_archived_results.py"
+      ],
+      "completed": "2026-11-13T00:34:57.278451+00:00",
+      "exit_code": 0,
+      "log": "reviewer_audit/PAPER024501/archive_integrity.log"
+    },
+    "context_energy_illustration": {
+      "status": "passed",
+      "started": "2026-11-13T00:34:57.278848+00:00",
+      "command": [
+        "/Users/shivambhardwaj/ns3-validation/.venv/bin/python",
+        "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/context_overhead_sensitivity.py"
+      ],
+      "completed": "2026-11-13T00:34:57.564573+00:00",
+      "exit_code": 0,
+      "log": "reviewer_audit/PAPER024501/context_energy_illustration.log"
+    },
+    "payload_map_analytical_sweep": {
+      "status": "passed",
+      "started": "2026-11-13T00:34:57.564852+00:00",
+      "command": [
+        "/Users/shivambhardwaj/ns3-validation/.venv/bin/python",
+        "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/parameter_mapping_audit.py"
+      ],
+      "completed": "2026-11-13T00:34:57.644701+00:00",
+      "exit_code": 0,
+      "log": "reviewer_audit/PAPER024501/payload_map_analytical_sweep.log"
+    }
+  },
+  "updated": "2026-11-13T00:34:57.644953+00:00",
+  "scope": "archive checks and analytical sweeps; pilot only when --pilot",
+  "pending_experiments": [
+    "Reviewer full factorial network-level parameter sensitivity: require controlled rerun design and validated output",
+    "Receiver-side reconstruction/error task: requires explicit encoding/decoding semantics, not just payload lengths",
+    "Distributed context acquisition: requires realistic packet exchange scheduling and resulting relay-load/energy model",
+    "Cooja implementation: existing Python simulator is not equivalent to embedded firmware",
+    "FIT IoT-LAB: needs hardware firmware and reserved nodes; no physical validation is claimed",
+    "Journal manuscript transformation and verified ORCID/profile/photograph/declarations"
+  ]
+}
