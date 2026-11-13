@@ -17,7 +17,15 @@ done
 "$HOME/ns3-validation/.venv/bin/python" "$BASE/build_validation_memo.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'VALIDATION_MEMO_INCOMPLETE' >>"$BASE/revision_checkpoint_stage.log"
 "$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/build_response_docx.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'DOCX_DRAFT_FAILED' >>"$BASE/revision_checkpoint_stage.log"
 # The real submitted source and IJWMT template are in Mac Downloads, not in repo.
-"$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/unattended_release_workflow.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'SOURCE_MANUSCRIPT_PIPELINE_FAILED' >>"$BASE/revision_checkpoint_stage.log"
+# Keep Git checkpoints progressing even if a FileProvider-backed DOCX stalls.
+"$HOME/Research/wsn-array-validation-env/bin/python" - <<'RUN_UNATTENDED_MANUSCRIPT' >>"$BASE/revision_checkpoint_stage.log" 2>&1
+import subprocess,sys
+try:
+    r=subprocess.run([sys.executable, "reviewer_audit/PAPER024501/unattended_release_workflow.py"],timeout=75,check=False)
+    if r.returncode:print("SOURCE_MANUSCRIPT_PIPELINE_FAILED",r.returncode)
+except subprocess.TimeoutExpired:
+    print("SOURCE_MANUSCRIPT_PIPELINE_TIMEOUT_75S")
+RUN_UNATTENDED_MANUSCRIPT
 # Render/inspect a working draft without claiming human editorial QA.
 "$HOME/Research/wsn-array-validation-env/bin/python" "$BASE/render_manuscript_preflight.py" >>"$BASE/revision_checkpoint_stage.log" 2>&1 || echo 'DOCX_RENDER_AUDIT_FAILED' >>"$BASE/revision_checkpoint_stage.log"
 # Resume only the already reserved IoT-LAB experiment (if needed).

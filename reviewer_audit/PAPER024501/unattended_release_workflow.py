@@ -100,7 +100,7 @@ def create_manuscript(state):
         "physical_power": read_json("hardware_power_calibration/m3_power_measurement_audit.json"),
     }
     fingerprint = hashlib.sha256(
-        ("|".join(sha(p) for p in (SOURCE, TEMPLATE, GUIDE)) + sha(pathlib.Path(__file__)) + json.dumps(data, sort_keys=True)).encode()
+        (json.dumps([(str(p),p.stat().st_size,p.stat().st_mtime_ns) for p in (SOURCE,TEMPLATE,GUIDE)],sort_keys=True) + sha(pathlib.Path(__file__)) + json.dumps(data, sort_keys=True)).encode()
     ).hexdigest()
     hash_file = DEST / "manuscript_inputs.sha256"
     if OUT.is_file() and hash_file.is_file() and hash_file.read_text().strip() == fingerprint:
