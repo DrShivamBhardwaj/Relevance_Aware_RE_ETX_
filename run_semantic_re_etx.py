@@ -20,6 +20,7 @@ from simulator.semantic_age import SemanticAgeTracker
 from simulator.semantic_payload import SemanticPayloadController
 from reviewer_audit.PAPER024501.energy_profile import ExtendedEnergyProfile
 from reviewer_audit.PAPER024501.receiver_reference_codec import ReceiverReferenceCodec
+from reviewer_audit.PAPER024501.receiver_scalar_source import ScalarSourceReceiver
 
 
 def rotate_schedule(
@@ -264,6 +265,8 @@ def run():
     extra_energy = ExtendedEnergyProfile(config, radio, topology)
     receiver_codec = (ReceiverReferenceCodec(config.num_nodes,config.seed)
                       if os.environ.get("REVIEW_RECEIVER_CODEC","0")=="1" else None)
+    scalar_receiver = (ScalarSourceReceiver(config.num_nodes)
+                       if os.environ.get("REVIEW_SCALAR_SOURCE","0")=="1" else None)
 
     for round_id in range(
         1,
@@ -546,6 +549,13 @@ def run():
                     event_truth[source], int(semantic_payload_bits[source]),
                     result.success
                 )
+
+            if scalar_receiver is not None:
+                scalar_receiver.record(source, round_id,
+                                       current_observation[source],
+                                       event_truth[source],
+                                       semantic_payload_bits[source],
+                                       result.success)
 
             metrics.register_frame_stats(
                 attempts=
@@ -1155,6 +1165,9 @@ def run():
     if receiver_codec is not None:
         for name,value in receiver_codec.results().items():
             print(f"Reference receiver {name:<10} : {value:.9f}")
+    if scalar_receiver is not None:
+        for name,value in scalar_receiver.results().items():
+            print(f"Scalar receiver {name:<12} : {value:.9f}")
     print(f"Review sensing energy J     : {extra_energy.e_sense:.9f}")
     print(f"Review CPU energy J         : {extra_energy.e_cpu:.9f}")
     print(f"Review idle energy J        : {extra_energy.e_idle:.9f}")
