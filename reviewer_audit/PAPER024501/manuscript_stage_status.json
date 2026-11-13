@@ -1,0 +1,15 @@
+{
+  "input_source": "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/PAPER024501_submitted_source.docx",
+  "template": "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/IJWMT_template.docx",
+  "source_exists": false,
+  "template_exists": false,
+  "draft_generated": false,
+  "submission_ready": false,
+  "missing_author_confirmation": [
+    "ORCID iDs",
+    "biographical profiles",
+    "passport photographs",
+    "nine journal declarations"
+  ],
+  "blocked_reason": "Source attached to ChatGPT is not present on Mac or GitHub. Original formatting, equations and figures cannot be reconstructed faithfully."
+}

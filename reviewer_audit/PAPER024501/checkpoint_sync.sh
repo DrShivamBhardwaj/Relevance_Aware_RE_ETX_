@@ -36,6 +36,8 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/revision_response_matrix.csv
         "$BASE"/REVISION_RESPONSE_DRAFT.md
         "$BASE"/PAPER024501_Revision_Response_DRAFT.docx
+        "$BASE"/manuscript_stage_status.json
+        "$BASE"/PAPER024501_IJWMT_WORKING_DRAFT.docx
         "$BASE"/extended_energy_accounting.csv
         "$BASE"/extended_energy_accounting_meta.json
         "$BASE"/topology_paired_mechanism_audit.csv

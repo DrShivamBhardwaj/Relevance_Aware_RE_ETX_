@@ -11,6 +11,9 @@ from docx.shared import Inches,Pt,RGBColor
 BASE=Path(__file__).resolve().parent
 rows=list(csv.DictReader((BASE/"revision_response_matrix.csv").open()))
 out=BASE/"PAPER024501_Revision_Response_DRAFT.docx"
+if out.exists() and out.stat().st_mtime >= (BASE/"revision_response_matrix.csv").stat().st_mtime:
+ print("Reusing unchanged response draft",out)
+ raise SystemExit(0)
 d=Document()
 sec=d.sections[0]
 sec.top_margin=Inches(.8);sec.bottom_margin=Inches(.8)
