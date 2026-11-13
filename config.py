@@ -158,4 +158,4 @@ class SimulationConfig:
     etx_epsilon: float = 1e-12
 
     # Simulation
-    max_rounds: int = 5000
+    max_rounds: int = int(os.environ.get("REVIEW_MAX_ROUNDS", "5000"))
