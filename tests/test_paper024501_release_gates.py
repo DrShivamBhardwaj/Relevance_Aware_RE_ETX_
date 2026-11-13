@@ -6,7 +6,9 @@ BASE=Path(__file__).resolve().parents[1]/"reviewer_audit/PAPER024501"
 def test_draft_is_never_claimed_submission_ready():
     state=json.loads((BASE/"unattended_release_status.json").read_text())
     assert state["scientific_release_allowed"] is False
-    assert state["manuscript"]["status"].endswith("NOT_submission_ready")
+    assert state["manuscript"]["status"] in ("red_marked_evidence_draft_NOT_submission_ready","blocked")
+    # A CI runner has no local ~/Downloads journal source. Both statuses
+    # correctly block journal release; source presence is Mac-specific.
     assert state["protocol_hardware"]["source_features"]["RE_ETX_parent_select"] is False
 
 def test_scientific_gate_rejects_missing_original_codec_and_calibration():

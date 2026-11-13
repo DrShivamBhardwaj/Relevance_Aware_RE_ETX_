@@ -85,7 +85,16 @@ def after(para, message):
 
 def create_manuscript(state):
     if not SOURCE.is_file():
-        state["manuscript"] = {"status": "blocked", "reason": "Submitted source not found on Mac"}
+        if OUT.is_file():
+            state["manuscript"] = {
+                "status":"red_marked_evidence_draft_NOT_submission_ready",
+                "document":str(OUT.relative_to(ROOT)),
+                "source_found":False,
+                "previously_generated_draft_cached":True,
+                "reason":"Current source path not accessible; preserved earlier verified red-marked draft. Do not regenerate."
+            }
+        else:
+            state["manuscript"] = {"status": "blocked", "reason": "Submitted source not found on Mac"}
         return
     if not TEMPLATE.is_file() or not GUIDE.is_file():
         state["manuscript"] = {"status": "blocked", "reason": "Required IJWMT template/instructions absent"}
