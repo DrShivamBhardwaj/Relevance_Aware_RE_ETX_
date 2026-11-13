@@ -6,12 +6,15 @@ QA; never report items as addressed based solely on this generator.
 """
 from pathlib import Path
 import csv
+import hashlib
 from docx import Document
 from docx.shared import Inches,Pt,RGBColor
 BASE=Path(__file__).resolve().parent
 rows=list(csv.DictReader((BASE/"revision_response_matrix.csv").open()))
 out=BASE/"PAPER024501_Revision_Response_DRAFT.docx"
-if out.exists() and out.stat().st_mtime >= (BASE/"revision_response_matrix.csv").stat().st_mtime:
+fingerprint=BASE/".response_matrix_sha256"
+digest=hashlib.sha256((BASE/"revision_response_matrix.csv").read_bytes()).hexdigest()
+if out.exists() and fingerprint.exists() and fingerprint.read_text().strip()==digest:
  print("Reusing unchanged response draft",out)
  raise SystemExit(0)
 d=Document()
@@ -36,4 +39,5 @@ for section in ("Major","Minor","Mandatory"):
 d.add_heading("Release criteria",level=1)
 d.add_paragraph("Required before submission: original IJWMT manuscript and source-accurate edits; verified references, author ORCIDs, biographies, photographs and declarations; editable equations; figure-quality check; statistical result audit; separate clean and marked versions; exact section/page references for every response.")
 d.save(out)
+fingerprint.write_text(digest+"\n")
 print("Generated",out,"entries",len(rows))

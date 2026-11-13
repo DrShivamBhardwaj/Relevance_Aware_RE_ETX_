@@ -44,7 +44,9 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/topology_mechanism_audit_meta.json
         "$BASE"/archive_check.json
         "$BASE"/context_overhead_sensitivity.csv)
- if [ ${#files[@]} -gt 0 ]; then git add -- "${files[@]}"; fi
+ existing=()
+ for file in "${files[@]}"; do [ -f "$file" ] && existing+=("$file"); done
+ if [ ${#existing[@]} -gt 0 ]; then git add -- "${existing[@]}"; fi
  if ! git diff --cached --quiet; then
    git commit -m "checkpoint(PAPER024501): $(date -u '+%Y-%m-%dT%H:%MZ')" || exit 4
  fi
