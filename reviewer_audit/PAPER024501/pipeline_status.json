@@ -33,9 +33,31 @@
       "completed": "2026-11-13T00:34:57.644701+00:00",
       "exit_code": 0,
       "log": "reviewer_audit/PAPER024501/payload_map_analytical_sweep.log"
+    },
+    "pilot_C1_seed42": {
+      "status": "passed",
+      "started": "2026-11-13T00:35:35.803335+00:00",
+      "command": [
+        "/Users/shivambhardwaj/ns3-validation/.venv/bin/python",
+        "/Users/shivambhardwaj/ns3-validation/repo-git/run_semantic_re_etx.py"
+      ],
+      "completed": "2026-11-13T00:35:49.187498+00:00",
+      "exit_code": 0,
+      "log": "reviewer_audit/PAPER024501/pilot_C1_seed42.log"
+    },
+    "pilot_C3_seed42": {
+      "status": "passed",
+      "started": "2026-11-13T00:35:49.187993+00:00",
+      "command": [
+        "/Users/shivambhardwaj/ns3-validation/.venv/bin/python",
+        "/Users/shivambhardwaj/ns3-validation/repo-git/run_semantic_re_etx.py"
+      ],
+      "completed": "2026-11-13T00:36:06.922865+00:00",
+      "exit_code": 0,
+      "log": "reviewer_audit/PAPER024501/pilot_C3_seed42.log"
     }
   },
-  "updated": "2026-11-13T00:34:57.644953+00:00",
+  "updated": "2026-11-13T00:36:06.923160+00:00",
   "scope": "archive checks and analytical sweeps; pilot only when --pilot",
   "pending_experiments": [
     "Reviewer full factorial network-level parameter sensitivity: require controlled rerun design and validated output",
