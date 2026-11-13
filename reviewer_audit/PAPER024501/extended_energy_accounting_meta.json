@@ -1,0 +1,8 @@
+{
+  "rows": 90,
+  "scope": "counterfactual report-normalized accounting; NOT re-simulated node survival",
+  "cost_included": "constant additional mJ per generated report",
+  "cost_excluded": "node-specific sensing/idle state, energy-induced route/lifetime changes, extra control packets, interference",
+  "source": "results/master_validation/statistics/control_multiseed_raw.csv",
+  "warning": "Do not update FND/HND/LND or claim actual distributed energy savings from this table"
+}

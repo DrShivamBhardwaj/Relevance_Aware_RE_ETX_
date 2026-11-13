@@ -1,0 +1,33 @@
+id,type,concern,response_plan,status,manuscript_page,verification_file
+M1,Major,Uncharged central neighbour context exchange,Analytical per-exchange and report-normalized energy bounds; full distributed energy/network evaluation pending,"planned / partial, evidence required",TBD after final layout,TBD
+M2,Major,Insufficient weight/threshold sensitivity,90 executed network runs with 10 paired seeds and Holm-corrected output; no global optimum claim,"planned / partial, evidence required",TBD after final layout,TBD
+M3,Major,Missing receiver reconstruction or event F1,"Blocked until documented source codec, receiver decoder and timestamped packet records exist","planned / partial, evidence required",TBD after final layout,TBD
+M4,Major,"Missing sensing, computation, routing-control and idle energy",Analytical per-generated-report sensitivity; full node-level ledger and lifetime reruns pending,"planned / partial, evidence required",TBD after final layout,TBD
+M5,Major,Ambiguous deep-topology mechanisms,Paired 3-profile contrasts generated; packet-level information age/staleness not measured,"planned / partial, evidence required",TBD after final layout,TBD
+m1,Minor,Equation (6) versus 3000 bits at v=0.50,Code confirms 3000 bits: guarded threshold; verify and correct editable equation,"planned / partial, evidence required",TBD after final layout,TBD
+m2,Minor,Statistical novelty versus semantic information distinction,Draft comparison required; no semantic decoding claim,"planned / partial, evidence required",TBD after final layout,TBD
+m3,Minor,Expand C3 versus C5 deep topology discussion,"Add verified topology contrasts, avoid causal staleness attribution","planned / partial, evidence required",TBD after final layout,TBD
+m4,Minor,Contributions too vague,Describe causal attribution controls rather than novelty of simple components,"planned / partial, evidence required",TBD after final layout,TBD
+m5,Minor,Section 3.1 'Observations add',Change to 'Observations include a superimposed...',"planned / partial, evidence required",TBD after final layout,TBD
+m6,Minor,Section 4.3 Dijkstra wording,State non-negative weights ensure applicability of Dijkstra's algorithm,"planned / partial, evidence required",TBD after final layout,TBD
+m7,Minor,Section 6.2 imprecise C1/C2 wording,State small observed differences across listed metrics,"planned / partial, evidence required",TBD after final layout,TBD
+m8,Minor,Section 7 'useful' wording,Replace with 'informative',"planned / partial, evidence required",TBD after final layout,TBD
+m9,Minor,Section 8 long sentence,Split with preserved caveats,"planned / partial, evidence required",TBD after final layout,TBD
+m10,Minor,Title lacks attribution contribution,Proposed title emphasizes traffic-volume versus relevance effects; author approval needed,"planned / partial, evidence required",TBD after final layout,TBD
+m11,Minor,Abstract limitations and numerical precision,"Report 54.0% delay, 54.2% energy per delivered report and context/energy caveats","planned / partial, evidence required",TBD after final layout,TBD
+m12,Minor,Arnaiz et al. comparison,Add verified methodological comparison; no fabricated first-use claim,"planned / partial, evidence required",TBD after final layout,TBD
+m13,Minor,Algorithm pseudocode and complexity,Write auditable C3 steps with dense graph memory and route cost assumptions,"planned / partial, evidence required",TBD after final layout,TBD
+m14,Minor,Hardware and simulation environment,"Record actual system/commit/version, no testbed inference","planned / partial, evidence required",TBD after final layout,TBD
+m15,Minor,Conclusion parameter-selection limitation,Integrate observed sensitivity and ten reused-seed caveat,"planned / partial, evidence required",TBD after final layout,TBD
+m16,Minor,Recent semantic communication references,Independently verify 2025-2026 DOI and methodology before citing,"planned / partial, evidence required",TBD after final layout,TBD
+R1,Mandatory,Editable consecutively numbered equations,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R2,Mandatory,"Three-line primary tables, bordered raw tables",Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R3,Mandatory,Figures >=300 dpi,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R4,Mandatory,Consolidated bracketed citations,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R5,Mandatory,"Reference existence, uniqueness and citation cross-audit",Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R6,Mandatory,ORCID iDs after names/emails,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R7,Mandatory,Remove author job titles below title,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R8,Mandatory,Verified biographies and photographs,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R9,Mandatory,Exact IJWMT template/declarations,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R10,Mandatory,Nine complete journal statements or N/A,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD
+R11,Mandatory,Red changes and detailed response,Verify and apply formatting requirement in camera-ready manuscript,"planned / partial, evidence required",TBD after final layout,TBD

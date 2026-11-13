@@ -1,0 +1,5 @@
+{
+  "contrasts": 15,
+  "scope": "Topology-depth outcome association; NOT per-packet staleness",
+  "missing": "Source/event timestamps and receiver arrival times needed to establish staleness mechanism"
+}
