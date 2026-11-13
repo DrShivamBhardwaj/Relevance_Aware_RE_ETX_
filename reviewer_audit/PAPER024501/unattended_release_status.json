@@ -2,8 +2,11 @@
   "pipeline": "PAPER024501",
   "created_utc": "2026-11-13T08:17:38.934826+00:00",
   "manuscript": {
-    "status": "blocked",
-    "reason": "Submitted source not found on Mac"
+    "status": "red_marked_evidence_draft_NOT_submission_ready",
+    "document": "reviewer_audit/PAPER024501/manuscript_working/PAPER024501_IJWMT_RED_MARKED_EVIDENCE_DRAFT.docx",
+    "source_found": false,
+    "previously_generated_draft_cached": true,
+    "reason": "Current source path not accessible; preserved earlier verified red-marked draft. Do not regenerate."
   },
   "responses": {
     "status": "draft_not_submission_ready",
@@ -46,5 +49,5 @@
   },
   "scientific_release_allowed": false,
   "reason": "Original codec, hardware energy calibration and complete RE-ETX port are not established; editorial approval incomplete",
-  "updated_utc": "2026-11-13T15:12:00.208508+00:00"
+  "updated_utc": "2026-11-13T15:33:52.670907+00:00"
 }
