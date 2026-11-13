@@ -1,0 +1,24 @@
+{
+  "scenario": "moderate_extra",
+  "mode": "C1",
+  "seed": 173,
+  "passed": true,
+  "assumptions": {
+    "REVIEW_SENSING_UJ": "10",
+    "REVIEW_CPU_UJ": "5",
+    "REVIEW_IDLE_UJ": "5",
+    "REVIEW_CONTEXT_BITS": "100",
+    "REVIEW_ROUTING_BITS": "64",
+    "REVIEW_ACK_BITS": "88"
+  },
+  "FND": 112.0,
+  "HND": 366.0,
+  "LND": 931.0,
+  "PDR_percent": 93.967,
+  "energy_per_delivered_j": 0.001267941,
+  "sensing_j": 0.41966,
+  "cpu_j": 0.20983,
+  "idle_j": 0.20983,
+  "control_j": 3.486585853,
+  "ack_j": 1.646929344
+}

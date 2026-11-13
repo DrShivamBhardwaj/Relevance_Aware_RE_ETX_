@@ -1,0 +1,152 @@
+[
+  {
+    "seed": 11,
+    "radio_success_parameter_tx": 1.0,
+    "radio_success_parameter_rx": 1.0,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 11,
+    "radio_success_parameter_tx": 0.95,
+    "radio_success_parameter_rx": 0.95,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 11,
+    "radio_success_parameter_tx": 0.8,
+    "radio_success_parameter_rx": 0.8,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 11,
+    "radio_success_parameter_tx": 0.5,
+    "radio_success_parameter_rx": 0.5,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 13,
+    "complete_report_ratio": 0.9285714285714286,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 11,
+    "radio_success_parameter_tx": 0.2,
+    "radio_success_parameter_rx": 0.2,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 3,
+    "complete_report_ratio": 0.21428571428571427,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 42,
+    "radio_success_parameter_tx": 1.0,
+    "radio_success_parameter_rx": 1.0,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 42,
+    "radio_success_parameter_tx": 0.95,
+    "radio_success_parameter_rx": 0.95,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 42,
+    "radio_success_parameter_tx": 0.8,
+    "radio_success_parameter_rx": 0.8,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 42,
+    "radio_success_parameter_tx": 0.5,
+    "radio_success_parameter_rx": 0.5,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 42,
+    "radio_success_parameter_tx": 0.2,
+    "radio_success_parameter_rx": 0.2,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 3,
+    "complete_report_ratio": 0.21428571428571427,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 101,
+    "radio_success_parameter_tx": 1.0,
+    "radio_success_parameter_rx": 1.0,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 101,
+    "radio_success_parameter_tx": 0.95,
+    "radio_success_parameter_rx": 0.95,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 101,
+    "radio_success_parameter_tx": 0.8,
+    "radio_success_parameter_rx": 0.8,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 14,
+    "complete_report_ratio": 1.0,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 101,
+    "radio_success_parameter_tx": 0.5,
+    "radio_success_parameter_rx": 0.5,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 13,
+    "complete_report_ratio": 0.9285714285714286,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  },
+  {
+    "seed": 101,
+    "radio_success_parameter_tx": 0.2,
+    "radio_success_parameter_rx": 0.2,
+    "simulator_exit": 0,
+    "reports_transmitted": 14,
+    "reports_reassembled": 3,
+    "complete_report_ratio": 0.21428571428571427,
+    "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+  }
+]
