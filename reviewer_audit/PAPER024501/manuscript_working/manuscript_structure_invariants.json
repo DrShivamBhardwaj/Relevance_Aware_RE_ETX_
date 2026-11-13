@@ -1,0 +1,11 @@
+{
+  "original_media": 7,
+  "revised_media": 7,
+  "original_equation_elements": 43,
+  "revised_equation_elements": 43,
+  "original_tables": 8,
+  "revised_tables": 8,
+  "media_names_preserved": true,
+  "equation_count_preserved": true,
+  "table_count_preserved": true
+}

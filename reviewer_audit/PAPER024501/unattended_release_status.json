@@ -1,0 +1,78 @@
+{
+  "pipeline": "PAPER024501",
+  "created_utc": "2026-11-13T08:10:08.416448+00:00",
+  "manuscript": {
+    "status": "red_marked_evidence_draft_NOT_submission_ready",
+    "document": "reviewer_audit/PAPER024501/manuscript_working/PAPER024501_IJWMT_RED_MARKED_EVIDENCE_DRAFT.docx",
+    "source_found": true,
+    "journal_templates_found": true,
+    "sections_with_red_evidence": [
+      "3.2. Channel, fragmentation and energy",
+      "4.2. Payload mapping and safeguards",
+      "6.5. What remains after matching the source bit budget",
+      "6.7. Sensitivity to multi-hop topology depth",
+      "7. Discussion and limitations",
+      "7. Discussion and limitations",
+      "8. Conclusions"
+    ],
+    "remaining": [
+      "Replace original equation (6) with editable piecewise OMML",
+      "Author-confirmed ORCIDs, headshots and profiles",
+      "Journal's nine declarations",
+      "Verify references and updated figure/table layout",
+      "Full visual and editorial signoff"
+    ],
+    "invariants": {
+      "original_media": 7,
+      "revised_media": 7,
+      "original_equation_elements": 43,
+      "revised_equation_elements": 43,
+      "original_tables": 8,
+      "revised_tables": 8,
+      "media_names_preserved": true,
+      "equation_count_preserved": true,
+      "table_count_preserved": true
+    }
+  },
+  "responses": {
+    "status": "draft_not_submission_ready",
+    "count": 32,
+    "document": "reviewer_audit/PAPER024501/manuscript_working/PAPER024501_POINT_BY_POINT_EVIDENCE_DRAFT.docx",
+    "missing_page_references": true
+  },
+  "protocol_hardware": {
+    "status": "blocked_paper_equivalent_algorithm_not_ported",
+    "source_features": {
+      "source_payload_mapping": true,
+      "source_fragmentation": true,
+      "sink_fragment_reassembly": true,
+      "RE_ETX_parent_select": false,
+      "distributed_spatial_relevance": false,
+      "physical_energy_metered": false
+    },
+    "experiment_458478": "physical transport demonstration only",
+    "next_steps": [
+      "Port relevance/context and RE-ETX with actual neighbour exchange",
+      "Add trace-identifiable routing decisions and total application bits",
+      "Compile on Cooja and M3 targets, then repeated paired trials",
+      "Use independent traffic/PHY captures and hardware-profile calibration"
+    ]
+  },
+  "device_energy_calibration": {
+    "status": "not_calibrated",
+    "network_scenario_runs": 60,
+    "power_profile_cli_in_path": false,
+    "current_trace_files": 0,
+    "next_steps": [
+      "Define M3 consumption/voltage/period profile using testbed account",
+      "Reserve powered measurement nodes, flash isolated firmware roles",
+      "Capture and archive actual timestamped current/voltage samples",
+      "Integrate J = integral[V(t)*I(t)]dt and uncertainty",
+      "Calibrate sensing/CPU/idle/MAC energy values, rerun comparisons"
+    ],
+    "auto_submit_hardware": false
+  },
+  "scientific_release_allowed": false,
+  "reason": "Original codec, hardware energy calibration and complete RE-ETX port are not established; editorial approval incomplete",
+  "updated_utc": "2026-11-13T08:10:08.596097+00:00"
+}
