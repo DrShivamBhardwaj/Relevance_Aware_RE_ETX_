@@ -1,0 +1,83 @@
+{
+  "experiment_id": 458514,
+  "motes": [
+    96,
+    97,
+    98
+  ],
+  "raw_serial_file": "active/serial_capture_2.log",
+  "phase_windows": 63,
+  "within_board_cycle_pairs": 45,
+  "perboard_results": [
+    {
+      "mote": 96,
+      "phase": "light_ISL29020",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 7.645941666666668,
+      "sd_cycle_mW": 4.773255405645512
+    },
+    {
+      "mote": 96,
+      "phase": "CPU_busy",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 22.279741666666663,
+      "sd_cycle_mW": 7.932152496960781
+    },
+    {
+      "mote": 96,
+      "phase": "radio_broadcast",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 10.657945238095238,
+      "sd_cycle_mW": 22.851607666671605
+    },
+    {
+      "mote": 97,
+      "phase": "light_ISL29020",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 8.128659523809523,
+      "sd_cycle_mW": 4.9975728785215106
+    },
+    {
+      "mote": 97,
+      "phase": "CPU_busy",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 13.28470595238095,
+      "sd_cycle_mW": 11.74380158681991
+    },
+    {
+      "mote": 97,
+      "phase": "radio_broadcast",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 11.09594523809524,
+      "sd_cycle_mW": 23.86738016439337
+    },
+    {
+      "mote": 98,
+      "phase": "light_ISL29020",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 8.298908333333328,
+      "sd_cycle_mW": 5.089360555791246
+    },
+    {
+      "mote": 98,
+      "phase": "CPU_busy",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 15.090272619047616,
+      "sd_cycle_mW": 8.868533360075133
+    },
+    {
+      "mote": 98,
+      "phase": "radio_broadcast",
+      "n_cycle_pairs": 5,
+      "mean_increment_mW": 7.544826190476192,
+      "sd_cycle_mW": 15.634454314511236
+    }
+  ],
+  "real_ISL29020_sensor_instrumented": true,
+  "real_CPU_workload_instrumented": true,
+  "real_radio_broadcast_workload_instrumented": true,
+  "real_REETX_phy_energy_decomposition": false,
+  "calibrated_paper_equivalent_sensing_CPU_MAC": false,
+  "scope": "Whole-board measured power under 4 workloads. No independent RE-ETX protocol-current calibration, no sensing-per-sample uncertainty at MAC level.",
+  "limitation": "Same session, 3 motes and cyclic phases; time drift, neighbor traffic and MAC retries can confound causal per-component power."
+}

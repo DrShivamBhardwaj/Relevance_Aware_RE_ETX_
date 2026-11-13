@@ -1,0 +1,7 @@
+{
+    "0": [
+        "m3-96.grenoble.iot-lab.info",
+        "m3-97.grenoble.iot-lab.info",
+        "m3-98.grenoble.iot-lab.info"
+    ]
+}

@@ -21,7 +21,7 @@ The earlier newly introduced progressive DCT waveform codec also did not demonst
 
 Experiment 458482 captured M3 raw DC voltage/current/power profiles for three devices; the independently measured total board powers are not sensing/CPU/MAC power decomposition. Experiment 458510 contained 15 usable phase windows, but brief work at timer boundaries caused non-positive differences against idle; it cannot be used to calibrate component coefficients.
 
-A second experiment with real ISL29020 sensing and sustained CPU/radio workloads was initiated; its raw phase analysis must pass independent checks before use.
+An improved four-phase experiment 458514 uses the actual ISL29020 light sensor, controlled CPU workload and radio broadcast. Its parsed phase windows are 63; individual whole-board power differences still require caution about contention and time drift.
 
 ## Cooja and FIT IoT-LAB RE-ETX proxy
 

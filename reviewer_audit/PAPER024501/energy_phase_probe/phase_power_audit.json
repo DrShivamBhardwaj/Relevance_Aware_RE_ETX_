@@ -1,0 +1,36 @@
+{
+  "experiment_id": 458510,
+  "boards": [
+    96,
+    97,
+    98
+  ],
+  "firmware": "simple phase-timed CPU workload and NullNet radio output",
+  "phase_windows_with_usable_current_samples": 15,
+  "paired_board_differences": 3,
+  "raw_power_files_verified": true,
+  "raw_serial_sha256": "08f865c1d88e6734c6523b48ee649ffa6163c07e87fbef5f69fb33eb1ca806cb",
+  "observed_within_mote_differences": [
+    {
+      "mote": 96,
+      "cpu_minus_idle_mW": -2.7295089285714336,
+      "radio_minus_idle_mW": -1.9531517857142855
+    },
+    {
+      "mote": 97,
+      "cpu_minus_idle_mW": -3.077392857142869,
+      "radio_minus_idle_mW": -1.0545446428571192
+    },
+    {
+      "mote": 98,
+      "cpu_minus_idle_mW": -2.4831874999999837,
+      "radio_minus_idle_mW": -0.46577678571424475
+    }
+  ],
+  "hardware_phase_comparison_complete": true,
+  "individual_sensing_energy_calibrated": false,
+  "real_CPU_active_current_calibrated": false,
+  "real_MAC_TX_RX_current_calibrated": false,
+  "original_RE_ETX_energy_calibrated": false,
+  "warning": "Each phase contains one protocol scheduling burst around a 20s timer. These are whole-board window averages, not standalone per-component current. Single testbed allocation; no independent repetition."
+}

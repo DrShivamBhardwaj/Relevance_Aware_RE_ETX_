@@ -1,0 +1,16 @@
+{
+  "mode": "C3",
+  "seed": 173,
+  "passed": true,
+  "rmse": 0.001132963,
+  "zero_rmse": 0.239778477,
+  "event_f1": 0.955789474,
+  "precision": 0.941908714,
+  "recall": 0.97008547,
+  "tp": 227.0,
+  "fp": 14.0,
+  "fn": 7.0,
+  "reports": 10000.0,
+  "received": 10000.0,
+  "pdr_percent": 100.0
+}

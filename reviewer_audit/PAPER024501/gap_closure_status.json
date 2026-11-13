@@ -45,9 +45,9 @@
     "board_power_experiment": 458482,
     "initial_phase_experiment": 458510,
     "initial_phase_windows": 15,
-    "new_light_CPU_radio_phase_experiment": null,
-    "new_phase_windows": 0,
-    "new_phase_evidence_verified": false,
+    "new_light_CPU_radio_phase_experiment": 458514,
+    "new_phase_windows": 63,
+    "new_phase_evidence_verified": true,
     "reason": "Not all sensing CPU radio packet-control and idle activity currents are calibrated to the original algorithm; no real RE-ETX battery ledger."
   },
   "full_REETX_hardware": {
