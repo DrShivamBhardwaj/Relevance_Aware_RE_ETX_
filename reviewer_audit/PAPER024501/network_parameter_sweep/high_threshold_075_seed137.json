@@ -1,0 +1,14 @@
+{
+  "variant": "high_threshold_075",
+  "seed": 137,
+  "parameters": {
+    "REVIEW_HIGH_THRESHOLD": "0.75"
+  },
+  "completed": true,
+  "FND": 298.0,
+  "HND": 829.0,
+  "LND": 2565.0,
+  "pdr_percent": 98.081,
+  "delay_ms": 456.436,
+  "energy_per_delivered_j": 0.000507733
+}

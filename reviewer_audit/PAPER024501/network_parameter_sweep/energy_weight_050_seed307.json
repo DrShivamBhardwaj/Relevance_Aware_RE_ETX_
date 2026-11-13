@@ -1,0 +1,14 @@
+{
+  "variant": "energy_weight_050",
+  "seed": 307,
+  "parameters": {
+    "REVIEW_ENERGY_WEIGHT": "0.5"
+  },
+  "completed": true,
+  "FND": 276.0,
+  "HND": 734.0,
+  "LND": 2777.0,
+  "pdr_percent": 96.934,
+  "delay_ms": 486.721,
+  "energy_per_delivered_j": 0.000558996
+}

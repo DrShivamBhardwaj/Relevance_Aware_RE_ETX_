@@ -1,0 +1,14 @@
+{
+  "variant": "low_threshold_060",
+  "seed": 137,
+  "parameters": {
+    "REVIEW_LOW_THRESHOLD": "0.6"
+  },
+  "completed": true,
+  "FND": 296.0,
+  "HND": 841.0,
+  "LND": 2592.0,
+  "pdr_percent": 98.122,
+  "delay_ms": 448.436,
+  "energy_per_delivered_j": 0.000498932
+}

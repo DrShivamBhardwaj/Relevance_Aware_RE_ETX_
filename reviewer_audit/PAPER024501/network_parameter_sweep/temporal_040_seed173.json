@@ -1,0 +1,14 @@
+{
+  "variant": "temporal_040",
+  "seed": 173,
+  "parameters": {
+    "REVIEW_TEMPORAL_WEIGHT": "0.4"
+  },
+  "completed": true,
+  "FND": 268.0,
+  "HND": 849.0,
+  "LND": 2635.0,
+  "pdr_percent": 97.353,
+  "delay_ms": 465.141,
+  "energy_per_delivered_j": 0.000487367
+}
