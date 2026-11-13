@@ -133,7 +133,7 @@ class MultiHopTransmitter:
                 0.0,
                 "route",
                 app_bits,
-                radio_bits
+                0
             )
 
         airtime = 0.0

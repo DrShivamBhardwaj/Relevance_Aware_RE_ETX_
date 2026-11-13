@@ -1,0 +1,45 @@
+{
+  "paper_id": "PAPER024501",
+  "scientific_gates": {
+    "archive_integrity": {
+      "complete": true
+    },
+    "parameter_network_sweep": {
+      "complete": true
+    },
+    "context_energy_analytic": {
+      "complete": true,
+      "scope": "no per-node control frames; no lifetime counterfactual"
+    },
+    "receiver_side": {
+      "complete": false,
+      "reason": "A source codec, decoder and timed delivery trace are not specified"
+    },
+    "full_energy_model": {
+      "complete": false,
+      "reason": "Missing validated sensing, idle, CPU and control-traffic profiles"
+    },
+    "deep_topology_staleness": {
+      "complete": false,
+      "reason": "No timestamped per-packet destination trace in archive"
+    },
+    "cooja": {
+      "complete": false,
+      "reason": "No paper-equivalent Contiki firmware or Cooja scenarios"
+    },
+    "iotlab": {
+      "complete": false,
+      "reason": "No paper-equivalent hardware firmware, calibration and reserved nodes"
+    },
+    "IJWMT_docx": {
+      "complete": false,
+      "reason": "Submitted DOCX and template must be staged on Mac and visually audited; author metadata/photos/declarations need author confirmation"
+    },
+    "pointwise_response": {
+      "complete": false,
+      "reason": "Final page/line references need revised DOCX, validated experiments"
+    }
+  },
+  "all_release_gates_pass": false,
+  "notice": "A draft manuscript is not camera-ready until all editorial gates and author data are confirmed"
+}
