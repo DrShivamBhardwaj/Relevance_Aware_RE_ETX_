@@ -1,0 +1,156 @@
+1794582066.659771;Aggregator started
+1794582073.830034;m3-98;PAPER_PARENT source=3 seq=10 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=110 etx_relay_x100=110 energy_x100=99
+1794582073.847172;m3-97;PAPER_PARENT source=2 seq=10 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=109 etx_relay_x100=400 energy_x100=99
+1794582073.960933;m3-96;PAPER_RX_COMPLETE src=3 seq=10 bits=1000 frags=2 trialmode=0 count=9
+1794582073.976629;m3-96;PAPER_RX_COMPLETE src=2 seq=10 bits=1000 frags=2 trialmode=0 count=10
+1794582083.828939;m3-98;PAPER_PARENT source=3 seq=12 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=108 etx_relay_x100=108 energy_x100=99
+1794582083.846066;m3-97;PAPER_PARENT source=2 seq=12 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=108 etx_relay_x100=400 energy_x100=99
+1794582084.679561;m3-96;PAPER_RX_COMPLETE src=3 seq=12 bits=4000 frags=8 trialmode=1 count=11
+1794582084.727416;m3-96;PAPER_RX_COMPLETE src=2 seq=12 bits=4000 frags=8 trialmode=1 count=12
+1794582093.827728;m3-98;PAPER_PARENT source=3 seq=14 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=107 etx_relay_x100=107 energy_x100=99
+1794582093.845122;m3-97;PAPER_PARENT source=2 seq=14 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=107 etx_relay_x100=400 energy_x100=99
+1794582094.710451;m3-96;PAPER_RX_COMPLETE src=3 seq=14 bits=4000 frags=8 trialmode=1 count=13
+1794582094.726488;m3-96;PAPER_RX_COMPLETE src=2 seq=14 bits=4000 frags=8 trialmode=1 count=14
+1794582103.842290;m3-98;PAPER_PARENT source=3 seq=16 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=106 etx_relay_x100=106 energy_x100=99
+1794582103.843626;m3-97;PAPER_PARENT source=2 seq=16 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=106 etx_relay_x100=400 energy_x100=99
+1794582104.709665;m3-96;PAPER_RX_COMPLETE src=3 seq=16 bits=4000 frags=8 trialmode=1 count=15
+1794582104.725373;m3-96;PAPER_RX_COMPLETE src=2 seq=16 bits=4000 frags=8 trialmode=1 count=16
+1794582113.841227;m3-98;PAPER_PARENT source=3 seq=18 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=105 etx_relay_x100=105 energy_x100=99
+1794582113.842582;m3-97;PAPER_PARENT source=2 seq=18 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=105 etx_relay_x100=400 energy_x100=99
+1794582114.692575;m3-96;PAPER_RX_COMPLETE src=2 seq=18 bits=4000 frags=8 trialmode=1 count=17
+1794582114.708288;m3-96;PAPER_RX_COMPLETE src=3 seq=18 bits=4000 frags=8 trialmode=1 count=18
+1794582123.840048;m3-98;PAPER_PARENT source=3 seq=20 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=105 etx_relay_x100=105 energy_x100=99
+1794582123.841916;m3-97;PAPER_PARENT source=2 seq=20 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=104 etx_relay_x100=400 energy_x100=99
+1794582124.691455;m3-96;PAPER_RX_COMPLETE src=2 seq=20 bits=4000 frags=8 trialmode=1 count=19
+1794582124.723240;m3-96;PAPER_RX_COMPLETE src=3 seq=20 bits=4000 frags=8 trialmode=1 count=20
+1794582133.839060;m3-98;PAPER_PARENT source=3 seq=22 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=104 etx_relay_x100=104 energy_x100=99
+1794582133.840915;m3-97;PAPER_PARENT source=2 seq=22 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=104 etx_relay_x100=400 energy_x100=99
+1794582134.674426;m3-96;PAPER_RX_COMPLETE src=3 seq=22 bits=4000 frags=8 trialmode=1 count=21
+1794582134.674609;m3-96;PAPER_RX_COMPLETE src=2 seq=22 bits=4000 frags=8 trialmode=1 count=22
+1794582143.838021;m3-98;PAPER_PARENT source=3 seq=24 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=104 etx_relay_x100=104 energy_x100=99
+1794582143.839590;m3-97;PAPER_PARENT source=2 seq=24 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=104 etx_relay_x100=400 energy_x100=99
+1794582143.969420;m3-96;PAPER_RX_COMPLETE src=3 seq=24 bits=1000 frags=2 trialmode=2 count=23
+1794582144.001236;m3-96;PAPER_RX_COMPLETE src=2 seq=24 bits=1000 frags=2 trialmode=2 count=24
+1794582153.836986;m3-98;PAPER_PARENT source=3 seq=26 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=103 etx_relay_x100=103 energy_x100=99
+1794582153.838638;m3-97;PAPER_PARENT source=2 seq=26 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=103 etx_relay_x100=400 energy_x100=99
+1794582153.952401;m3-96;PAPER_RX_COMPLETE src=3 seq=26 bits=1000 frags=2 trialmode=2 count=25
+1794582153.968201;m3-96;PAPER_RX_COMPLETE src=2 seq=26 bits=1000 frags=2 trialmode=2 count=26
+1794582163.835807;m3-98;PAPER_PARENT source=3 seq=28 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=103 etx_relay_x100=103 energy_x100=99
+1794582163.837349;m3-97;PAPER_PARENT source=2 seq=28 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=103 etx_relay_x100=400 energy_x100=99
+1794582163.951293;m3-96;PAPER_RX_COMPLETE src=3 seq=28 bits=1000 frags=2 trialmode=2 count=27
+1794582164.014834;m3-96;PAPER_RX_COMPLETE src=2 seq=28 bits=1000 frags=2 trialmode=2 count=28
+1794582173.834699;m3-98;PAPER_PARENT source=3 seq=30 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=103 etx_relay_x100=103 energy_x100=99
+1794582173.836623;m3-97;PAPER_PARENT source=2 seq=30 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=103 etx_relay_x100=400 energy_x100=99
+1794582173.966248;m3-96;PAPER_RX_COMPLETE src=3 seq=30 bits=1000 frags=2 trialmode=2 count=29
+1794582173.982134;m3-96;PAPER_RX_COMPLETE src=2 seq=30 bits=1000 frags=2 trialmode=2 count=30
+1794582183.833454;m3-98;PAPER_PARENT source=3 seq=32 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=103 etx_relay_x100=103 energy_x100=99
+1794582183.835377;m3-97;PAPER_PARENT source=2 seq=32 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=103 etx_relay_x100=400 energy_x100=99
+1794582183.997028;m3-96;PAPER_RX_COMPLETE src=3 seq=32 bits=1000 frags=2 trialmode=2 count=31
+1794582184.012899;m3-96;PAPER_RX_COMPLETE src=2 seq=32 bits=1000 frags=2 trialmode=2 count=32
+1794582193.832501;m3-98;PAPER_PARENT source=3 seq=34 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582193.834235;m3-97;PAPER_PARENT source=2 seq=34 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582193.964113;m3-96;PAPER_RX_COMPLETE src=3 seq=34 bits=1000 frags=2 trialmode=2 count=33
+1794582193.979970;m3-96;PAPER_RX_COMPLETE src=2 seq=34 bits=1000 frags=2 trialmode=2 count=34
+1794582203.831267;m3-98;PAPER_PARENT source=3 seq=36 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582203.833253;m3-97;PAPER_PARENT source=2 seq=36 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582204.699059;m3-96;PAPER_RX_COMPLETE src=2 seq=36 bits=4000 frags=8 trialmode=3 count=35
+1794582204.714831;m3-96;PAPER_RX_COMPLETE src=3 seq=36 bits=4000 frags=8 trialmode=3 count=36
+1794582213.830239;m3-98;PAPER_PARENT source=3 seq=38 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582213.832262;m3-97;PAPER_PARENT source=2 seq=38 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582214.666046;m3-96;PAPER_RX_COMPLETE src=3 seq=38 bits=4000 frags=8 trialmode=3 count=37
+1794582214.697736;m3-96;PAPER_RX_COMPLETE src=2 seq=38 bits=4000 frags=8 trialmode=3 count=38
+1794582223.829028;m3-98;PAPER_PARENT source=3 seq=40 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582223.831223;m3-97;PAPER_PARENT source=2 seq=40 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582224.696907;m3-96;PAPER_RX_COMPLETE src=2 seq=40 bits=4000 frags=8 trialmode=3 count=39
+1794582224.728693;m3-96;PAPER_RX_COMPLETE src=3 seq=40 bits=4000 frags=8 trialmode=3 count=40
+1794582233.827882;m3-98;PAPER_PARENT source=3 seq=42 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582233.829906;m3-97;PAPER_PARENT source=2 seq=42 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582234.711654;m3-96;PAPER_RX_COMPLETE src=2 seq=42 bits=4000 frags=8 trialmode=3 count=41
+1794582234.727592;m3-96;PAPER_RX_COMPLETE src=3 seq=42 bits=4000 frags=8 trialmode=3 count=42
+1794582243.826805;m3-98;PAPER_PARENT source=3 seq=44 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582243.829143;m3-97;PAPER_PARENT source=2 seq=44 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582244.678921;m3-96;PAPER_RX_COMPLETE src=2 seq=44 bits=4000 frags=8 trialmode=3 count=43
+1794582244.726815;m3-96;PAPER_RX_COMPLETE src=3 seq=44 bits=4000 frags=8 trialmode=3 count=44
+1794582253.825627;m3-98;PAPER_PARENT source=3 seq=46 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582253.828017;m3-97;PAPER_PARENT source=2 seq=46 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582254.693814;m3-96;PAPER_RX_COMPLETE src=3 seq=46 bits=4000 frags=8 trialmode=3 count=45
+1794582254.725606;m3-96;PAPER_RX_COMPLETE src=2 seq=46 bits=4000 frags=8 trialmode=3 count=46
+1794582263.824541;m3-98;PAPER_PARENT source=3 seq=48 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582263.826992;m3-97;PAPER_PARENT source=2 seq=48 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582263.972797;m3-96;PAPER_RX_COMPLETE src=2 seq=48 bits=1000 frags=2 trialmode=0 count=47
+1794582264.004612;m3-96;PAPER_RX_COMPLETE src=3 seq=48 bits=1000 frags=2 trialmode=0 count=48
+1794582273.823252;m3-98;PAPER_PARENT source=3 seq=50 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=102 etx_relay_x100=102 energy_x100=99
+1794582273.825694;m3-97;PAPER_PARENT source=2 seq=50 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=102 etx_relay_x100=400 energy_x100=99
+1794582273.987747;m3-96;PAPER_RX_COMPLETE src=3 seq=50 bits=1000 frags=2 trialmode=0 count=49
+1794582274.035554;m3-96;PAPER_RX_COMPLETE src=2 seq=50 bits=1000 frags=2 trialmode=0 count=50
+1794582283.821995;m3-98;PAPER_PARENT source=3 seq=52 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=99
+1794582283.824574;m3-97;PAPER_PARENT source=2 seq=52 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=99
+1794582283.970623;m3-96;PAPER_RX_COMPLETE src=2 seq=52 bits=1000 frags=2 trialmode=0 count=51
+1794582283.970807;m3-96;PAPER_RX_COMPLETE src=3 seq=52 bits=1000 frags=2 trialmode=0 count=52
+1794582293.821107;m3-98;PAPER_PARENT source=3 seq=54 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=99
+1794582293.823799;m3-97;PAPER_PARENT source=2 seq=54 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=99
+1794582293.969438;m3-96;PAPER_RX_COMPLETE src=2 seq=54 bits=1000 frags=2 trialmode=0 count=53
+1794582294.001194;m3-96;PAPER_RX_COMPLETE src=3 seq=54 bits=1000 frags=2 trialmode=0 count=54
+1794582303.819920;m3-98;PAPER_PARENT source=3 seq=56 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=99
+1794582303.822478;m3-97;PAPER_PARENT source=2 seq=56 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=99
+1794582303.968637;m3-96;PAPER_RX_COMPLETE src=2 seq=56 bits=1000 frags=2 trialmode=0 count=55
+1794582303.984326;m3-96;PAPER_RX_COMPLETE src=3 seq=56 bits=1000 frags=2 trialmode=0 count=56
+1794582313.818646;m3-98;PAPER_PARENT source=3 seq=58 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=99
+1794582313.821587;m3-97;PAPER_PARENT source=2 seq=58 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=99
+1794582313.967494;m3-96;PAPER_RX_COMPLETE src=2 seq=58 bits=1000 frags=2 trialmode=0 count=57
+1794582313.999216;m3-96;PAPER_RX_COMPLETE src=3 seq=58 bits=1000 frags=2 trialmode=0 count=58
+1794582323.817567;m3-98;PAPER_PARENT source=3 seq=60 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=99
+1794582323.836266;m3-97;PAPER_PARENT source=2 seq=60 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=99
+1794582324.670395;m3-96;PAPER_RX_COMPLETE src=3 seq=60 bits=4000 frags=8 trialmode=1 count=59
+1794582333.816597;m3-98;PAPER_PARENT source=3 seq=62 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582333.835299;m3-97;PAPER_PARENT source=2 seq=62 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582334.717242;m3-96;PAPER_RX_COMPLETE src=3 seq=62 bits=4000 frags=8 trialmode=1 count=60
+1794582334.733217;m3-96;PAPER_RX_COMPLETE src=2 seq=62 bits=4000 frags=8 trialmode=1 count=61
+1794582343.831472;m3-98;PAPER_PARENT source=3 seq=64 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582343.834184;m3-97;PAPER_PARENT source=2 seq=64 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582344.684389;m3-96;PAPER_RX_COMPLETE src=3 seq=64 bits=4000 frags=8 trialmode=1 count=62
+1794582344.732179;m3-96;PAPER_RX_COMPLETE src=2 seq=64 bits=4000 frags=8 trialmode=1 count=63
+1794582353.830043;m3-98;PAPER_PARENT source=3 seq=66 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582353.833046;m3-97;PAPER_PARENT source=2 seq=66 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582354.667276;m3-96;PAPER_RX_COMPLETE src=3 seq=66 bits=4000 frags=8 trialmode=1 count=64
+1794582354.683054;m3-96;PAPER_RX_COMPLETE src=2 seq=66 bits=4000 frags=8 trialmode=1 count=65
+1794582363.829039;m3-98;PAPER_PARENT source=3 seq=68 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582363.832246;m3-97;PAPER_PARENT source=2 seq=68 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582364.666297;m3-96;PAPER_RX_COMPLETE src=3 seq=68 bits=4000 frags=8 trialmode=1 count=66
+1794582364.682050;m3-96;PAPER_RX_COMPLETE src=2 seq=68 bits=4000 frags=8 trialmode=1 count=67
+1794582373.827865;m3-98;PAPER_PARENT source=3 seq=70 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582373.831106;m3-97;PAPER_PARENT source=2 seq=70 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582374.697145;m3-96;PAPER_RX_COMPLETE src=3 seq=70 bits=4000 frags=8 trialmode=1 count=68
+1794582374.697278;m3-96;PAPER_RX_COMPLETE src=2 seq=70 bits=4000 frags=8 trialmode=1 count=69
+1794582383.827000;m3-98;PAPER_PARENT source=3 seq=72 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582383.830045;m3-97;PAPER_PARENT source=2 seq=72 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582383.960168;m3-96;PAPER_RX_COMPLETE src=3 seq=72 bits=1000 frags=2 trialmode=2 count=70
+1794582384.071988;m3-96;PAPER_RX_COMPLETE src=2 seq=72 bits=1000 frags=2 trialmode=2 count=71
+1794582393.825770;m3-98;PAPER_PARENT source=3 seq=74 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582393.828911;m3-97;PAPER_PARENT source=2 seq=74 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582393.991222;m3-96;PAPER_RX_COMPLETE src=3 seq=74 bits=1000 frags=2 trialmode=2 count=72
+1794582393.991404;m3-96;PAPER_RX_COMPLETE src=2 seq=74 bits=1000 frags=2 trialmode=2 count=73
+1794582403.824746;m3-98;PAPER_PARENT source=3 seq=76 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582403.827666;m3-97;PAPER_PARENT source=2 seq=76 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582403.958194;m3-96;PAPER_RX_COMPLETE src=2 seq=76 bits=1000 frags=2 trialmode=2 count=74
+1794582403.973966;m3-96;PAPER_RX_COMPLETE src=3 seq=76 bits=1000 frags=2 trialmode=2 count=75
+1794582413.823529;m3-98;PAPER_PARENT source=3 seq=78 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582413.826874;m3-97;PAPER_PARENT source=2 seq=78 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582413.941037;m3-96;PAPER_RX_COMPLETE src=2 seq=78 bits=1000 frags=2 trialmode=2 count=76
+1794582413.988606;m3-96;PAPER_RX_COMPLETE src=3 seq=78 bits=1000 frags=2 trialmode=2 count=77
+1794582423.822492;m3-98;PAPER_PARENT source=3 seq=80 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582423.825609;m3-97;PAPER_PARENT source=2 seq=80 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582423.956040;m3-96;PAPER_RX_COMPLETE src=3 seq=80 bits=1000 frags=2 trialmode=2 count=78
+1794582423.987968;m3-96;PAPER_RX_COMPLETE src=2 seq=80 bits=1000 frags=2 trialmode=2 count=79
+1794582433.821321;m3-98;PAPER_PARENT source=3 seq=82 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582433.824746;m3-97;PAPER_PARENT source=2 seq=82 mode=0 parent=1 relevance_x100=0 payload_bits=1000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582433.970889;m3-96;PAPER_RX_COMPLETE src=2 seq=82 bits=1000 frags=2 trialmode=2 count=80
+1794582433.986700;m3-96;PAPER_RX_COMPLETE src=3 seq=82 bits=1000 frags=2 trialmode=2 count=81
+1794582443.820102;m3-98;PAPER_PARENT source=3 seq=84 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582443.823498;m3-97;PAPER_PARENT source=2 seq=84 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582444.673898;m3-96;PAPER_RX_COMPLETE src=2 seq=84 bits=4000 frags=8 trialmode=3 count=82
+1794582444.705832;m3-96;PAPER_RX_COMPLETE src=3 seq=84 bits=4000 frags=8 trialmode=3 count=83
+1794582453.818877;m3-98;PAPER_PARENT source=3 seq=86 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=101 energy_x100=98
+1794582453.822648;m3-97;PAPER_PARENT source=2 seq=86 mode=1 parent=1 relevance_x100=0 payload_bits=4000 etx_sink_x100=101 etx_relay_x100=400 energy_x100=98
+1794582454.688703;m3-96;PAPER_RX_COMPLETE src=3 seq=86 bits=4000 frags=8 trialmode=3 count=84
+1794582454.720548;m3-96;PAPER_RX_COMPLETE src=2 seq=86 bits=4000 frags=8 trialmode=3 count=85

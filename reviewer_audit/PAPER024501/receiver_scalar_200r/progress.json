@@ -1,0 +1,8 @@
+{
+  "completed": 40,
+  "planned": 40,
+  "not_original_codec": true,
+  "scope": "original scalar sensing source; explicitly added Q8.8 receiver, not manuscript codec",
+  "assumed_codec": "Q8.8 fixed-point source scalar in first 16 bits, zero padding, last-value hold",
+  "rounds_per_run": 200
+}

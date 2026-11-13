@@ -1,0 +1,9 @@
+trialmode,mode,source,observed_tx,sink_matched_complete,trace_window_match_ratio,relay_parent_count,mean_requested_bits,median_report_latency_ms
+0,adaptive_RE_ETX_proxy,2,7,7,1.0,0,1000,145.907
+0,adaptive_RE_ETX_proxy,3,7,7,1.0,0,1000,164.495
+1,fixed_RE_ETX_proxy,2,12,11,0.9166666666666666,0,4000,866.172
+1,fixed_RE_ETX_proxy,3,12,12,1.0,0,4000,859.989
+2,adaptive_direct,2,12,12,1.0,0,1000,153.8945
+2,adaptive_direct,3,12,12,1.0,0,1000,133.358
+3,fixed_direct,2,7,7,1.0,0,4000,865.684
+3,fixed_direct,3,7,7,1.0,0,4000,885.73

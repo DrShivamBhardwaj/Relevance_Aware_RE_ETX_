@@ -1,0 +1,15 @@
+{
+  "mode": "adaptive_direct",
+  "seed": 123456,
+  "passed": true,
+  "source3_attempted": 89,
+  "source3_delivered": 0,
+  "source2_attempted": 89,
+  "source2_delivered": 89,
+  "source3_relay_parent_choices": 0,
+  "source3_parent2_fraction": 0.0,
+  "source3_PDR_application": 0.0,
+  "source2_PDR_application": 1.0,
+  "source3_mean_application_bits": 1337.0786516853932,
+  "forwarded_fragments": 0
+}

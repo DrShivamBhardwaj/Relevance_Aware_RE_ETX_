@@ -1,0 +1,20 @@
+{
+  "campaign": "PAPER024501_M3_REETX_AB_PROBE_20261113",
+  "profile": "array_active_power_20261110",
+  "scope": "PAPER024501 three-node routed RE-ETX PROXY with synthetic sensing and energy-debt counter; NOT full paper-equivalent validation",
+  "experiment_id": 458513,
+  "reservation_submitted": true,
+  "nodes": [
+    96,
+    97,
+    98
+  ],
+  "flashed": true,
+  "serial_captured": true,
+  "serial_returncode": 0,
+  "archive_retrieved": true,
+  "archive_path": "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/reetx_port/hardware/active/458513.tar.gz",
+  "raw_oml_downloaded": true,
+  "completed": true,
+  "conclusion": "Exploratory 3-node RE-ETX proxy AB pilot completed; full original policy and energy calibration NOT established"
+}

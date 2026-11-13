@@ -1,0 +1,104 @@
+{
+  "experiment_id": 458513,
+  "hardware": "Grenoble M3 96 sink, 97 relay, 98 source",
+  "tx_reports_in_partial_capture": 78,
+  "rx_reports_in_partial_capture": 77,
+  "paired_rows": 78,
+  "mode_summary": [
+    {
+      "trialmode": 0,
+      "mode": "adaptive_RE_ETX_proxy",
+      "source": 2,
+      "observed_tx": 7,
+      "sink_matched_complete": 7,
+      "trace_window_match_ratio": 1.0,
+      "relay_parent_count": 0,
+      "mean_requested_bits": 1000,
+      "median_report_latency_ms": 145.907
+    },
+    {
+      "trialmode": 0,
+      "mode": "adaptive_RE_ETX_proxy",
+      "source": 3,
+      "observed_tx": 7,
+      "sink_matched_complete": 7,
+      "trace_window_match_ratio": 1.0,
+      "relay_parent_count": 0,
+      "mean_requested_bits": 1000,
+      "median_report_latency_ms": 164.495
+    },
+    {
+      "trialmode": 1,
+      "mode": "fixed_RE_ETX_proxy",
+      "source": 2,
+      "observed_tx": 12,
+      "sink_matched_complete": 11,
+      "trace_window_match_ratio": 0.9166666666666666,
+      "relay_parent_count": 0,
+      "mean_requested_bits": 4000,
+      "median_report_latency_ms": 866.172
+    },
+    {
+      "trialmode": 1,
+      "mode": "fixed_RE_ETX_proxy",
+      "source": 3,
+      "observed_tx": 12,
+      "sink_matched_complete": 12,
+      "trace_window_match_ratio": 1.0,
+      "relay_parent_count": 0,
+      "mean_requested_bits": 4000,
+      "median_report_latency_ms": 859.989
+    },
+    {
+      "trialmode": 2,
+      "mode": "adaptive_direct",
+      "source": 2,
+      "observed_tx": 12,
+      "sink_matched_complete": 12,
+      "trace_window_match_ratio": 1.0,
+      "relay_parent_count": 0,
+      "mean_requested_bits": 1000,
+      "median_report_latency_ms": 153.8945
+    },
+    {
+      "trialmode": 2,
+      "mode": "adaptive_direct",
+      "source": 3,
+      "observed_tx": 12,
+      "sink_matched_complete": 12,
+      "trace_window_match_ratio": 1.0,
+      "relay_parent_count": 0,
+      "mean_requested_bits": 1000,
+      "median_report_latency_ms": 133.358
+    },
+    {
+      "trialmode": 3,
+      "mode": "fixed_direct",
+      "source": 2,
+      "observed_tx": 7,
+      "sink_matched_complete": 7,
+      "trace_window_match_ratio": 1.0,
+      "relay_parent_count": 0,
+      "mean_requested_bits": 4000,
+      "median_report_latency_ms": 865.684
+    },
+    {
+      "trialmode": 3,
+      "mode": "fixed_direct",
+      "source": 3,
+      "observed_tx": 7,
+      "sink_matched_complete": 7,
+      "trace_window_match_ratio": 1.0,
+      "relay_parent_count": 0,
+      "mean_requested_bits": 4000,
+      "median_report_latency_ms": 885.73
+    }
+  ],
+  "serial_sha256": "c072d6d77b7df1cb50020dfa44f1a88c51f68983318cc661001be8dd9ee72753",
+  "full_original_RE_ETX_validated": false,
+  "original_hardware_semantic_relevance": false,
+  "hardware_residual_energy_measurement_in_policy": false,
+  "source_event_sensor": "deterministic synthetic source, not ISL29020 or original correlated process",
+  "routing_metric": "APP beacon PRR surrogate + modeled energy-debit proxy, not full-report ETX calibrated against ACK",
+  "caveats": "Single physical deployment, non-randomized alternating policy order, partial serial window, small 3-node topology. Ratios are not independently sniffer-calibrated packet delivery."
+}

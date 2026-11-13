@@ -1,0 +1,15 @@
+{
+  "mode": "adaptive_reetx",
+  "seed": 942,
+  "passed": true,
+  "source3_attempted": 89,
+  "source3_delivered": 89,
+  "source2_attempted": 89,
+  "source2_delivered": 89,
+  "source3_relay_parent_choices": 89,
+  "source3_parent2_fraction": 1.0,
+  "source3_PDR_application": 1.0,
+  "source2_PDR_application": 1.0,
+  "source3_mean_application_bits": 1424.9887640449438,
+  "forwarded_fragments": 264
+}
