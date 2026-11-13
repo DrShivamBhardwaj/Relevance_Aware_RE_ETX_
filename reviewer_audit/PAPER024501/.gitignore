@@ -6,3 +6,16 @@ network_parameter_sweep/workdirs/
 pilot_workdirs/
 *.pyc
 __pycache__/
+
+# Large transient simulation trajectories and rendered Cooja runtime state.
+receiver_scalar_100r/workdirs/
+receiver_scalar_200r/workdirs/
+reetx_port/cooja_fixed/
+reetx_port/cooja_logs/
+reetx_port/cooja_multihop/
+reetx_port/factorial/
+reetx_port/factorial_paced/*/*/logs/
+reetx_port/factorial_paced/*/*/test.csc
+reetx_port/factorial_paced/*/*/runner.log
+reetx_port/factorial_paced/*/*/error.txt
+reetx_port/active/
