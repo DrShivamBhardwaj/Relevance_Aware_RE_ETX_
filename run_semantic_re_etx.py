@@ -102,6 +102,14 @@ def run():
             temporal_weight = 0.6
             spatial_weight = 0.4
 
+    # Reviewer-only experimental overrides; absent variables preserve the
+    # original, archived configuration and all C1--C7 definitions.
+    if mode == "C3" and os.environ.get("REVIEW_TEMPORAL_WEIGHT"):
+        temporal_weight = float(os.environ["REVIEW_TEMPORAL_WEIGHT"])
+        if not 0.0 <= temporal_weight <= 1.0:
+            raise ValueError("REVIEW_TEMPORAL_WEIGHT must be in [0,1]")
+        spatial_weight = 1.0 - temporal_weight
+
     if mode == "C5":
         if not (
             8
@@ -354,7 +362,7 @@ def run():
             network.energy,
             config.initial_energy,
             alive_mask=network.alive,
-            energy_weight=0.25,
+            energy_weight=float(os.environ.get("REVIEW_ENERGY_WEIGHT", "0.25")),
             semantic_weight=(
                 1.00
                 if routing_enabled

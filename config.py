@@ -96,9 +96,9 @@ class SimulationConfig:
 
     # Semantic payload / priority model
     semantic_min_payload_ratio: float = 0.25
-    semantic_high_recall_threshold: float = 0.50
-    semantic_high_confidence_threshold: float = 0.85
-    semantic_high_recall_min_ratio: float = 0.75
+    semantic_high_recall_threshold: float = float(os.environ.get("REVIEW_LOW_THRESHOLD", "0.50"))
+    semantic_high_confidence_threshold: float = float(os.environ.get("REVIEW_HIGH_THRESHOLD", "0.85"))
+    semantic_high_recall_min_ratio: float = float(os.environ.get("REVIEW_PROTECTED_RATIO", "0.75"))
 
     # Ablation control switches
     semantic_routing_enabled: bool = (
