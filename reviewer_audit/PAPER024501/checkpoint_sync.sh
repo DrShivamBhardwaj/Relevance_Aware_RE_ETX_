@@ -1,0 +1,46 @@
+#!/bin/bash
+# Local-only periodic recovery checkpoint; does not call ChatGPT.
+set -u
+ROOT="/Users/shivambhardwaj/ns3-validation/repo-git"
+BRANCH="review/PAPER024501-audit"
+BASE="$ROOT/reviewer_audit/PAPER024501"
+LOG="$BASE/checkpoint_sync.log"
+LOCK="$BASE/.checkpoint_sync.lock"
+mkdir -p "$BASE"
+if ! mkdir "$LOCK" 2>/dev/null; then
+  # Release a stale lock only if the recorded process is no longer alive.
+  prior="$(cat "$LOCK/pid" 2>/dev/null || true)"
+  if [[ "$prior" =~ ^[0-9]+$ ]] && kill -0 "$prior" 2>/dev/null; then exit 0; fi
+  rm -rf "$LOCK"
+  mkdir "$LOCK" 2>/dev/null || exit 0
+fi
+echo "$$" >"$LOCK/pid"
+trap 'rm -rf "$LOCK"' EXIT
+{
+ date -u '+%Y-%m-%dT%H:%M:%SZ checkpoint begin'
+ cd "$ROOT" || exit 1
+ actual="$(git branch --show-current)"
+ if [ "$actual" != "$BRANCH" ]; then echo "SKIP wrong branch: $actual"; exit 2; fi
+ git diff --quiet -- config.py run_semantic_re_etx.py || { echo 'SKIP source files changed during simulation'; exit 3; }
+ # Keep full per-round trajectories LOCAL; version only compact completed
+ # seed summaries and progress needed to resume the experiment.
+ shopt -s nullglob
+ files=("$BASE"/network_parameter_sweep/*_seed*.json
+        "$BASE"/network_parameter_sweep/*.csv
+        "$BASE"/network_parameter_sweep/progress.json
+        "$BASE"/pipeline_status.json
+        "$BASE"/archive_check.json
+        "$BASE"/context_overhead_sensitivity.csv)
+ if [ ${#files[@]} -gt 0 ]; then git add -- "${files[@]}"; fi
+ if ! git diff --cached --quiet; then
+   git commit -m "checkpoint(PAPER024501): $(date -u '+%Y-%m-%dT%H:%MZ')" || exit 4
+ fi
+ # Retry pending prior commits, even when no files changed this cycle.
+ if git push origin "$BRANCH"; then
+   echo "PUSH_OK $(git rev-parse --short HEAD)"
+ else
+   echo 'PUSH_FAILED local commits remain queued for next cycle'
+   exit 5
+ fi
+ date -u '+%Y-%m-%dT%H:%M:%SZ checkpoint end'
+} >>"$LOG" 2>&1
