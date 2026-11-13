@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[2]
 BASE=Path(__file__).resolve().parent/"cooja_transport"
 COOJA=Path(os.environ.get("CONTIKI_NG",str(Path.home()/"Research/contiki-ng")))/"tools/cooja"
 TEMPLATE=(BASE/"paper024501-transport.csc").read_text()
-experiments=[(seed,quality) for seed in (11,42,101) for quality in (1.0,0.95,0.80)]
+experiments=[(seed,quality) for seed in (11,42,101) for quality in (1.0,0.95,0.80,0.50,0.20)]
 results=[]
 for seed,quality in experiments:
  case=BASE/"campaign"/f"seed{seed}_quality{str(quality).replace('.','p')}"
