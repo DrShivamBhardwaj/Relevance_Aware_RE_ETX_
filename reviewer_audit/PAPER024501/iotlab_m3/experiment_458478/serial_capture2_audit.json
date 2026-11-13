@@ -1,0 +1,19 @@
+{
+  "experiment_id": 458478,
+  "source_log": "serial_capture2.log",
+  "physical_link": "IoT-LAB M3 direct NullNet/CSMA broadcast, fragmented application reports",
+  "source_reports_observed": 32,
+  "sink_complete_reports_observed": 17,
+  "matched_completed": 17,
+  "eligible": 31,
+  "unmatched_eligible": 14,
+  "right_censored": 1,
+  "sink_without_corresponding_source_log": 0,
+  "trace_window_matched_ratio": 0.5483870967741935,
+  "median_matched_latency_ms": 220.597,
+  "first_source_epoch": 1794555857.166847,
+  "last_event_epoch": 1794555977.360466,
+  "hardware_RE_ETX_algorithm_tested": false,
+  "hardware_energy_metered": false,
+  "warning": "Trace-window matched ratio is not calibrated PHY PDR; incomplete logs, radio collisions and missed aggregator output are not distinguishable"
+}

@@ -1,0 +1,96 @@
+{
+  "n_complete_scenarios": 15,
+  "report_delivery_by_radio_configuration": [
+    {
+      "seed": 11,
+      "quality": 1.0,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 11,
+      "quality": 0.95,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 11,
+      "quality": 0.8,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 11,
+      "quality": 0.5,
+      "requested": 14,
+      "complete": 13
+    },
+    {
+      "seed": 11,
+      "quality": 0.2,
+      "requested": 14,
+      "complete": 3
+    },
+    {
+      "seed": 42,
+      "quality": 1.0,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 42,
+      "quality": 0.95,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 42,
+      "quality": 0.8,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 42,
+      "quality": 0.5,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 42,
+      "quality": 0.2,
+      "requested": 14,
+      "complete": 3
+    },
+    {
+      "seed": 101,
+      "quality": 1.0,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 101,
+      "quality": 0.95,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 101,
+      "quality": 0.8,
+      "requested": 14,
+      "complete": 14
+    },
+    {
+      "seed": 101,
+      "quality": 0.5,
+      "requested": 14,
+      "complete": 13
+    },
+    {
+      "seed": 101,
+      "quality": 0.2,
+      "requested": 14,
+      "complete": 3
+    }
+  ],
+  "scope": "Cooja NullNet/CSMA fragmentation reference, NOT RE-ETX"
+}

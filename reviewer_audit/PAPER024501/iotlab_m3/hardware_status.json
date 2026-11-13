@@ -1,0 +1,48 @@
+{
+  "experiment_id": 458478,
+  "site": "Grenoble",
+  "duration_reserved_minutes": 10,
+  "allocated_nodes": {
+    "sink": "m3-96",
+    "source2": "m3-101",
+    "source3": "m3-102"
+  },
+  "binary_checksums": {
+    "role1_sink.iotlab": {
+      "sha256": "8044de24f253ff8bac07a12051d90d1a41453687b77c1101b67b67bdb762d813",
+      "size_bytes": 590076
+    },
+    "role2_source.iotlab": {
+      "sha256": "bbc1ea27fbafdd396979023048d3eadce678ff8a2db51879e4575301d9d0a234",
+      "size_bytes": 588352
+    },
+    "role3_source.iotlab": {
+      "sha256": "7f9aab0a865813662b75b9715c6271e6283c5b930fefcb0cb82505ff1bfbd7c1",
+      "size_bytes": 588352
+    },
+    "role2_staggered.iotlab": {
+      "sha256": "877f12531172b4956da94db784aeb6c0b44155f5ac4c67de389768883215115a",
+      "size_bytes": 588360
+    },
+    "role3_staggered.iotlab": {
+      "sha256": "3ecb9806fb0b74e645044ec4880ecfbb9b4f16731304a940e367dfad515a0b50",
+      "size_bytes": 588360
+    }
+  },
+  "compile_platform": "Contiki-NG IoT-LAB M3 (STM32, AT86RF231), PROJECT_ROLE-specific NullNet broadcast",
+  "firmware_ported_and_built": true,
+  "physical_flash_verified": true,
+  "serial_capture_verified": true,
+  "hardware_pdr_verified": false,
+  "full_RE_ETX_implementation": false,
+  "limitation": "SSH serial-capture check required user review; no physical data have been collected",
+  "experiment_state": "Terminated",
+  "experimental_method": "Three-node M3 CSMA/NullNet fragmented-reassembly diagnostic",
+  "some_physical_report_completion_verified": true,
+  "hardware_energy_measured": false,
+  "experimental_comparison": "Initial simultaneous-source and later short staggered-source diagnostic; sequential and not confirmatory",
+  "physical_capture_audits": [
+    "experiment_458478/serial_capture2_audit.json",
+    "experiment_458478/staggered_serial_audit.json"
+  ]
+}

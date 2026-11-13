@@ -1,0 +1,19 @@
+{
+  "experiment_id": 458478,
+  "board": "IoT-LAB Grenoble M3",
+  "physical_link": "NullNet/CSMA direct broadcast",
+  "source_reports_in_trace": 32,
+  "sink_complete_reports_in_trace": 17,
+  "matched_completed_reports": 17,
+  "eligible_reports": 31,
+  "unmatched_eligible": 14,
+  "right_censored": 1,
+  "RX_without_observed_TX": 0,
+  "matched_delivery_ratio": 0.5483870967741935,
+  "median_end_to_end_ms": 220.597,
+  "first_observed_tx_epoch": 1794555857.166847,
+  "last_observed_serial_epoch": 1794555977.360466,
+  "full_RE_ETX_validated": false,
+  "hardware_energy_measured": false,
+  "caveat": "Partial serial capture; no calibrated PHY loss or application codec. Missing logs and collisions cannot be distinguished without independent sniffer."
+}

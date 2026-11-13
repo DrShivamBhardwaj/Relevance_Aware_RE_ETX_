@@ -1,0 +1,8 @@
+# Per-round full trajectories remain local; Git retains compact audit files.
+full_network_energy/workdirs/
+receiver_campaign/workdirs/
+receiver_campaign_100r/workdirs/
+network_parameter_sweep/workdirs/
+pilot_workdirs/
+*.pyc
+__pycache__/

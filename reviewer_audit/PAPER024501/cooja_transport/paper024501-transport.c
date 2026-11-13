@@ -16,6 +16,19 @@
 #define FRAGMENT 70
 #define HEADER 8
 #define MAX_FRAGS 8
+#ifndef PAPER_ROLE
+#define PAPER_ROLE 0
+#endif
+#ifndef PAPER_BROADCAST
+#define PAPER_BROADCAST 0
+#endif
+#ifndef PAPER_STAGGER_SOURCE3
+#define PAPER_STAGGER_SOURCE3 0
+#endif
+static uint8_t logical_role(void)
+{
+  return PAPER_ROLE ? PAPER_ROLE : linkaddr_node_addr.u8[0];
+}
 static linkaddr_t sink = {{1,0,0,0,0,0,0,0}};
 static uint8_t frame[HEADER+FRAGMENT];
 static uint16_t received_seq[4]={0};
@@ -36,7 +49,7 @@ static void on_receive(const void *data,uint16_t len,
                        const linkaddr_t *src,const linkaddr_t *dst)
 {
   const uint8_t *bytes=(const uint8_t *)data;
-  if(linkaddr_node_addr.u8[0]!=1 || len<HEADER)return;
+  if(logical_role()!=1 || len<HEADER)return;
   unsigned int source=bytes[6];
   unsigned int seq=(unsigned int)bytes[0] + ((unsigned int)bytes[1]<<8);
   unsigned int index=bytes[2], total=bytes[3];
@@ -73,30 +86,34 @@ PROCESS_THREAD(paper024501_process,ev,data)
   static unsigned short frag_index,total;
   PROCESS_BEGIN();
   nullnet_set_input_callback(on_receive);
-  if(linkaddr_node_addr.u8[0]==1) {
+  if(logical_role()==1) {
     printf("PAPER024501_SINK_READY\n");
   } else {
-    etimer_set(&timer,INTERVAL);
+    etimer_set(&timer, INTERVAL + ((PAPER_STAGGER_SOURCE3 && logical_role()==3) ? 3*CLOCK_SECOND : 0));
     seq=1;
     while(1) {
       PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
-      relevance=(unsigned short)((seq*23+linkaddr_node_addr.u8[0]*11)%101);
+      relevance=(unsigned short)((seq*23+logical_role()*11)%101);
       app_bits=bits_for_relevance(relevance);
       payload_bytes=app_bits/8;
       total=(payload_bytes+FRAGMENT-1)/FRAGMENT;
       printf("PAPER024501_TX source=%u seq=%u relevance=%u bits=%u frags=%u\n",
-             linkaddr_node_addr.u8[0],seq,relevance,app_bits,total);
+             logical_role(),seq,relevance,app_bits,total);
       bytes_left=payload_bytes;
       for(frag_index=0; frag_index<total;frag_index++) {
         unsigned short chunk=bytes_left<FRAGMENT?bytes_left:FRAGMENT;
         frame[0]=(uint8_t)(seq&255);frame[1]=(uint8_t)(seq>>8);
         frame[2]=(uint8_t)frag_index;frame[3]=(uint8_t)total;
         frame[4]=(uint8_t)(app_bits&255);frame[5]=(uint8_t)(app_bits>>8);
-        frame[6]=linkaddr_node_addr.u8[0];frame[7]=0;
+        frame[6]=logical_role();frame[7]=0;
         memset(frame+HEADER,(unsigned char)(seq+frag_index),chunk);
         nullnet_buf=frame;
         nullnet_len=HEADER+chunk;
+#if PAPER_BROADCAST
+        NETSTACK_NETWORK.output(NULL);
+#else
         NETSTACK_NETWORK.output(&sink);
+#endif
         bytes_left -= chunk;
       }
       seq++;

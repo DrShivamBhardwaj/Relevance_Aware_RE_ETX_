@@ -1,0 +1,10 @@
+{
+  "seed": 11,
+  "radio_success_parameter_tx": 1.0,
+  "radio_success_parameter_rx": 1.0,
+  "simulator_exit": 0,
+  "reports_transmitted": 14,
+  "reports_reassembled": 14,
+  "complete_report_ratio": 1.0,
+  "scope": "nullnet direct 3 nodes; guarded source bit rule; application fragmentation/reassembly"
+}

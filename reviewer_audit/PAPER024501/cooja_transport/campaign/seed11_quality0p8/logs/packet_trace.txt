@@ -1,0 +1,55 @@
+Random seed: 11
+395000 node-1 [INFO: Main      ] - Routing: nullrouting
+395000 node-1 [INFO: Main      ] - Net: nullnet
+395000 node-1 [INFO: Main      ] - MAC: CSMA
+395000 node-1 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+395000 node-1 [INFO: Main      ] - 802.15.4 Default channel: 26
+395000 node-1 [INFO: Main      ] Node ID: 0
+395000 node-1 [INFO: Main      ] Link-layer address: 0100.0000.0000.0000
+395000 node-1 PAPER024501_SINK_READY
+722000 node-3 [INFO: Main      ] Starting Contiki-NG-release/v5.2-dirty
+722000 node-3 [INFO: Main      ] - Routing: nullrouting
+722000 node-3 [INFO: Main      ] - Net: nullnet
+722000 node-3 [INFO: Main      ] - MAC: CSMA
+722000 node-3 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+722000 node-3 [INFO: Main      ] - 802.15.4 Default channel: 26
+722000 node-3 [INFO: Main      ] Node ID: 0
+722000 node-3 [INFO: Main      ] Link-layer address: 0300.0000.0000.0000
+735000 node-2 [INFO: Main      ] Starting Contiki-NG-release/v5.2-dirty
+735000 node-2 [INFO: Main      ] - Routing: nullrouting
+735000 node-2 [INFO: Main      ] - Net: nullnet
+735000 node-2 [INFO: Main      ] - MAC: CSMA
+735000 node-2 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+735000 node-2 [INFO: Main      ] - 802.15.4 Default channel: 26
+735000 node-2 [INFO: Main      ] Node ID: 0
+735000 node-2 [INFO: Main      ] Link-layer address: 0200.0000.0000.0000
+8722000 node-3 PAPER024501_TX source=3 seq=1 relevance=56 bits=3000 frags=6
+8735000 node-2 PAPER024501_TX source=2 seq=1 relevance=45 bits=2344 frags=5
+8860440 node-1 PAPER024501_RX_COMPLETE source=2 seq=1 bits=2344 frags=5
+9048824 node-1 PAPER024501_RX_COMPLETE source=3 seq=1 bits=3000 frags=6
+16722000 node-3 PAPER024501_TX source=3 seq=2 relevance=79 bits=3368 frags=7
+16735000 node-2 PAPER024501_TX source=2 seq=2 relevance=68 bits=3040 frags=6
+17132056 node-1 PAPER024501_RX_COMPLETE source=3 seq=2 bits=3368 frags=7
+17223984 node-1 PAPER024501_RX_COMPLETE source=2 seq=2 bits=3040 frags=6
+24722000 node-3 PAPER024501_TX source=3 seq=3 relevance=1 bits=1024 frags=2
+24735000 node-2 PAPER024501_TX source=2 seq=3 relevance=91 bits=4000 frags=8
+24858880 node-1 PAPER024501_RX_COMPLETE source=3 seq=3 bits=1024 frags=2
+25025344 node-1 PAPER024501_RX_COMPLETE source=2 seq=3 bits=4000 frags=8
+32722000 node-3 PAPER024501_TX source=3 seq=4 relevance=24 bits=1720 frags=4
+32735000 node-2 PAPER024501_TX source=2 seq=4 relevance=13 bits=1384 frags=3
+32821080 node-1 PAPER024501_RX_COMPLETE source=2 seq=4 bits=1384 frags=3
+33054184 node-1 PAPER024501_RX_COMPLETE source=3 seq=4 bits=1720 frags=4
+40722000 node-3 PAPER024501_TX source=3 seq=5 relevance=47 bits=2408 frags=5
+40735000 node-2 PAPER024501_TX source=2 seq=5 relevance=36 bits=2080 frags=4
+40864696 node-1 PAPER024501_RX_COMPLETE source=3 seq=5 bits=2408 frags=5
+41056624 node-1 PAPER024501_RX_COMPLETE source=2 seq=5 bits=2080 frags=4
+48722000 node-3 PAPER024501_TX source=3 seq=6 relevance=70 bits=3096 frags=6
+48735000 node-2 PAPER024501_TX source=2 seq=6 relevance=59 bits=3000 frags=6
+48875208 node-1 PAPER024501_RX_COMPLETE source=3 seq=6 bits=3096 frags=6
+49094824 node-1 PAPER024501_RX_COMPLETE source=2 seq=6 bits=3000 frags=6
+56722000 node-3 PAPER024501_TX source=3 seq=7 relevance=93 bits=4000 frags=8
+56735000 node-2 PAPER024501_TX source=2 seq=7 relevance=82 bits=3456 frags=7
+57166344 node-1 PAPER024501_RX_COMPLETE source=3 seq=7 bits=4000 frags=8
+57441408 node-1 PAPER024501_RX_COMPLETE source=2 seq=7 bits=3456 frags=7
+TEST OK
+Test ended at simulation time: 60000000

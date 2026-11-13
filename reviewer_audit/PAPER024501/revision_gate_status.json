@@ -1,6 +1,26 @@
 {
   "paper_id": "PAPER024501",
   "scientific_gates": {
+    "reference_DCT_receiver_200round": {
+      "complete": true,
+      "scope": "NEW diagnostic reference codec, not submitted manuscript's codec"
+    },
+    "reference_DCT_receiver_100round": {
+      "complete": true,
+      "scope": "NEW matched pre-mortality diagnostic"
+    },
+    "energy_node_state_scenarios": {
+      "complete": true,
+      "scope": "C1/C3 x 10 seeds x 3 UNCALIBRATED cost assumptions"
+    },
+    "cooja_transport_diagnostic": {
+      "complete": true,
+      "scope": "15 NullNet/CSMA fragmentation simulations, not RE-ETX"
+    },
+    "iotlab_M3_transport_diagnostic": {
+      "complete": true,
+      "scope": "Physical M3 application reassembly, not algorithm/energy validation"
+    },
     "archive_integrity": {
       "complete": true
     },
@@ -13,11 +33,11 @@
     },
     "receiver_side": {
       "complete": false,
-      "reason": "A source codec, decoder and timed delivery trace are not specified"
+      "reason": "Submitted codec absent; new reference DCT reconstruction is diagnostic only"
     },
     "full_energy_model": {
       "complete": false,
-      "reason": "Missing validated sensing, idle, CPU and control-traffic profiles"
+      "reason": "Full node-state reruns complete for 3 uncalibrated scenarios; no calibrated device currents or control airtime"
     },
     "deep_topology_staleness": {
       "complete": false,
@@ -25,11 +45,11 @@
     },
     "cooja": {
       "complete": false,
-      "reason": "No paper-equivalent Contiki firmware or Cooja scenarios"
+      "reason": "NullNet fragmentation/reference transport proved; actual RE-ETX firmware not implemented"
     },
     "iotlab": {
       "complete": false,
-      "reason": "No paper-equivalent hardware firmware, calibration and reserved nodes"
+      "reason": "Grenoble M3 NullNet fragmentation validated physically; RE-ETX routing and energy meter not tested"
     },
     "IJWMT_docx": {
       "complete": false,

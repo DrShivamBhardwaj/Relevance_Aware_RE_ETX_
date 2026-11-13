@@ -1,0 +1,12 @@
+{
+  "receiver_200_runs": 40,
+  "receiver_100_runs": 40,
+  "battery_network_runs": 60,
+  "cooja_runs": 15,
+  "iotlab_experiment": 458478,
+  "hardware_full_RE_ETX": false,
+  "receiver_reference_only": true,
+  "energy_device_calibrated": false,
+  "cooja_fragmentation_tested": true,
+  "source_input_archive_unchanged": true
+}

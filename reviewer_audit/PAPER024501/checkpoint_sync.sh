@@ -38,6 +38,12 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/receiver_campaign_100r/progress.json
         "$BASE"/cooja_transport/campaign_results.json
         "$BASE"/cooja_transport/campaign_progress.json
+        "$BASE"/cooja_transport/campaign_summary.json
+        "$BASE"/iotlab_m3/hardware_status.json
+        "$BASE"/iotlab_m3/experiment_458478/*_audit.json
+        "$BASE"/iotlab_m3/experiment_458478/*_matched.csv
+        "$BASE"/PAPER024501_validation_memorandum.md
+        "$BASE"/new_validation_summary.json
         "$BASE"/full_network_energy/*_seed*.json
         "$BASE"/full_network_energy/*.csv
         "$BASE"/full_network_energy/progress.json

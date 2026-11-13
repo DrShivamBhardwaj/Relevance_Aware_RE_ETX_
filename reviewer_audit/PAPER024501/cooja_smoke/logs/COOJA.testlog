@@ -1,0 +1,54 @@
+Random seed: 123456
+236000 node-2 [INFO: Main      ] - Routing: nullrouting
+236000 node-2 [INFO: Main      ] - Net: nullnet
+236000 node-2 [INFO: Main      ] - MAC: CSMA
+236000 node-2 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+236000 node-2 [INFO: Main      ] - 802.15.4 Default channel: 26
+236000 node-2 [INFO: Main      ] Node ID: 0
+236000 node-2 [INFO: Main      ] Link-layer address: 0200.0000.0000.0000
+382000 node-1 [INFO: Main      ] Starting Contiki-NG-release/v5.2-dirty
+382000 node-1 [INFO: Main      ] - Routing: nullrouting
+382000 node-1 [INFO: Main      ] - Net: nullnet
+382000 node-1 [INFO: Main      ] - MAC: CSMA
+382000 node-1 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+382000 node-1 [INFO: Main      ] - 802.15.4 Default channel: 26
+382000 node-1 [INFO: Main      ] Node ID: 0
+382000 node-1 [INFO: Main      ] Link-layer address: 0100.0000.0000.0000
+899000 node-3 [INFO: Main      ] Starting Contiki-NG-release/v5.2-dirty
+899000 node-3 [INFO: Main      ] - Routing: nullrouting
+899000 node-3 [INFO: Main      ] - Net: nullnet
+899000 node-3 [INFO: Main      ] - MAC: CSMA
+899000 node-3 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+899000 node-3 [INFO: Main      ] - 802.15.4 Default channel: 26
+899000 node-3 [INFO: Main      ] Node ID: 0
+899000 node-3 [INFO: Main      ] Link-layer address: 0300.0000.0000.0000
+8236000 node-2 [INFO: App       ] Sending 0 to 0100.0000.0000.0000
+8280896 node-1 [INFO: App       ] Received 0 from 0200.0000.0000.0000
+8899000 node-3 [INFO: App       ] Sending 0 to 0100.0000.0000.0000
+8908896 node-1 [INFO: App       ] Received 0 from 0300.0000.0000.0000
+16236000 node-2 [INFO: App       ] Sending 1 to 0100.0000.0000.0000
+16267896 node-1 [INFO: App       ] Received 1 from 0200.0000.0000.0000
+16899000 node-3 [INFO: App       ] Sending 1 to 0100.0000.0000.0000
+16917896 node-1 [INFO: App       ] Received 1 from 0300.0000.0000.0000
+24236000 node-2 [INFO: App       ] Sending 2 to 0100.0000.0000.0000
+24277896 node-1 [INFO: App       ] Received 2 from 0200.0000.0000.0000
+24899000 node-3 [INFO: App       ] Sending 2 to 0100.0000.0000.0000
+24932896 node-1 [INFO: App       ] Received 2 from 0300.0000.0000.0000
+32236000 node-2 [INFO: App       ] Sending 3 to 0100.0000.0000.0000
+32250896 node-1 [INFO: App       ] Received 3 from 0200.0000.0000.0000
+32899000 node-3 [INFO: App       ] Sending 3 to 0100.0000.0000.0000
+32904896 node-1 [INFO: App       ] Received 3 from 0300.0000.0000.0000
+40236000 node-2 [INFO: App       ] Sending 4 to 0100.0000.0000.0000
+40268896 node-1 [INFO: App       ] Received 4 from 0200.0000.0000.0000
+40899000 node-3 [INFO: App       ] Sending 4 to 0100.0000.0000.0000
+40937896 node-1 [INFO: App       ] Received 4 from 0300.0000.0000.0000
+48236000 node-2 [INFO: App       ] Sending 5 to 0100.0000.0000.0000
+48239896 node-1 [INFO: App       ] Received 5 from 0200.0000.0000.0000
+48899000 node-3 [INFO: App       ] Sending 5 to 0100.0000.0000.0000
+48911896 node-1 [INFO: App       ] Received 5 from 0300.0000.0000.0000
+56236000 node-2 [INFO: App       ] Sending 6 to 0100.0000.0000.0000
+56278896 node-1 [INFO: App       ] Received 6 from 0200.0000.0000.0000
+56899000 node-3 [INFO: App       ] Sending 6 to 0100.0000.0000.0000
+56943896 node-1 [INFO: App       ] Received 6 from 0300.0000.0000.0000
+TEST OK
+Test ended at simulation time: 60000000
