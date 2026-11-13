@@ -2,7 +2,7 @@
   "experiment_id": 458482,
   "profile": "array_active_power_20261110",
   "archive_verified": true,
-  "raw_power_trace_verified": true,
+  "raw_power_trace_verified": false,
   "calibrated_energy_model": false,
   "source_firmware": "NullNet application-fragmentation probe, not RE-ETX",
   "next_requirement": "Timestamped calibrated current and voltage samples + idle/control/app phases",
@@ -11,8 +11,5 @@
     "458482/458482.json"
   ],
   "potential_power_files": [],
-  "reason": "Experiment archive returned no obvious sampled power/current/voltage trace; inspect site data export",
-  "archive_contains_power_files": false,
-  "raw_power_trace_source": "IoT-LAB Grenoble SSH frontend ~/.iot-lab/458482/consumption/m3_*.oml, not API metadata tarball",
-  "readable_nodes": 3
+  "reason": "Experiment archive returned no obvious sampled power/current/voltage trace; inspect site data export"
 }
