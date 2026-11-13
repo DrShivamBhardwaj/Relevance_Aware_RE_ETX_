@@ -62,6 +62,9 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/manuscript_working/*.sha256
         "$BASE"/hardware_power_calibration/m3_power_run_state.json
         "$BASE"/hardware_power_calibration/power_archive_audit.json
+        "$BASE"/hardware_power_calibration/m3_power_measurement_audit.json
+        "$BASE"/hardware_power_calibration/m3_power_node_summary.csv
+        "$BASE"/hardware_power_calibration/active/consumption/*.oml
         "$BASE"/PAPER024501_IJWMT_WORKING_DRAFT.docx
         "$BASE"/extended_energy_accounting.csv
         "$BASE"/extended_energy_accounting_meta.json

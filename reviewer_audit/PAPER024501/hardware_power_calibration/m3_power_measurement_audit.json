@@ -1,0 +1,52 @@
+{
+  "experiment_id": 458482,
+  "profile": "array_active_power_20261110",
+  "hardware": "FIT IoT-LAB Grenoble M3, DC consumption profile",
+  "source_program": "PAPER024501 NullNet 3-node fragmentation probe",
+  "nodes": [
+    {
+      "node": "m3_100",
+      "samples": 231,
+      "duration_s": 482.369,
+      "mean_power_W": 0.10480198,
+      "median_power_W": 0.107603,
+      "mean_current_A": 0.03164394,
+      "mean_voltage_V": 3.30957792,
+      "integrated_energy_J": 50.553223,
+      "max_relative_vi_mismatch": 0.00199161,
+      "sha256": "efd572498cf9c1cf9860d77e07981beebf818b1e3a95987e9c01fe88cc47fa7d"
+    },
+    {
+      "node": "m3_101",
+      "samples": 231,
+      "duration_s": 481.888,
+      "mean_power_W": 0.10230776,
+      "median_power_W": 0.10626,
+      "mean_current_A": 0.03090951,
+      "mean_voltage_V": 3.30725649,
+      "integrated_energy_J": 49.30089,
+      "max_relative_vi_mismatch": 0.00241595,
+      "sha256": "b656e8ade6a37e26028ff68fbcc578ae4fd8151d09a6faac2f3b652e4aa643e9"
+    },
+    {
+      "node": "m3_102",
+      "samples": 232,
+      "duration_s": 481.081,
+      "mean_power_W": 0.10050167,
+      "median_power_W": 0.105527,
+      "mean_current_A": 0.03074828,
+      "mean_voltage_V": 3.26637931,
+      "integrated_energy_J": 48.349437,
+      "max_relative_vi_mismatch": 0.0025805,
+      "sha256": "4552acf6ba1e7d5afe1ab3c8201e2e18b048665439a32667ccdebc9b66adff3a"
+    }
+  ],
+  "n_independent_hardware_experiments": 1,
+  "timestamp_integration": "trapezoidal integral over measured W and seconds",
+  "physical_power_trace_verified": true,
+  "source_policy_RE_ETX_ported": false,
+  "component_level_sensing_CPU_idle_ack_energy_calibrated": false,
+  "calibrated_network_simulator": false,
+  "duty_state_calibration": "not present: no hardware phase tags/sensing-only/CPU-only/idle-only controls",
+  "interpretation": "Measured total M3 board power during a transport demonstration; does not directly quantify model-level per-activity energy or RE-ETX performance"
+}

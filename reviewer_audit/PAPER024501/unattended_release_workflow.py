@@ -97,6 +97,7 @@ def create_manuscript(state):
         "energy": read_json("full_network_energy/progress.json"),
         "cooja": read_json("cooja_transport/campaign_progress.json"),
         "hardware": read_json("iotlab_m3/hardware_status.json"),
+        "physical_power": read_json("hardware_power_calibration/m3_power_measurement_audit.json"),
     }
     fingerprint = hashlib.sha256(
         ("|".join(sha(p) for p in (SOURCE, TEMPLATE, GUIDE)) + sha(pathlib.Path(__file__)) + json.dumps(data, sort_keys=True)).encode()
@@ -145,7 +146,8 @@ def create_manuscript(state):
         ],
         "7. Discussion and limitations": [
             "NEW CONTROLLED ENERGY SCENARIOS — In 10 paired seeds, C3 LND was 2636.4 rounds with no added cost, 1862.7 with the moderate assumed cost profile, and 1047.7 with the high-cost profile. Corresponding C1 LND values were 1268.6, 1042.9 and 725.9 rounds. The modeled advantage narrows as previously uncharged costs increase. Device-current calibration, context contention, ACK timing and chip duty-state measurements remain open.",
-            "COOJA / FIT IoT-LAB SCOPE — Fifteen Cooja stress cases verified direct, fragmented NullNet/CSMA transport. FIT IoT-LAB Grenoble M3 experiment 458478 captured actual source transmissions and sink report reassembly. Neither study implemented the paper-equivalent distributed RE-ETX route-selection policy, and no hardware power profile was measured. Partial-window serial matching is not physical PHY PDR."
+            "COOJA / FIT IoT-LAB SCOPE — Fifteen Cooja stress cases verified direct, fragmented NullNet/CSMA transport. FIT IoT-LAB Grenoble M3 experiment 458478 captured actual source transmissions and sink report reassembly. Neither study implemented the paper-equivalent distributed RE-ETX route-selection policy. Partial-window serial matching is not physical PHY PDR.",
+            "SEPARATE PHYSICAL POWER PILOT — In the single Grenoble M3 consumption-profile experiment 458482, 694 raw OML samples across three nodes gave time-integrated mean device powers of 0.10480 W, 0.10231 W, and 0.10050 W and trace energies of 50.553 J, 49.301 J, and 48.349 J, respectively. This is total board power of a NullNet fragmentation probe, not a measurement of source sensing, CPU, idle, control or RE-ETX energy separately. The simulation overhead profiles remain uncalibrated."
         ],
         "8. Conclusions": [
             "EVIDENCE-CONSTRAINED CONCLUSION — The results establish a radio-only and scenario-based lifetime advantage over fixed full-payload reporting in the tested simulator, not universal semantic reconstruction superiority. A newly introduced reference codec exposed a C3 reconstruction disadvantage against equal-budget C5. Complete source encoding/decoding, independent task utility, hardware-calibrated energy and deployed RE-ETX firmware remain prerequisites for stronger claims."
@@ -201,7 +203,8 @@ def make_response(state):
         return
     rows = list(csv.DictReader(REVIEWS.open()))
     response_hash_file = DEST / "reviewer_response_inputs.sha256"
-    fingerprint = hashlib.sha256((sha(REVIEWS) + (sha(MEMO) if MEMO.exists() else "") + sha(pathlib.Path(__file__))).encode()).hexdigest()
+    power_file = BASE / "hardware_power_calibration/m3_power_measurement_audit.json"
+    fingerprint = hashlib.sha256((sha(REVIEWS) + (sha(MEMO) if MEMO.exists() else "") + (sha(power_file) if power_file.exists() else "") + sha(pathlib.Path(__file__))).encode()).hexdigest()
     if RESPONSE.is_file() and response_hash_file.is_file() and response_hash_file.read_text().strip() == fingerprint:
         try:
             previous = json.loads(STATE.read_text()).get("responses", {})
@@ -225,6 +228,8 @@ def make_response(state):
             d.add_heading(row["id"] + ": " + row["concern"], 2)
             if row["id"] == "m1":
                 d.add_paragraph("Technical response / verification target: Submitted source Equation (6) contains the piecewise 0.50 and 0.85 safeguards. Its existing editable OMML is retained. The expression 2500 bits at 0.50 follows only when the reviewer omits the max(0.75, ...) branch. Executable value is 3000 bits; see payload_mapping_review.csv.")
+            elif row["id"] == "M4":
+                d.add_paragraph("Technical response / verification target: 60 full network battery-state scenario runs now include explicit uncalibrated sensing/CPU/idle/control/ACK assumptions. A separate M3 power-profile experiment 458482 produced three raw timestamped current, voltage and power traces (694 samples total). The board-level power integral is measured, but no sensing/CPU/ACK phase-resolved calibration or RE-ETX firmware exists. Therefore this major issue remains partially addressed.")
             else:
                 d.add_paragraph("Technical response / verification target: " + row["response_plan"])
             evidence = "PAPER024501_validation_memorandum.md and corresponding seed/hardware logs, where applicable; otherwise pending"
@@ -264,11 +269,13 @@ def inspect_hardware(state):
 def inspect_energy(state):
     e = read_json("full_network_energy/progress.json")
     installed = (pathlib.Path.home() / "Research/.iotlabcli-venv/bin/iotlab-profile").is_file()
+    power = read_json("hardware_power_calibration/m3_power_measurement_audit.json")
     state["device_energy_calibration"] = {
-        "status": "not_calibrated",
+        "status": "measured_total_board_power_COMPONENT_CALIBRATION_PENDING" if power.get("physical_power_trace_verified") else "not_calibrated",
+        "observed_power_nodes": len(power.get("nodes", [])),
         "network_scenario_runs": e.get("completed", 0),
         "power_profile_cli_installed": bool(installed),
-        "current_trace_files": 0,
+        "current_trace_files": len(power.get("nodes", [])),
         "next_steps": ["Define M3 consumption/voltage/period profile using testbed account",
                        "Reserve powered measurement nodes, flash isolated firmware roles",
                        "Capture and archive actual timestamped current/voltage samples",

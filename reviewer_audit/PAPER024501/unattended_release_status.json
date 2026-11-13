@@ -13,6 +13,7 @@
       "6.7. Sensitivity to multi-hop topology depth",
       "7. Discussion and limitations",
       "7. Discussion and limitations",
+      "7. Discussion and limitations",
       "8. Conclusions"
     ],
     "remaining": [
@@ -61,10 +62,11 @@
     ]
   },
   "device_energy_calibration": {
-    "status": "not_calibrated",
+    "status": "measured_total_board_power_COMPONENT_CALIBRATION_PENDING",
+    "observed_power_nodes": 3,
     "network_scenario_runs": 60,
     "power_profile_cli_installed": true,
-    "current_trace_files": 0,
+    "current_trace_files": 3,
     "next_steps": [
       "Define M3 consumption/voltage/period profile using testbed account",
       "Reserve powered measurement nodes, flash isolated firmware roles",
@@ -76,5 +78,5 @@
   },
   "scientific_release_allowed": false,
   "reason": "Original codec, hardware energy calibration and complete RE-ETX port are not established; editorial approval incomplete",
-  "updated_utc": "2026-11-13T08:17:39.177400+00:00"
+  "updated_utc": "2026-11-13T08:25:45.712549+00:00"
 }
