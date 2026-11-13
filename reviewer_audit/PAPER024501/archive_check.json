@@ -1,0 +1,66 @@
+{
+  "source": "Archived C1-C7 source-control and 3-profile topology data",
+  "not_a_simulation_rerun": true,
+  "checks": {
+    "control_count_70": true,
+    "control_modes": true,
+    "control_ten_seeds_per_mode": true,
+    "topology_count_90": true,
+    "topology_profiles": true,
+    "topology_ten_seeds_per_profile_mode": true,
+    "event_quality_count_70": true,
+    "threshold_050_3000_bits": true,
+    "threshold_085_4000_bits": true
+  },
+  "payload_mapping_bits": {
+    "0.0": 1000,
+    "0.49": 2472,
+    "0.5": 3000,
+    "0.51": 3000,
+    "0.85": 4000,
+    "1.0": 4000
+  },
+  "means": {
+    "C1": {
+      "FND": 125.5,
+      "HND": 409.1,
+      "LND": 1268.6,
+      "PDR_percent": 95.3505,
+      "average_delay_ms": 1046.0654,
+      "energy_per_delivered_j": 0.001147,
+      "attempted_mean_payload_bits": 4000.0
+    },
+    "C3": {
+      "FND": 275.2,
+      "HND": 870.1,
+      "LND": 2636.4,
+      "PDR_percent": 97.8122,
+      "average_delay_ms": 481.6457,
+      "energy_per_delivered_j": 0.000526,
+      "attempted_mean_payload_bits": 1747.8384
+    },
+    "C5": {
+      "FND": 267.6,
+      "HND": 844.0,
+      "LND": 2626.6,
+      "PDR_percent": 97.7578,
+      "average_delay_ms": 493.0067,
+      "energy_per_delivered_j": 0.000538,
+      "attempted_mean_payload_bits": 1744.0
+    },
+    "C6": {
+      "FND": 295.8,
+      "HND": 869.6,
+      "LND": 2634.0,
+      "PDR_percent": 97.825,
+      "average_delay_ms": 481.1538,
+      "energy_per_delivered_j": 0.000525,
+      "attempted_mean_payload_bits": 1748.0548
+    }
+  },
+  "limitations": [
+    "Original results not regenerated",
+    "Receiver reconstruction not tested",
+    "Distributed neighbor exchange not measured"
+  ]
+}
