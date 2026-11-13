@@ -30,6 +30,12 @@ trap 'rm -rf "$LOCK"' EXIT
  files=("$BASE"/network_parameter_sweep/*_seed*.json
         "$BASE"/network_parameter_sweep/*.csv
         "$BASE"/network_parameter_sweep/progress.json
+        "$BASE"/receiver_campaign/*_seed*.json
+        "$BASE"/receiver_campaign/*.csv
+        "$BASE"/receiver_campaign/progress.json
+        "$BASE"/full_network_energy/*_seed*.json
+        "$BASE"/full_network_energy/*.csv
+        "$BASE"/full_network_energy/progress.json
         "$BASE"/pipeline_status.json
         "$BASE"/revision_gate_status.json
         "$BASE"/receiver_validation_gate.json
