@@ -12,7 +12,6 @@
   "flashed": true,
   "serial_captured": true,
   "serial_returncode": 0,
-  "last_error": "RuntimeError(\"COMMAND [PosixPath('/Users/shivambhardwaj/Research/.iotlabcli-venv/bin/iotlab-experiment'), 'wait', '-i'] RC=2 Waiting that experiment 458482 gets in state Terminated,Finished,Error\\nusage: iotlab-experiment [-h] [-u USERNAME] [-p PASSWORD] [-v]\\n                         [--jmespath JMESPATH] [--format FORMAT]\\n                         {submit,script,stop,get,load,reload,info,wait} ...\\niotlab-experiment: error: Invalid experiment states: ['Finished'] should be in ['Waiting', 'toLaunch', 'Launching', 'Running', 'Finishing', 'Terminated', 'Stopped', 'Error'].\\n\")",
   "archive_retrieved": true,
   "archive_path": "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/hardware_power_calibration/active/458482.tar.gz",
   "completed": true,
