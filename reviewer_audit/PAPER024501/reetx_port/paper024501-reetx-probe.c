@@ -33,6 +33,23 @@
 #ifndef PAPER_DIRECT_ONLY
 #define PAPER_DIRECT_ONLY 0
 #endif
+#ifndef PAPER_PHY_BROADCAST
+#define PAPER_PHY_BROADCAST 0
+#endif
+#ifndef PAPER_AB
+#define PAPER_AB 0
+#endif
+#define PAPER_AB_ROUNDS 12
+static uint16_t current_round;
+static unsigned trialmode(void) {
+ return PAPER_AB ? ((current_round / PAPER_AB_ROUNDS) % 4u) : 0u;
+}
+static int fixed_payload_now(void) {
+ return PAPER_AB ? ((trialmode()==1u)||(trialmode()==3u)) : PAPER_FIXED;
+}
+static int direct_only_now(void) {
+ return PAPER_AB ? ((trialmode()==2u)||(trialmode()==3u)) : PAPER_DIRECT_ONLY;
+}
 #define TYPE_BEACON 0x21
 #define TYPE_DATA 0x22
 #define HEADER 12
@@ -77,7 +94,7 @@ static void send_frame(const uint8_t *msg,uint16_t len,const linkaddr_t *dest) {
  if(len>sizeof(buf))return;
  memcpy(buf,msg,len);
  nullnet_buf=buf;nullnet_len=len;
- NETSTACK_NETWORK.output(dest);
+ NETSTACK_NETWORK.output(PAPER_PHY_BROADCAST?NULL:dest);
  consume_proxy(1);
 }
 static void hello_seq_update(uint16_t seq,uint16_t *last,uint16_t *expected,
@@ -128,8 +145,8 @@ static void receive(const void *data,uint16_t len,
  rx_seen[src] |= (uint8_t)(1u<<idx);
  if(rx_seen[src]==((1u<<total)-1u)) {
     complete_reports++;
-    printf("PAPER_RX_COMPLETE src=%u seq=%u bits=%u frags=%u count=%u\n",
-           src,seq,bits,total,complete_reports);
+    printf("PAPER_RX_COMPLETE src=%u seq=%u bits=%u frags=%u trialmode=%u count=%u\n",
+           src,seq,bits,total,(unsigned)p[3],complete_reports);
     rx_seen[src]=0;
  }
 }
@@ -158,7 +175,7 @@ static float score_relevance(float cur) {
 static uint8_t select_parent(void) {
  float d,r;
  if(role()==2)return 1;
- if(PAPER_DIRECT_ONLY)return 1;
+ if(direct_only_now())return 1;
  d=paper_sink_cost(1.0f/prr(count_sink,expected_sink),my_energy,1.0f);
  r=paper_sensor_cost(1.0f/prr(count_relay,expected_relay),
                      my_energy,relay_energy,1.0f)+advertised_rank;
@@ -179,14 +196,14 @@ static void send_beacon(uint16_t seq) {
 static void start_report(uint16_t seq) {
  float observed=(float)(((seq*37u)+(unsigned)role()*13u)%101u)/100.0f;
  float r=score_relevance(observed);
- tx_bits=PAPER_FIXED?4000:paper_payload_bits(r);
+ tx_bits=fixed_payload_now()?4000:paper_payload_bits(r);
  tx_bytes=tx_bits/8u;
  tx_total=(tx_bytes+FRAG-1u)/FRAG;
  tx_index=0;
  tx_seq=seq;
  tx_parent=select_parent();
  printf("PAPER_PARENT source=%u seq=%u mode=%u parent=%u relevance_x100=%u payload_bits=%u etx_sink_x100=%u etx_relay_x100=%u energy_x100=%u\n",
-     role(),seq,PAPER_FIXED,tx_parent,(unsigned)(r*100),tx_bits,
+     role(),seq,fixed_payload_now(),tx_parent,(unsigned)(r*100),tx_bits,
      (unsigned)(100.0f/prr(count_sink,expected_sink)),
      (unsigned)(100.0f/prr(count_relay,expected_relay)),
      (unsigned)(100*my_energy));
@@ -197,7 +214,7 @@ static void send_next_fragment(void) {
  if(tx_index>=tx_total)return;
  n=tx_bytes-tx_index*FRAG;
  if(n>FRAG)n=FRAG;
- pkt[0]=TYPE_DATA;pkt[1]=role();pkt[2]=(uint8_t)tx_parent;
+ pkt[0]=TYPE_DATA;pkt[1]=role();pkt[2]=(uint8_t)tx_parent;pkt[3]=(uint8_t)trialmode();
  put16(pkt+4,(uint16_t)tx_seq);pkt[6]=(uint8_t)tx_index;
  pkt[7]=(uint8_t)tx_total;
  put16(pkt+8,(uint16_t)tx_bits);
@@ -214,14 +231,15 @@ PROCESS_THREAD(paper_reetx_probe,ev,data) {
  PROCESS_BEGIN();
  nullnet_set_input_callback(receive);
  seq=0;
- printf("PAPER_PROBE_START role=%u payload_fixed=%u direct_only=%u\n",
-        role(),PAPER_FIXED,PAPER_DIRECT_ONLY);
+ printf("PAPER_PROBE_START role=%u payload_fixed=%u direct_only=%u physical_broadcast=%u AB=%u\n",
+        role(),PAPER_FIXED,PAPER_DIRECT_ONLY,PAPER_PHY_BROADCAST,PAPER_AB);
  etimer_set(&beacon_timer,INTERVAL);
  while(1) {
   PROCESS_WAIT_EVENT();
   if(ev!=PROCESS_EVENT_TIMER)continue;
   if(data==&beacon_timer) {
     seq++;
+    current_round=seq;
     send_beacon(seq);
     if(role()>1 && seq%2==0) {
       start_report(seq);
