@@ -1,0 +1,109 @@
+{
+  "project": "PAPER024501 / IJWMT minor reviewer comments",
+  "branch": "review/PAPER024501-audit",
+  "base_commit": "c9be9f0",
+  "final_minor_revision_commit": "cf947e812c4fff1e1c915aa56d7a64e94cfadeec",
+  "comments": [
+    {
+      "id": "m4",
+      "commit": "c37b875309cae61dd35a303ff7f1d82d3668bf92",
+      "status": "completed \u2014 contribution statement specifies controlled attribution"
+    },
+    {
+      "id": "m5",
+      "commit": "634db8ee12f5aa9dbe8220ad9b8186d62494a191",
+      "status": "completed \u2014 event wording corrected"
+    },
+    {
+      "id": "m6",
+      "commit": "daabf153804155d62b6137ca8d42122ccbab383f",
+      "status": "completed \u2014 Dijkstra non-negative-cost condition clarified"
+    },
+    {
+      "id": "m7",
+      "commit": "038734a777ab96bc5ae83f9400922567160109de",
+      "status": "completed \u2014 C1/C2 comparison clarified"
+    },
+    {
+      "id": "m8",
+      "commit": "c5af46586d360d990d1c5c94d4ca46b6cecb221f",
+      "status": "completed \u2014 subjective wording replaced"
+    },
+    {
+      "id": "m9",
+      "commit": "3385ce25de88a6a952e77c4234bd6941b8c9ee1e",
+      "status": "completed \u2014 long conclusion sentence split"
+    },
+    {
+      "id": "m10",
+      "commit": "d2f7d50108ffde1034d5bc351e35990ab6323cc2",
+      "status": "completed \u2014 title revised to foreground controlled attribution"
+    },
+    {
+      "id": "m11",
+      "commit": "103601a16985cb79bbec52d96943a450ac837bdc",
+      "status": "completed \u2014 exact percentages and scope limitations added"
+    },
+    {
+      "id": "m12",
+      "commit": "02120053d3c23865e1fef20a1ddb04f1cf9ee617",
+      "status": "completed \u2014 methodological comparison with Arnaiz et al. added"
+    },
+    {
+      "id": "m16",
+      "commit": "b49e5b5f2f05a0b687dc82df0469dfd445dfe173",
+      "status": "completed \u2014 verified 2025 and 2026 semantic-communication references added"
+    },
+    {
+      "id": "m2",
+      "commit": "7156c33aa634b628245798ea279bcc3c3c0279d8",
+      "status": "completed \u2014 comparison table added"
+    },
+    {
+      "id": "m1",
+      "commit": "1c8133a58687e63e708413437940969323b1a07c",
+      "status": "completed \u2014 executable mapping verified and Table 4 added"
+    },
+    {
+      "id": "m13",
+      "commit": "4f299d8fd64013b15487912549478fe46518fdec",
+      "status": "completed \u2014 C3 pseudocode and time-complexity derivation added"
+    },
+    {
+      "id": "m14",
+      "commit": "429296ccd0f3602a49d27af90b138238ae0cc8cb",
+      "status": "partial \u2014 current audit host and smoke test documented; historical 10-seed execution host/package manifest was not preserved"
+    },
+    {
+      "id": "m15",
+      "commit": "dde51e49d7e3a7f88a096774bc6d79b0e9ded972",
+      "status": "completed \u2014 parameter-selection limitation added"
+    },
+    {
+      "id": "m3",
+      "commit": "cf947e812c4fff1e1c915aa56d7a64e94cfadeec",
+      "status": "completed \u2014 depth figure and qualified mechanism discussion added"
+    }
+  ],
+  "docx_invariants": {
+    "editable_equation_elements": 43,
+    "tables": 10,
+    "embedded_images": 8,
+    "original_embedded_images_preserved": 7,
+    "new_topology_figure_dpi": 600
+  },
+  "caveats": [
+    "m14 remains partial because the original archived ten-seed execution host/package manifest was not preserved.",
+    "The revision-stage smoke test is not part of the archived ten-seed inferential dataset.",
+    "Cooja and FIT IoT-LAB were not rerun for editorial changes; existing evidence boundaries and incorrect experiment identifiers were corrected.",
+    "The document has not yet received final visual pagination/template sign-off."
+  ],
+  "task_commit_count": 16,
+  "minor_comments_completed": 15,
+  "minor_comments_partially_addressed": [
+    "m14"
+  ],
+  "workflow_fix_commit": "1146e27",
+  "pre_report_branch_head": "1146e27",
+  "note": "All 16 minor-comment tasks have separate pushed commits. Fifteen are resolved in the working manuscript; m14 remains partial because the archived ten-seed run host/package manifest was not retained."
+}
