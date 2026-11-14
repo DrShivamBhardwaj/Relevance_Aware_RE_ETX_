@@ -121,7 +121,8 @@ class SemanticRelevanceEstimator:
 
     def _spatial_feature(
         self,
-        current
+        current,
+        neighbour_values=None
     ):
         reference = np.empty(
             self.num_nodes,
@@ -135,7 +136,11 @@ class SemanticRelevanceEstimator:
                 self.neighbor_mask[i]
             )
 
-            if neighbors.size > 0:
+            if neighbour_values is not None:
+                known = neighbour_values[i, neighbors]
+                known = known[np.isfinite(known)]
+                reference[i] = float(np.median(known)) if known.size else current[i]
+            elif neighbors.size > 0:
                 reference[i] = float(
                     np.median(
                         current[
@@ -263,7 +268,8 @@ class SemanticRelevanceEstimator:
     def compute(
         self,
         current,
-        previous
+        previous,
+        neighbour_values=None
     ):
         current = np.asarray(
             current,
@@ -290,7 +296,8 @@ class SemanticRelevanceEstimator:
         else:
             spatial = (
                 self._spatial_feature(
-                    current
+                    current,
+                    neighbour_values=neighbour_values
                 )
             )
 

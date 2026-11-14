@@ -21,6 +21,7 @@ from simulator.semantic_payload import SemanticPayloadController
 from reviewer_audit.PAPER024501.energy_profile import ExtendedEnergyProfile
 from reviewer_audit.PAPER024501.receiver_reference_codec import ReceiverReferenceCodec
 from reviewer_audit.PAPER024501.receiver_scalar_source import ScalarSourceReceiver
+from reviewer_audit.PAPER024501.distributed_neighbour_context import ReceivedNeighbourContext
 
 
 def rotate_schedule(
@@ -262,6 +263,17 @@ def run():
     # Simulation
     # ------------------------------------------------
 
+    # Experimental reviewer-only path, disabled in all archived runs.
+    distributed_context = None
+    if os.environ.get("REVIEW_DISTRIBUTED_CONTEXT","0")=="1":
+        if mode!="C3":
+            raise ValueError("distributed-context diagnostic is only defined for C3")
+        if os.environ.get("REVIEW_CONTEXT_BITS","0")!="0":
+            raise ValueError("Do not double-charge legacy REVIEW_CONTEXT_BITS")
+        distributed_context=ReceivedNeighbourContext(
+            config,topology,
+            context_bytes=int(os.environ.get("REVIEW_CONTEXT_BYTES","25")),
+            success_probability=float(os.environ.get("REVIEW_CONTEXT_SUCCESS","1.0")))
     extra_energy = ExtendedEnergyProfile(config, radio, topology)
     receiver_codec = (ReceiverReferenceCodec(config.num_nodes,config.seed)
                       if os.environ.get("REVIEW_RECEIVER_CODEC","0")=="1" else None)
@@ -299,9 +311,16 @@ def run():
         extra_energy.round_cost(network, round_id)
         current_observation = sensing.step()
 
+        # No central neighbour-access shortcut in the optional diagnostic:
+        # sample values enter each node's spatial estimator only when that
+        # node has received an on-air neighbour-context update.
+        neighbour_context = (distributed_context.advance(
+            current_observation,network,radio,round_id)
+            if distributed_context is not None else None)
         semantic_output = semantic_estimator.compute(
             current_observation,
-            sensing.previous_observation
+            sensing.previous_observation,
+            neighbour_values=neighbour_context
         )
 
         relevance = semantic_output["relevance"]
@@ -1224,6 +1243,9 @@ def run():
     if scalar_receiver is not None:
         for name,value in scalar_receiver.results().items():
             print(f"Scalar receiver {name:<12} : {value:.9f}")
+    if distributed_context is not None:
+        for key,value in distributed_context.results().items():
+            print(f"Distributed {key:<34} : {value}")
     print(f"Review sensing energy J     : {extra_energy.e_sense:.9f}")
     print(f"Review CPU energy J         : {extra_energy.e_cpu:.9f}")
     print(f"Review idle energy J        : {extra_energy.e_idle:.9f}")
