@@ -582,7 +582,7 @@ def main():
         raise RuntimeError("Equation inventory changed")
     (BASE / "minor_comment_commit_log.json").write_text(json.dumps({
         "branch": BRANCH,
-        "base_commit": "1552c3a3a8806cd526a8ac96f4b3a2020914be78",
+        "base_commit": "0c310cfc32ea2cd3c5b575f24b6ade9fcc4582ee",
         "original_docx_counts": ORIGINAL_COUNTS,
         "final_docx_counts": final_counts,
         "commits": COMMITS,
