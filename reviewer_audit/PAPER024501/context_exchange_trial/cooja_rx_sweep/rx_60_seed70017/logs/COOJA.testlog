@@ -1,0 +1,411 @@
+Random seed: 70017
+207000 node-2 [INFO: Main      ] - Routing: nullrouting
+207000 node-2 [INFO: Main      ] - Net: nullnet
+207000 node-2 [INFO: Main      ] - MAC: CSMA
+207000 node-2 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+207000 node-2 [INFO: Main      ] - 802.15.4 Default channel: 26
+207000 node-2 [INFO: Main      ] Node ID: 0
+207000 node-2 [INFO: Main      ] Link-layer address: 0200.0000.0000.0000
+207000 node-2 CONTEXT_PILOT_START role=2 broadcast=0
+224000 node-3 [INFO: Main      ] Starting Contiki-NG-release/v5.2-dirty
+224000 node-3 [INFO: Main      ] - Routing: nullrouting
+224000 node-3 [INFO: Main      ] - Net: nullnet
+224000 node-3 [INFO: Main      ] - MAC: CSMA
+224000 node-3 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+224000 node-3 [INFO: Main      ] - 802.15.4 Default channel: 26
+224000 node-3 [INFO: Main      ] Node ID: 0
+224000 node-3 [INFO: Main      ] Link-layer address: 0300.0000.0000.0000
+224000 node-3 CONTEXT_PILOT_START role=3 broadcast=0
+453000 node-1 [INFO: Main      ] Starting Contiki-NG-release/v5.2-dirty
+453000 node-1 [INFO: Main      ] - Routing: nullrouting
+453000 node-1 [INFO: Main      ] - Net: nullnet
+453000 node-1 [INFO: Main      ] - MAC: CSMA
+453000 node-1 [INFO: Main      ] - 802.15.4 PANID: 0xabcd
+453000 node-1 [INFO: Main      ] - 802.15.4 Default channel: 26
+453000 node-1 [INFO: Main      ] Node ID: 0
+453000 node-1 [INFO: Main      ] Link-layer address: 0100.0000.0000.0000
+453000 node-1 CONTEXT_PILOT_START role=1 broadcast=0
+1207000 node-2 CONTEXT_PHASE role=2 mode=0 second=0 bytes=0
+1224000 node-3 CONTEXT_PHASE role=3 mode=0 second=0 bytes=0
+1453000 node-1 CONTEXT_PHASE role=1 mode=0 second=0 bytes=0
+3224000 node-3 REPORT_TX source=3 mode=0 second=2 count=1
+4207000 node-2 REPORT_TX source=2 mode=0 second=3 count=1
+4245504 node-1 REPORT_RX source=2 mode=0 second=3 bytes=32 count=1
+7224000 node-3 REPORT_TX source=3 mode=0 second=6 count=2
+7244504 node-1 REPORT_RX source=3 mode=0 second=6 bytes=32 count=2
+8207000 node-2 REPORT_TX source=2 mode=0 second=7 count=2
+8228504 node-1 REPORT_RX source=2 mode=0 second=7 bytes=32 count=3
+11224000 node-3 REPORT_TX source=3 mode=0 second=10 count=3
+11244504 node-1 REPORT_RX source=3 mode=0 second=10 bytes=32 count=4
+12207000 node-2 REPORT_TX source=2 mode=0 second=11 count=3
+12217504 node-1 REPORT_RX source=2 mode=0 second=11 bytes=32 count=5
+15224000 node-3 REPORT_TX source=3 mode=0 second=14 count=4
+15266504 node-1 REPORT_RX source=3 mode=0 second=14 bytes=32 count=6
+16207000 node-2 REPORT_TX source=2 mode=0 second=15 count=4
+16244504 node-1 REPORT_RX source=2 mode=0 second=15 bytes=32 count=7
+19224000 node-3 REPORT_TX source=3 mode=0 second=18 count=5
+19239504 node-1 REPORT_RX source=3 mode=0 second=18 bytes=32 count=8
+20207000 node-2 REPORT_TX source=2 mode=0 second=19 count=5
+20237504 node-1 REPORT_RX source=2 mode=0 second=19 bytes=32 count=9
+23224000 node-3 REPORT_TX source=3 mode=0 second=22 count=6
+23253504 node-1 REPORT_RX source=3 mode=0 second=22 bytes=32 count=10
+24207000 node-2 REPORT_TX source=2 mode=0 second=23 count=6
+24219504 node-1 REPORT_RX source=2 mode=0 second=23 bytes=32 count=11
+27224000 node-3 REPORT_TX source=3 mode=0 second=26 count=7
+27246504 node-1 REPORT_RX source=3 mode=0 second=26 bytes=32 count=12
+28207000 node-2 REPORT_TX source=2 mode=0 second=27 count=7
+28225504 node-1 REPORT_RX source=2 mode=0 second=27 bytes=32 count=13
+31207000 node-2 CONTEXT_PHASE role=2 mode=1 second=30 bytes=13
+31224000 node-3 CONTEXT_PHASE role=3 mode=1 second=30 bytes=13
+31224000 node-3 REPORT_TX source=3 mode=1 second=30 count=1
+31260504 node-1 REPORT_RX source=3 mode=1 second=30 bytes=32 count=1
+31453000 node-1 CONTEXT_PHASE role=1 mode=1 second=30 bytes=13
+32207000 node-2 REPORT_TX source=2 mode=1 second=31 count=1
+32233504 node-1 REPORT_RX source=2 mode=1 second=31 bytes=32 count=2
+34207000 node-2 CONTEXT_TX mode=1 second=33 bytes=13 count=1
+34213896 node-3 CONTEXT_RX role=3 mode=1 second=33 bytes=13 sample=223 count=1
+35224000 node-3 REPORT_TX source=3 mode=1 second=34 count=2
+36207000 node-2 REPORT_TX source=2 mode=1 second=35 count=2
+36229504 node-1 REPORT_RX source=2 mode=1 second=35 bytes=32 count=3
+38207000 node-2 CONTEXT_TX mode=1 second=37 bytes=13 count=2
+38209896 node-3 CONTEXT_RX role=3 mode=1 second=37 bytes=13 sample=371 count=2
+39224000 node-3 REPORT_TX source=3 mode=1 second=38 count=3
+39231504 node-1 REPORT_RX source=3 mode=1 second=38 bytes=32 count=4
+40207000 node-2 REPORT_TX source=2 mode=1 second=39 count=3
+40217504 node-1 REPORT_RX source=2 mode=1 second=39 bytes=32 count=5
+42207000 node-2 CONTEXT_TX mode=1 second=41 bytes=13 count=3
+42231896 node-3 CONTEXT_RX role=3 mode=1 second=41 bytes=13 sample=519 count=3
+43224000 node-3 REPORT_TX source=3 mode=1 second=42 count=4
+43240504 node-1 REPORT_RX source=3 mode=1 second=42 bytes=32 count=6
+44207000 node-2 REPORT_TX source=2 mode=1 second=43 count=4
+44250504 node-1 REPORT_RX source=2 mode=1 second=43 bytes=32 count=7
+46207000 node-2 CONTEXT_TX mode=1 second=45 bytes=13 count=4
+46246896 node-3 CONTEXT_RX role=3 mode=1 second=45 bytes=13 sample=667 count=4
+47224000 node-3 REPORT_TX source=3 mode=1 second=46 count=5
+47236504 node-1 REPORT_RX source=3 mode=1 second=46 bytes=32 count=8
+48207000 node-2 REPORT_TX source=2 mode=1 second=47 count=5
+48232504 node-1 REPORT_RX source=2 mode=1 second=47 bytes=32 count=9
+50207000 node-2 CONTEXT_TX mode=1 second=49 bytes=13 count=5
+50245896 node-3 CONTEXT_RX role=3 mode=1 second=49 bytes=13 sample=815 count=5
+51224000 node-3 REPORT_TX source=3 mode=1 second=50 count=6
+51261504 node-1 REPORT_RX source=3 mode=1 second=50 bytes=32 count=10
+52207000 node-2 REPORT_TX source=2 mode=1 second=51 count=6
+52236504 node-1 REPORT_RX source=2 mode=1 second=51 bytes=32 count=11
+54207000 node-2 CONTEXT_TX mode=1 second=53 bytes=13 count=6
+54245896 node-3 CONTEXT_RX role=3 mode=1 second=53 bytes=13 sample=963 count=6
+55224000 node-3 REPORT_TX source=3 mode=1 second=54 count=7
+56207000 node-2 REPORT_TX source=2 mode=1 second=55 count=7
+56240504 node-1 REPORT_RX source=2 mode=1 second=55 bytes=32 count=12
+58207000 node-2 CONTEXT_TX mode=1 second=57 bytes=13 count=7
+58209896 node-3 CONTEXT_RX role=3 mode=1 second=57 bytes=13 sample=87 count=7
+59224000 node-3 REPORT_TX source=3 mode=1 second=58 count=8
+59265504 node-1 REPORT_RX source=3 mode=1 second=58 bytes=32 count=13
+60207000 node-2 REPORT_TX source=2 mode=1 second=59 count=8
+60230504 node-1 REPORT_RX source=2 mode=1 second=59 bytes=32 count=14
+61207000 node-2 CONTEXT_PHASE role=2 mode=2 second=60 bytes=25
+61224000 node-3 CONTEXT_PHASE role=3 mode=2 second=60 bytes=25
+61453000 node-1 CONTEXT_PHASE role=1 mode=2 second=60 bytes=25
+62207000 node-2 CONTEXT_TX mode=2 second=61 bytes=25 count=1
+62212280 node-3 CONTEXT_RX role=3 mode=2 second=61 bytes=25 sample=235 count=1
+63224000 node-3 REPORT_TX source=3 mode=2 second=62 count=1
+63263504 node-1 REPORT_RX source=3 mode=2 second=62 bytes=32 count=1
+64207000 node-2 REPORT_TX source=2 mode=2 second=63 count=1
+64250504 node-1 REPORT_RX source=2 mode=2 second=63 bytes=32 count=2
+66207000 node-2 CONTEXT_TX mode=2 second=65 bytes=25 count=2
+66248280 node-3 CONTEXT_RX role=3 mode=2 second=65 bytes=25 sample=383 count=2
+67224000 node-3 REPORT_TX source=3 mode=2 second=66 count=2
+67267504 node-1 REPORT_RX source=3 mode=2 second=66 bytes=32 count=3
+68207000 node-2 REPORT_TX source=2 mode=2 second=67 count=2
+68245504 node-1 REPORT_RX source=2 mode=2 second=67 bytes=32 count=4
+70207000 node-2 CONTEXT_TX mode=2 second=69 bytes=25 count=3
+70218280 node-3 CONTEXT_RX role=3 mode=2 second=69 bytes=25 sample=531 count=3
+71224000 node-3 REPORT_TX source=3 mode=2 second=70 count=3
+71267504 node-1 REPORT_RX source=3 mode=2 second=70 bytes=32 count=5
+72207000 node-2 REPORT_TX source=2 mode=2 second=71 count=3
+72214504 node-1 REPORT_RX source=2 mode=2 second=71 bytes=32 count=6
+74207000 node-2 CONTEXT_TX mode=2 second=73 bytes=25 count=4
+74214280 node-3 CONTEXT_RX role=3 mode=2 second=73 bytes=25 sample=679 count=4
+75224000 node-3 REPORT_TX source=3 mode=2 second=74 count=4
+75253504 node-1 REPORT_RX source=3 mode=2 second=74 bytes=32 count=7
+76207000 node-2 REPORT_TX source=2 mode=2 second=75 count=4
+76243504 node-1 REPORT_RX source=2 mode=2 second=75 bytes=32 count=8
+78207000 node-2 CONTEXT_TX mode=2 second=77 bytes=25 count=5
+78218280 node-3 CONTEXT_RX role=3 mode=2 second=77 bytes=25 sample=827 count=5
+79224000 node-3 REPORT_TX source=3 mode=2 second=78 count=5
+79254504 node-1 REPORT_RX source=3 mode=2 second=78 bytes=32 count=9
+80207000 node-2 REPORT_TX source=2 mode=2 second=79 count=5
+80238504 node-1 REPORT_RX source=2 mode=2 second=79 bytes=32 count=10
+82207000 node-2 CONTEXT_TX mode=2 second=81 bytes=25 count=6
+82210280 node-3 CONTEXT_RX role=3 mode=2 second=81 bytes=25 sample=975 count=6
+83224000 node-3 REPORT_TX source=3 mode=2 second=82 count=6
+83256504 node-1 REPORT_RX source=3 mode=2 second=82 bytes=32 count=11
+84207000 node-2 REPORT_TX source=2 mode=2 second=83 count=6
+84210504 node-1 REPORT_RX source=2 mode=2 second=83 bytes=32 count=12
+86207000 node-2 CONTEXT_TX mode=2 second=85 bytes=25 count=7
+86246280 node-3 CONTEXT_RX role=3 mode=2 second=85 bytes=25 sample=99 count=7
+87224000 node-3 REPORT_TX source=3 mode=2 second=86 count=7
+87239504 node-1 REPORT_RX source=3 mode=2 second=86 bytes=32 count=13
+88207000 node-2 REPORT_TX source=2 mode=2 second=87 count=7
+88245504 node-1 REPORT_RX source=2 mode=2 second=87 bytes=32 count=14
+90207000 node-2 CONTEXT_TX mode=2 second=89 bytes=25 count=8
+90210280 node-3 CONTEXT_RX role=3 mode=2 second=89 bytes=25 sample=247 count=8
+91207000 node-2 CONTEXT_PHASE role=2 mode=3 second=90 bytes=50
+91224000 node-3 CONTEXT_PHASE role=3 mode=3 second=90 bytes=50
+91224000 node-3 REPORT_TX source=3 mode=3 second=90 count=1
+91249504 node-1 REPORT_RX source=3 mode=3 second=90 bytes=32 count=1
+91453000 node-1 CONTEXT_PHASE role=1 mode=3 second=90 bytes=50
+92207000 node-2 REPORT_TX source=2 mode=3 second=91 count=1
+92227504 node-1 REPORT_RX source=2 mode=3 second=91 bytes=32 count=2
+94207000 node-2 CONTEXT_TX mode=3 second=93 bytes=50 count=1
+94212080 node-3 CONTEXT_RX role=3 mode=3 second=93 bytes=50 sample=395 count=1
+95224000 node-3 REPORT_TX source=3 mode=3 second=94 count=2
+96207000 node-2 REPORT_TX source=2 mode=3 second=95 count=2
+96220504 node-1 REPORT_RX source=2 mode=3 second=95 bytes=32 count=3
+98207000 node-2 CONTEXT_TX mode=3 second=97 bytes=50 count=2
+98226080 node-3 CONTEXT_RX role=3 mode=3 second=97 bytes=50 sample=543 count=2
+99224000 node-3 REPORT_TX source=3 mode=3 second=98 count=3
+99261504 node-1 REPORT_RX source=3 mode=3 second=98 bytes=32 count=4
+100207000 node-2 REPORT_TX source=2 mode=3 second=99 count=3
+100232504 node-1 REPORT_RX source=2 mode=3 second=99 bytes=32 count=5
+102207000 node-2 CONTEXT_TX mode=3 second=101 bytes=50 count=3
+102225080 node-3 CONTEXT_RX role=3 mode=3 second=101 bytes=50 sample=691 count=3
+103224000 node-3 REPORT_TX source=3 mode=3 second=102 count=4
+103233504 node-1 REPORT_RX source=3 mode=3 second=102 bytes=32 count=6
+104207000 node-2 REPORT_TX source=2 mode=3 second=103 count=4
+104234504 node-1 REPORT_RX source=2 mode=3 second=103 bytes=32 count=7
+106207000 node-2 CONTEXT_TX mode=3 second=105 bytes=50 count=4
+106223080 node-3 CONTEXT_RX role=3 mode=3 second=105 bytes=50 sample=839 count=4
+107224000 node-3 REPORT_TX source=3 mode=3 second=106 count=5
+108207000 node-2 REPORT_TX source=2 mode=3 second=107 count=5
+108231504 node-1 REPORT_RX source=2 mode=3 second=107 bytes=32 count=8
+110207000 node-2 CONTEXT_TX mode=3 second=109 bytes=50 count=5
+110231080 node-3 CONTEXT_RX role=3 mode=3 second=109 bytes=50 sample=987 count=5
+111224000 node-3 REPORT_TX source=3 mode=3 second=110 count=6
+112207000 node-2 REPORT_TX source=2 mode=3 second=111 count=6
+112224504 node-1 REPORT_RX source=2 mode=3 second=111 bytes=32 count=9
+114207000 node-2 CONTEXT_TX mode=3 second=113 bytes=50 count=6
+114250080 node-3 CONTEXT_RX role=3 mode=3 second=113 bytes=50 sample=111 count=6
+115224000 node-3 REPORT_TX source=3 mode=3 second=114 count=7
+115230504 node-1 REPORT_RX source=3 mode=3 second=114 bytes=32 count=10
+116207000 node-2 REPORT_TX source=2 mode=3 second=115 count=7
+116220504 node-1 REPORT_RX source=2 mode=3 second=115 bytes=32 count=11
+118207000 node-2 CONTEXT_TX mode=3 second=117 bytes=50 count=7
+118230080 node-3 CONTEXT_RX role=3 mode=3 second=117 bytes=50 sample=259 count=7
+119224000 node-3 REPORT_TX source=3 mode=3 second=118 count=8
+119254504 node-1 REPORT_RX source=3 mode=3 second=118 bytes=32 count=12
+120207000 node-2 REPORT_TX source=2 mode=3 second=119 count=8
+120214504 node-1 REPORT_RX source=2 mode=3 second=119 bytes=32 count=13
+121207000 node-2 CONTEXT_PHASE role=2 mode=0 second=120 bytes=0
+121224000 node-3 CONTEXT_PHASE role=3 mode=0 second=120 bytes=0
+121453000 node-1 CONTEXT_PHASE role=1 mode=0 second=120 bytes=0
+123224000 node-3 REPORT_TX source=3 mode=0 second=122 count=8
+123268504 node-1 REPORT_RX source=3 mode=0 second=122 bytes=32 count=14
+124207000 node-2 REPORT_TX source=2 mode=0 second=123 count=8
+124214504 node-1 REPORT_RX source=2 mode=0 second=123 bytes=32 count=15
+127224000 node-3 REPORT_TX source=3 mode=0 second=126 count=9
+127246504 node-1 REPORT_RX source=3 mode=0 second=126 bytes=32 count=16
+128207000 node-2 REPORT_TX source=2 mode=0 second=127 count=9
+128248504 node-1 REPORT_RX source=2 mode=0 second=127 bytes=32 count=17
+131224000 node-3 REPORT_TX source=3 mode=0 second=130 count=10
+132207000 node-2 REPORT_TX source=2 mode=0 second=131 count=10
+132246504 node-1 REPORT_RX source=2 mode=0 second=131 bytes=32 count=18
+135224000 node-3 REPORT_TX source=3 mode=0 second=134 count=11
+135237504 node-1 REPORT_RX source=3 mode=0 second=134 bytes=32 count=19
+136207000 node-2 REPORT_TX source=2 mode=0 second=135 count=11
+136248504 node-1 REPORT_RX source=2 mode=0 second=135 bytes=32 count=20
+139224000 node-3 REPORT_TX source=3 mode=0 second=138 count=12
+139231504 node-1 REPORT_RX source=3 mode=0 second=138 bytes=32 count=21
+140207000 node-2 REPORT_TX source=2 mode=0 second=139 count=12
+140217504 node-1 REPORT_RX source=2 mode=0 second=139 bytes=32 count=22
+143224000 node-3 REPORT_TX source=3 mode=0 second=142 count=13
+143234504 node-1 REPORT_RX source=3 mode=0 second=142 bytes=32 count=23
+144207000 node-2 REPORT_TX source=2 mode=0 second=143 count=13
+144224504 node-1 REPORT_RX source=2 mode=0 second=143 bytes=32 count=24
+147224000 node-3 REPORT_TX source=3 mode=0 second=146 count=14
+147264504 node-1 REPORT_RX source=3 mode=0 second=146 bytes=32 count=25
+148207000 node-2 REPORT_TX source=2 mode=0 second=147 count=14
+148234504 node-1 REPORT_RX source=2 mode=0 second=147 bytes=32 count=26
+151207000 node-2 CONTEXT_PHASE role=2 mode=1 second=150 bytes=13
+151224000 node-3 CONTEXT_PHASE role=3 mode=1 second=150 bytes=13
+151224000 node-3 REPORT_TX source=3 mode=1 second=150 count=9
+151267504 node-1 REPORT_RX source=3 mode=1 second=150 bytes=32 count=15
+151453000 node-1 CONTEXT_PHASE role=1 mode=1 second=150 bytes=13
+152207000 node-2 REPORT_TX source=2 mode=1 second=151 count=9
+152232504 node-1 REPORT_RX source=2 mode=1 second=151 bytes=32 count=16
+154207000 node-2 CONTEXT_TX mode=1 second=153 bytes=13 count=8
+154250896 node-3 CONTEXT_RX role=3 mode=1 second=153 bytes=13 sample=567 count=8
+155224000 node-3 REPORT_TX source=3 mode=1 second=154 count=10
+156207000 node-2 REPORT_TX source=2 mode=1 second=155 count=10
+156232504 node-1 REPORT_RX source=2 mode=1 second=155 bytes=32 count=17
+158207000 node-2 CONTEXT_TX mode=1 second=157 bytes=13 count=9
+158209896 node-3 CONTEXT_RX role=3 mode=1 second=157 bytes=13 sample=715 count=9
+159224000 node-3 REPORT_TX source=3 mode=1 second=158 count=11
+159263504 node-1 REPORT_RX source=3 mode=1 second=158 bytes=32 count=18
+160207000 node-2 REPORT_TX source=2 mode=1 second=159 count=11
+160213504 node-1 REPORT_RX source=2 mode=1 second=159 bytes=32 count=19
+162207000 node-2 CONTEXT_TX mode=1 second=161 bytes=13 count=10
+162231896 node-3 CONTEXT_RX role=3 mode=1 second=161 bytes=13 sample=863 count=10
+163224000 node-3 REPORT_TX source=3 mode=1 second=162 count=12
+163267504 node-1 REPORT_RX source=3 mode=1 second=162 bytes=32 count=20
+164207000 node-2 REPORT_TX source=2 mode=1 second=163 count=12
+164219504 node-1 REPORT_RX source=2 mode=1 second=163 bytes=32 count=21
+166207000 node-2 CONTEXT_TX mode=1 second=165 bytes=13 count=11
+166250896 node-3 CONTEXT_RX role=3 mode=1 second=165 bytes=13 sample=1011 count=11
+167224000 node-3 REPORT_TX source=3 mode=1 second=166 count=13
+167263504 node-1 REPORT_RX source=3 mode=1 second=166 bytes=32 count=22
+168207000 node-2 REPORT_TX source=2 mode=1 second=167 count=13
+168239504 node-1 REPORT_RX source=2 mode=1 second=167 bytes=32 count=23
+170207000 node-2 CONTEXT_TX mode=1 second=169 bytes=13 count=12
+170245896 node-3 CONTEXT_RX role=3 mode=1 second=169 bytes=13 sample=135 count=12
+171224000 node-3 REPORT_TX source=3 mode=1 second=170 count=14
+171228504 node-1 REPORT_RX source=3 mode=1 second=170 bytes=32 count=24
+172207000 node-2 REPORT_TX source=2 mode=1 second=171 count=14
+172233504 node-1 REPORT_RX source=2 mode=1 second=171 bytes=32 count=25
+174207000 node-2 CONTEXT_TX mode=1 second=173 bytes=13 count=13
+174248896 node-3 CONTEXT_RX role=3 mode=1 second=173 bytes=13 sample=283 count=13
+175224000 node-3 REPORT_TX source=3 mode=1 second=174 count=15
+175243504 node-1 REPORT_RX source=3 mode=1 second=174 bytes=32 count=26
+176207000 node-2 REPORT_TX source=2 mode=1 second=175 count=15
+176222504 node-1 REPORT_RX source=2 mode=1 second=175 bytes=32 count=27
+178207000 node-2 CONTEXT_TX mode=1 second=177 bytes=13 count=14
+178244896 node-3 CONTEXT_RX role=3 mode=1 second=177 bytes=13 sample=431 count=14
+179224000 node-3 REPORT_TX source=3 mode=1 second=178 count=16
+180207000 node-2 REPORT_TX source=2 mode=1 second=179 count=16
+180238504 node-1 REPORT_RX source=2 mode=1 second=179 bytes=32 count=28
+181207000 node-2 CONTEXT_PHASE role=2 mode=2 second=180 bytes=25
+181224000 node-3 CONTEXT_PHASE role=3 mode=2 second=180 bytes=25
+181453000 node-1 CONTEXT_PHASE role=1 mode=2 second=180 bytes=25
+182207000 node-2 CONTEXT_TX mode=2 second=181 bytes=25 count=9
+183224000 node-3 REPORT_TX source=3 mode=2 second=182 count=8
+183244504 node-1 REPORT_RX source=3 mode=2 second=182 bytes=32 count=15
+184207000 node-2 REPORT_TX source=2 mode=2 second=183 count=8
+184246504 node-1 REPORT_RX source=2 mode=2 second=183 bytes=32 count=16
+186207000 node-2 CONTEXT_TX mode=2 second=185 bytes=25 count=10
+186211280 node-3 CONTEXT_RX role=3 mode=2 second=185 bytes=25 sample=727 count=9
+187224000 node-3 REPORT_TX source=3 mode=2 second=186 count=9
+187263504 node-1 REPORT_RX source=3 mode=2 second=186 bytes=32 count=17
+188207000 node-2 REPORT_TX source=2 mode=2 second=187 count=9
+188213504 node-1 REPORT_RX source=2 mode=2 second=187 bytes=32 count=18
+190207000 node-2 CONTEXT_TX mode=2 second=189 bytes=25 count=11
+190244280 node-3 CONTEXT_RX role=3 mode=2 second=189 bytes=25 sample=875 count=10
+191224000 node-3 REPORT_TX source=3 mode=2 second=190 count=10
+191233504 node-1 REPORT_RX source=3 mode=2 second=190 bytes=32 count=19
+192207000 node-2 REPORT_TX source=2 mode=2 second=191 count=10
+192249504 node-1 REPORT_RX source=2 mode=2 second=191 bytes=32 count=20
+194207000 node-2 CONTEXT_TX mode=2 second=193 bytes=25 count=12
+194220280 node-3 CONTEXT_RX role=3 mode=2 second=193 bytes=25 sample=1023 count=11
+195224000 node-3 REPORT_TX source=3 mode=2 second=194 count=11
+195235504 node-1 REPORT_RX source=3 mode=2 second=194 bytes=32 count=21
+196207000 node-2 REPORT_TX source=2 mode=2 second=195 count=11
+196246504 node-1 REPORT_RX source=2 mode=2 second=195 bytes=32 count=22
+198207000 node-2 CONTEXT_TX mode=2 second=197 bytes=25 count=13
+198214280 node-3 CONTEXT_RX role=3 mode=2 second=197 bytes=25 sample=147 count=12
+199224000 node-3 REPORT_TX source=3 mode=2 second=198 count=12
+199229504 node-1 REPORT_RX source=3 mode=2 second=198 bytes=32 count=23
+200207000 node-2 REPORT_TX source=2 mode=2 second=199 count=12
+200235504 node-1 REPORT_RX source=2 mode=2 second=199 bytes=32 count=24
+202207000 node-2 CONTEXT_TX mode=2 second=201 bytes=25 count=14
+202250280 node-3 CONTEXT_RX role=3 mode=2 second=201 bytes=25 sample=295 count=13
+203224000 node-3 REPORT_TX source=3 mode=2 second=202 count=13
+203267504 node-1 REPORT_RX source=3 mode=2 second=202 bytes=32 count=25
+204207000 node-2 REPORT_TX source=2 mode=2 second=203 count=13
+204216504 node-1 REPORT_RX source=2 mode=2 second=203 bytes=32 count=26
+206207000 node-2 CONTEXT_TX mode=2 second=205 bytes=25 count=15
+206247280 node-3 CONTEXT_RX role=3 mode=2 second=205 bytes=25 sample=443 count=14
+207224000 node-3 REPORT_TX source=3 mode=2 second=206 count=14
+207228504 node-1 REPORT_RX source=3 mode=2 second=206 bytes=32 count=27
+208207000 node-2 REPORT_TX source=2 mode=2 second=207 count=14
+208237504 node-1 REPORT_RX source=2 mode=2 second=207 bytes=32 count=28
+210207000 node-2 CONTEXT_TX mode=2 second=209 bytes=25 count=16
+210246280 node-3 CONTEXT_RX role=3 mode=2 second=209 bytes=25 sample=591 count=15
+211207000 node-2 CONTEXT_PHASE role=2 mode=3 second=210 bytes=50
+211224000 node-3 CONTEXT_PHASE role=3 mode=3 second=210 bytes=50
+211224000 node-3 REPORT_TX source=3 mode=3 second=210 count=9
+211234504 node-1 REPORT_RX source=3 mode=3 second=210 bytes=32 count=14
+211453000 node-1 CONTEXT_PHASE role=1 mode=3 second=210 bytes=50
+212207000 node-2 REPORT_TX source=2 mode=3 second=211 count=9
+212214504 node-1 REPORT_RX source=2 mode=3 second=211 bytes=32 count=15
+214207000 node-2 CONTEXT_TX mode=3 second=213 bytes=50 count=8
+214247080 node-3 CONTEXT_RX role=3 mode=3 second=213 bytes=50 sample=739 count=8
+215224000 node-3 REPORT_TX source=3 mode=3 second=214 count=10
+215239504 node-1 REPORT_RX source=3 mode=3 second=214 bytes=32 count=16
+216207000 node-2 REPORT_TX source=2 mode=3 second=215 count=10
+216244504 node-1 REPORT_RX source=2 mode=3 second=215 bytes=32 count=17
+218207000 node-2 CONTEXT_TX mode=3 second=217 bytes=50 count=9
+218246080 node-3 CONTEXT_RX role=3 mode=3 second=217 bytes=50 sample=887 count=9
+219224000 node-3 REPORT_TX source=3 mode=3 second=218 count=11
+219241504 node-1 REPORT_RX source=3 mode=3 second=218 bytes=32 count=18
+220207000 node-2 REPORT_TX source=2 mode=3 second=219 count=11
+220244504 node-1 REPORT_RX source=2 mode=3 second=219 bytes=32 count=19
+222207000 node-2 CONTEXT_TX mode=3 second=221 bytes=50 count=10
+222237080 node-3 CONTEXT_RX role=3 mode=3 second=221 bytes=50 sample=11 count=10
+223224000 node-3 REPORT_TX source=3 mode=3 second=222 count=12
+223245504 node-1 REPORT_RX source=3 mode=3 second=222 bytes=32 count=20
+224207000 node-2 REPORT_TX source=2 mode=3 second=223 count=12
+224217504 node-1 REPORT_RX source=2 mode=3 second=223 bytes=32 count=21
+226207000 node-2 CONTEXT_TX mode=3 second=225 bytes=50 count=11
+226230080 node-3 CONTEXT_RX role=3 mode=3 second=225 bytes=50 sample=159 count=11
+227224000 node-3 REPORT_TX source=3 mode=3 second=226 count=13
+227239504 node-1 REPORT_RX source=3 mode=3 second=226 bytes=32 count=22
+228207000 node-2 REPORT_TX source=2 mode=3 second=227 count=13
+228219504 node-1 REPORT_RX source=2 mode=3 second=227 bytes=32 count=23
+230207000 node-2 CONTEXT_TX mode=3 second=229 bytes=50 count=12
+230226080 node-3 CONTEXT_RX role=3 mode=3 second=229 bytes=50 sample=307 count=12
+231224000 node-3 REPORT_TX source=3 mode=3 second=230 count=14
+231231504 node-1 REPORT_RX source=3 mode=3 second=230 bytes=32 count=24
+232207000 node-2 REPORT_TX source=2 mode=3 second=231 count=14
+232215504 node-1 REPORT_RX source=2 mode=3 second=231 bytes=32 count=25
+234207000 node-2 CONTEXT_TX mode=3 second=233 bytes=50 count=13
+234224080 node-3 CONTEXT_RX role=3 mode=3 second=233 bytes=50 sample=455 count=13
+235224000 node-3 REPORT_TX source=3 mode=3 second=234 count=15
+235237504 node-1 REPORT_RX source=3 mode=3 second=234 bytes=32 count=26
+236207000 node-2 REPORT_TX source=2 mode=3 second=235 count=15
+236227504 node-1 REPORT_RX source=2 mode=3 second=235 bytes=32 count=27
+238207000 node-2 CONTEXT_TX mode=3 second=237 bytes=50 count=14
+238219080 node-3 CONTEXT_RX role=3 mode=3 second=237 bytes=50 sample=603 count=14
+239224000 node-3 REPORT_TX source=3 mode=3 second=238 count=16
+239250504 node-1 REPORT_RX source=3 mode=3 second=238 bytes=32 count=28
+240207000 node-2 REPORT_TX source=2 mode=3 second=239 count=16
+240226504 node-1 REPORT_RX source=2 mode=3 second=239 bytes=32 count=29
+241207000 node-2 CONTEXT_PHASE role=2 mode=0 second=240 bytes=0
+241224000 node-3 CONTEXT_PHASE role=3 mode=0 second=240 bytes=0
+241453000 node-1 CONTEXT_PHASE role=1 mode=0 second=240 bytes=0
+243224000 node-3 REPORT_TX source=3 mode=0 second=242 count=15
+243235504 node-1 REPORT_RX source=3 mode=0 second=242 bytes=32 count=27
+244207000 node-2 REPORT_TX source=2 mode=0 second=243 count=15
+244222504 node-1 REPORT_RX source=2 mode=0 second=243 bytes=32 count=28
+247224000 node-3 REPORT_TX source=3 mode=0 second=246 count=16
+247230504 node-1 REPORT_RX source=3 mode=0 second=246 bytes=32 count=29
+248207000 node-2 REPORT_TX source=2 mode=0 second=247 count=16
+248240504 node-1 REPORT_RX source=2 mode=0 second=247 bytes=32 count=30
+251224000 node-3 REPORT_TX source=3 mode=0 second=250 count=17
+251253504 node-1 REPORT_RX source=3 mode=0 second=250 bytes=32 count=31
+252207000 node-2 REPORT_TX source=2 mode=0 second=251 count=17
+252227504 node-1 REPORT_RX source=2 mode=0 second=251 bytes=32 count=32
+255224000 node-3 REPORT_TX source=3 mode=0 second=254 count=18
+255237504 node-1 REPORT_RX source=3 mode=0 second=254 bytes=32 count=33
+256207000 node-2 REPORT_TX source=2 mode=0 second=255 count=18
+256234504 node-1 REPORT_RX source=2 mode=0 second=255 bytes=32 count=34
+259224000 node-3 REPORT_TX source=3 mode=0 second=258 count=19
+259262504 node-1 REPORT_RX source=3 mode=0 second=258 bytes=32 count=35
+260207000 node-2 REPORT_TX source=2 mode=0 second=259 count=19
+260221504 node-1 REPORT_RX source=2 mode=0 second=259 bytes=32 count=36
+263224000 node-3 REPORT_TX source=3 mode=0 second=262 count=20
+263238504 node-1 REPORT_RX source=3 mode=0 second=262 bytes=32 count=37
+264207000 node-2 REPORT_TX source=2 mode=0 second=263 count=20
+264230504 node-1 REPORT_RX source=2 mode=0 second=263 bytes=32 count=38
+267224000 node-3 REPORT_TX source=3 mode=0 second=266 count=21
+267231504 node-1 REPORT_RX source=3 mode=0 second=266 bytes=32 count=39
+268207000 node-2 REPORT_TX source=2 mode=0 second=267 count=21
+268215504 node-1 REPORT_RX source=2 mode=0 second=267 bytes=32 count=40
+271207000 node-2 CONTEXT_PHASE role=2 mode=1 second=270 bytes=13
+271224000 node-3 CONTEXT_PHASE role=3 mode=1 second=270 bytes=13
+271224000 node-3 REPORT_TX source=3 mode=1 second=270 count=17
+271240504 node-1 REPORT_RX source=3 mode=1 second=270 bytes=32 count=29
+271453000 node-1 CONTEXT_PHASE role=1 mode=1 second=270 bytes=13
+272207000 node-2 REPORT_TX source=2 mode=1 second=271 count=17
+272216504 node-1 REPORT_RX source=2 mode=1 second=271 bytes=32 count=30
+274207000 node-2 CONTEXT_TX mode=1 second=273 bytes=13 count=15
+274247896 node-3 CONTEXT_RX role=3 mode=1 second=273 bytes=13 sample=911 count=15
+TEST OK
+Test ended at simulation time: 275000000

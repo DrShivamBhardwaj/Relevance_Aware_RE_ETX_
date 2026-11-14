@@ -1,0 +1,71 @@
+==============================================================================
+DYNAMIC MINIMUM-ETX MULTI-HOP BASELINE
+==============================================================================
+FND                         : 176
+HND                         : 315
+LND                         : 1057
+Generated messages          : 33840
+Attempted messages          : 33799
+Delivered messages          : 33187
+Channel-related drops       : 511
+Energy-related drops        : 104
+Route-related drops         : 38
+Direct fallback assignments : 2223
+PDR                         : 0.980703
+PDR (%)                     : 98.070
+Frame attempts              : 139753
+Retransmissions             : 2819
+Failed frame attempts       : 3336
+Direct route assignments    : 23375
+Multi-hop route assignments : 10424
+Average delivered hops      : 1.5105
+Maximum delivered hops      : 8
+Average delay               : 544.865 ms
+Channel elapsed time        : 478.168057 s
+Application goodput         : 119.399 kbps
+Ideal 1-hop upper bound     : 196.850 kbps
+Energy/delivered message    : 0.001506614 J
+Mean semantic age           : 68.168159
+Maximum semantic age        : 817.518144
+Residual network energy     : 0.000000000 J
+Average semantic payload bits : 1791.54
+Minimum semantic payload bits : 1000
+Maximum semantic payload bits : 4000
+Payload reduction (%)         : 55.21
+Semantic compression ratio   : 0.431245
+Semantic radio efficiency    : 0.487597
+Cumulative energy used      : 50.000000000 J
+Event generated reports     : 1314
+Event attempted reports     : 1313
+Event delivered reports     : 1284
+Event report delivery ratio : 0.977169
+Event mean payload bits     : 3358.885
+Non-event mean payload bits : 1658.943
+Payload targeting gap bits  : 1699.942
+Event payload preservation  : 0.839721
+Event payload delivery ratio: 0.823157
+Event rounds evaluated       : 106
+Within-round targeting gap   : 1381.588
+
+Most frequently selected relays
+------------------------------------------------------------------------------
+Node  72 : 938 route selections
+Node  59 : 897 route selections
+Node  37 : 662 route selections
+Node  40 : 646 route selections
+Node  71 : 585 route selections
+Node  44 : 576 route selections
+Node  14 : 576 route selections
+Node  51 : 555 route selections
+Node  92 : 536 route selections
+Node  22 : 501 route selections
+
+Review sensing energy J     : 0.000000000
+Review CPU energy J         : 0.000000000
+Review idle energy J        : 0.000000000
+Review control energy J     : 29.179425053
+Review ACK energy J         : 0.000000000
+CSV output                  : results/minimum_etx_multihop.csv
+
+All dynamic minimum-ETX checks PASSED.
+
