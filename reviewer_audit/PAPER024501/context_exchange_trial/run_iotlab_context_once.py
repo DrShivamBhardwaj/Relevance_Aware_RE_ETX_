@@ -68,7 +68,11 @@ def capture(expid,s):
  p=subprocess.run(["ssh","-o","BatchMode=yes","-i",str(KEY),HOST,cmd],
                   capture_output=True,text=True,timeout=450)
  (WD/"serial_aggregator.log").write_text(p.stdout+"\n"+p.stderr)
- s["serial_captured"]=True;s["serial_returncode"]=p.returncode;save(s)
+ s["serial_returncode"]=p.returncode
+ s["serial_captured"]=(p.returncode==0 and "CONTEXT_PHASE" in p.stdout)
+ save(s)
+ if not s["serial_captured"]:
+  raise RuntimeError("Serial aggregator ended without any context phase markers")
 def archive(expid,s):
  if s.get("archive_retrieved"):return
  # Archive cannot be read until experiment reaches terminal state.

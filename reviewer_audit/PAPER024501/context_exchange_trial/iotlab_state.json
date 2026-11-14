@@ -16,5 +16,8 @@
   "archive_path": "/Users/shivambhardwaj/ns3-validation/repo-git/reviewer_audit/PAPER024501/context_exchange_trial/active/458578.tar.gz",
   "raw_oml_downloaded": true,
   "completed": true,
-  "conclusion": "Context packet 0/13/25/50 B physical pilot archived; packet reception and phase power audit pending"
+  "conclusion": "Context packet 0/13/25/50 B physical pilot archived; packet reception and phase power audit pending",
+  "first_serial_capture_empty": true,
+  "usable_retry_capture": "active/serial_capture_retry.log",
+  "serial_capture_full_hardware_run": false
 }

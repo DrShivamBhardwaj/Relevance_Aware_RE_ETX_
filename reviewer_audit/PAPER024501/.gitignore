@@ -19,3 +19,15 @@ reetx_port/factorial_paced/*/*/test.csc
 reetx_port/factorial_paced/*/*/runner.log
 reetx_port/factorial_paced/*/*/error.txt
 reetx_port/active/
+
+# PAPER024501 reviewer M1/M5 generated transient files.
+context_exchange_trial/cooja/*/trial.csc
+context_exchange_trial/cooja/*/run.log
+context_exchange_trial/active/serial_aggregator.log
+context_exchange_trial/active/458578.tar.gz
+context_exchange_trial/m3_build_role*.log
+context_exchange_trial/cooja_worker.log
+context_exchange_trial/iotlab_worker.log
+event_timing_depth/traces/
+event_timing_depth/workdirs/
+event_timing_depth/worker.log
