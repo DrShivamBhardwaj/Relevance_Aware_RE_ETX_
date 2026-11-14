@@ -576,7 +576,7 @@ def main():
     final_counts = save_doc(doc)
     if final_counts["tables"] != ORIGINAL_COUNTS["tables"] + 2:
         raise RuntimeError(f"Expected two added tables; counts={final_counts}")
-    if final_counts["media_files"] != ORIGINAL_COUNTS["media_files"] + 1:
+    if len(final_counts["media_files"]) != len(ORIGINAL_COUNTS["media_files"]) + 1:
         raise RuntimeError(f"Expected one added figure; counts={final_counts}")
     if final_counts["equations"] != ORIGINAL_COUNTS["equations"]:
         raise RuntimeError("Equation inventory changed")
