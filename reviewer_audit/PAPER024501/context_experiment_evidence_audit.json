@@ -2,14 +2,14 @@
   "kind": "PAPER024501 author-side reviewer M1 experimental audit",
   "datasets": {
     "distributed_cache": {
-      "completed": 17,
+      "completed": 20,
       "planned": 20,
       "paired_contrasts_so_far": 60,
-      "completion_verified": false,
+      "completion_verified": true,
       "note": "Independent simulator reruns; no source-decoder or physical wireless calibration."
     },
     "charged_broadcast_only": {
-      "completed": 33,
+      "completed": 39,
       "planned": 60,
       "paired_contrasts_so_far": 60,
       "completion_verified": false,

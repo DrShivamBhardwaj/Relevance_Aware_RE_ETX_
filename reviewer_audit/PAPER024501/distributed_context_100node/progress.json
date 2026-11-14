@@ -1,5 +1,5 @@
 {
-  "completed": 17,
+  "completed": 20,
   "planned": 20,
   "model": "100-node local receiver caches from independently received context packets",
   "scope": "independent per-neighbour packet erasures, no MAC contention, no physical code-equivalence",

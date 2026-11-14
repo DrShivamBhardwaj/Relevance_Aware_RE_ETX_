@@ -1,0 +1,19 @@
+{
+  "variant": "q080_50B",
+  "seed": 42,
+  "context_bytes": 50,
+  "context_delivery_probability": 0.8,
+  "passed": true,
+  "FND": 218.0,
+  "HND": 554.0,
+  "LND": 1819.0,
+  "PDR_percent": 98.078,
+  "delay_ms": 478.889,
+  "energy_per_delivered_j": 0.000833959,
+  "context_packets_sent": 59730.0,
+  "context_receive_attempts": 525931.0,
+  "context_updates_received": 420646.0,
+  "context_rx_fraction": 0.7998121426574969,
+  "cached_context_age_rounds": 30.710637122494404,
+  "context_battery_energy_j": 18.16133208378113
+}
