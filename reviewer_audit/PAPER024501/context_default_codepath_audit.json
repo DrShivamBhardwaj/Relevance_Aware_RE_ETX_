@@ -1,0 +1,40 @@
+{
+  "seed": 11,
+  "experiment_mode": "C3",
+  "option_disabled": true,
+  "pass": true,
+  "source": "archived control_multiseed_raw.csv",
+  "comparisons": {
+    "FND": {
+      "archived": 275.0,
+      "rerun": 275.0,
+      "absolute": 0.0
+    },
+    "HND": {
+      "archived": 814.0,
+      "rerun": 814.0,
+      "absolute": 0.0
+    },
+    "LND": {
+      "archived": 2706.0,
+      "rerun": 2706.0,
+      "absolute": 0.0
+    },
+    "PDR_percent": {
+      "archived": 98.236,
+      "rerun": 98.236,
+      "absolute": 0.0
+    },
+    "average_delay_ms": {
+      "archived": 493.301,
+      "rerun": 493.301,
+      "absolute": 0.0
+    },
+    "energy_per_delivered_j": {
+      "archived": 0.000530026,
+      "rerun": 0.000530026,
+      "absolute": 0.0
+    }
+  },
+  "scope": "single baseline-seed regression only, not all seeds"
+}

@@ -1,0 +1,17 @@
+{
+  "context_bits": 4000,
+  "seed": 173,
+  "passed": true,
+  "hardware_equivalent": false,
+  "FND": 122.0,
+  "HND": 193.0,
+  "LND": 562.0,
+  "pdr_percent": 96.581,
+  "delay_ms": 490.642,
+  "energy_per_delivered_j": 0.002531902,
+  "control_energy_j": 38.255278586,
+  "sensing_energy_j": 0.0,
+  "cpu_energy_j": 0.0,
+  "idle_energy_j": 0.0,
+  "ack_energy_j": 0.0
+}

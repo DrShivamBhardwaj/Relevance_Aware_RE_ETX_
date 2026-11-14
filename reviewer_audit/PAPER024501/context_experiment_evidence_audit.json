@@ -9,10 +9,10 @@
       "note": "Independent simulator reruns; no source-decoder or physical wireless calibration."
     },
     "charged_broadcast_only": {
-      "completed": 39,
+      "completed": 60,
       "planned": 60,
-      "paired_contrasts_so_far": 60,
-      "completion_verified": false,
+      "paired_contrasts_so_far": 90,
+      "completion_verified": true,
       "note": "Independent simulator reruns; no source-decoder or physical wireless calibration."
     }
   },

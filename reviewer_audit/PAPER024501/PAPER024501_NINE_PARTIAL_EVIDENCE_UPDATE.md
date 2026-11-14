@@ -3,14 +3,16 @@
 **Date:** 14 November 2026. **Branch:** `review/PAPER024501-audit`.
 **Scientific release:** BLOCKED. The entries below are internal, evidence-based
 revision assessments, not editorial acceptance or permission to claim a full
-physical deployment.
+physical deployment. The isolated context-energy sweep is now 60/60 complete,
+the optional receiver-cache experiment is 20/20 complete, and the Cooja
+reception sweep is 15/15 complete.
 
 ## M1 — distributed neighbour observations and their energy
 
 **Implemented and tested:**
 - Existing 100-node original simulator with six isolated context-energy charging
   configurations (100, 200, 500, 1000, 2000, 4000 observation bits per
-  node/round, 10 archived seeds each); `run_context_only_battery_campaign.py`.
+  node/round, 10 archived seeds each; **60/60 complete**); `run_context_only_battery_campaign.py`.
   TX/RX costs are charged to node batteries, with ideal context reception.
 - New *alternative* 100-node receiver-local cache model:
   `distributed_neighbour_context.py`; when a sensor receives a neighbour
@@ -18,7 +20,7 @@ physical deployment.
   Each broadcast TX and each neighbour RX costs battery energy; application
   uses only receiver-cached neighbour values. The scenario varies update size
   (13/25/50 bytes) and independent receiving probability (1.0 or 0.8), over
-  matched seeds, without changing the original archived configuration.
+  five matched seeds per configuration (**20/20 complete**), without changing the original archived configuration.
 - Cooja 3-node NullNet context transport in three configured UDGM reception
   conditions, 0.60, 0.80 and 1.00, five seeds per setting (15 successful
   simulations, four context-length modes per case); see
@@ -28,6 +30,22 @@ physical deployment.
   follow-up allocation **458597** terminated with successful firmware flashing
   and retrieved raw board-power OML data, but the serial aggregator was empty
   on both captures. This follow-up is **not a successful replication**.
+
+**Quantitative limits:** With ideal context reception and separately charged
+per-round context costs, mean C3 LND falls from 2636.4 at zero additional
+context cost to 2271.5 (100 bits), 2041.5 (200 bits), 1627.2 (500 bits),
+1297.6 (1000 bits), 1039.9 (2000 bits) and 886.1 (4000 bits). Energy per
+delivered report rises from 0.526 mJ to 1.533 mJ at 2000 context bits;
+this exceeds the unchanged C1 baseline of 1.147 mJ, while LND falls below
+C1's 1268.6 rounds. The evidence therefore contains a **model-based
+advantage reversal**, not a measured physical threshold.
+
+The receiver-local-cache C3 diagnostic, over five matched seeds, yields
+mean LND 1957.4 rounds with 13-byte and 100% reception, 1961.8 with
+13-byte and 80% reception, 1797.6 with 25-byte and 80%, and 1566.0 with
+50-byte and 80%. Original central-context C3 on those five seeds had
+mean LND 2633.2. A single archived C3 seed-11 rerun with this optional
+mode OFF matched the original six numerical metrics with zero differences.
 
 **Boundaries:** The new local-cache model still idealises independent erasures,
 synchronous one-hop broadcast, collision handling and retry costs. The M3
@@ -110,5 +128,6 @@ established by this later audit. Keep the two environments distinct.
 - No physically calibrated, paper-equivalent 100-node RE-ETX deployment or
   independently verified alternate-parent benefit.
 - All physical experiments and simulations must keep their distinct scopes.
-- Provisional 100-node context campaigns are not declared complete until their
-  individual progress.json files reach planned case counts and analyses pass.
+- The completed 60/60 and 20/20 100-node context campaigns and 15/15
+  Cooja cases are verified against their individual progress files and
+  seed-level outputs; this does not certify 100-node physical deployment.
