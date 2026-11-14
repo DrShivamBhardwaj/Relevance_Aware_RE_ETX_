@@ -1,0 +1,7 @@
+profile,initial_mean_hops,mode,HND_rounds,LND_rounds,PDR_percent,energy_per_delivered_report_mJ
+Shallow,1.483,C3,383.3,2642.5,95.404,0.744
+Shallow,1.483,C5,357.8,2663.8,95.294,0.764
+Medium,2.91,C3,112.3,2138.4,93.765,2.105
+Medium,2.91,C5,96.2,2206.6,93.404,2.209
+Deep,4.929,C3,74.7,1952.7,94.16,3.082
+Deep,4.929,C5,65.5,2303.9,94.299,2.983
