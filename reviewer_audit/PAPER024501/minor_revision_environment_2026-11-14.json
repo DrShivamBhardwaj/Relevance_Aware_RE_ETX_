@@ -1,0 +1,25 @@
+{
+  "audit_date": "2026-11-14",
+  "host": "Apple M1",
+  "memory_gb": 8,
+  "os": "macOS 27.2",
+  "python": "3.14.7",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "scipy": "1.18.1",
+  "matplotlib": "3.11.2",
+  "networkx": "3.7",
+  "python_docx": "1.2.0",
+  "smoke_test": {
+    "mode": "C3",
+    "seed": 42,
+    "round_limit": 60,
+    "generated_reports": 6000,
+    "delivered_reports": 6000,
+    "channel_drops": 0,
+    "energy_drops": 0,
+    "route_drops": 0,
+    "interpretation": "Runtime smoke test only; not part of the archived ten-seed inferential results."
+  },
+  "historical_run_host": "Not preserved in the archived ten-seed experiment manifest; do not attribute the archived runs to this audit host without rerunning them."
+}
