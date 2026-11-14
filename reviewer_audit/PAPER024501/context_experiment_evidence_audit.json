@@ -1,0 +1,26 @@
+{
+  "kind": "PAPER024501 author-side reviewer M1 experimental audit",
+  "datasets": {
+    "distributed_cache": {
+      "completed": 17,
+      "planned": 20,
+      "paired_contrasts_so_far": 60,
+      "completion_verified": false,
+      "note": "Independent simulator reruns; no source-decoder or physical wireless calibration."
+    },
+    "charged_broadcast_only": {
+      "completed": 33,
+      "planned": 60,
+      "paired_contrasts_so_far": 60,
+      "completion_verified": false,
+      "note": "Independent simulator reruns; no source-decoder or physical wireless calibration."
+    }
+  },
+  "original_code_path_modified_when_option_disabled": false,
+  "original_source_decoder_validated": false,
+  "fully_distributed_mac_phy_measured": false,
+  "original_paper_equivalent_100node_hardware_validated": false,
+  "physical_context_trial_458578": "PARTIAL serial logs, three-board whole-power",
+  "physical_context_replication_458597": "FAILED instrumentation; raw current traces no phase-tagged context packets",
+  "warning": "Do not infer physical lifetime or semantic reconstruction from synthetic/idealised neighbour context"
+}
