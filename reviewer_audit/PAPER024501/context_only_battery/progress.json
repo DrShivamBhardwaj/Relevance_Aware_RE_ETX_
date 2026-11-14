@@ -1,0 +1,7 @@
+{
+  "completed": 33,
+  "planned": 60,
+  "scope": "C3-only ideal-one-hop per-neighbour context cost charged to 100-node simulator batteries",
+  "distributed_context_delivery_verified": false,
+  "independent_physical_calibration": false
+}

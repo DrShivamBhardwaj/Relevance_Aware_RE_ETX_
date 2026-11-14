@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "mode_rows": [
+    {
+      "seed": 942,
+      "udgm_rx_success": 0.6,
+      "mode": 0,
+      "context_app_bytes": 0,
+      "context_tx": 0,
+      "context_rx": 0,
+      "data_tx": 42,
+      "data_rx": 40,
+      "context_rx_over_tx": "",
+      "data_rx_over_tx": 0.9523809523809523
+    },
+    {
+      "seed": 942,
+      "udgm_rx_success": 0.6,
+      "mode": 1,
+      "context_app_bytes": 13,
+      "context_tx": 15,
+      "context_rx": 15,
+      "data_tx": 34,
+      "data_rx": 33,
+      "context_rx_over_tx": 1.0,
+      "data_rx_over_tx": 0.9705882352941176
+    },
+    {
+      "seed": 942,
+      "udgm_rx_success": 0.6,
+      "mode": 2,
+      "context_app_bytes": 25,
+      "context_tx": 16,
+      "context_rx": 15,
+      "data_tx": 28,
+      "data_rx": 25,
+      "context_rx_over_tx": 0.9375,
+      "data_rx_over_tx": 0.8928571428571429
+    },
+    {
+      "seed": 942,
+      "udgm_rx_success": 0.6,
+      "mode": 3,
+      "context_app_bytes": 50,
+      "context_tx": 14,
+      "context_rx": 13,
+      "data_tx": 32,
+      "data_rx": 30,
+      "context_rx_over_tx": 0.9285714285714286,
+      "data_rx_over_tx": 0.9375
+    }
+  ]
+}

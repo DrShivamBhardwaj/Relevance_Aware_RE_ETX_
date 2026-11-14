@@ -1,0 +1,25 @@
+{
+  "campaign": "PAPER024501_CONTEXT_TRANSPORT_REPEAT_3M3_20261114",
+  "profile": "array_active_power_20261110",
+  "scope": "Independent allocation replication of synthetic context transport, 0/13/25/50 bytes, NOT original RE-ETX",
+  "experiment_id": 458597,
+  "reservation_submitted": true,
+  "nodes": [
+    97,
+    100,
+    102
+  ],
+  "flashed": true,
+  "serial_returncode": 0,
+  "serial_captured": false,
+  "last_error": "Empty aggregator log in original and one reset/retry; no CON\u00adTEXT_PHASE packet evidence. Physical repetition must not be claimed successful.",
+  "hardware_experiment_terminated": true,
+  "verified_context_packet_reception": false,
+  "repeat_validation_successful": false,
+  "archive_metadata_only": true,
+  "raw_power_files_copied": [
+    "m3_100.oml",
+    "m3_102.oml",
+    "m3_97.oml"
+  ]
+}

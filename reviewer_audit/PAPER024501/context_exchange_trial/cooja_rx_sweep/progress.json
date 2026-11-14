@@ -1,0 +1,10 @@
+{
+  "passed": 15,
+  "planned": 15,
+  "scope": "three-node Cooja serial logs; sensitivity to configured UDGM receive success; NOT full RE-ETX or independently calibrated PHY",
+  "phy_rx_configurations": [
+    0.6,
+    0.8,
+    1.0
+  ]
+}

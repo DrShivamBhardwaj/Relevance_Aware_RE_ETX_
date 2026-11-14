@@ -1,0 +1,19 @@
+{
+  "variant": "q100_13B",
+  "seed": 101,
+  "context_bytes": 13,
+  "context_delivery_probability": 1.0,
+  "passed": true,
+  "FND": 286.0,
+  "HND": 635.0,
+  "LND": 1789.0,
+  "PDR_percent": 95.664,
+  "delay_ms": 491.225,
+  "energy_per_delivered_j": 0.00073154,
+  "context_packets_sent": 70635.0,
+  "context_receive_attempts": 603716.0,
+  "context_updates_received": 603716.0,
+  "context_rx_fraction": 1.0,
+  "cached_context_age_rounds": 34.880340255666965,
+  "context_battery_energy_j": 10.866625615007917
+}

@@ -1,0 +1,12 @@
+{
+  "completed": 17,
+  "planned": 20,
+  "model": "100-node local receiver caches from independently received context packets",
+  "scope": "independent per-neighbour packet erasures, no MAC contention, no physical code-equivalence",
+  "all_configs": [
+    "q100_13B",
+    "q080_13B",
+    "q080_25B",
+    "q080_50B"
+  ]
+}
