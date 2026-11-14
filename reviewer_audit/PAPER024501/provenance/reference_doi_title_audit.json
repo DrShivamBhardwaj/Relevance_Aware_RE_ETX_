@@ -1,0 +1,252 @@
+{
+  "source": "PAPER024501 27-item reviewer manuscript; reviewer audit 14 Nov 2026",
+  "total_entries": 27,
+  "doi_entries": 26,
+  "no_DOI_reference": {
+    "reference_no": 24,
+    "title": "A simple sequentially rejective multiple test procedure",
+    "archive_url": "https://www.jstor.org/stable/4615733",
+    "Crossref_DOI_lookup": "not applicable; no DOI supplied"
+  },
+  "counts": {
+    "verified_doi_title": 26,
+    "requiring_manual_check": 0
+  },
+  "note": "Titles only. Citation author order, volume, issue, pages and publication status are not certified by this automated title check.",
+  "results": [
+    {
+      "reference_no": 1,
+      "DOI": "10.1109/MCOM.2002.1024422",
+      "expected_title": "A survey on sensor networks",
+      "Crossref_title": "A survey on sensor networks",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 2,
+      "DOI": "10.1109/HICSS.2000.926982",
+      "expected_title": "Energy-efficient communication protocol for wireless microsensor networks",
+      "Crossref_title": "Energy-efficient communication protocol for wireless microsensor networks",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 3,
+      "DOI": "10.1109/TWC.2002.804190",
+      "expected_title": "An application-specific protocol architecture for wireless microsensor networks",
+      "Crossref_title": "An application-specific protocol architecture for wireless microsensor networks",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 4,
+      "DOI": "10.1145/938985.939000",
+      "expected_title": "A high-throughput path metric for multi-hop wireless routing",
+      "Crossref_title": "A high-throughput path metric for multi-hop wireless routing",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 5,
+      "DOI": "10.17487/RFC6550",
+      "expected_title": "RPL: IPv6 routing protocol for low-power and lossy networks",
+      "Crossref_title": "RPL: IPv6 Routing Protocol for Low-Power and Lossy Networks",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 6,
+      "DOI": "10.17487/RFC6719",
+      "expected_title": "The minimum rank with hysteresis objective function",
+      "Crossref_title": "The Minimum Rank with Hysteresis Objective Function",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 7,
+      "DOI": "10.1016/j.ins.2015.10.004",
+      "expected_title": "Data prediction, compression, and recovery in clustered wireless sensor networks for environmental monitoring applications",
+      "Crossref_title": "Data prediction, compression, and recovery in clustered wireless sensor networks for environmental monitoring applications",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 8,
+      "DOI": "10.1016/j.pmcj.2018.06.007",
+      "expected_title": "A distributed real-time data prediction and adaptive sensing approach for wireless sensor networks",
+      "Crossref_title": "A distributed real-time data prediction and adaptive sensing approach for wireless sensor networks",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 9,
+      "DOI": "10.1109/JIOT.2018.2869986",
+      "expected_title": "Using correlated information to extend device lifetime",
+      "Crossref_title": "Using Correlated Information to Extend Device Lifetime",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 10,
+      "DOI": "10.1049/wss2.12070",
+      "expected_title": "ETXRE: Energy and delay efficient routing metric for RPL protocol and wireless sensor networks",
+      "Crossref_title": "ETXRE: Energy and delay efficient routing metric for RPL protocol and wireless sensor networks",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 11,
+      "DOI": "10.1016/j.vlsi.2023.102097",
+      "expected_title": "Energy and relevance-aware adaptive monitoring method for wireless sensor nodes with hard energy constraints",
+      "Crossref_title": "Energy and relevance-aware adaptive monitoring method for wireless sensor nodes with hard energy constraints",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 12,
+      "DOI": "10.1016/j.future.2023.11.007",
+      "expected_title": "Prediction-based data reduction with dynamic target node selection in IoT sensor networks",
+      "Crossref_title": "Prediction-based data reduction with dynamic target node selection in IoT sensor networks",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 13,
+      "DOI": "10.1109/TNET.2020.3005549",
+      "expected_title": "The age of incorrect information: A new performance metric for status updates",
+      "Crossref_title": "The Age of Incorrect Information: A New Performance Metric for Status Updates",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 14,
+      "DOI": "10.1109/JSAC.2021.3065072",
+      "expected_title": "Age of information: An introduction and survey",
+      "Crossref_title": "Age of Information: An Introduction and Survey",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 15,
+      "DOI": "10.1109/MCOM.001.2000604",
+      "expected_title": "Semantics-empowered communication for networked intelligent systems",
+      "Crossref_title": "Semantics-Empowered Communication for Networked Intelligent Systems",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 16,
+      "DOI": "10.1109/TSP.2021.3071210",
+      "expected_title": "Deep learning enabled semantic communication systems",
+      "Crossref_title": "Deep Learning Enabled Semantic Communication Systems",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 17,
+      "DOI": "10.1109/JIOT.2021.3114102",
+      "expected_title": "Energy-aware deep reinforcement learning scheduling for sensors correlated in time and space",
+      "Crossref_title": "Energy-Aware Deep Reinforcement Learning Scheduling for Sensors Correlated in Time and Space",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 18,
+      "DOI": "10.1109/MWC.101.2100269",
+      "expected_title": "Semantic communications: Overview, open issues, and future research directions",
+      "Crossref_title": "Semantic Communications: Overview, Open Issues, and Future Research Directions",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 19,
+      "DOI": "10.1109/JSAC.2022.3223408",
+      "expected_title": "Beyond transmitting bits: Context, semantics, and task-oriented communications",
+      "Crossref_title": "Beyond Transmitting Bits: Context, Semantics, and Task-Oriented Communications",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 20,
+      "DOI": "10.1109/ACCESS.2024.3381967",
+      "expected_title": "A survey on goal-oriented semantic communication: Techniques, challenges, and future directions",
+      "Crossref_title": "A Survey on Goal-Oriented Semantic Communication: Techniques, Challenges, and Future Directions",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 21,
+      "DOI": "10.1016/j.adhoc.2025.103972",
+      "expected_title": "Supervised machine learning-based ETX optimization for energy-efficient routing in IoT-enabled WSNs",
+      "Crossref_title": "Supervised machine learning-based ETX optimization for energy-efficient routing in IoT-enabled WSNs",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 22,
+      "DOI": "10.1016/j.icte.2026.08.005",
+      "expected_title": "An SDN-based adaptive payload structure and transmission management for reliable WSN data collection in extreme cold region environments",
+      "Crossref_title": "An SDN-based adaptive payload structure and transmission management for reliable WSN data collection in extreme cold region environments",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 23,
+      "DOI": "10.1145/1464420.1464425",
+      "expected_title": "On the lifetime of wireless sensor networks",
+      "Crossref_title": "On the lifetime of wireless sensor networks",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 25,
+      "DOI": "10.2307/3001968",
+      "expected_title": "Individual comparisons by ranking methods",
+      "Crossref_title": "Individual Comparisons by Ranking Methods",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 26,
+      "DOI": "10.3390/s25092823",
+      "expected_title": "Scalable semantic adaptive communication for task requirements in WSNs",
+      "Crossref_title": "Scalable Semantic Adaptive Communication for Task Requirements in WSNs",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    },
+    {
+      "reference_no": 27,
+      "DOI": "10.3390/s26196124",
+      "expected_title": "Prediction-aided adaptive semantic communication for IoT sensor streams under outdated channel state information",
+      "Crossref_title": "Prediction-Aided Adaptive Semantic Communication for IoT Sensor Streams Under Outdated Channel State Information",
+      "http_status": 200,
+      "status": "DOI_TITLE_MATCH",
+      "failure": null
+    }
+  ]
+}
