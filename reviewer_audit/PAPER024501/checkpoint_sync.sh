@@ -92,7 +92,23 @@ trap 'rm -rf "$LOCK"' EXIT
         "$BASE"/topology_paired_mechanism_audit.csv
         "$BASE"/topology_mechanism_audit_meta.json
         "$BASE"/archive_check.json
-        "$BASE"/context_overhead_sensitivity.csv)
+        "$BASE"/context_overhead_sensitivity.csv
+        "$BASE"/context_only_battery/context_*_seed*.json
+        "$BASE"/context_only_battery/completed.csv
+        "$BASE"/context_only_battery/progress.json
+        "$BASE"/distributed_context_100node/*_seed*.json
+        "$BASE"/distributed_context_100node/completed.csv
+        "$BASE"/distributed_context_100node/progress.json
+        "$BASE"/context_exchange_trial/cooja_rx_sweep/results.csv
+        "$BASE"/context_exchange_trial/cooja_rx_sweep/progress.json
+        "$BASE"/context_exchange_trial/cooja_rx_sweep/*/result.json
+        "$BASE"/context_exchange_replication/iotlab_state.json
+        "$BASE"/context_exchange_replication/active/serial_capture_retry.log
+        "$BASE"/event_timing_depth/event_timing_audit.json
+        "$BASE"/event_timing_depth/event_timing_summary.csv
+        "$BASE"/event_timing_depth/event_timing_paired_tests.csv
+        "$BASE"/event_timing_depth/event_source_trace_60runs.sha256
+        "$BASE"/PAPER024501_NINE_PARTIAL_EVIDENCE_UPDATE.md)
  existing=()
  for file in "${files[@]}"; do [ -f "$file" ] && existing+=("$file"); done
  if [ ${#existing[@]} -gt 0 ]; then git add -- "${existing[@]}"; fi
