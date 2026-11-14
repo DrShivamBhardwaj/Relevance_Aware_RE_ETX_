@@ -1,0 +1,50 @@
+{
+  "seed": 942,
+  "passed": true,
+  "mode_rows": [
+    {
+      "seed": 942,
+      "mode": 0,
+      "application_context_bytes": 0,
+      "context_tx": 0,
+      "context_rx": 0,
+      "report_tx": 42,
+      "report_rx": 42,
+      "context_delivery_ratio": null,
+      "report_delivery_ratio": 1.0
+    },
+    {
+      "seed": 942,
+      "mode": 1,
+      "application_context_bytes": 13,
+      "context_tx": 15,
+      "context_rx": 15,
+      "report_tx": 34,
+      "report_rx": 34,
+      "context_delivery_ratio": 1.0,
+      "report_delivery_ratio": 1.0
+    },
+    {
+      "seed": 942,
+      "mode": 2,
+      "application_context_bytes": 25,
+      "context_tx": 16,
+      "context_rx": 16,
+      "report_tx": 28,
+      "report_rx": 28,
+      "context_delivery_ratio": 1.0,
+      "report_delivery_ratio": 1.0
+    },
+    {
+      "seed": 942,
+      "mode": 3,
+      "application_context_bytes": 50,
+      "context_tx": 14,
+      "context_rx": 14,
+      "report_tx": 32,
+      "report_rx": 32,
+      "context_delivery_ratio": 1.0,
+      "report_delivery_ratio": 1.0
+    }
+  ]
+}

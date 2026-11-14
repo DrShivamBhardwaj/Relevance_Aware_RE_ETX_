@@ -1,0 +1,42 @@
+{
+  "experiment_id": 458578,
+  "calibration_type": "within-board physical phases, extrapolated periodic phase schedule",
+  "first_240_seconds_excluded_due_to_nonstationary_startup": true,
+  "boards": [
+    97,
+    100,
+    102
+  ],
+  "phase_windows": 24,
+  "paired_deltas": 18,
+  "summary": {
+    "1": {
+      "context_bytes": 13,
+      "n_same_board_cycles": 6,
+      "mean_delta_mW": -0.05992272727272763,
+      "min_delta_mW": -0.1364181818181862,
+      "max_delta_mW": -0.011090909090910372,
+      "sd_across_board_cycles_mW": 0.05161182699683043
+    },
+    "2": {
+      "context_bytes": 25,
+      "n_same_board_cycles": 6,
+      "mean_delta_mW": 0.016466666666668555,
+      "min_delta_mW": -0.02661818181819342,
+      "max_delta_mW": 0.058781818181827816,
+      "sd_across_board_cycles_mW": 0.0335498064024546
+    },
+    "3": {
+      "context_bytes": 50,
+      "n_same_board_cycles": 6,
+      "mean_delta_mW": 0.035506060606062796,
+      "min_delta_mW": 0.011181818181825065,
+      "max_delta_mW": 0.06654545454544802,
+      "sd_across_board_cycles_mW": 0.022239410827161653
+    }
+  },
+  "independent_hardware_repetitions": 0,
+  "full_network_energy_calibrated": false,
+  "source_sensing_real": false,
+  "constraint": "Only two within-board steady cycles per board. Phase inference after serial capture uses firmware 30-second schedule, measured serial epoch alignment. PHY/MAC retries and radio-on-time not instrumented. No causal per-event current decomposition."
+}

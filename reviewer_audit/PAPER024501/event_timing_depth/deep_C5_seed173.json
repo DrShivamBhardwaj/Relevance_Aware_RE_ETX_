@@ -1,0 +1,14 @@
+{
+  "profile": "deep",
+  "mode": "C5",
+  "seed": 173,
+  "passed": true,
+  "event_attempts": 189,
+  "event_delivered": 181,
+  "event_report_PDR": 0.9576719576719577,
+  "mean_route_hops_on_event_reports": 1.8465608465608465,
+  "mean_event_report_service_s": 0.3121279878977654,
+  "mean_event_onset_channel_time_only_s": 2.2387259832038575,
+  "origin": "synthetic spatial event threshold 0.5",
+  "limitation": "Not real elapsed event staleness; excludes inter-round sensing intervals"
+}

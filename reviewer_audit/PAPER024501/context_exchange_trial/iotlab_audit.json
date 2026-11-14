@@ -1,0 +1,64 @@
+{
+  "experiment_id": 458578,
+  "three_nodes": [
+    97,
+    100,
+    102
+  ],
+  "status": "COMPLETED",
+  "captured_context_packet_modes": [
+    {
+      "mode": 0,
+      "context_application_bytes": 0,
+      "logged_context_sent": 0,
+      "logged_context_received": 0,
+      "matched_context_rx_tx": 0,
+      "logged_data_sent": 28,
+      "logged_data_received": 27,
+      "matched_data_rx_tx": 27,
+      "capture_covers_full_experiment": false
+    },
+    {
+      "mode": 1,
+      "context_application_bytes": 13,
+      "logged_context_sent": 17,
+      "logged_context_received": 17,
+      "matched_context_rx_tx": 17,
+      "logged_data_sent": 40,
+      "logged_data_received": 40,
+      "matched_data_rx_tx": 40,
+      "capture_covers_full_experiment": false
+    },
+    {
+      "mode": 2,
+      "context_application_bytes": 25,
+      "logged_context_sent": 23,
+      "logged_context_received": 23,
+      "matched_context_rx_tx": 23,
+      "logged_data_sent": 40,
+      "logged_data_received": 40,
+      "matched_data_rx_tx": 40,
+      "capture_covers_full_experiment": false
+    },
+    {
+      "mode": 3,
+      "context_application_bytes": 50,
+      "logged_context_sent": 14,
+      "logged_context_received": 14,
+      "matched_context_rx_tx": 14,
+      "logged_data_sent": 32,
+      "logged_data_received": 32,
+      "matched_data_rx_tx": 32,
+      "capture_covers_full_experiment": false
+    }
+  ],
+  "serial_lines": 415,
+  "raw_power_board_count": 3,
+  "phase_windows_usable": 21,
+  "paired_board_mode_comparisons": 12,
+  "channel_or_physical_PDR_calibrated": false,
+  "full_network_energy_savings_validated": false,
+  "original_REETX_firmware_validated": false,
+  "serial_sha256": "3ee07b990cb3a73251890ab0c120b8cd1863824e09d96499e459114601faf156",
+  "limitations": "3-node prototype with synthetic source reports and isolated context frames. Whole-board power and serial reception are observational; mixed traffic and temporal drift preclude independently calibrated per-context joules. Full experiment serial coverage not independently sniffer-confirmed."
+}

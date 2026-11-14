@@ -1,0 +1,415 @@
+1794639063.814659;Aggregator started
+1794639064.170572;m3-102;REPORT_TX source=3 mode=1 second=46 count=5
+1794639064.200341;m3-97;REPORT_RX source=3 mode=1 second=46 bytes=32 count=9
+1794639065.164440;m3-100;REPORT_TX source=2 mode=1 second=47 count=5
+1794639065.176216;m3-97;REPORT_RX source=2 mode=1 second=47 bytes=32 count=10
+1794639067.164294;m3-100;CONTEXT_TX mode=1 second=49 bytes=13 count=5
+1794639067.226140;m3-102;CONTEXT_RX role=3 mode=1 second=49 bytes=13 sample=815 count=5
+1794639068.169952;m3-102;REPORT_TX source=3 mode=1 second=50 count=6
+1794639068.215935;m3-97;REPORT_RX source=3 mode=1 second=50 bytes=32 count=11
+1794639069.164049;m3-100;REPORT_TX source=2 mode=1 second=51 count=6
+1794639069.223815;m3-97;REPORT_RX source=2 mode=1 second=51 bytes=32 count=12
+1794639071.163896;m3-100;CONTEXT_TX mode=1 second=53 bytes=13 count=6
+1794639071.193647;m3-102;CONTEXT_RX role=3 mode=1 second=53 bytes=13 sample=963 count=6
+1794639072.169563;m3-102;REPORT_TX source=3 mode=1 second=54 count=7
+1794639072.215487;m3-97;REPORT_RX source=3 mode=1 second=54 bytes=32 count=13
+1794639073.163531;m3-100;REPORT_TX source=2 mode=1 second=55 count=7
+1794639073.175276;m3-97;REPORT_RX source=2 mode=1 second=55 bytes=32 count=14
+1794639075.163337;m3-100;CONTEXT_TX mode=1 second=57 bytes=13 count=7
+1794639075.225292;m3-102;CONTEXT_RX role=3 mode=1 second=57 bytes=13 sample=87 count=7
+1794639076.169177;m3-102;REPORT_TX source=3 mode=1 second=58 count=8
+1794639076.215081;m3-97;REPORT_RX source=3 mode=1 second=58 bytes=32 count=15
+1794639077.163150;m3-100;REPORT_TX source=2 mode=1 second=59 count=8
+1794639077.206929;m3-97;REPORT_RX source=2 mode=1 second=59 bytes=32 count=16
+1794639078.166869;m3-97;CONTEXT_PHASE role=1 mode=2 second=60 bytes=25
+1794639078.168701;m3-102;CONTEXT_PHASE role=3 mode=2 second=60 bytes=25
+1794639078.171076;m3-100;CONTEXT_PHASE role=2 mode=2 second=60 bytes=25
+1794639079.162942;m3-100;CONTEXT_TX mode=2 second=61 bytes=25 count=1
+1794639079.224521;m3-102;CONTEXT_RX role=3 mode=2 second=61 bytes=25 sample=235 count=1
+1794639080.168694;m3-102;REPORT_TX source=3 mode=2 second=62 count=1
+1794639080.230356;m3-97;REPORT_RX source=3 mode=2 second=62 bytes=32 count=1
+1794639081.162718;m3-100;REPORT_TX source=2 mode=2 second=63 count=1
+1794639081.174483;m3-97;REPORT_RX source=2 mode=2 second=63 bytes=32 count=2
+1794639083.162461;m3-100;CONTEXT_TX mode=2 second=65 bytes=25 count=2
+1794639083.224262;m3-102;CONTEXT_RX role=3 mode=2 second=65 bytes=25 sample=383 count=2
+1794639084.168230;m3-102;REPORT_TX source=3 mode=2 second=66 count=2
+1794639084.198182;m3-97;REPORT_RX source=3 mode=2 second=66 bytes=32 count=3
+1794639085.162073;m3-100;REPORT_TX source=2 mode=2 second=67 count=2
+1794639085.222048;m3-97;REPORT_RX source=2 mode=2 second=67 bytes=32 count=4
+1794639087.161792;m3-100;CONTEXT_TX mode=2 second=69 bytes=25 count=3
+1794639087.207885;m3-102;CONTEXT_RX role=3 mode=2 second=69 bytes=25 sample=531 count=3
+1794639088.167898;m3-102;REPORT_TX source=3 mode=2 second=70 count=3
+1794639088.181781;m3-97;REPORT_RX source=3 mode=2 second=70 bytes=32 count=5
+1794639089.161752;m3-100;REPORT_TX source=2 mode=2 second=71 count=3
+1794639089.189590;m3-97;REPORT_RX source=2 mode=2 second=71 bytes=32 count=6
+1794639091.161644;m3-100;CONTEXT_TX mode=2 second=73 bytes=25 count=4
+1794639091.223533;m3-102;CONTEXT_RX role=3 mode=2 second=73 bytes=25 sample=679 count=4
+1794639092.165359;m3-97;REPORT_RX source=3 mode=2 second=74 bytes=32 count=7
+1794639092.167146;m3-102;REPORT_TX source=3 mode=2 second=74 count=4
+1794639093.161448;m3-100;REPORT_TX source=2 mode=2 second=75 count=4
+1794639093.173197;m3-97;REPORT_RX source=2 mode=2 second=75 bytes=32 count=8
+1794639095.161255;m3-100;CONTEXT_TX mode=2 second=77 bytes=25 count=5
+1794639095.223174;m3-102;CONTEXT_RX role=3 mode=2 second=77 bytes=25 sample=827 count=5
+1794639096.166959;m3-102;REPORT_TX source=3 mode=2 second=78 count=5
+1794639096.196654;m3-97;REPORT_RX source=3 mode=2 second=78 bytes=32 count=9
+1794639097.161134;m3-100;REPORT_TX source=2 mode=2 second=79 count=5
+1794639097.172791;m3-97;REPORT_RX source=2 mode=2 second=79 bytes=32 count=10
+1794639099.160757;m3-100;CONTEXT_TX mode=2 second=81 bytes=25 count=6
+1794639099.206643;m3-102;CONTEXT_RX role=3 mode=2 second=81 bytes=25 sample=975 count=6
+1794639100.166597;m3-102;REPORT_TX source=3 mode=2 second=82 count=6
+1794639100.212226;m3-97;REPORT_RX source=3 mode=2 second=82 bytes=32 count=11
+1794639101.160558;m3-100;REPORT_TX source=2 mode=2 second=83 count=6
+1794639101.188195;m3-97;REPORT_RX source=2 mode=2 second=83 bytes=32 count=12
+1794639103.160362;m3-100;CONTEXT_TX mode=2 second=85 bytes=25 count=7
+1794639103.206305;m3-102;CONTEXT_RX role=3 mode=2 second=85 bytes=25 sample=99 count=7
+1794639104.166001;m3-102;REPORT_TX source=3 mode=2 second=86 count=7
+1794639104.180052;m3-97;REPORT_RX source=3 mode=2 second=86 bytes=32 count=13
+1794639105.160166;m3-100;REPORT_TX source=2 mode=2 second=87 count=7
+1794639105.219890;m3-97;REPORT_RX source=2 mode=2 second=87 bytes=32 count=14
+1794639107.159791;m3-100;CONTEXT_TX mode=2 second=89 bytes=25 count=8
+1794639107.205763;m3-102;CONTEXT_RX role=3 mode=2 second=89 bytes=25 sample=247 count=8
+1794639108.163649;m3-97;CONTEXT_PHASE role=1 mode=3 second=90 bytes=50
+1794639108.165418;m3-102;CONTEXT_PHASE role=3 mode=3 second=90 bytes=50
+1794639108.165570;m3-102;REPORT_TX source=3 mode=3 second=90 count=1
+1794639108.167690;m3-100;CONTEXT_PHASE role=2 mode=3 second=90 bytes=50
+1794639108.227493;m3-97;REPORT_RX source=3 mode=3 second=90 bytes=32 count=1
+1794639109.159794;m3-100;REPORT_TX source=2 mode=3 second=91 count=1
+1794639109.235466;m3-97;REPORT_RX source=2 mode=3 second=91 bytes=32 count=2
+1794639111.159432;m3-100;CONTEXT_TX mode=3 second=93 bytes=50 count=1
+1794639111.173383;m3-102;CONTEXT_RX role=3 mode=3 second=93 bytes=50 sample=395 count=1
+1794639112.165209;m3-102;REPORT_TX source=3 mode=3 second=94 count=2
+1794639112.179080;m3-97;REPORT_RX source=3 mode=3 second=94 bytes=32 count=3
+1794639113.159044;m3-100;REPORT_TX source=2 mode=3 second=95 count=2
+1794639113.219021;m3-97;REPORT_RX source=2 mode=3 second=95 bytes=32 count=4
+1794639115.172987;m3-102;CONTEXT_RX role=3 mode=3 second=97 bytes=50 sample=543 count=2
+1794639115.174555;m3-100;CONTEXT_TX mode=3 second=97 bytes=50 count=2
+1794639116.164622;m3-102;REPORT_TX source=3 mode=3 second=98 count=3
+1794639116.194481;m3-97;REPORT_RX source=3 mode=3 second=98 bytes=32 count=5
+1794639117.174643;m3-100;REPORT_TX source=2 mode=3 second=99 count=3
+1794639117.202614;m3-97;REPORT_RX source=2 mode=3 second=99 bytes=32 count=6
+1794639119.174459;m3-100;CONTEXT_TX mode=3 second=101 bytes=50 count=3
+1794639119.204482;m3-102;CONTEXT_RX role=3 mode=3 second=101 bytes=50 sample=691 count=3
+1794639120.164427;m3-102;REPORT_TX source=3 mode=3 second=102 count=4
+1794639120.178280;m3-97;REPORT_RX source=3 mode=3 second=102 bytes=32 count=7
+1794639121.174257;m3-100;REPORT_TX source=2 mode=3 second=103 count=4
+1794639121.202099;m3-97;REPORT_RX source=2 mode=3 second=103 bytes=32 count=8
+1794639123.173899;m3-100;CONTEXT_TX mode=3 second=105 bytes=50 count=4
+1794639123.203972;m3-102;CONTEXT_RX role=3 mode=3 second=105 bytes=50 sample=839 count=4
+1794639124.163906;m3-102;REPORT_TX source=3 mode=3 second=106 count=5
+1794639124.193856;m3-97;REPORT_RX source=3 mode=3 second=106 bytes=32 count=9
+1794639125.173757;m3-100;REPORT_TX source=2 mode=3 second=107 count=5
+1794639125.201693;m3-97;REPORT_RX source=2 mode=3 second=107 bytes=32 count=10
+1794639127.173429;m3-100;CONTEXT_TX mode=3 second=109 bytes=50 count=5
+1794639127.187489;m3-102;CONTEXT_RX role=3 mode=3 second=109 bytes=50 sample=987 count=5
+1794639128.163497;m3-102;REPORT_TX source=3 mode=3 second=110 count=6
+1794639128.177402;m3-97;REPORT_RX source=3 mode=3 second=110 bytes=32 count=11
+1794639129.173420;m3-100;REPORT_TX source=2 mode=3 second=111 count=6
+1794639129.185347;m3-97;REPORT_RX source=2 mode=3 second=111 bytes=32 count=12
+1794639131.173315;m3-100;CONTEXT_TX mode=3 second=113 bytes=50 count=6
+1794639131.203215;m3-102;CONTEXT_RX role=3 mode=3 second=113 bytes=50 sample=111 count=6
+1794639132.162987;m3-102;REPORT_TX source=3 mode=3 second=114 count=7
+1794639132.193007;m3-97;REPORT_RX source=3 mode=3 second=114 bytes=32 count=13
+1794639133.173190;m3-100;REPORT_TX source=2 mode=3 second=115 count=7
+1794639133.216930;m3-97;REPORT_RX source=2 mode=3 second=115 bytes=32 count=14
+1794639135.172801;m3-100;CONTEXT_TX mode=3 second=117 bytes=50 count=7
+1794639135.202728;m3-102;CONTEXT_RX role=3 mode=3 second=117 bytes=50 sample=259 count=7
+1794639136.162691;m3-102;REPORT_TX source=3 mode=3 second=118 count=8
+1794639136.208597;m3-97;REPORT_RX source=3 mode=3 second=118 bytes=32 count=15
+1794639137.172612;m3-100;REPORT_TX source=2 mode=3 second=119 count=8
+1794639137.216228;m3-97;REPORT_RX source=2 mode=3 second=119 bytes=32 count=16
+1794639138.160322;m3-97;CONTEXT_PHASE role=1 mode=0 second=120 bytes=0
+1794639138.162395;m3-102;CONTEXT_PHASE role=3 mode=0 second=120 bytes=0
+1794639138.164423;m3-100;CONTEXT_PHASE role=2 mode=0 second=120 bytes=0
+1794639140.162229;m3-102;REPORT_TX source=3 mode=0 second=122 count=8
+1794639140.192202;m3-97;REPORT_RX source=3 mode=0 second=122 bytes=32 count=15
+1794639141.172226;m3-100;REPORT_TX source=2 mode=0 second=123 count=8
+1794639141.184023;m3-97;REPORT_RX source=2 mode=0 second=123 bytes=32 count=16
+1794639144.159806;m3-97;REPORT_RX source=3 mode=0 second=126 bytes=32 count=17
+1794639144.161718;m3-102;REPORT_TX source=3 mode=0 second=126 count=9
+1794639145.171842;m3-100;REPORT_TX source=2 mode=0 second=127 count=9
+1794639145.231595;m3-97;REPORT_RX source=2 mode=0 second=127 bytes=32 count=18
+1794639148.161437;m3-102;REPORT_TX source=3 mode=0 second=130 count=10
+1794639148.191283;m3-97;REPORT_RX source=3 mode=0 second=130 bytes=32 count=19
+1794639149.171392;m3-100;REPORT_TX source=2 mode=0 second=131 count=10
+1794639149.215046;m3-97;REPORT_RX source=2 mode=0 second=131 bytes=32 count=20
+1794639152.160959;m3-102;REPORT_TX source=3 mode=0 second=134 count=11
+1794639152.190713;m3-97;REPORT_RX source=3 mode=0 second=134 bytes=32 count=21
+1794639153.171019;m3-100;REPORT_TX source=2 mode=0 second=135 count=11
+1794639156.160511;m3-102;REPORT_TX source=3 mode=0 second=138 count=12
+1794639156.174297;m3-97;REPORT_RX source=3 mode=0 second=138 bytes=32 count=22
+1794639157.170558;m3-100;REPORT_TX source=2 mode=0 second=139 count=12
+1794639157.214311;m3-97;REPORT_RX source=2 mode=0 second=139 bytes=32 count=23
+1794639160.160196;m3-102;REPORT_TX source=3 mode=0 second=142 count=13
+1794639160.174067;m3-97;REPORT_RX source=3 mode=0 second=142 bytes=32 count=24
+1794639161.165843;m3-97;REPORT_RX source=2 mode=0 second=143 bytes=32 count=25
+1794639161.169899;m3-100;REPORT_TX source=2 mode=0 second=143 count=13
+1794639164.159844;m3-102;REPORT_TX source=3 mode=0 second=146 count=14
+1794639164.173439;m3-97;REPORT_RX source=3 mode=0 second=146 bytes=32 count=26
+1794639165.165483;m3-97;REPORT_RX source=2 mode=0 second=147 bytes=32 count=27
+1794639165.169530;m3-100;REPORT_TX source=2 mode=0 second=147 count=14
+1794639168.157166;m3-97;CONTEXT_PHASE role=1 mode=1 second=150 bytes=13
+1794639168.159250;m3-102;CONTEXT_PHASE role=3 mode=1 second=150 bytes=13
+1794639168.159463;m3-102;REPORT_TX source=3 mode=1 second=150 count=9
+1794639168.161150;m3-100;CONTEXT_PHASE role=2 mode=1 second=150 bytes=13
+1794639168.172926;m3-97;REPORT_RX source=3 mode=1 second=150 bytes=32 count=17
+1794639169.169219;m3-100;REPORT_TX source=2 mode=1 second=151 count=9
+1794639169.197136;m3-97;REPORT_RX source=2 mode=1 second=151 bytes=32 count=18
+1794639171.166896;m3-102;CONTEXT_RX role=3 mode=1 second=153 bytes=13 sample=567 count=8
+1794639171.168995;m3-100;CONTEXT_TX mode=1 second=153 bytes=13 count=8
+1794639172.158889;m3-102;REPORT_TX source=3 mode=1 second=154 count=10
+1794639172.172755;m3-97;REPORT_RX source=3 mode=1 second=154 bytes=32 count=19
+1794639173.168530;m3-100;REPORT_TX source=2 mode=1 second=155 count=10
+1794639173.196424;m3-97;REPORT_RX source=2 mode=1 second=155 bytes=32 count=20
+1794639175.166415;m3-102;CONTEXT_RX role=3 mode=1 second=157 bytes=13 sample=715 count=9
+1794639175.168264;m3-100;CONTEXT_TX mode=1 second=157 bytes=13 count=9
+1794639176.158315;m3-102;REPORT_TX source=3 mode=1 second=158 count=11
+1794639176.220297;m3-97;REPORT_RX source=3 mode=1 second=158 bytes=32 count=21
+1794639177.168311;m3-100;REPORT_TX source=2 mode=1 second=159 count=11
+1794639177.180075;m3-97;REPORT_RX source=2 mode=1 second=159 bytes=32 count=22
+1794639179.168060;m3-100;CONTEXT_TX mode=1 second=161 bytes=13 count=10
+1794639179.214095;m3-102;CONTEXT_RX role=3 mode=1 second=161 bytes=13 sample=863 count=10
+1794639180.157924;m3-102;REPORT_TX source=3 mode=1 second=162 count=12
+1794639180.219764;m3-97;REPORT_RX source=3 mode=1 second=162 bytes=32 count=23
+1794639181.167896;m3-100;REPORT_TX source=2 mode=1 second=163 count=12
+1794639181.179646;m3-97;REPORT_RX source=2 mode=1 second=163 bytes=32 count=24
+1794639183.167698;m3-100;CONTEXT_TX mode=1 second=165 bytes=13 count=11
+1794639183.213627;m3-102;CONTEXT_RX role=3 mode=1 second=165 bytes=13 sample=1011 count=11
+1794639184.157446;m3-102;REPORT_TX source=3 mode=1 second=166 count=13
+1794639184.219365;m3-97;REPORT_RX source=3 mode=1 second=166 bytes=32 count=25
+1794639185.167515;m3-100;REPORT_TX source=2 mode=1 second=167 count=13
+1794639185.195268;m3-97;REPORT_RX source=2 mode=1 second=167 bytes=32 count=26
+1794639187.167170;m3-100;CONTEXT_TX mode=1 second=169 bytes=13 count=12
+1794639187.197249;m3-102;CONTEXT_RX role=3 mode=1 second=169 bytes=13 sample=135 count=12
+1794639188.157186;m3-102;REPORT_TX source=3 mode=1 second=170 count=14
+1794639188.219043;m3-97;REPORT_RX source=3 mode=1 second=170 bytes=32 count=27
+1794639189.162857;m3-97;REPORT_RX source=2 mode=1 second=171 bytes=32 count=28
+1794639189.166904;m3-100;REPORT_TX source=2 mode=1 second=171 count=14
+1794639191.166777;m3-100;CONTEXT_TX mode=1 second=173 bytes=13 count=13
+1794639191.180588;m3-102;CONTEXT_RX role=3 mode=1 second=173 bytes=13 sample=283 count=13
+1794639192.156724;m3-102;REPORT_TX source=3 mode=1 second=174 count=15
+1794639192.170661;m3-97;REPORT_RX source=3 mode=1 second=174 bytes=32 count=29
+1794639193.166667;m3-100;REPORT_TX source=2 mode=1 second=175 count=15
+1794639193.178464;m3-97;REPORT_RX source=2 mode=1 second=175 bytes=32 count=30
+1794639195.164471;m3-102;CONTEXT_RX role=3 mode=1 second=177 bytes=13 sample=431 count=14
+1794639195.166169;m3-100;CONTEXT_TX mode=1 second=177 bytes=13 count=14
+1794639196.156255;m3-102;REPORT_TX source=3 mode=1 second=178 count=16
+1794639196.218165;m3-97;REPORT_RX source=3 mode=1 second=178 bytes=32 count=31
+1794639197.166261;m3-100;REPORT_TX source=2 mode=1 second=179 count=16
+1794639197.193834;m3-97;REPORT_RX source=2 mode=1 second=179 bytes=32 count=32
+1794639198.156012;m3-102;CONTEXT_PHASE role=3 mode=2 second=180 bytes=25
+1794639198.157821;m3-100;CONTEXT_PHASE role=2 mode=2 second=180 bytes=25
+1794639198.169774;m3-97;CONTEXT_PHASE role=1 mode=2 second=180 bytes=25
+1794639199.165886;m3-100;CONTEXT_TX mode=2 second=181 bytes=25 count=9
+1794639199.227903;m3-102;CONTEXT_RX role=3 mode=2 second=181 bytes=25 sample=579 count=9
+1794639200.155891;m3-102;REPORT_TX source=3 mode=2 second=182 count=8
+1794639200.217651;m3-97;REPORT_RX source=3 mode=2 second=182 bytes=32 count=15
+1794639201.165682;m3-100;REPORT_TX source=2 mode=2 second=183 count=8
+1794639201.193481;m3-97;REPORT_RX source=2 mode=2 second=183 bytes=32 count=16
+1794639203.165420;m3-100;CONTEXT_TX mode=2 second=185 bytes=25 count=10
+1794639203.179331;m3-102;CONTEXT_RX role=3 mode=2 second=185 bytes=25 sample=727 count=10
+1794639204.155232;m3-102;REPORT_TX source=3 mode=2 second=186 count=9
+1794639204.201159;m3-97;REPORT_RX source=3 mode=2 second=186 bytes=32 count=17
+1794639205.161196;m3-97;REPORT_RX source=2 mode=2 second=187 bytes=32 count=18
+1794639205.165265;m3-100;REPORT_TX source=2 mode=2 second=187 count=9
+1794639207.164891;m3-100;CONTEXT_TX mode=2 second=189 bytes=25 count=11
+1794639207.210881;m3-102;CONTEXT_RX role=3 mode=2 second=189 bytes=25 sample=875 count=11
+1794639208.155038;m3-102;REPORT_TX source=3 mode=2 second=190 count=10
+1794639208.200642;m3-97;REPORT_RX source=3 mode=2 second=190 bytes=32 count=19
+1794639209.165015;m3-100;REPORT_TX source=2 mode=2 second=191 count=10
+1794639209.176592;m3-97;REPORT_RX source=2 mode=2 second=191 bytes=32 count=20
+1794639211.164638;m3-100;CONTEXT_TX mode=2 second=193 bytes=25 count=12
+1794639211.210651;m3-102;CONTEXT_RX role=3 mode=2 second=193 bytes=25 sample=1023 count=12
+1794639212.154475;m3-102;REPORT_TX source=3 mode=2 second=194 count=11
+1794639212.184184;m3-97;REPORT_RX source=3 mode=2 second=194 bytes=32 count=21
+1794639213.164247;m3-100;REPORT_TX source=2 mode=2 second=195 count=11
+1794639213.192352;m3-97;REPORT_RX source=2 mode=2 second=195 bytes=32 count=22
+1794639215.164243;m3-100;CONTEXT_TX mode=2 second=197 bytes=25 count=13
+1794639215.210279;m3-102;CONTEXT_RX role=3 mode=2 second=197 bytes=25 sample=147 count=13
+1794639216.154097;m3-102;REPORT_TX source=3 mode=2 second=198 count=12
+1794639216.216028;m3-97;REPORT_RX source=3 mode=2 second=198 bytes=32 count=23
+1794639217.164101;m3-100;REPORT_TX source=2 mode=2 second=199 count=12
+1794639217.175954;m3-97;REPORT_RX source=2 mode=2 second=199 bytes=32 count=24
+1794639219.163866;m3-100;CONTEXT_TX mode=2 second=201 bytes=25 count=14
+1794639219.225815;m3-102;CONTEXT_RX role=3 mode=2 second=201 bytes=25 sample=295 count=14
+1794639220.153788;m3-102;REPORT_TX source=3 mode=2 second=202 count=13
+1794639220.167633;m3-97;REPORT_RX source=3 mode=2 second=202 bytes=32 count=25
+1794639221.163680;m3-100;REPORT_TX source=2 mode=2 second=203 count=13
+1794639221.207436;m3-97;REPORT_RX source=2 mode=2 second=203 bytes=32 count=26
+1794639223.163332;m3-100;CONTEXT_TX mode=2 second=205 bytes=25 count=15
+1794639223.225378;m3-102;CONTEXT_RX role=3 mode=2 second=205 bytes=25 sample=443 count=15
+1794639224.153226;m3-102;REPORT_TX source=3 mode=2 second=206 count=14
+1794639224.215070;m3-97;REPORT_RX source=3 mode=2 second=206 bytes=32 count=27
+1794639225.163015;m3-100;REPORT_TX source=2 mode=2 second=207 count=14
+1794639225.190974;m3-97;REPORT_RX source=2 mode=2 second=207 bytes=32 count=28
+1794639227.162872;m3-100;CONTEXT_TX mode=2 second=209 bytes=25 count=16
+1794639227.224889;m3-102;CONTEXT_RX role=3 mode=2 second=209 bytes=25 sample=591 count=16
+1794639228.152871;m3-102;CONTEXT_PHASE role=3 mode=3 second=210 bytes=50
+1794639228.166791;m3-97;CONTEXT_PHASE role=1 mode=3 second=210 bytes=50
+1794639228.166975;m3-97;REPORT_RX source=3 mode=3 second=210 bytes=32 count=17
+1794639228.168526;m3-102;REPORT_TX source=3 mode=3 second=210 count=9
+1794639228.170549;m3-100;CONTEXT_PHASE role=2 mode=3 second=210 bytes=50
+1794639229.162710;m3-100;REPORT_TX source=2 mode=3 second=211 count=9
+1794639229.222367;m3-97;REPORT_RX source=2 mode=3 second=211 bytes=32 count=18
+1794639231.162590;m3-100;CONTEXT_TX mode=3 second=213 bytes=50 count=8
+1794639231.176393;m3-102;CONTEXT_RX role=3 mode=3 second=213 bytes=50 sample=739 count=8
+1794639232.152320;m3-102;REPORT_TX source=3 mode=3 second=214 count=10
+1794639232.214170;m3-97;REPORT_RX source=3 mode=3 second=214 bytes=32 count=19
+1794639233.162224;m3-100;REPORT_TX source=2 mode=3 second=215 count=10
+1794639233.174113;m3-97;REPORT_RX source=2 mode=3 second=215 bytes=32 count=20
+1794639235.162090;m3-100;CONTEXT_TX mode=3 second=217 bytes=50 count=9
+1794639235.175933;m3-102;CONTEXT_RX role=3 mode=3 second=217 bytes=50 sample=887 count=9
+1794639236.151864;m3-102;REPORT_TX source=3 mode=3 second=218 count=11
+1794639236.197840;m3-97;REPORT_RX source=3 mode=3 second=218 bytes=32 count=21
+1794639237.161805;m3-100;REPORT_TX source=2 mode=3 second=219 count=11
+1794639237.189715;m3-97;REPORT_RX source=2 mode=3 second=219 bytes=32 count=22
+1794639239.161589;m3-100;CONTEXT_TX mode=3 second=221 bytes=50 count=10
+1794639239.191617;m3-102;CONTEXT_RX role=3 mode=3 second=221 bytes=50 sample=11 count=10
+1794639240.151345;m3-102;REPORT_TX source=3 mode=3 second=222 count=12
+1794639240.181457;m3-97;REPORT_RX source=3 mode=3 second=222 bytes=32 count=23
+1794639241.161380;m3-100;REPORT_TX source=2 mode=3 second=223 count=12
+1794639241.205230;m3-97;REPORT_RX source=2 mode=3 second=223 bytes=32 count=24
+1794639243.161049;m3-100;CONTEXT_TX mode=3 second=225 bytes=50 count=11
+1794639243.191232;m3-102;CONTEXT_RX role=3 mode=3 second=225 bytes=50 sample=159 count=11
+1794639244.166901;m3-102;REPORT_TX source=3 mode=3 second=226 count=13
+1794639244.197094;m3-97;REPORT_RX source=3 mode=3 second=226 bytes=32 count=25
+1794639245.160993;m3-100;REPORT_TX source=2 mode=3 second=227 count=13
+1794639245.188850;m3-97;REPORT_RX source=2 mode=3 second=227 bytes=32 count=26
+1794639247.160824;m3-100;CONTEXT_TX mode=3 second=229 bytes=50 count=12
+1794639247.222554;m3-102;CONTEXT_RX role=3 mode=3 second=229 bytes=50 sample=307 count=12
+1794639248.166274;m3-102;REPORT_TX source=3 mode=3 second=230 count=14
+1794639248.196547;m3-97;REPORT_RX source=3 mode=3 second=230 bytes=32 count=27
+1794639249.160461;m3-100;REPORT_TX source=2 mode=3 second=231 count=14
+1794639249.220417;m3-97;REPORT_RX source=2 mode=3 second=231 bytes=32 count=28
+1794639251.160317;m3-100;CONTEXT_TX mode=3 second=233 bytes=50 count=13
+1794639251.222193;m3-102;CONTEXT_RX role=3 mode=3 second=233 bytes=50 sample=455 count=13
+1794639252.164093;m3-97;REPORT_RX source=3 mode=3 second=234 bytes=32 count=29
+1794639252.165917;m3-102;REPORT_TX source=3 mode=3 second=234 count=15
+1794639253.160102;m3-100;REPORT_TX source=2 mode=3 second=235 count=15
+1794639253.219875;m3-97;REPORT_RX source=2 mode=3 second=235 bytes=32 count=30
+1794639255.159915;m3-100;CONTEXT_TX mode=3 second=237 bytes=50 count=14
+1794639255.221905;m3-102;CONTEXT_RX role=3 mode=3 second=237 bytes=50 sample=603 count=14
+1794639256.163738;m3-97;REPORT_RX source=3 mode=3 second=238 bytes=32 count=31
+1794639256.165491;m3-102;REPORT_TX source=3 mode=3 second=238 count=16
+1794639257.159689;m3-100;REPORT_TX source=2 mode=3 second=239 count=16
+1794639257.203546;m3-97;REPORT_RX source=2 mode=3 second=239 bytes=32 count=32
+1794639258.163466;m3-97;CONTEXT_PHASE role=1 mode=0 second=240 bytes=0
+1794639258.165228;m3-102;CONTEXT_PHASE role=3 mode=0 second=240 bytes=0
+1794639258.167471;m3-100;CONTEXT_PHASE role=2 mode=0 second=240 bytes=0
+1794639260.165317;m3-102;REPORT_TX source=3 mode=0 second=242 count=15
+1794639260.195373;m3-97;REPORT_RX source=3 mode=0 second=242 bytes=32 count=28
+1794639261.159337;m3-100;REPORT_TX source=2 mode=0 second=243 count=15
+1794639261.171163;m3-97;REPORT_RX source=2 mode=0 second=243 bytes=32 count=29
+1794639264.164792;m3-102;REPORT_TX source=3 mode=0 second=246 count=16
+1794639264.194797;m3-97;REPORT_RX source=3 mode=0 second=246 bytes=32 count=30
+1794639265.158811;m3-100;REPORT_TX source=2 mode=0 second=247 count=16
+1794639265.170738;m3-97;REPORT_RX source=2 mode=0 second=247 bytes=32 count=31
+1794639268.164548;m3-102;REPORT_TX source=3 mode=0 second=250 count=17
+1794639268.178438;m3-97;REPORT_RX source=3 mode=0 second=250 bytes=32 count=32
+1794639269.158224;m3-100;REPORT_TX source=2 mode=0 second=251 count=17
+1794639269.202207;m3-97;REPORT_RX source=2 mode=0 second=251 bytes=32 count=33
+1794639272.163951;m3-102;REPORT_TX source=3 mode=0 second=254 count=18
+1794639272.193818;m3-97;REPORT_RX source=3 mode=0 second=254 bytes=32 count=34
+1794639273.158031;m3-100;REPORT_TX source=2 mode=0 second=255 count=18
+1794639273.201823;m3-97;REPORT_RX source=2 mode=0 second=255 bytes=32 count=35
+1794639276.163651;m3-102;REPORT_TX source=3 mode=0 second=258 count=19
+1794639276.177668;m3-97;REPORT_RX source=3 mode=0 second=258 bytes=32 count=36
+1794639277.157521;m3-100;REPORT_TX source=2 mode=0 second=259 count=19
+1794639277.169440;m3-97;REPORT_RX source=2 mode=0 second=259 bytes=32 count=37
+1794639280.163300;m3-102;REPORT_TX source=3 mode=0 second=262 count=20
+1794639280.209137;m3-97;REPORT_RX source=3 mode=0 second=262 bytes=32 count=38
+1794639281.157002;m3-100;REPORT_TX source=2 mode=0 second=263 count=20
+1794639281.185020;m3-97;REPORT_RX source=2 mode=0 second=263 bytes=32 count=39
+1794639284.162914;m3-102;REPORT_TX source=3 mode=0 second=266 count=21
+1794639284.192682;m3-97;REPORT_RX source=3 mode=0 second=266 bytes=32 count=40
+1794639285.156744;m3-100;REPORT_TX source=2 mode=0 second=267 count=21
+1794639285.168635;m3-97;REPORT_RX source=2 mode=0 second=267 bytes=32 count=41
+1794639288.160293;m3-97;CONTEXT_PHASE role=1 mode=1 second=270 bytes=13
+1794639288.162254;m3-102;CONTEXT_PHASE role=3 mode=1 second=270 bytes=13
+1794639288.162405;m3-102;REPORT_TX source=3 mode=1 second=270 count=17
+1794639288.164358;m3-100;CONTEXT_PHASE role=2 mode=1 second=270 bytes=13
+1794639288.192122;m3-97;REPORT_RX source=3 mode=1 second=270 bytes=32 count=33
+1794639289.156167;m3-100;REPORT_TX source=2 mode=1 second=271 count=17
+1794639289.168107;m3-97;REPORT_RX source=2 mode=1 second=271 bytes=32 count=34
+1794639291.156006;m3-100;CONTEXT_TX mode=1 second=273 bytes=13 count=15
+1794639291.202055;m3-102;CONTEXT_RX role=3 mode=1 second=273 bytes=13 sample=911 count=15
+1794639292.161983;m3-102;REPORT_TX source=3 mode=1 second=274 count=18
+1794639292.191875;m3-97;REPORT_RX source=3 mode=1 second=274 bytes=32 count=35
+1794639293.155553;m3-100;REPORT_TX source=2 mode=1 second=275 count=18
+1794639293.199562;m3-97;REPORT_RX source=2 mode=1 second=275 bytes=32 count=36
+1794639295.155360;m3-100;CONTEXT_TX mode=1 second=277 bytes=13 count=16
+1794639295.185687;m3-102;CONTEXT_RX role=3 mode=1 second=277 bytes=13 sample=35 count=16
+1794639296.161507;m3-102;REPORT_TX source=3 mode=1 second=278 count=19
+1794639296.175384;m3-97;REPORT_RX source=3 mode=1 second=278 bytes=32 count=37
+1794639297.155412;m3-100;REPORT_TX source=2 mode=1 second=279 count=19
+1794639297.167329;m3-97;REPORT_RX source=2 mode=1 second=279 bytes=32 count=38
+1794639299.155205;m3-100;CONTEXT_TX mode=1 second=281 bytes=13 count=17
+1794639299.185187;m3-102;CONTEXT_RX role=3 mode=1 second=281 bytes=13 sample=183 count=17
+1794639300.161144;m3-102;REPORT_TX source=3 mode=1 second=282 count=20
+1794639300.207005;m3-97;REPORT_RX source=3 mode=1 second=282 bytes=32 count=39
+1794639301.154929;m3-100;REPORT_TX source=2 mode=1 second=283 count=20
+1794639301.166934;m3-97;REPORT_RX source=2 mode=1 second=283 bytes=32 count=40
+1794639303.154560;m3-100;CONTEXT_TX mode=1 second=285 bytes=13 count=18
+1794639303.216802;m3-102;CONTEXT_RX role=3 mode=1 second=285 bytes=13 sample=331 count=18
+1794639304.160527;m3-102;REPORT_TX source=3 mode=1 second=286 count=21
+1794639304.206391;m3-97;REPORT_RX source=3 mode=1 second=286 bytes=32 count=41
+1794639305.154461;m3-100;REPORT_TX source=2 mode=1 second=287 count=21
+1794639305.182390;m3-97;REPORT_RX source=2 mode=1 second=287 bytes=32 count=42
+1794639307.154286;m3-100;CONTEXT_TX mode=1 second=289 bytes=13 count=19
+1794639307.200424;m3-102;CONTEXT_RX role=3 mode=1 second=289 bytes=13 sample=479 count=19
+1794639308.158216;m3-97;REPORT_RX source=3 mode=1 second=290 bytes=32 count=43
+1794639308.160112;m3-102;REPORT_TX source=3 mode=1 second=290 count=22
+1794639309.154111;m3-100;REPORT_TX source=2 mode=1 second=291 count=22
+1794639309.197994;m3-97;REPORT_RX source=2 mode=1 second=291 bytes=32 count=44
+1794639311.153913;m3-100;CONTEXT_TX mode=1 second=293 bytes=13 count=20
+1794639311.183895;m3-102;CONTEXT_RX role=3 mode=1 second=293 bytes=13 sample=627 count=20
+1794639312.159842;m3-102;REPORT_TX source=3 mode=1 second=294 count=23
+1794639312.205305;m3-97;REPORT_RX source=3 mode=1 second=294 bytes=32 count=45
+1794639313.153620;m3-100;REPORT_TX source=2 mode=1 second=295 count=23
+1794639313.229343;m3-97;REPORT_RX source=2 mode=1 second=295 bytes=32 count=46
+1794639315.153418;m3-100;CONTEXT_TX mode=1 second=297 bytes=13 count=21
+1794639315.167511;m3-102;CONTEXT_RX role=3 mode=1 second=297 bytes=13 sample=775 count=21
+1794639316.159314;m3-102;REPORT_TX source=3 mode=1 second=298 count=24
+1794639316.189239;m3-97;REPORT_RX source=3 mode=1 second=298 bytes=32 count=47
+1794639317.153223;m3-100;REPORT_TX source=2 mode=1 second=299 count=24
+1794639317.229031;m3-97;REPORT_RX source=2 mode=1 second=299 bytes=32 count=48
+1794639318.157038;m3-97;CONTEXT_PHASE role=1 mode=2 second=300 bytes=25
+1794639318.159165;m3-102;CONTEXT_PHASE role=3 mode=2 second=300 bytes=25
+1794639318.160904;m3-100;CONTEXT_PHASE role=2 mode=2 second=300 bytes=25
+1794639319.152890;m3-100;CONTEXT_TX mode=2 second=301 bytes=25 count=17
+1794639319.167034;m3-102;CONTEXT_RX role=3 mode=2 second=301 bytes=25 sample=923 count=17
+1794639320.158995;m3-102;REPORT_TX source=3 mode=2 second=302 count=15
+1794639320.172668;m3-97;REPORT_RX source=3 mode=2 second=302 bytes=32 count=29
+1794639321.152828;m3-100;REPORT_TX source=2 mode=2 second=303 count=15
+1794639321.196679;m3-97;REPORT_RX source=2 mode=2 second=303 bytes=32 count=30
+1794639323.152628;m3-100;CONTEXT_TX mode=2 second=305 bytes=25 count=18
+1794639323.214631;m3-102;CONTEXT_RX role=3 mode=2 second=305 bytes=25 sample=47 count=18
+1794639324.158297;m3-102;REPORT_TX source=3 mode=2 second=306 count=16
+1794639324.204273;m3-97;REPORT_RX source=3 mode=2 second=306 bytes=32 count=31
+1794639325.152321;m3-100;REPORT_TX source=2 mode=2 second=307 count=16
+1794639325.164350;m3-97;REPORT_RX source=2 mode=2 second=307 bytes=32 count=32
+1794639327.151760;m3-100;CONTEXT_TX mode=2 second=309 bytes=25 count=19
+1794639327.197812;m3-102;CONTEXT_RX role=3 mode=2 second=309 bytes=25 sample=195 count=19
+1794639328.158183;m3-102;REPORT_TX source=3 mode=2 second=310 count=17
+1794639328.220068;m3-97;REPORT_RX source=3 mode=2 second=310 bytes=32 count=33
+1794639329.151932;m3-100;REPORT_TX source=2 mode=2 second=311 count=17
+1794639329.163850;m3-97;REPORT_RX source=2 mode=2 second=311 bytes=32 count=34
+1794639331.151719;m3-100;CONTEXT_TX mode=2 second=313 bytes=25 count=20
+1794639331.165765;m3-102;CONTEXT_RX role=3 mode=2 second=313 bytes=25 sample=343 count=20
+1794639332.157636;m3-102;REPORT_TX source=3 mode=2 second=314 count=18
+1794639332.219509;m3-97;REPORT_RX source=3 mode=2 second=314 bytes=32 count=35
+1794639333.151517;m3-100;REPORT_TX source=2 mode=2 second=315 count=18
+1794639333.195454;m3-97;REPORT_RX source=2 mode=2 second=315 bytes=32 count=36
+1794639335.151337;m3-100;CONTEXT_TX mode=2 second=317 bytes=25 count=21
+1794639335.213340;m3-102;CONTEXT_RX role=3 mode=2 second=317 bytes=25 sample=491 count=21
+1794639336.157246;m3-102;REPORT_TX source=3 mode=2 second=318 count=19
+1794639336.171114;m3-97;REPORT_RX source=3 mode=2 second=318 bytes=32 count=37
+1794639337.151109;m3-100;REPORT_TX source=2 mode=2 second=319 count=19
+1794639337.163057;m3-97;REPORT_RX source=2 mode=2 second=319 bytes=32 count=38
+1794639339.150784;m3-100;CONTEXT_TX mode=2 second=321 bytes=25 count=22
+1794639339.164965;m3-102;CONTEXT_RX role=3 mode=2 second=321 bytes=25 sample=639 count=22
+1794639340.154857;m3-97;REPORT_RX source=3 mode=2 second=322 bytes=32 count=39
+1794639340.156604;m3-102;REPORT_TX source=3 mode=2 second=322 count=20
+1794639341.166615;m3-100;REPORT_TX source=2 mode=2 second=323 count=20
+1794639341.210565;m3-97;REPORT_RX source=2 mode=2 second=323 bytes=32 count=40
+1794639343.166422;m3-100;CONTEXT_TX mode=2 second=325 bytes=25 count=23
+1794639343.228372;m3-102;CONTEXT_RX role=3 mode=2 second=325 bytes=25 sample=787 count=23

@@ -1,0 +1,117 @@
+{
+  "completed_original_simulator_runs": 60,
+  "source": "original simulator; event labels only in offline logging",
+  "all_10_matched_seeds_per_topology": true,
+  "match_condition": "same profile, same seed, same source, same round, both C3/C5 reports delivered",
+  "time_units": "within-round seconds and cumulative channel-occupied seconds ONLY",
+  "physical_event_staleness_measured": false,
+  "application_reconstruction_proven": false,
+  "interpretation_limit": "External inter-round sensing periods are absent; cumulative channel occupancy must not be renamed wall-clock event-to-sink latency or full AoI.",
+  "experimental_profiles": {
+    "shallow": 1.483,
+    "medium": 2.91,
+    "deep": 4.929
+  },
+  "paired_seed_contrasts": [
+    {
+      "profile": "shallow",
+      "metric": "within_round_service_lag_s",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": 0.08673620673002244,
+      "CI95_lower": 0.05212801718924977,
+      "CI95_upper": 0.12134439627079512,
+      "p_raw": 0.00030592074740774865,
+      "matched_both_delivered_events": 18453,
+      "p_holm": 0.002753286726669738
+    },
+    {
+      "profile": "shallow",
+      "metric": "event_to_delivery_channel_time_only_s",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": 0.6312977891588412,
+      "CI95_lower": 0.31375530516320177,
+      "CI95_upper": 0.9488402731544805,
+      "p_raw": 0.0014946659033715263,
+      "matched_both_delivered_events": 18453,
+      "p_holm": 0.01195732722697221
+    },
+    {
+      "profile": "medium",
+      "metric": "route_hops",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": -0.1078055885530839,
+      "CI95_lower": -0.23788226088933634,
+      "CI95_upper": 0.02227108378316854,
+      "p_raw": 0.09357326978597058,
+      "matched_both_delivered_events": 2477,
+      "p_holm": 0.6550128885017941
+    },
+    {
+      "profile": "deep",
+      "metric": "route_hops",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": -0.10664546919920137,
+      "CI95_lower": -0.24282532857793088,
+      "CI95_upper": 0.029534390179528136,
+      "p_raw": 0.11023744818037401,
+      "matched_both_delivered_events": 1107,
+      "p_holm": 0.661424689082244
+    },
+    {
+      "profile": "deep",
+      "metric": "within_round_service_lag_s",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": -0.18263117955039151,
+      "CI95_lower": -0.5189535376786626,
+      "CI95_upper": 0.1536911785778796,
+      "p_raw": 0.250447686555016,
+      "matched_both_delivered_events": 1107,
+      "p_holm": 1.0
+    },
+    {
+      "profile": "shallow",
+      "metric": "route_hops",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": -0.015573688144507603,
+      "CI95_lower": -0.05197983093488465,
+      "CI95_upper": 0.02083245464586944,
+      "p_raw": 0.35847898969244557,
+      "matched_both_delivered_events": 18453,
+      "p_holm": 1.0
+    },
+    {
+      "profile": "deep",
+      "metric": "event_to_delivery_channel_time_only_s",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": -0.871029347879922,
+      "CI95_lower": -2.954834377245109,
+      "CI95_upper": 1.212775681485265,
+      "p_raw": 0.36905548458103093,
+      "matched_both_delivered_events": 1107,
+      "p_holm": 1.0
+    },
+    {
+      "profile": "medium",
+      "metric": "event_to_delivery_channel_time_only_s",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": 0.33264886689939827,
+      "CI95_lower": -1.424598304909784,
+      "CI95_upper": 2.0898960387085803,
+      "p_raw": 0.6785500493123967,
+      "matched_both_delivered_events": 2477,
+      "p_holm": 1.0
+    },
+    {
+      "profile": "medium",
+      "metric": "within_round_service_lag_s",
+      "n_paired_seeds": 10,
+      "mean_C3_minus_C5": 0.021816180535519064,
+      "CI95_lower": -0.1821527716508365,
+      "CI95_upper": 0.22578513272187462,
+      "p_raw": 0.8142369512894329,
+      "matched_both_delivered_events": 2477,
+      "p_holm": 1.0
+    }
+  ],
+  "non_independent_report_statistics": "packet rows are descriptive only, seed is inference unit"
+}

@@ -267,6 +267,14 @@ def run():
                       if os.environ.get("REVIEW_RECEIVER_CODEC","0")=="1" else None)
     scalar_receiver = (ScalarSourceReceiver(config.num_nodes)
                        if os.environ.get("REVIEW_SCALAR_SOURCE","0")=="1" else None)
+    # Reviewer M5, offline only: event-onset and delivery timing. Original
+    # algorithm, energy model and random-number streams remain unchanged.
+    event_trace_file = os.environ.get("REVIEW_EVENT_TRACE_PATH")
+    event_trace_rows = [] if event_trace_file else None
+    event_onset_round = np.full(config.num_nodes,-1,dtype=np.int64)
+    event_onset_channel_sec = np.zeros(config.num_nodes,dtype=float)
+    event_truth_previous = np.zeros(config.num_nodes,dtype=bool)
+
 
     for round_id in range(
         1,
@@ -301,6 +309,12 @@ def run():
         # Evaluation-only ground truth.
         # This variable must never affect any network decision.
         event_truth = sensing.event_truth()
+
+        if event_trace_rows is not None:
+            newly_event_active = event_truth & ~event_truth_previous
+            event_onset_round[newly_event_active] = round_id
+            event_onset_channel_sec[newly_event_active] = elapsed_channel_time
+            event_truth_previous = event_truth.copy()
 
         semantic_age = semantic_tracker.semantic_age(
             relevance
@@ -557,6 +571,29 @@ def run():
                                        semantic_payload_bits[source],
                                        result.success)
 
+            if event_trace_rows is not None and bool(event_truth[source]):
+                service_lag = (start_time + result.airtime
+                               + result.propagation_delay + result.processing_delay)
+                event_trace_rows.append({
+                    "seed":config.seed, "mode":mode,
+                    "round":round_id, "source":source,
+                    "event_onset_round":int(event_onset_round[source]),
+                    "event_age_at_generation_rounds":int(
+                        round_id-event_onset_round[source]),
+                    "payload_bits":int(semantic_payload_bits[source]),
+                    "route_hops":int(hops),
+                    "hops_completed":int(result.hops_completed),
+                    "success":int(bool(result.success)),
+                    "frame_attempts":int(result.frame_attempts),
+                    "retransmissions":int(result.retransmissions),
+                    "within_round_service_lag_s":service_lag if result.success else "",
+                    "event_to_delivery_channel_time_only_s":(
+                        elapsed_channel_time + service_lag
+                        - event_onset_channel_sec[source]
+                    ) if result.success else "",
+                    "event_channel_time_reference":"Excludes external sensing intervals"
+                })
+
             metrics.register_frame_stats(
                 attempts=
                     result.frame_attempts,
@@ -767,6 +804,25 @@ def run():
 
         if lnd is not None:
             break
+
+    # Reviewer-specific offline event trace. No original simulation control
+    # flow or online event-label exposure is changed by this output.
+    if event_trace_rows is not None:
+        from pathlib import Path
+        trace_path = Path(event_trace_file)
+        trace_path.parent.mkdir(parents=True,exist_ok=True)
+        with trace_path.open("w",newline="") as trace_f:
+            fields = ["seed","mode","round","source","event_onset_round",
+                      "event_age_at_generation_rounds","payload_bits",
+                      "route_hops","hops_completed","success","frame_attempts",
+                      "retransmissions","within_round_service_lag_s",
+                      "event_to_delivery_channel_time_only_s",
+                      "event_channel_time_reference"]
+            trace_w=csv.DictWriter(trace_f,fieldnames=fields)
+            trace_w.writeheader()
+            trace_w.writerows(event_trace_rows)
+        print("EVENT_TRACE_WRITTEN:",str(trace_path),
+              "ROWS:",len(event_trace_rows))
 
     # ------------------------------------------------
     # Save results

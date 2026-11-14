@@ -1,0 +1,17 @@
+{
+  "scope": "connected review computer 2026-11-14; ORIGINAL ARCHIVE HOST NOT VERIFIED",
+  "os": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.7",
+  "hardware_model": "Apple M1 MacBook Air (observed system_profiler)",
+  "installed_memory": "8 GB (observed system_profiler)",
+  "modules": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "pytest": "9.2.0"
+  },
+  "github_branch": "review/PAPER024501-audit",
+  "contiki_ng_commit": "4ccd1a3b9e767f168d12ec3df187fe6b7dc736b5",
+  "git_head": "cfea60c014b303970b37dc4c9a85a3f56fa30e7f"
+}

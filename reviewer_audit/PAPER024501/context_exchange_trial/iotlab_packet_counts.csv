@@ -1,0 +1,5 @@
+mode,context_application_bytes,logged_context_sent,logged_context_received,matched_context_rx_tx,logged_data_sent,logged_data_received,matched_data_rx_tx,capture_covers_full_experiment
+0,0,0,0,0,28,27,27,False
+1,13,17,17,17,40,40,40,False
+2,25,23,23,23,40,40,40,False
+3,50,14,14,14,32,32,32,False

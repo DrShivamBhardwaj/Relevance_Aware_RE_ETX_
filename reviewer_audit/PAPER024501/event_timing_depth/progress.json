@@ -1,0 +1,6 @@
+{
+  "completed": 60,
+  "planned": 60,
+  "validated_protocol": "original 100-node simulator event trace only",
+  "staleness_physical_seconds_established": false
+}
