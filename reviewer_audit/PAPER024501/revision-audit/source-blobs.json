@@ -1,0 +1,20 @@
+{
+  "config.py": "4ef6e2d0dd33e9e6ad662ce391c877b919139cf0",
+  "simulator/topology.py": "0081d97d5dbb9d32a968eca6335e702761371f93",
+  "simulator/energy.py": "fffd87434fcc4930791e6f1572b0c5f822a271d1",
+  "simulator/network.py": "6db7e597f7a9902ea8ccfddbb2cdeca88e3a701d",
+  "simulator/metrics.py": "2184843501e0e3d11132ba35368a4db2aef12a15",
+  "simulator/channel.py": "8982630721bbcb60eee29202d720729b348f0420",
+  "simulator/frame.py": "a4c7b2ee8d7304a1a9eff2b0de08ba87ff3e4dc1",
+  "simulator/link_graph.py": "11613c2190fa5a190a0d799b930b4c0e5f34a0e0",
+  "simulator/routing_semantic_re_etx.py": "23258d0d24b4756990ebd475cc645ed6d3a4b2b0",
+  "simulator/multihop_transmission.py": "33f3fe5724b340f26d60588850194dcc2271c0ba",
+  "simulator/sensing.py": "3d651cf2db2700e0b60f06e96392c45998d18374",
+  "simulator/semantic_relevance.py": "99baf942b98c6bb2bd273482087abb3f347909e1",
+  "simulator/semantic_age.py": "1053a7e5890833d33e25037765ae089546982184",
+  "simulator/semantic_payload.py": "9bc9786eae9b98ef6d07c9801061696810a61660",
+  "requirements.txt": "0f4e8cd16ec14b17981f02ce26cab7a9ae2f49cf",
+  "run_semantic_re_etx.py": "ccd28b7e3bcd90b3ecf27c2aad778561a6cd36e6",
+  "run_topology_sensitivity.py": "9703026d5cad6ebce1a27b14e58298dc15d7662f",
+  "REPRODUCIBILITY.md": "6f2ed71c3aebf4f0b077373838a164e38b7ff7e3"
+}
