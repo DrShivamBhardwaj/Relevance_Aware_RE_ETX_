@@ -2,7 +2,7 @@
 
 All 32 numbered requirements and comments in the review form have a corresponding reply and manuscript locator. The form contains 11 editorial requirements, 5 major comments and 16 minor comments. The separate overall assessment was covered by the major and minor replies.
 
-Twenty-nine points are addressed at the scope stated in the replies. E8 awaits an eligible portrait and two biography approvals. The E10 declarations are drafted and the corresponding author’s roles are confirmed. Coauthor approval and submission consent are pending. For m14, software versions were verified against the original submission tag, while the original CPU, RAM and operating system remain unverified.
+Thirty points are addressed at the scope stated in the replies. E8 awaits an eligible portrait and two biography approvals. The E10 declarations are drafted and the corresponding author’s roles are confirmed. Coauthor approval and submission consent are pending. For m14, the original environment is reconstructed from the exact campaign launch and runner in local shell history, the 70 archived mode–seed pairs, and the Mac’s OS installation history.
 
 | ID | Topic | Status | Evidence location |
 |---|---|---|---|
@@ -35,7 +35,7 @@ Twenty-nine points are addressed at the scope stated in the replies. E8 awaits a
 | m11 | Abstract scope and exact effect sizes | Addressed | Abstract. |
 | m12 | Comparison with Arnaiz et al. | Addressed | Introduction and Section 2.1; Reference [11]. |
 | m13 | Pseudocode and complexity | Addressed | Section 4.4, Algorithm 1 and accompanying complexity analysis. |
-| m14 | Original simulator environment | Software verified; original host unverified | Section 5.1, the archived control-study software snapshot, and the Appendix D environment record. |
+| m14 | Original simulator environment | Addressed; original environment reconstructed | Section 5.1, the archived software snapshot and M14 Original Simulator Provenance. |
 | m15 | Parameter limits in conclusion | Addressed | Section 8; Appendix A Table 13. |
 | m16 | Recent literature and exchange overhead | Addressed | Sections 2.2 and 7; References [21], [22] and [28]. |
 

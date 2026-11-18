@@ -176,9 +176,9 @@ Manuscript location. Section 4.4, Algorithm 1 and accompanying complexity analys
 
 ### m14 · Original simulator environment
 
-We inspected the frozen submission archive and located the software snapshot alongside the 70 C1–C7 control-study runs. It lists Python 3.14.7, NumPy 2.4.6, pandas 3.0.5, SciPy 1.17.1 and Matplotlib 3.11.1. The original CPU, RAM and operating system could not be verified from the run records. The November Mac audit and the Linux Appendix D experiments are reported separately.
+Section 5.1 now reports the environment reconstructed for the original campaign: Apple M1 MacBook Air (MacBookAir10,1), 8 GB RAM, macOS Tahoe 26.6.2. The archived software snapshot lists Python 3.14.7, NumPy 2.4.6, pandas 3.0.5, SciPy 1.17.1 and Matplotlib 3.11.1. We linked the local launch command to the frozen runner and matched all 70 archived mode–seed pairs to the study summary. The Mac’s installation history establishes the OS version for that date. The November audit and the Linux Appendix D runs are described separately.
 
-Manuscript location. Section 5.1, the archived control-study software snapshot, and the Appendix D environment record.
+Manuscript location. Section 5.1, the archived software snapshot and M14 Original Simulator Provenance.
 
 ### m15 · Parameter limits in conclusion
 
